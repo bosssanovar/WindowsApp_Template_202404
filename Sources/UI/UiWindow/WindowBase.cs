@@ -1,10 +1,15 @@
-﻿using System.Reactive.Disposables;
+﻿using System.ComponentModel;
+using System.Reactive.Disposables;
 using System.Windows;
 
 namespace UiParts.UiWindow
 {
-    public abstract class WindowBase : Window
+    public abstract class WindowBase : Window, INotifyPropertyChanged
     {
+#pragma warning disable CS0067 // イベント 'MainWindowView.PropertyChanged' は使用されていません
+        public event PropertyChangedEventHandler? PropertyChanged;
+#pragma warning restore CS0067 // イベント 'MainWindowView.PropertyChanged' は使用されていません
+
         private readonly IDisposable _disposableModel;
 
         protected readonly CompositeDisposable _compositeDisposable = [];

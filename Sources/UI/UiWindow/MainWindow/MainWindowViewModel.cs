@@ -10,12 +10,8 @@ using System.Windows;
 
 namespace UiParts.UiWindow.MainWindow
 {
-    public partial class MainWindowView : INotifyPropertyChanged
+    public partial class MainWindowView
     {
-#pragma warning disable CS0067 // イベント 'MainWindowView.PropertyChanged' は使用されていません
-        public event PropertyChangedEventHandler? PropertyChanged;
-#pragma warning restore CS0067 // イベント 'MainWindowView.PropertyChanged' は使用されていません
-
         private Model? _model;
 
         public ReactivePropertySlim<int> YYYVal { get; private set; } = new(0);
@@ -37,8 +33,6 @@ namespace UiParts.UiWindow.MainWindow
                 {
                     var entity = _model.AaaEntity.Value;
                     entity.YYY = new(x);
-
-                    _model.ForceNotifyAaaEntity();
 
                     return entity;
                 },
