@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0-windows</TargetFramework>
@@ -16,6 +16,7 @@
     <ProjectReference Include="..\BBBEntity\BBBEntity.csproj" />
     <ProjectReference Include="..\DomainService\DomainService.csproj" />
     <ProjectReference Include="..\Usecase\Usecase.csproj" />
+    <ProjectReference Include="..\WpfLib\WpfLib.csproj" />
   </ItemGroup>
 
 </Project>

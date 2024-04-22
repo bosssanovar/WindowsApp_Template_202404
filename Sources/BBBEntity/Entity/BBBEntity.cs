@@ -6,7 +6,7 @@ namespace BBBEntity.Entity
 {
     public class BBBEntity
     {
-        public const string BBB_InitValue = "init value";
+        public const string BBB_InitValue = "InitValue";
 
         public BBBVO BBB { get; private set; }
 

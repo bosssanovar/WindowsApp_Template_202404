@@ -109,6 +109,10 @@ namespace UiParts.UiWindow.MainWindow
                     var lengthChecker = new BBBLehgthChecker(_model.AaaEntity.Value);
                     if (!lengthChecker.IsValid(text))
                     {
+                        MessageBox.Show(
+                            "AAA設定指定の文字数に丸め込みます。",
+                            "確認");
+
                         text = lengthChecker.Substring(text);
                     }
 
