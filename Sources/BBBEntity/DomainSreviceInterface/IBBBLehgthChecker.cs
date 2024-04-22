@@ -1,4 +1,4 @@
-﻿namespace BBBEntity
+﻿namespace BBBEntity.DomainSreviceInterface
 {
     public interface IBBBLehgthChecker
     {

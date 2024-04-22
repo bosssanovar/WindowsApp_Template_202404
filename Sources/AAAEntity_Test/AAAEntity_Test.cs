@@ -13,8 +13,8 @@ namespace AAAEntity_Test
         [InlineData(0, "")]
         public void ZZZİ’è•ÏX‚ÌAAAİ’è‚Æ‚»‚ÌŠÖ˜Aİ’è‚Ì•â³(int newZZZ, string expectedCorrectedBBB)
         {
-            var aaaEntity = new AAAEntity.AAAEntity();
-            var bbbEntity = new BBBEntity.BBBEntity();
+            var aaaEntity = new AAAEntity.Entity.AAAEntity();
+            var bbbEntity = new BBBEntity.Entity.BBBEntity();
 
             // €”õ
             aaaEntity.SetZZZ(new(20), new AAAChangedEvent(aaaEntity, bbbEntity));

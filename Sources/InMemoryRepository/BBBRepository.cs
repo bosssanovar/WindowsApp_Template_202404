@@ -4,19 +4,19 @@ namespace InMemoryRepository
 {
     public class BBBRepository : IBBBRepository
     {
-        private BBBEntity.BBBEntity _bbbEntity;
+        private BBBEntity.Entity.BBBEntity _bbbEntity;
 
         public BBBRepository()
         {
-            _bbbEntity = new BBBEntity.BBBEntity();
+            _bbbEntity = new BBBEntity.Entity.BBBEntity();
         }
 
-        public void Save(BBBEntity.BBBEntity aaaEntity)
+        public void Save(BBBEntity.Entity.BBBEntity aaaEntity)
         {
             _bbbEntity = aaaEntity.Clone();
         }
 
-        public BBBEntity.BBBEntity Load()
+        public BBBEntity.Entity.BBBEntity Load()
         {
             return _bbbEntity.Clone();
         }

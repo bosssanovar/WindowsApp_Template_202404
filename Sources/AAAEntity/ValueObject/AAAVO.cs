@@ -1,4 +1,4 @@
-﻿namespace AAAEntity
+﻿namespace AAAEntity.ValueObject
 {
     public record AAAVO(int Value)
     {

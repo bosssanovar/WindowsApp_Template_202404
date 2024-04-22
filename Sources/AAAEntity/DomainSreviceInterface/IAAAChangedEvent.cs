@@ -1,4 +1,4 @@
-﻿namespace AAAEntity
+﻿namespace AAAEntity.DomainSreviceInterface
 {
     public interface IAAAChangedEvent
     {

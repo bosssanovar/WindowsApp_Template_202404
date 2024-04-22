@@ -1,8 +1,8 @@
-﻿using BBBEntity;
+﻿using BBBEntity.DomainSreviceInterface;
 
 namespace DomainService
 {
-    public class BBBLehgthChecker(AAAEntity.AAAEntity _aaaEntity) : IBBBLehgthChecker
+    public class BBBLehgthChecker(AAAEntity.Entity.AAAEntity _aaaEntity) : IBBBLehgthChecker
     {
         public bool IsValid(string value)
         {

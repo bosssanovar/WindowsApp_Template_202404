@@ -8,8 +8,8 @@ namespace UiParts.UiWindow.MainWindow
     {
         private readonly DisplaySettingsUsecase _displaySettingsUsecase;
 
-        public ReactivePropertySlim<AAAEntity.AAAEntity> AaaEntity { get; }
-        public ReactivePropertySlim<BBBEntity.BBBEntity> BbbEntity { get; }
+        public ReactivePropertySlim<AAAEntity.Entity.AAAEntity> AaaEntity { get; }
+        public ReactivePropertySlim<BBBEntity.Entity.BBBEntity> BbbEntity { get; }
 
         public Model(DisplaySettingsUsecase displaySettingsUsecase)
         {

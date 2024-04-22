@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# CA1816: Dispose メソッドは、SuppressFinalize を呼び出す必要があります
+dotnet_diagnostic.CA1816.severity = none

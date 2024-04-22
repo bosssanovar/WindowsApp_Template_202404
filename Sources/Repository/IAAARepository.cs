@@ -1,14 +1,8 @@
-﻿
-
-
-
-
-
-namespace Repository
+﻿namespace Repository
 {
     public interface IAAARepository
     {
-        AAAEntity.AAAEntity Load();
-        void Save(AAAEntity.AAAEntity aaaEntity);
+        AAAEntity.Entity.AAAEntity Load();
+        void Save(AAAEntity.Entity.AAAEntity aaaEntity);
     }
 }

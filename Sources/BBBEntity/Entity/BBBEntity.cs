@@ -1,4 +1,7 @@
-﻿namespace BBBEntity
+﻿using BBBEntity.DomainSreviceInterface;
+using BBBEntity.ValueObject;
+
+namespace BBBEntity.Entity
 {
     public class BBBEntity
     {

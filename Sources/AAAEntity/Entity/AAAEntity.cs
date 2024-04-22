@@ -1,4 +1,7 @@
-﻿namespace AAAEntity
+﻿using AAAEntity.DomainSreviceInterface;
+using AAAEntity.ValueObject;
+
+namespace AAAEntity.Entity
 {
     public class AAAEntity
     {

@@ -1,8 +1,9 @@
 ﻿using AAAEntity;
+using AAAEntity.DomainSreviceInterface;
 
 namespace DomainService
 {
-    public class AAAChangedEvent(AAAEntity.AAAEntity _aaaEntity, BBBEntity.BBBEntity _bbbEntity) : IAAAChangedEvent
+    public class AAAChangedEvent(AAAEntity.Entity.AAAEntity _aaaEntity, BBBEntity.Entity.BBBEntity _bbbEntity) : IAAAChangedEvent
     {
         public void Execute()
         {
