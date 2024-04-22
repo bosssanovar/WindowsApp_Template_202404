@@ -1,5 +1,6 @@
 ﻿using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
+
 using Usecase;
 
 namespace UiParts.UiWindow.MainWindow
@@ -12,20 +13,29 @@ namespace UiParts.UiWindow.MainWindow
 
         private readonly SaveDataUsecase _saveDataUsecase;
 
+        private readonly OpenDataUsecase _openDataUsecase;
+
+        private readonly CommitSettingsUsecase _commitSettingsUsecase;
+
         public ReactivePropertySlim<AAAEntity.Entity.AAAEntity> AaaEntity { get; }
         public ReactivePropertySlim<BBBEntity.Entity.BBBEntity> BbbEntity { get; }
 
         public Model(
             DisplaySettingsUsecase displaySettingsUsecase,
             InitializeUsecase initializeUsecase,
-            SaveDataUsecase saveDataUsecase)
+            SaveDataUsecase saveDataUsecase,
+            OpenDataUsecase openDataUsecase,
+            CommitSettingsUsecase commitSettingsUsecase)
         {
             _displaySettingsUsecase = displaySettingsUsecase;
             _initializeUsecase = initializeUsecase;
             _saveDataUsecase = saveDataUsecase;
+            _openDataUsecase = openDataUsecase;
+            _commitSettingsUsecase = commitSettingsUsecase;
 
             AaaEntity = new(_displaySettingsUsecase.GetAAAEntity());
             AaaEntity.AddTo(_compositeDisposable);
+
             BbbEntity = new(_displaySettingsUsecase.GetBBBEntity());
             BbbEntity.AddTo(_compositeDisposable);
         }
@@ -43,14 +53,36 @@ namespace UiParts.UiWindow.MainWindow
         public void Initialize()
         {
             _initializeUsecase.Execute();
+            UpdateEntities();
+        }
 
+        private void UpdateEntities()
+        {
             AaaEntity.Value = _displaySettingsUsecase.GetAAAEntity();
             BbbEntity.Value = _displaySettingsUsecase.GetBBBEntity();
         }
 
-        public void Save()
+        public void SaveDataFile()
         {
+            CommitEntities();
+
             _saveDataUsecase.Execute();
+        }
+
+        private void CommitEntities()
+        {
+            _commitSettingsUsecase.CommitAAAEntity(AaaEntity.Value);
+            _commitSettingsUsecase.CommitBBBEntity(BbbEntity.Value);
+        }
+
+        public bool OpenDataFile()
+        {
+            var result = _openDataUsecase.Execute();
+            if (!result) return false;
+
+            UpdateEntities();
+
+            return true;
         }
     }
 }

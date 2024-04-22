@@ -24,6 +24,8 @@ namespace UiParts.UiWindow.MainWindow
 
         public ReactiveCommand SaveCommand { get; } = new();
 
+        public ReactiveCommand OpenCommand { get; } = new();
+
         private void MainWindowViewModel(Model model)
         {
             _model = model;
@@ -136,9 +138,20 @@ namespace UiParts.UiWindow.MainWindow
 
             SaveCommand.Subscribe(() =>
             {
-                _model.Save();
+                _model.SaveDataFile();
 
                 MessageBox.Show("データを保存しました。", "情報");
+            })
+                .AddTo(_compositeDisposable);
+
+            OpenCommand.Subscribe(() =>
+            {
+                var result = _model.OpenDataFile();
+
+                if (result)
+                {
+                    MessageBox.Show("データを開きました。", "情報");
+                }
             })
                 .AddTo(_compositeDisposable);
         }

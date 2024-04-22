@@ -11,12 +11,12 @@ namespace InMemoryRepository
             _bbbEntity = new BBBEntity.Entity.BBBEntity();
         }
 
-        public void Save(BBBEntity.Entity.BBBEntity aaaEntity)
+        public void Commit(BBBEntity.Entity.BBBEntity etity)
         {
-            _bbbEntity = aaaEntity.Clone();
+            _bbbEntity = etity.Clone();
         }
 
-        public BBBEntity.Entity.BBBEntity Load()
+        public BBBEntity.Entity.BBBEntity Pull()
         {
             return _bbbEntity.Clone();
         }

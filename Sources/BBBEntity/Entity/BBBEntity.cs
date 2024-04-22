@@ -42,5 +42,10 @@ namespace BBBEntity.Entity
                 BBB = BBB.Value
             };
         }
+
+        public void ImportPacketData(BBBEntityPacket packet)
+        {
+            BBB = new(packet.BBB);
+        }
     }
 }

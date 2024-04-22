@@ -12,13 +12,13 @@ namespace Usecase
     {
         public void Execute()
         {
-            var aaaEntity = _aaaRepository.Load();
+            var aaaEntity = _aaaRepository.Pull();
             aaaEntity.Initialize();
-            _aaaRepository.Save(aaaEntity);
+            _aaaRepository.Commit(aaaEntity);
 
-            var bbbEntity = _bbbRepository.Load();
+            var bbbEntity = _bbbRepository.Pull();
             bbbEntity.Initialize();
-            _bbbRepository.Save(bbbEntity);
+            _bbbRepository.Commit(bbbEntity);
 
         }
     }

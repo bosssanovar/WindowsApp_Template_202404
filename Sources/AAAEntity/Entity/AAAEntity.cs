@@ -78,5 +78,12 @@ namespace AAAEntity.Entity
                 ZZZ = ZZZ.Value
             };
         }
+
+        public void ImportPacketData(AAAEntityPacket packet)
+        {
+            YYY = new(packet.YYY);
+            ZZZ = new(packet.ZZZ);
+            AAA = new(packet.AAA);
+        }
     }
 }

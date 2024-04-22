@@ -40,6 +40,8 @@ namespace WpfApp1
             services.AddTransient<DisplaySettingsUsecase>();
             services.AddTransient<InitializeUsecase>();
             services.AddTransient<SaveDataUsecase>();
+            services.AddTransient<OpenDataUsecase>();
+            services.AddTransient<CommitSettingsUsecase>();
 
             services.AddTransient<Model>();
             services.AddTransient<MainWindowView>();

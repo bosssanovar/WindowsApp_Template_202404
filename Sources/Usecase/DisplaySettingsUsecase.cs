@@ -6,12 +6,12 @@ namespace Usecase
     {
         public AAAEntity.Entity.AAAEntity GetAAAEntity()
         {
-            return _aaaRepository.Load();
+            return _aaaRepository.Pull();
         }
 
         public BBBEntity.Entity.BBBEntity GetBBBEntity()
         {
-            return _bbbRepository.Load();
+            return _bbbRepository.Pull();
         }
     }
 }

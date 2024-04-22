@@ -2,7 +2,7 @@
 {
     public interface IAAARepository
     {
-        AAAEntity.Entity.AAAEntity Load();
-        void Save(AAAEntity.Entity.AAAEntity aaaEntity);
+        AAAEntity.Entity.AAAEntity Pull();
+        void Commit(AAAEntity.Entity.AAAEntity aaaEntity);
     }
 }

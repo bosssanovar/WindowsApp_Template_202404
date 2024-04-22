@@ -18,10 +18,10 @@ namespace Usecase
     {
         public void Execute()
         {
-            var aaaEntity = _aaaRepository.Load();
+            var aaaEntity = _aaaRepository.Pull();
             var aaaEntityPacket = aaaEntity.ExportPacketData();
 
-            var bbbEntity = _bbbRepository.Load();
+            var bbbEntity = _bbbRepository.Pull();
             var bbbEntityPacket = bbbEntity.ExportPacketData();
 
             var packet = new DataPacket()
