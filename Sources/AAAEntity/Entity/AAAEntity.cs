@@ -1,4 +1,5 @@
-﻿using AAAEntity.DomainSreviceInterface;
+﻿using AAAEntity.DataPacket;
+using AAAEntity.DomainSreviceInterface;
 using AAAEntity.ValueObject;
 
 namespace AAAEntity.Entity
@@ -66,6 +67,16 @@ namespace AAAEntity.Entity
             YYY = new(YYY_InitValue);
             ZZZ = new(ZZZ_InitValue);
             AAA = new(AAA_InitValue);
+        }
+
+        public AAAEntityPacket ExportPacketData()
+        {
+            return new()
+            {
+                AAA = AAA.Value,
+                YYY = YYY.Value,
+                ZZZ = ZZZ.Value
+            };
         }
     }
 }

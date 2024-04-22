@@ -1,4 +1,5 @@
-﻿using BBBEntity.DomainSreviceInterface;
+﻿using BBBEntity.DataPacket;
+using BBBEntity.DomainSreviceInterface;
 using BBBEntity.ValueObject;
 
 namespace BBBEntity.Entity
@@ -32,6 +33,14 @@ namespace BBBEntity.Entity
         public void Initialize()
         {
             BBB = new(BBB_InitValue);
+        }
+
+        public BBBEntityPacket ExportPacketData()
+        {
+            return new()
+            {
+                BBB = BBB.Value
+            };
         }
     }
 }

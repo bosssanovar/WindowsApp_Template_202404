@@ -10,8 +10,6 @@
     <ProjectReference Include="..\AAAEntity\AAAEntity.csproj" />
     <ProjectReference Include="..\BBBEntity\BBBEntity.csproj" />
     <ProjectReference Include="..\DomainService\DomainService.csproj" />
-    <ProjectReference Include="..\Feature\Feature.csproj" />
-    <ProjectReference Include="..\Repository\Repository.csproj" />
   </ItemGroup>
 
 </Project>

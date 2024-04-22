@@ -22,6 +22,8 @@ namespace UiParts.UiWindow.MainWindow
 
         public ReactiveCommand InitializeCommand { get; } = new();
 
+        public ReactiveCommand SaveCommand { get; } = new();
+
         private void MainWindowViewModel(Model model)
         {
             _model = model;
@@ -119,17 +121,25 @@ namespace UiParts.UiWindow.MainWindow
                 .AddTo(_compositeDisposable);
 
             InitializeCommand.Subscribe(() =>
+            {
+                if (MessageBox.Show(
+                            "初期化を実行しますか？",
+                            "確認",
+                            MessageBoxButton.YesNo,
+                            MessageBoxImage.Question,
+                            MessageBoxResult.No) == MessageBoxResult.Yes)
                 {
-                    if (MessageBox.Show(
-                                "初期化を実行しますか？",
-                                "確認",
-                                MessageBoxButton.YesNo,
-                                MessageBoxImage.Question,
-                                MessageBoxResult.No) == MessageBoxResult.Yes)
-                    {
-                        _model.Initialize();
-                    }
-                })
+                    _model.Initialize();
+                }
+            })
+                .AddTo(_compositeDisposable);
+
+            SaveCommand.Subscribe(() =>
+            {
+                _model.Save();
+
+                MessageBox.Show("データを保存しました。", "情報");
+            })
                 .AddTo(_compositeDisposable);
         }
     }

@@ -57,9 +57,11 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
             <Button Grid.Column="1" Margin="5" Padding="10,3" Content="初期化" Command="{Binding InitializeCommand}"/>
+            <Button Grid.Column="2" Margin="5" Padding="10,3" Content="保存" Command="{Binding SaveCommand}"/>
         </Grid>
 
     </Grid>

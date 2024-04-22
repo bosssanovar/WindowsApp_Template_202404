@@ -1,4 +1,6 @@
-﻿using InMemoryRepository;
+﻿using Feature.DataFile;
+
+using InMemoryRepository;
 
 using Microsoft.Extensions.DependencyInjection;
 
@@ -30,8 +32,15 @@ namespace WpfApp1
             var services = new ServiceCollection();
             services.AddSingleton<IAAARepository, AAARepository>();
             services.AddSingleton<IBBBRepository, BBBRepository>();
+
+            services.AddTransient<Feature.DataFile.DataFileAccessor>();
+
+            services.AddTransient<IDataFileAccessor, FileAccessor.DataFileAccessor>();
+
             services.AddTransient<DisplaySettingsUsecase>();
             services.AddTransient<InitializeUsecase>();
+            services.AddTransient<SaveDataUsecase>();
+
             services.AddTransient<Model>();
             services.AddTransient<MainWindowView>();
 

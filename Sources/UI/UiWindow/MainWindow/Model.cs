@@ -10,13 +10,19 @@ namespace UiParts.UiWindow.MainWindow
 
         private readonly InitializeUsecase _initializeUsecase;
 
+        private readonly SaveDataUsecase _saveDataUsecase;
+
         public ReactivePropertySlim<AAAEntity.Entity.AAAEntity> AaaEntity { get; }
         public ReactivePropertySlim<BBBEntity.Entity.BBBEntity> BbbEntity { get; }
 
-        public Model(DisplaySettingsUsecase displaySettingsUsecase, InitializeUsecase initializeUsecase)
+        public Model(
+            DisplaySettingsUsecase displaySettingsUsecase,
+            InitializeUsecase initializeUsecase,
+            SaveDataUsecase saveDataUsecase)
         {
             _displaySettingsUsecase = displaySettingsUsecase;
             _initializeUsecase = initializeUsecase;
+            _saveDataUsecase = saveDataUsecase;
 
             AaaEntity = new(_displaySettingsUsecase.GetAAAEntity());
             AaaEntity.AddTo(_compositeDisposable);
@@ -40,6 +46,11 @@ namespace UiParts.UiWindow.MainWindow
 
             AaaEntity.Value = _displaySettingsUsecase.GetAAAEntity();
             BbbEntity.Value = _displaySettingsUsecase.GetBBBEntity();
+        }
+
+        public void Save()
+        {
+            _saveDataUsecase.Execute();
         }
     }
 }
