@@ -8,7 +8,7 @@ namespace Feature.DataFile
 {
     public interface IDataFileAccessor
     {
-        void Save(string content);
+        bool Save(string content);
 
         bool Load(ref string content);
     }

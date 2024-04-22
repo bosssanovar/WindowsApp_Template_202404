@@ -26,16 +26,20 @@ namespace FileAccessor
             return true;
         }
 
-        public void Save(string content)
+        public bool Save(string content)
         {
             SaveFileDialog sfd = new()
             {
                 Filter = "Data file (*.dat)|*.dat"
             };
-            if (sfd.ShowDialog() == true)
+            if (sfd.ShowDialog() == false)
             {
-                File.WriteAllText(sfd.FileName, content);
+                return false;
             }
+
+            File.WriteAllText(sfd.FileName, content);
+
+            return true;
         }
     }
 

@@ -62,11 +62,11 @@ namespace UiParts.UiWindow.MainWindow
             BbbEntity.Value = _displaySettingsUsecase.GetBBBEntity();
         }
 
-        public void SaveDataFile()
+        public bool SaveDataFile()
         {
             CommitEntities();
 
-            _saveDataUsecase.Execute();
+            return _saveDataUsecase.Execute();
         }
 
         private void CommitEntities()

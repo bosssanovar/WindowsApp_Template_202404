@@ -6,11 +6,11 @@ namespace Feature.DataFile
 {
     public class DataFileAccessor(IDataFileAccessor _fileAccessor)
     {
-        public void Save(DataPacket packet)
+        public bool Save(DataPacket packet)
         {
             var jsonString = JsonSerializer.Serialize(packet);
 
-            _fileAccessor.Save(jsonString);
+            return _fileAccessor.Save(jsonString);
         }
 
         public bool Load(ref DataPacket packet)

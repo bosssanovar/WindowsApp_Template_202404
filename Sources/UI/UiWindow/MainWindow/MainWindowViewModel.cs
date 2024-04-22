@@ -138,9 +138,12 @@ namespace UiParts.UiWindow.MainWindow
 
             SaveCommand.Subscribe(() =>
             {
-                _model.SaveDataFile();
+                var result = _model.SaveDataFile();
 
-                MessageBox.Show("データを保存しました。", "情報");
+                if (result)
+                {
+                    MessageBox.Show("データを保存しました。", "情報");
+                }
             })
                 .AddTo(_compositeDisposable);
 

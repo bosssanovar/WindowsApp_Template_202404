@@ -16,7 +16,7 @@ namespace Usecase
                                  IBBBRepository _bbbRepository,
                                  DataFileAccessor _dataFileAccessor)
     {
-        public void Execute()
+        public bool Execute()
         {
             var aaaEntity = _aaaRepository.Pull();
             var aaaEntityPacket = aaaEntity.ExportPacketData();
@@ -30,7 +30,7 @@ namespace Usecase
                 BBBEntityPacket = bbbEntityPacket,
             };
 
-            _dataFileAccessor.Save(packet);
+            return _dataFileAccessor.Save(packet);
         }
     }
 }
