@@ -6,9 +6,10 @@
         xmlns:local="clr-namespace:UiParts.UiWindow.MainWindow"
         mc:Ignorable="d"
         DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
-        Title="MainWindow" Height="250" Width="400">
+        Title="MainWindow" SizeToContent="Height" Width="300">
     <Grid Margin="5">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
@@ -51,6 +52,15 @@
                 <TextBox Grid.Column="1" Text="{Binding BBBVal.Value}" Margin="5"/>
             </Grid>
         </GroupBox>
+
+        <Grid Grid.Row="2" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="1" Margin="5" Padding="10,3" Content="初期化" Command="{Binding InitializeCommand}"/>
+        </Grid>
 
     </Grid>
 </uiwindow:WindowBase>

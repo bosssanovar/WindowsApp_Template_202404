@@ -60,5 +60,12 @@ namespace AAAEntity.Entity
         {
             return (AAAEntity)MemberwiseClone();
         }
+
+        public void Initialize()
+        {
+            YYY = new(YYY_InitValue);
+            ZZZ = new(ZZZ_InitValue);
+            AAA = new(AAA_InitValue);
+        }
     }
 }

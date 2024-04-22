@@ -28,5 +28,10 @@ namespace BBBEntity.Entity
         {
             return (BBBEntity)MemberwiseClone();
         }
+
+        public void Initialize()
+        {
+            BBB = new(BBB_InitValue);
+        }
     }
 }

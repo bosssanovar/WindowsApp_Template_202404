@@ -20,6 +20,8 @@ namespace UiParts.UiWindow.MainWindow
 
         public ReactivePropertySlim<string> BBBVal { get; private set; } = new(string.Empty);
 
+        public ReactiveCommand InitializeCommand { get; } = new();
+
         private void MainWindowViewModel(Model model)
         {
             _model = model;
@@ -114,6 +116,20 @@ namespace UiParts.UiWindow.MainWindow
                     return entity;
                 },
                 mode: ReactivePropertyMode.DistinctUntilChanged)
+                .AddTo(_compositeDisposable);
+
+            InitializeCommand.Subscribe(() =>
+                {
+                    if (MessageBox.Show(
+                                "初期化を実行しますか？",
+                                "確認",
+                                MessageBoxButton.YesNo,
+                                MessageBoxImage.Question,
+                                MessageBoxResult.No) == MessageBoxResult.Yes)
+                    {
+                        _model.Initialize();
+                    }
+                })
                 .AddTo(_compositeDisposable);
         }
     }

@@ -31,6 +31,7 @@ namespace WpfApp1
             services.AddSingleton<IAAARepository, AAARepository>();
             services.AddSingleton<IBBBRepository, BBBRepository>();
             services.AddTransient<DisplaySettingsUsecase>();
+            services.AddTransient<InitializeUsecase>();
             services.AddTransient<Model>();
             services.AddTransient<MainWindowView>();
 
