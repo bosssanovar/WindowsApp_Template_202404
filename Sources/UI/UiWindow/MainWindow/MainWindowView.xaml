@@ -8,7 +8,7 @@
     xmlns:behavior="clr-namespace:WpfLib.Behavior;assembly=WpfLib"
     mc:Ignorable="d"
     DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
-    Title="MainWindow" SizeToContent="Height" Width="400"
+    Title="MainWindow" SizeToContent="Height" Width="500"
     WindowStartupLocation="CenterScreen">
     <Grid Margin="5">
         <Grid.RowDefinitions>
@@ -30,16 +30,16 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Row="0" Grid.Column="0" Text="YYY設定(5, 10, 15～100)" Margin="5"/>
-
-                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding YYYVal.Value}" Margin="5"/>
+                <TextBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Width="50"
+                         Text="{Binding YYYVal.Value}" Margin="5"/>
 
                 <TextBlock Grid.Row="1" Grid.Column="0" Text="ZZZ設定 入力文字数指定上限(0～20)" Margin="5"/>
-
-                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding ZZZVal.Value}" Margin="5"/>
+                <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Width="50"
+                         Text="{Binding ZZZVal.Value}" Margin="5"/>
 
                 <TextBlock Grid.Row="2" Grid.Column="0" Text="AAA設定 入力文字数指定(0～20)" Margin="5"/>
-
-                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding AAAVal.Value}" Margin="5"/>
+                <TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" Width="50"
+                         Text="{Binding AAAVal.Value}" Margin="5"/>
             </Grid>
         </GroupBox>
 
@@ -54,11 +54,12 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0" Text="BBB設定（半角英数字以外は入力不可）" Margin="5"/>
+                <TextBlock Grid.Column="0" Text="BBB設定（半角英数字以外、AAA設定値を超えては入力不可）" Margin="5"/>
                 <TextBox Grid.Column="1" Text="{Binding BBBVal.Value}" Margin="5"
-                         behavior:TextFormatBehavior.TextFormat="HalfWidthAlphanumeric"/>
+                         behavior:TextFormatBehavior.TextFormat="HalfWidthAlphanumeric"
+                         MaxLength="{Binding AAAVal.Value}"/>
 
-                <TextBlock Grid.Row="1" Grid.Column="0" Text="BBB2設定（半角英数字以外は確定時補正）" Margin="5"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="BBB2設定（文字種、文字数は確定時補正）" Margin="5"/>
                 <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding BBB2Val.Value}" Margin="5"/>
             </Grid>
         </GroupBox>
