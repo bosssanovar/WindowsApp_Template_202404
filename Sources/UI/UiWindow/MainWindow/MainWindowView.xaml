@@ -45,15 +45,21 @@
 
         <GroupBox Grid.Row="1" Header="BBBEntity">
             <Grid Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Column="0" Text="BBB設定（半角英数字以外は入力不可）" Margin="5"/>
-
                 <TextBox Grid.Column="1" Text="{Binding BBBVal.Value}" Margin="5"
                          behavior:TextFormatBehavior.TextFormat="HalfWidthAlphanumeric"/>
+
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="BBB2設定（半角英数字以外は確定時補正）" Margin="5"/>
+                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding BBB2Val.Value}" Margin="5"/>
             </Grid>
         </GroupBox>
 
@@ -65,9 +71,9 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="1" Margin="5" Padding="10,3" Content="初期化" Command="{Binding InitializeCommand}"/>
-            <Button Grid.Column="2" Margin="5" Padding="10,3" Content="保存" Command="{Binding SaveCommand}"/>
-            <Button Grid.Column="3" Margin="5" Padding="10,3" Content="開く" Command="{Binding OpenCommand}"/>
+            <Button Grid.Column="1" Margin="5" Padding="15,3" Content="初期化" Command="{Binding InitializeCommand}"/>
+            <Button Grid.Column="2" Margin="5" Padding="15,3" Content="保存" Command="{Binding SaveCommand}"/>
+            <Button Grid.Column="3" Margin="5" Padding="15,3" Content="開く" Command="{Binding OpenCommand}"/>
         </Grid>
 
     </Grid>
