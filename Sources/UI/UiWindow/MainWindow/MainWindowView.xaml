@@ -37,9 +37,10 @@
                 <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Width="50"
                          Text="{Binding ZZZVal.Value}" Margin="5"/>
 
-                <TextBlock Grid.Row="2" Grid.Column="0" Text="AAA設定（BBB設定の入力文字数指定）（0～20）" Margin="5"/>
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="AAA設定（BBB設定の入力文字数指定）" Margin="5"/>
                 <TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" Width="50"
-                         Text="{Binding AAAVal.Value}" Margin="5"/>
+                         Text="{Binding AAAVal.Value}" Margin="5" MaxLength="2"
+                         behavior:TextFormatBehavior.TextFormat="Number"/>
             </Grid>
         </GroupBox>
 
