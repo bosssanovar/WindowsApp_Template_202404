@@ -42,8 +42,18 @@ namespace UiParts.UiWindow.MainWindow
                 x => x.YYY.Value,
                 x =>
                 {
+                    int value = x;
+                    if (!YYYVO.IsValid(value))
+                    {
+                        MessageBox.Show("設定可能な数値ではありません。\n補正します。", "警告", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+                        value = YYYVO.CurrectValue(value);
+                    }
+
                     var entity = _model.AaaEntity.Value;
-                    entity.YYY = new(x);
+                    entity.YYY = new(value);
+
+                    _model.ForceNotifyAaaEntity();
 
                     return entity;
                 },

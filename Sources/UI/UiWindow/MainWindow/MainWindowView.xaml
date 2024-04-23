@@ -29,9 +29,10 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="0" Text="YYY設定（5, 10, 15～100）" Margin="5"/>
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="YYY設定（5, 10, 15・・・100）" Margin="5"/>
                 <TextBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Width="50"
-                         Text="{Binding YYYVal.Value}" Margin="5"/>
+                         Text="{Binding YYYVal.Value}" Margin="5" MaxLength="3"
+                         behavior:TextFormatBehavior.TextFormat="Number"/>
 
                 <TextBlock Grid.Row="1" Grid.Column="0" Text="ZZZ設定（AAA設定の上限値指定）（0～20）" Margin="5"/>
                 <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Width="50"

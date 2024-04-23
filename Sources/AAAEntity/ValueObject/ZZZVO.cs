@@ -4,20 +4,20 @@ namespace AAAEntity.ValueObject
 {
     public record ZZZVO(int Value) : ValueObjectBase<int>(Value), IInputLimit<int>
     {
-        private const int MixValue = 0;
+        private const int MinValue = 0;
         private const int MaxValue = 20;
 
         public static int CurrectValue(int value)
         {
             if (!IsValid(value))
             {
-                if (value is < 0)
+                if (value is < MinValue)
                 {
-                    return 0;
+                    return MinValue;
                 }
-                else if (value is > 20)
+                else if (value is > MaxValue)
                 {
-                    return 20;
+                    return MaxValue;
                 }
             }
 
@@ -26,7 +26,7 @@ namespace AAAEntity.ValueObject
 
         public static bool IsValid(int value)
         {
-            if (value is < 0 or > 20)
+            if (value is < MinValue or > MaxValue)
             {
                 return false;
             }
