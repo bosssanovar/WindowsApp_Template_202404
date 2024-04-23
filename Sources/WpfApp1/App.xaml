@@ -6,6 +6,9 @@
     <Application.Resources>
         <Style TargetType="TextBox">
             <Setter Property="behavior:SelectAllFocusBehavior.Enable" Value="True"/>
+            <Setter Property="behavior:MoveToNextControlByEnterBehavior.Enable" Value="True"/>
+        </Style>
+        <Style TargetType="Control">
         </Style>
     </Application.Resources>
 </Application>
