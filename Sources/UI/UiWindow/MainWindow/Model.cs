@@ -75,14 +75,14 @@ namespace UiParts.UiWindow.MainWindow
             _commitSettingsUsecase.CommitBBBEntity(BbbEntity.Value);
         }
 
-        public bool OpenDataFile()
+        public OpenDataUsecase.OpenResult OpenDataFile()
         {
             var result = _openDataUsecase.Execute();
-            if (!result) return false;
+            if (result is not OpenDataUsecase.OpenResult.Completed) return result;
 
             UpdateEntities();
 
-            return true;
+            return OpenDataUsecase.OpenResult.Completed;
         }
     }
 }

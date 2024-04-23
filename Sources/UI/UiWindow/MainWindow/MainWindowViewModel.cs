@@ -198,9 +198,21 @@ namespace UiParts.UiWindow.MainWindow
             {
                 var result = _model.OpenDataFile();
 
-                if (result)
+                switch (result)
                 {
-                    MessageBox.Show("データを開きました。", "情報");
+                    case Usecase.OpenDataUsecase.OpenResult.Completed:
+                        MessageBox.Show("データを開きました。", "情報");
+                        break;
+                    case Usecase.OpenDataUsecase.OpenResult.Canceled:
+                        MessageBox.Show("キャンセルしました。", "情報");
+                        break;
+                    case Usecase.OpenDataUsecase.OpenResult.Error_InvalidData:
+                        MessageBox.Show(
+                            "データが不正のため、処理を中断しました。",
+                            "情報",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Error);
+                        break;
                 }
             })
                 .AddTo(_compositeDisposable);

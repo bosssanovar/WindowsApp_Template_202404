@@ -16,25 +16,40 @@ namespace Usecase
                                  IBBBRepository _bbbRepository,
                                  DataFileAccessor _dataFileAccessor)
     {
-        public bool Execute()
+        public enum OpenResult
         {
-            DataPacket packet = new DataPacket();
-            var result = _dataFileAccessor.Load(ref packet);
+            Completed,
+            Canceled,
+            Error_InvalidData,
+        }
 
-            if (!result)
+        public OpenResult Execute()
+        {
+            try
             {
-                return false;
+                DataPacket packet = new DataPacket();
+                var result = _dataFileAccessor.Load(ref packet);
+
+                if (!result)
+                {
+                    return OpenResult.Canceled;
+                }
+
+                var aaaEntity = _aaaRepository.Pull();
+                aaaEntity.ImportPacketData(packet.AAAEntityPacket);
+
+                var bbbEntity = _bbbRepository.Pull();
+                bbbEntity.ImportPacketData(packet.BBBEntityPacket);
+
+                _aaaRepository.Commit(aaaEntity);
+                _bbbRepository.Commit(bbbEntity);
+
+                return OpenResult.Completed;
             }
-
-            var aaaEntity = _aaaRepository.Pull();
-            aaaEntity.ImportPacketData(packet.AAAEntityPacket);
-            _aaaRepository.Commit(aaaEntity);
-
-            var bbbEntity = _bbbRepository.Pull();
-            bbbEntity.ImportPacketData(packet.BBBEntityPacket);
-            _bbbRepository.Commit(bbbEntity);
-
-            return true;
+            catch
+            {
+                return OpenResult.Error_InvalidData;
+            }
         }
     }
 }
