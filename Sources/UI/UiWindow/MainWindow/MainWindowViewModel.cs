@@ -158,7 +158,7 @@ namespace UiParts.UiWindow.MainWindow
                 x =>
                 {
                     var text = x;
-                    StringBuilder message = new StringBuilder();
+                    var message = new StringBuilder();
 
                     if (!BBB2VO.IsValid(text))
                     {

@@ -191,7 +191,7 @@ namespace WpfLib.Behavior
                 var insertableLength = textBox.MaxLength - textBox.Text.Length + toBeRemovedLength;
                 if (correctedText.Length > insertableLength) // 指定文字数を超える場合
                 {
-                    insertText = correctedText.Substring(0, insertableLength);
+                    insertText = correctedText[..insertableLength];
                 }
                 else
                 {

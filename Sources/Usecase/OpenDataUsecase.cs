@@ -21,7 +21,7 @@ namespace Usecase
         {
             try
             {
-                DataPacket packet = new DataPacket();
+                var packet = new DataPacket();
                 var result = _dataFileAccessor.Load(ref packet);
 
                 if (!result)

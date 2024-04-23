@@ -50,8 +50,8 @@ namespace WpfLib.Behavior
             var frameworkElement = e.OriginalSource as FrameworkElement;
             if (frameworkElement is TextBox)
                 ((TextBoxBase)frameworkElement).SelectAll();
-            else if (frameworkElement is PasswordBox)
-                ((PasswordBox)frameworkElement).SelectAll();
+            else if (frameworkElement is PasswordBox box)
+                box.SelectAll();
         }
 
         private static void IgnoreMouseButton

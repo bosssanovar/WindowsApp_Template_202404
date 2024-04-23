@@ -367,7 +367,7 @@ namespace DomainModelCommon
                     break;
                 case TextFormatType.DecimalAndMinus:
                     bool hasMainus = ret.Contains('-');
-                    bool hasDecimalPoint = ret.Contains(".");
+                    bool hasDecimalPoint = ret.Contains('.');
 
                     if (hasMainus && !hasDecimalPoint)
                     {
@@ -404,7 +404,7 @@ namespace DomainModelCommon
             {
                 // 先頭がマイナス文字でなく数字の中盤にマイナス文字がある場合、
                 // マイナス文字の前までを抽出
-                return ret.Substring(0, index);
+                return ret[..index];
             }
             else
             {
@@ -416,7 +416,7 @@ namespace DomainModelCommon
                     .Skip(1)
                     .First()
                     .index;
-                return ret.Substring(0, secondDotIndex);
+                return ret[..secondDotIndex];
             }
         }
 
@@ -429,12 +429,12 @@ namespace DomainModelCommon
                 .Skip(1)
                 .First()
                 .index;
-            return str.Substring(0, secondDotIndex);
+            return str[..secondDotIndex];
         }
 
         private static string CorrectDecimalAndMinus(string str)
         {
-            if (str.Substring(0, 2) == "-.")
+            if (str[..2] == "-.")
             {
                 return "-";
             }
@@ -442,15 +442,15 @@ namespace DomainModelCommon
             // 先頭以外にマイナスがある場合は、マイナス前までを抽出
             if (Regex.IsMatch(str, $"^[0-9.]+[-]"))
             {
-                var minusIndex = str.IndexOf("-");
-                return str.Substring(0, minusIndex);
+                var minusIndex = str.IndexOf('-');
+                return str[..minusIndex];
             }
 
             // 先頭マイナスで、全体でマイナスもしくは小数点が2個以上ある場合
             if (Regex.IsMatch(str, $"^[-][0-9.]*[-]")
                 || Regex.IsMatch(str, $"^[-][0-9]*[.][0-9]*[.]"))
             {
-                return str.Substring(0, GetEndIndex(str));
+                return str[..GetEndIndex(str)];
             }
 
             return str;
