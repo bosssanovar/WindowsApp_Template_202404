@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DomainModelCommon;
+
+using Microsoft.Xaml.Behaviors;
+
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows;
-using Microsoft.Xaml.Behaviors;
-using DomainModelCommon;
 
 namespace WpfLib.Behavior
 {
