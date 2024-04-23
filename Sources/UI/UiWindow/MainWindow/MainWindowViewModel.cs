@@ -1,4 +1,6 @@
-﻿using BBBEntity.ValueObject;
+﻿using AAAEntity.ValueObject;
+
+using BBBEntity.ValueObject;
 
 using DomainService;
 
@@ -53,9 +55,17 @@ namespace UiParts.UiWindow.MainWindow
                 x => x.ZZZ.Value,
                 x =>
                 {
+                    int value = x;
+                    if (!ZZZVO.IsValid(value))
+                    {
+                        MessageBox.Show("設定範囲超過のため、20に補正します。", "警告", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+                        value = ZZZVO.CurrectValue(value);
+                    }
+
                     var entity = _model.AaaEntity.Value;
 
-                    if (entity.IsHaveToCorrectAAA(x))
+                    if (entity.IsHaveToCorrectAAA(value))
                     {
                         if (MessageBox.Show(
                             "ZZZ設定の変更によりAAA設定の設定値が補正され、それに関わる項目も補正される可能性があります。\n\nZZZ設定を変更しますか？",
@@ -64,12 +74,12 @@ namespace UiParts.UiWindow.MainWindow
                             MessageBoxImage.Question,
                             MessageBoxResult.No) == MessageBoxResult.Yes)
                         {
-                            entity.SetZZZ(new(x), new AAAChangedEvent(_model.AaaEntity.Value, _model.BbbEntity.Value));
+                            entity.SetZZZ(new(value), new AAAChangedEvent(_model.AaaEntity.Value, _model.BbbEntity.Value));
                         }
                     }
                     else
                     {
-                        entity.SetZZZ(new(x), new AAAChangedEvent(_model.AaaEntity.Value, _model.BbbEntity.Value));
+                        entity.SetZZZ(new(value), new AAAChangedEvent(_model.AaaEntity.Value, _model.BbbEntity.Value));
                     }
 
                     _model.ForceNotifyAaaEntity();
