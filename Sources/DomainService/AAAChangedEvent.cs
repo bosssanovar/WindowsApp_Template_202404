@@ -1,5 +1,4 @@
-﻿using AAAEntity;
-using AAAEntity.DomainSreviceInterface;
+﻿using AAAEntity.DomainSreviceInterface;
 
 namespace DomainService
 {

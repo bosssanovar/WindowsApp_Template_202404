@@ -1,11 +1,5 @@
 ﻿using AAAEntity.ValueObject;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace AAAEntity_Test
 {
     public class AAAVO_Test
@@ -30,7 +24,7 @@ namespace AAAEntity_Test
         [InlineData(AAAVO.MaxValue - 1, AAAVO.MaxValue - 1)]
         [InlineData(AAAVO.MinValue + 1, AAAVO.MinValue + 1)]
         [InlineData(AAAVO.MinValue, AAAVO.MinValue)]
-        [InlineData(AAAVO.MinValue -1, AAAVO.MinValue)]
+        [InlineData(AAAVO.MinValue - 1, AAAVO.MinValue)]
         [InlineData(int.MinValue, AAAVO.MinValue)]
         public void 補正(int input, int expect)
         {

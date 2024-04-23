@@ -1,9 +1,4 @@
-﻿using Reactive.Bindings;
-using Reactive.Bindings.Extensions;
-
-using System.Reactive.Disposables;
-
-using Usecase;
+﻿using System.Reactive.Disposables;
 
 namespace UiParts.UiWindow
 {

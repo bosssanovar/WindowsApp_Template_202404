@@ -24,7 +24,7 @@ namespace Feature.DataFile
             }
 
             var p = JsonSerializer.Deserialize<DataPacket>(content);
-            if(p is null)
+            if (p is null)
             {
                 return false;
             }
