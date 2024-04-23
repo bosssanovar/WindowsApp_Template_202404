@@ -6,9 +6,14 @@ namespace Feature.DataFile
 {
     public class DataFileAccessor(IDataFileAccessor _fileAccessor)
     {
+        private readonly JsonSerializerOptions _options = new()
+        {
+            WriteIndented = true
+        };
+
         public bool Save(DataPacket packet)
         {
-            var jsonString = JsonSerializer.Serialize(packet);
+            var jsonString = JsonSerializer.Serialize(packet, _options);
 
             return _fileAccessor.Save(jsonString);
         }
