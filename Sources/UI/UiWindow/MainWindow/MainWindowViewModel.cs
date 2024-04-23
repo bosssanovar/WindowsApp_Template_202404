@@ -68,9 +68,10 @@ namespace UiParts.UiWindow.MainWindow
                     int value = x;
                     if (!ZZZVO.IsValid(value))
                     {
-                        MessageBox.Show("設定範囲超過のため、20に補正します。", "警告", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        var currected = ZZZVO.CurrectValue(value);
+                        MessageBox.Show($"設定範囲外のため、補正します。\n{value} → {currected}", "警告", MessageBoxButton.OK, MessageBoxImage.Warning);
 
-                        value = ZZZVO.CurrectValue(value);
+                        value = currected;
                     }
 
                     var entity = _model.AaaEntity.Value;

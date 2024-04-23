@@ -4,7 +4,7 @@ namespace AAAEntity.ValueObject
 {
     public record ZZZVO(int Value) : ValueObjectBase<int>(Value), IInputLimit<int>
     {
-        private const int MinValue = 0;
+        private const int MinValue = 1;
         private const int MaxValue = 20;
 
         public static int CurrectValue(int value)
