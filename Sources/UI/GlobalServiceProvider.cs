@@ -1,7 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-using UiParts.UiWindow.MainWindow;
-
 namespace UiParts
 {
     public static class GlobalServiceProvider

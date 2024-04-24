@@ -1,6 +1,4 @@
-﻿using AAAEntity.ValueObject;
-
-using BBBEntity.ValueObject;
+﻿using BBBEntity.ValueObject;
 
 using DomainService;
 

@@ -1,5 +1,6 @@
 ﻿using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
+
 using Usecase;
 
 namespace UiParts.UserControls.AaaAndBbbPage

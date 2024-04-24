@@ -1,13 +1,10 @@
 ﻿using AAAEntity.ValueObject;
 
-using BBBEntity.ValueObject;
-
 using DomainService;
 
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 
-using System.Text;
 using System.Windows;
 
 namespace UiParts.UserControls.AaaPage

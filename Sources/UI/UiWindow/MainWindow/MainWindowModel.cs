@@ -1,7 +1,4 @@
-﻿using Reactive.Bindings;
-using Reactive.Bindings.Extensions;
-
-using Usecase;
+﻿using Usecase;
 
 namespace UiParts.UiWindow.MainWindow
 {
