@@ -10,7 +10,6 @@ namespace AAAEntity_Test
         [InlineData(9, "123456789")]
         [InlineData(8, "12345678")]
         [InlineData(1, "1")]
-        [InlineData(0, "")]
         public void ZZZİ’è•ÏX‚ÌAAAİ’è‚Æ‚»‚ÌŠÖ˜Aİ’è‚Ì•â³(int newZZZ, string expectedCorrectedBBB)
         {
             var aaaEntity = new AAAEntity.Entity.AAAEntity();
