@@ -1,4 +1,4 @@
-﻿<uiwindow:MainWindowBase 
+﻿<uiwindow:WindowBase 
     xmlns:uiwindow="clr-namespace:UiParts.UiWindow" 
     x:Class="UiParts.UiWindow.StartWindow.StartWindowView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -18,4 +18,4 @@
                     Content="新規作成" Command="{Binding StartCommand}"/>
         </StackPanel>
     </Grid>
-</uiwindow:MainWindowBase>
+</uiwindow:WindowBase>
