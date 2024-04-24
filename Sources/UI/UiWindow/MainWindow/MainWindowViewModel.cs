@@ -1,17 +1,12 @@
-﻿using AAAEntity.ValueObject;
-
-using BBBEntity.ValueObject;
-
-using DomainService;
-
-using Reactive.Bindings;
+﻿using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 
-using System.Text;
 using System.Windows;
 
 using UiParts.UserControls;
 using UiParts.UserControls.AaaAndBbbPage;
+using UiParts.UserControls.AaaPage;
+using UiParts.UserControls.BbbPage;
 
 
 namespace UiParts.UiWindow.MainWindow
@@ -28,11 +23,17 @@ namespace UiParts.UiWindow.MainWindow
 
         public ReactiveCommand OpenCommand { get; } = new();
 
+        public ReactiveCommand PageAaaCommand { get; } = new();
+
+        public ReactiveCommand PageBbbCommand { get; } = new();
+
+        public ReactiveCommand PageAaaAndBbbCommand { get; } = new();
+
         private void MainWindowViewModel(MainWindowModel model)
         {
             _model = model;
 
-            Page.Value = GlobalServiceProvider.GetRequiredService<AaaAndBbbPageView>();
+            Page.Value = GlobalServiceProvider.GetRequiredService<AaaPageView>();
 
             InitializeCommand.Subscribe(() =>
             {
@@ -86,6 +87,21 @@ namespace UiParts.UiWindow.MainWindow
                 }
             })
                 .AddTo(_compositeDisposable);
+
+            PageAaaCommand.Subscribe(() =>
+            {
+                Page.Value = GlobalServiceProvider.GetRequiredService<AaaPageView>();
+            });
+
+            PageBbbCommand.Subscribe(() =>
+            {
+                Page.Value = GlobalServiceProvider.GetRequiredService<BbbPageView>();
+            });
+
+            PageAaaAndBbbCommand.Subscribe(() =>
+            {
+                Page.Value = GlobalServiceProvider.GetRequiredService<AaaAndBbbPageView>();
+            });
         }
     }
 }

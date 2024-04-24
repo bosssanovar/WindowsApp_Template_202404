@@ -9,28 +9,61 @@
     xmlns:behavior="clr-namespace:WpfLib.Behavior;assembly=WpfLib"
     mc:Ignorable="d"
     DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
-    Title="MainWindow" SizeToContent="Height" Width="500"
+    Title="MainWindow" Height="400" Width="700" MinHeight="200" MinWidth="470"
     WindowStartupLocation="CenterScreen">
-    <Grid Margin="5">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+    <DockPanel>
+        <Grid DockPanel.Dock="Top" Background="#555555">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
-        <ContentControl Content="{Binding Page.Value}"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
 
-        <Grid Grid.Row="1" Margin="5">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-
-            <Button Grid.Column="1" Margin="5" Padding="15,3" Content="初期化" Command="{Binding InitializeCommand}"/>
-            <Button Grid.Column="2" Margin="5" Padding="15,3" Content="保存" Command="{Binding SaveCommand}"/>
-            <Button Grid.Column="3" Margin="5" Padding="15,3" Content="開く" Command="{Binding OpenCommand}"/>
+                <Button Grid.Column="1" Margin="5" Padding="15,3" Content="初期化" Command="{Binding InitializeCommand}"/>
+                <Button Grid.Column="2" Margin="5" Padding="15,3" Content="保存" Command="{Binding SaveCommand}"/>
+                <Button Grid.Column="3" Margin="5" Padding="15,3" Content="開く" Command="{Binding OpenCommand}"/>
+            </Grid>
         </Grid>
 
-    </Grid>
+        <Grid DockPanel.Dock="Left" Background="#AAAAAA">
+            <StackPanel Orientation="Vertical" VerticalAlignment="Top">
+                <StackPanel.Resources>
+                    <Style TargetType="{x:Type RadioButton}" BasedOn="{StaticResource {x:Type ToggleButton} }">
+                        <Setter Property="Margin" Value="0"/>
+                        <Setter Property="Padding" Value="15, 3"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsChecked" Value="{x:Null}">
+                                <Setter Property="Background" Value="Transparent" />
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter Property="Background" Value="Transparent" />
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Background" Value="Red"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Resources>
+
+                <RadioButton Content="AAA" IsChecked="True" Command="{Binding PageAaaCommand}"/>
+                <RadioButton Content="BBB" Command="{Binding PageBbbCommand}"/>
+                <RadioButton Content="AAA and BBB" Command="{Binding PageAaaAndBbbCommand}"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid DockPanel.Dock="Bottom" Background="#BBBBBB">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <ContentControl Grid.Row="1" Margin="5" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                Content="{Binding Page.Value}"/>
+            </ScrollViewer>
+        </Grid>
+
+    </DockPanel>
 </uiwindow:WindowBase>

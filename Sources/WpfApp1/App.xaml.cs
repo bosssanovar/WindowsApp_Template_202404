@@ -12,6 +12,8 @@ using UiParts;
 using UiParts.UiWindow.MainWindow;
 using UiParts.UiWindow.StartWindow;
 using UiParts.UserControls.AaaAndBbbPage;
+using UiParts.UserControls.AaaPage;
+using UiParts.UserControls.BbbPage;
 
 using Usecase;
 
@@ -51,6 +53,10 @@ namespace WpfApp1
             services.AddTransient<MainWindowView>();
             services.AddTransient<StartWindowModel>();
             services.AddTransient<StartWindowView>();
+            services.AddTransient<AaaPageModel>();
+            services.AddTransient<AaaPageView>();
+            services.AddTransient<BbbPageModel>();
+            services.AddTransient<BbbPageView>();
             services.AddTransient<AaaAndBbbPageModel>();
             services.AddTransient<AaaAndBbbPageView>();
 

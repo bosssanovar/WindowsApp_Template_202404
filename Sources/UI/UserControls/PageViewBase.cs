@@ -39,6 +39,8 @@ namespace UiParts.UserControls
 
         private void PageViewBase_Unloaded(object sender, System.Windows.RoutedEventArgs e)
         {
+            Commit();
+
             _modelBase.Dispose();
             _compositeDisposable.Dispose();
         }

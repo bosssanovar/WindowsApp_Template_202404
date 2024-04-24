@@ -7,8 +7,11 @@
         <Style TargetType="TextBox">
             <Setter Property="behavior:SelectAllFocusBehavior.Enable" Value="True"/>
             <Setter Property="behavior:MoveToNextControlByEnterBehavior.Enable" Value="True"/>
-        </Style>
-        <Style TargetType="Control">
+            <Style.Triggers>
+                <Trigger Property="IsReadOnly" Value="True">
+                    <Setter Property="Background" Value="Transparent"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
     </Application.Resources>
 </Application>

@@ -20,4 +20,13 @@
     <ProjectReference Include="..\WpfLib\WpfLib.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="UserControls\BbbPage\BbbPageView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UserControls\AaaPage\AaaPageView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
 </Project>
