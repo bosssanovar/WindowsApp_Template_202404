@@ -9,9 +9,9 @@
     mc:Ignorable="d" 
     DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
     d:Background="White"
-    Width="500">
+    Width="350">
 
-    <Grid Margin="5">
+    <Grid>
 
         <Grid Margin="5">
             <Grid.RowDefinitions>

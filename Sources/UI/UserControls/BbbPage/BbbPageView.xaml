@@ -11,7 +11,7 @@
     d:Background="White"
     Width="500">
 
-    <Grid Margin="5">
+    <Grid>
         <Grid Margin="5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>

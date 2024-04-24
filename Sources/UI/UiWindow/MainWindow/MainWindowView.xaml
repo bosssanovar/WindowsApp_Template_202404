@@ -20,15 +20,17 @@
 
             <Grid>
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="1" Margin="5" Padding="15,3" Content="初期化" Command="{Binding InitializeCommand}"/>
-                <Button Grid.Column="2" Margin="5" Padding="15,3" Content="保存" Command="{Binding SaveCommand}"/>
-                <Button Grid.Column="3" Margin="5" Padding="15,3" Content="開く" Command="{Binding OpenCommand}"/>
+                <Button Grid.Column="0" Margin="5" Padding="15,3" Content="ホーム" Command="{Binding MoveHomeCommand}"/>
+                <Button Grid.Column="2" Margin="5" Padding="15,3" Content="初期化" Command="{Binding InitializeCommand}"/>
+                <Button Grid.Column="3" Margin="5" Padding="15,3" Content="保存" Command="{Binding SaveCommand}"/>
+                <Button Grid.Column="4" Margin="5" Padding="15,3" Content="開く" Command="{Binding OpenCommand}"/>
             </Grid>
         </Grid>
 

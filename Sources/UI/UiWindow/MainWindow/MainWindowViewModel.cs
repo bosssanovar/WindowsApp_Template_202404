@@ -3,6 +3,7 @@ using Reactive.Bindings.Extensions;
 
 using System.Windows;
 
+using UiParts.UiWindow.StartWindow;
 using UiParts.UserControls;
 using UiParts.UserControls.AaaAndBbbPage;
 using UiParts.UserControls.AaaPage;
@@ -16,6 +17,8 @@ namespace UiParts.UiWindow.MainWindow
         private MainWindowModel? _model;
 
         public ReactivePropertySlim<PageViewBase> Page { get; } = new();
+
+        public ReactiveCommand MoveHomeCommand { get; } = new();
 
         public ReactiveCommand InitializeCommand { get; } = new();
 
@@ -34,6 +37,14 @@ namespace UiParts.UiWindow.MainWindow
             _model = model;
 
             Page.Value = GlobalServiceProvider.GetRequiredService<AaaPageView>();
+
+            MoveHomeCommand.Subscribe(() =>
+            {
+                var homeWindow = GlobalServiceProvider.GetRequiredService<StartWindowView>();
+                homeWindow.Show();
+
+                Close();
+            });
 
             InitializeCommand.Subscribe(() =>
             {
