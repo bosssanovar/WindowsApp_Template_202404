@@ -6,7 +6,7 @@
     public partial class MainWindowView : WindowBase
     {
 
-        public MainWindowView(Model model)
+        public MainWindowView(MainWindowModel model)
             : base(model)
         {
             MainWindowViewModel(model);

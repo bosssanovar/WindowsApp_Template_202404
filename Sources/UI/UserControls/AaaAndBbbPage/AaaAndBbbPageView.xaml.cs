@@ -12,16 +12,20 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UiParts.UserControls.AaaAndBbbPage;
 
-namespace UiParts.UserControl
+namespace UiParts.UserControls.AaaAndBbbPage
 {
     /// <summary>
     /// AaaAndBbbPageView.xaml の相互作用ロジック
     /// </summary>
-    public partial class AaaAndBbbPageView : UserControl
+    public partial class AaaAndBbbPageView : PageViewBase
     {
-        public AaaAndBbbPageView()
+        public AaaAndBbbPageView(AaaAndBbbPageModel model)
+            : base(model)
         {
+            AaaAndBbbPageViewModel(model);
+
             InitializeComponent();
         }
     }

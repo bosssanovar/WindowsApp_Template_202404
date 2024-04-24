@@ -11,6 +11,7 @@ using System.Windows;
 using UiParts;
 using UiParts.UiWindow.MainWindow;
 using UiParts.UiWindow.StartWindow;
+using UiParts.UserControls.AaaAndBbbPage;
 
 using Usecase;
 
@@ -46,10 +47,12 @@ namespace WpfApp1
             services.AddTransient<OpenDataUsecase>();
             services.AddTransient<CommitSettingsUsecase>();
 
-            services.AddTransient<Model>();
+            services.AddTransient<MainWindowModel>();
             services.AddTransient<MainWindowView>();
             services.AddTransient<StartWindowModel>();
             services.AddTransient<StartWindowView>();
+            services.AddTransient<AaaAndBbbPageModel>();
+            services.AddTransient<AaaAndBbbPageView>();
 
             GlobalServiceProvider.SetProvider(services.BuildServiceProvider());
         }

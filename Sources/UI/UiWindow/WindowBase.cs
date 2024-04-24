@@ -10,11 +10,11 @@ namespace UiParts.UiWindow
         public event PropertyChangedEventHandler? PropertyChanged;
 #pragma warning restore CS0067 // イベント 'MainWindowView.PropertyChanged' は使用されていません
 
-        private readonly IDisposable _disposableModel;
+        private readonly WindowModelBase _disposableModel;
 
         protected readonly CompositeDisposable _compositeDisposable = [];
 
-        public WindowBase(IDisposable disposableModel)
+        public WindowBase(WindowModelBase disposableModel)
         {
             _disposableModel = disposableModel;
 

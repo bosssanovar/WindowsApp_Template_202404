@@ -1,6 +1,6 @@
 ﻿namespace UiParts.UiWindow.StartWindow
 {
-    public class StartWindowModel : ModelBase
+    public class StartWindowModel : WindowModelBase
     {
         #region Constants -------------------------------------------------------------------------------------
 
