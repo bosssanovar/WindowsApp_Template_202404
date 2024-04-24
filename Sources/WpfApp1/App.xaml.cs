@@ -8,7 +8,9 @@ using Repository;
 
 using System.Windows;
 
+using UiParts;
 using UiParts.UiWindow.MainWindow;
+using UiParts.UiWindow.StartWindow;
 
 using Usecase;
 
@@ -21,13 +23,14 @@ namespace WpfApp1
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            ServiceProvider provider = CreateDependencyInjectionProvider();
-            var mainWindow = provider.GetRequiredService<MainWindowView>();
+            CreateDependencyInjectionProvider();
+
+            var mainWindow = GlobalServiceProvider.GetRequiredService<StartWindowView>();
 
             mainWindow.Show();
         }
 
-        private static ServiceProvider CreateDependencyInjectionProvider()
+        private static void CreateDependencyInjectionProvider()
         {
             var services = new ServiceCollection();
             services.AddSingleton<IAAARepository, AAARepository>();
@@ -45,9 +48,10 @@ namespace WpfApp1
 
             services.AddTransient<Model>();
             services.AddTransient<MainWindowView>();
+            services.AddTransient<StartWindowModel>();
+            services.AddTransient<StartWindowView>();
 
-            var provider = services.BuildServiceProvider();
-            return provider;
+            GlobalServiceProvider.SetProvider(services.BuildServiceProvider());
         }
     }
 
