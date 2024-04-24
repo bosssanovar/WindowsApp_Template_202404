@@ -1,6 +1,9 @@
 ﻿using System.ComponentModel;
 using System.Reactive.Disposables;
+using System.Windows;
 using System.Windows.Controls;
+
+using UiParts.UiWindow;
 
 namespace UiParts.UserControls
 {
