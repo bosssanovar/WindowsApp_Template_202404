@@ -24,12 +24,30 @@ namespace UiParts.UiWindow
             this.Closing += WindowBase_Closing;
             this.StateChanged += WindowBase_StateChanged;
 
-            // 最小化ボタンが押された
-            WindowMinimum.Subscribe(_ => this.WindowState = WindowState.Minimized).AddTo(_compositeDisposable);
-            // 最大化、通常サイズボタンが押された
-            WindowSize.Subscribe(_ => this.WindowState = this.WindowState == WindowState.Normal ? WindowState.Maximized : WindowState.Normal).AddTo(_compositeDisposable);
-            // 閉じるボタンが押された
-            WindowClose.Subscribe(_ => Window.GetWindow(this).Close()).AddTo(_compositeDisposable);
+            WindowMinimum.Subscribe(
+                () =>
+                {
+                    this.WindowState = WindowState.Minimized;
+                })
+                .AddTo(_compositeDisposable);
+
+            WindowSize.Subscribe(
+                () =>
+                {
+                    this.WindowState =
+                        this.WindowState == WindowState.Normal ?
+                        WindowState.Maximized :
+                        WindowState.Normal;
+                }
+                )
+                .AddTo(_compositeDisposable);
+
+            WindowClose.Subscribe(
+                () =>
+                {
+                    Window.GetWindow(this).Close();
+                })
+                .AddTo(_compositeDisposable);
         }
 
         private void WindowBase_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
@@ -37,13 +55,6 @@ namespace UiParts.UiWindow
             _disposableModel.Dispose();
             _compositeDisposable.Dispose();
         }
-
-
-
-
-
-
-
 
         // 最小化ボタンが押された時
         public ReactiveCommand WindowMinimum { get; } = new();
