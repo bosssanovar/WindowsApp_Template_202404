@@ -17,7 +17,7 @@ namespace UiParts.UiWindow.StartWindow
     /// <summary>
     /// StartWindowView.xaml の相互作用ロジック
     /// </summary>
-    public partial class StartWindowView : WindowBase
+    public partial class StartWindowView : MainWindowBase
     {
         public StartWindowView(StartWindowModel model)
             : base(model)
