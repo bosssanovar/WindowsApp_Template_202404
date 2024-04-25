@@ -2,8 +2,17 @@
 
 namespace DomainService
 {
+    /// <summary>
+    /// AAAEntityの設定に関連する設定値を補正するクラス
+    /// </summary>
+    /// <param name="_aaaEntity">AAA Entity</param>
+    /// <param name="_bbbEntity">BBB Entity</param>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.NamingRules", "SA1313:Parameter names should begin with lower-case letter", Justification = "<保留中>")]
     public class AAAChangedEvent(AAAEntity.Entity.AAAEntity _aaaEntity, BBBEntity.Entity.BBBEntity _bbbEntity) : IAAAChangedEvent
     {
+        /// <summary>
+        /// 補正します。
+        /// </summary>
         public void Execute()
         {
             var maxLength = _aaaEntity.AAA.Value;
