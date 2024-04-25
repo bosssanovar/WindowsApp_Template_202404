@@ -1,17 +1,20 @@
 ﻿namespace Repository
 {
+    /// <summary>
+    /// BBBEntityのリポジトリ　インターフェース
+    /// </summary>
     public interface IBBBRepository
     {
         /// <summary>
         /// BBB Entityを取得します。
         /// </summary>
-        /// <returns></returns>
+        /// <returns>BBB Entity</returns>
         BBBEntity.Entity.BBBEntity Pull();
 
         /// <summary>
         /// BBB Entityを確定します。
         /// </summary>
-        /// <param name="aaaEntity"></param>
-        void Commit(BBBEntity.Entity.BBBEntity aaaEntity);
+        /// <param name="bbbEntity">BBBEntity</param>
+        void Commit(BBBEntity.Entity.BBBEntity bbbEntity);
     }
 }
