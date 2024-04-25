@@ -119,7 +119,7 @@ namespace UiParts.UserControls.AaaAndBbbPage
                 {
                     var entity = _model.AaaEntity.Value;
 
-                    if (entity.IsOverZZZ(x))
+                    if (entity.IsValidAAA(x))
                     {
                         MessageBox.Show("ZZZ設定を超える値を設定できません。");
                     }

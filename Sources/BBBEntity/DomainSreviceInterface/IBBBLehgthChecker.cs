@@ -6,10 +6,10 @@
     public interface IBBBLehgthChecker
     {
         /// <summary>
-        /// BBB設定の文字列長が有効化を判定します。
+        /// BBB設定の文字列長が有効かを判定します。
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
+        /// <param name="value">対象</param>
+        /// <returns>有効ならtrue</returns>
         bool IsValid(string value);
     }
 }

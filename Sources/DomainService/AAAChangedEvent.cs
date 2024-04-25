@@ -10,9 +10,7 @@ namespace DomainService
     [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.NamingRules", "SA1313:Parameter names should begin with lower-case letter", Justification = "<保留中>")]
     public class AAAChangedEvent(AAAEntity.Entity.AAAEntity _aaaEntity, BBBEntity.Entity.BBBEntity _bbbEntity) : IAAAChangedEvent
     {
-        /// <summary>
-        /// 補正します。
-        /// </summary>
+        /// <inheritdoc/>
         public void Execute()
         {
             var maxLength = _aaaEntity.AAA.Value;

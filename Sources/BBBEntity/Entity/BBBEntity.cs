@@ -4,20 +4,46 @@ using BBBEntity.ValueObject;
 
 namespace BBBEntity.Entity
 {
+    /// <summary>
+    /// BBB Entityクラス
+    /// </summary>
     public class BBBEntity
     {
-        public const string BBB_InitValue = "InitValue";
-        public const string BBB2_InitValue = "InitValue";
+        /// <summary>
+        /// BBB設定の初期値
+        /// </summary>
+        public const string BbbInitValue = "InitValue";
 
+        /// <summary>
+        /// BBB2設定の初期値
+        /// </summary>
+        public const string Bbb2InitValue = "InitValue";
+
+        /// <summary>
+        /// BBB設定値
+        /// </summary>
         public BBBVO BBB { get; private set; }
+
+        /// <summary>
+        /// BBB2設定値
+        /// </summary>
         public BBB2VO BBB2 { get; private set; }
 
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
         public BBBEntity()
         {
-            BBB = new(BBB_InitValue);
-            BBB2 = new(BBB2_InitValue);
+            BBB = new(BbbInitValue);
+            BBB2 = new(Bbb2InitValue);
         }
 
+        /// <summary>
+        /// BBBを設定します。
+        /// </summary>
+        /// <param name="bbb">BBB設定値</param>
+        /// <param name="checker">BBB設定値有効チェッカ</param>
+        /// <exception cref="ArgumentOutOfRangeException">有効文字列長範囲外</exception>
         public void SetBBB(BBBVO bbb, IBBBLehgthChecker checker)
         {
             if (!checker.IsValid(bbb.Value))
@@ -28,6 +54,12 @@ namespace BBBEntity.Entity
             BBB = bbb;
         }
 
+        /// <summary>
+        /// BBB2を設定します。
+        /// </summary>
+        /// <param name="bbb2">BBB2設定値</param>
+        /// <param name="checker">BBB2設定値有効チェッカ</param>
+        /// <exception cref="ArgumentOutOfRangeException">有効文字列長範囲外</exception>
         public void SetBBB2(BBB2VO bbb2, IBBBLehgthChecker checker)
         {
             if (!checker.IsValid(bbb2.Value))
@@ -38,17 +70,28 @@ namespace BBBEntity.Entity
             BBB2 = bbb2;
         }
 
+        /// <summary>
+        /// 複製します。
+        /// </summary>
+        /// <returns>複製したインスタンス</returns>
         public BBBEntity Clone()
         {
             return (BBBEntity)MemberwiseClone();
         }
 
+        /// <summary>
+        /// 初期化します。
+        /// </summary>
         public void Initialize()
         {
-            BBB = new(BBB_InitValue);
-            BBB2 = new(BBB2_InitValue);
+            BBB = new(BbbInitValue);
+            BBB2 = new(Bbb2InitValue);
         }
 
+        /// <summary>
+        /// 設定データ群を吐き出します。
+        /// </summary>
+        /// <returns>設定データ群</returns>
         public BBBEntityPacket ExportPacketData()
         {
             return new()
@@ -58,6 +101,10 @@ namespace BBBEntity.Entity
             };
         }
 
+        /// <summary>
+        /// 設定データ群を取り込みます。
+        /// </summary>
+        /// <param name="packet">設定データ群</param>
         public void ImportPacketData(BBBEntityPacket packet)
         {
             BBB = new(packet.BBB);

@@ -2,10 +2,15 @@
 
 namespace BBBEntity.ValueObject
 {
+    /// <summary>
+    /// BBB設定の値オブジェクトクラス
+    /// </summary>
+    /// <param name="Value">設定値</param>
     public record BBBVO(string Value) : ValueObjectBase<string>(Value), IInputLimit<string>
     {
         private const TextFormatType Type = TextFormatType.HalfWidthAlphanumeric;
 
+        /// <inheritdoc/>
         public static string CurrectValue(string value)
         {
             string ret = value;
@@ -17,9 +22,11 @@ namespace BBBEntity.ValueObject
                     ret = ret.ExtractOnlyAbailableCharacters(Type);
                 }
             }
+
             return ret;
         }
 
+        /// <inheritdoc/>
         public static bool IsValid(string value)
         {
             if (!value.IsFormatValid(Type))
@@ -30,6 +37,7 @@ namespace BBBEntity.ValueObject
             return true;
         }
 
+        /// <inheritdoc/>
         protected override void Validate()
         {
             if (!IsValid(Value))

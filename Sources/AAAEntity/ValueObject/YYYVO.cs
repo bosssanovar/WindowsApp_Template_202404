@@ -2,12 +2,28 @@
 
 namespace AAAEntity.ValueObject
 {
+    /// <summary>
+    /// YYY設定の値オブジェクトクラス
+    /// </summary>
+    /// <param name="Value">設定値</param>
     public record YYYVO(int Value) : ValueObjectBase<int>(Value), IInputLimit<int>
     {
+        /// <summary>
+        /// 最小値
+        /// </summary>
         public const int MinValue = 5;
+
+        /// <summary>
+        /// 最大値
+        /// </summary>
         public const int MaxValue = 100;
+
+        /// <summary>
+        /// ステップ
+        /// </summary>
         public const int Step = 5;
 
+        /// <inheritdoc/>
         public static int CurrectValue(int value)
         {
             if (!IsValid(value))
@@ -31,6 +47,7 @@ namespace AAAEntity.ValueObject
             return value;
         }
 
+        /// <inheritdoc/>
         public static bool IsValid(int value)
         {
             if (value % Step != 0)
@@ -46,6 +63,7 @@ namespace AAAEntity.ValueObject
             return true;
         }
 
+        /// <inheritdoc/>
         protected override void Validate()
         {
             if (!IsValid(Value))

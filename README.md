@@ -1,5 +1,6 @@
 # WindowsApp_Template_202404
 
+エラー、警告、提案全て０件
 
 ## StyleCop
 
