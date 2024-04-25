@@ -12,18 +12,36 @@ using System.Windows;
 
 namespace UiParts.UserControls.AaaAndBbbPage
 {
+    /// <summary>
+    /// AAA and BBBページの疑似ViewModel
+    /// </summary>
     public partial class AaaAndBbbPageView
     {
         private AaaAndBbbPageModel? _model;
 
+        /// <summary>
+        /// YYY設定値
+        /// </summary>
         public ReactivePropertySlim<int> YYYVal { get; private set; } = new(0);
 
+        /// <summary>
+        /// ZZZ設定値
+        /// </summary>
         public ReactivePropertySlim<int> ZZZVal { get; private set; } = new(0);
 
+        /// <summary>
+        /// AAA設定値
+        /// </summary>
         public ReactivePropertySlim<int> AAAVal { get; private set; } = new(0);
 
+        /// <summary>
+        /// BBB設定値
+        /// </summary>
         public ReactivePropertySlim<string> BBBVal { get; private set; } = new(string.Empty);
 
+        /// <summary>
+        /// BBB2設定値
+        /// </summary>
         public ReactivePropertySlim<string> BBB2Val { get; private set; } = new(string.Empty);
 
         private void AaaAndBbbPageViewModel(AaaAndBbbPageModel model)

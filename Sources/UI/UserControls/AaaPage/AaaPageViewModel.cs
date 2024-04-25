@@ -9,14 +9,26 @@ using System.Windows;
 
 namespace UiParts.UserControls.AaaPage
 {
+    /// <summary>
+    /// AAAページの疑似ViewModel
+    /// </summary>
     public partial class AaaPageView
     {
         private AaaPageModel? _model;
 
+        /// <summary>
+        /// YYY設定
+        /// </summary>
         public ReactivePropertySlim<int> YYYVal { get; private set; } = new(0);
 
+        /// <summary>
+        /// ZZZ設定
+        /// </summary>
         public ReactivePropertySlim<int> ZZZVal { get; private set; } = new(0);
 
+        /// <summary>
+        /// AAA設定
+        /// </summary>
         public ReactivePropertySlim<int> AAAVal { get; private set; } = new(0);
 
         private void AaaPageViewModel(AaaPageModel model)

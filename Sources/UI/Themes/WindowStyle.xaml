@@ -62,7 +62,7 @@
                               ResizeBorderThickness="{x:Static SystemParameters.WindowResizeBorderThickness}"/>
             </Setter.Value>
         </Setter>
-        <Setter Property="FontFamily" Value="Meiryo UI"/>
+        <Setter Property="FontFamily" Value="Yu Gothic UI"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="Template">
@@ -104,11 +104,11 @@
 
                                 <!--キャプションボタン-->
                                 <Button Grid.Column="5" Content="0" WindowChrome.IsHitTestVisibleInChrome="True"
-                                        Command="{Binding WindowMinimum}" Style="{StaticResource SystemMaxMiniButton}"/>
+                                        Command="{Binding WindowMinimumCommand}" Style="{StaticResource SystemMaxMiniButton}"/>
                                 <Button Grid.Column="6" Content="{Binding ButtonStyle.Value}" WindowChrome.IsHitTestVisibleInChrome="True"
-                                        Command="{Binding WindowSize}" Style="{StaticResource SystemMaxMiniButton}"/>
+                                        Command="{Binding WindowSizeCommand}" Style="{StaticResource SystemMaxMiniButton}"/>
                                 <Button Grid.Column="7" Content="r" WindowChrome.IsHitTestVisibleInChrome="True"
-                                        Command="{Binding WindowClose}" Style="{StaticResource SystemCloseButton}"/>
+                                        Command="{Binding WindowCloseCommand}" Style="{StaticResource SystemCloseButton}"/>
                             </Grid>
 
                             <!--クライアントエリア-->
@@ -144,7 +144,7 @@
                               ResizeBorderThickness="{x:Static SystemParameters.WindowResizeBorderThickness}"/>
             </Setter.Value>
         </Setter>
-        <Setter Property="FontFamily" Value="Meiryo UI"/>
+        <Setter Property="FontFamily" Value="Yu Gothic UI"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="Template">
@@ -186,11 +186,11 @@
 
                                 <!--キャプションボタン-->
                                 <Button Grid.Column="5" Content="0" WindowChrome.IsHitTestVisibleInChrome="True"
-                                        Command="{Binding WindowMinimum}" Style="{StaticResource SystemMaxMiniButton}"/>
+                                        Command="{Binding WindowMinimumCommand}" Style="{StaticResource SystemMaxMiniButton}"/>
                                 <Button Grid.Column="6" Content="{Binding ButtonStyle.Value}" WindowChrome.IsHitTestVisibleInChrome="True"
-                                        Command="{Binding WindowSize}" Style="{StaticResource SystemMaxMiniButton}"/>
+                                        Command="{Binding WindowSizeCommand}" Style="{StaticResource SystemMaxMiniButton}"/>
                                 <Button Grid.Column="7" Content="r" WindowChrome.IsHitTestVisibleInChrome="True"
-                                        Command="{Binding WindowClose}" Style="{StaticResource SystemCloseButton}"/>
+                                        Command="{Binding WindowCloseCommand}" Style="{StaticResource SystemCloseButton}"/>
                             </Grid>
 
                             <!--クライアントエリア-->

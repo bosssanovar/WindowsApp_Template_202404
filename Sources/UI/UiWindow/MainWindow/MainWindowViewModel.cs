@@ -9,27 +9,53 @@ using UiParts.UserControls.AaaAndBbbPage;
 using UiParts.UserControls.AaaPage;
 using UiParts.UserControls.BbbPage;
 
-
 namespace UiParts.UiWindow.MainWindow
 {
+    /// <summary>
+    /// MainWindowの疑似ViewModel
+    /// </summary>
     public partial class MainWindowView
     {
         private MainWindowModel? _model;
 
+        /// <summary>
+        /// Pageコンテンツ
+        /// </summary>
         public ReactivePropertySlim<PageViewBase> Page { get; } = new();
 
+        /// <summary>
+        /// Homeに異動するコマンド
+        /// </summary>
         public ReactiveCommand MoveHomeCommand { get; } = new();
 
+        /// <summary>
+        /// 設定値を初期化するコマンド
+        /// </summary>
         public ReactiveCommand InitializeCommand { get; } = new();
 
+        /// <summary>
+        /// 設定をファイルに保存するコマンド
+        /// </summary>
         public ReactiveCommand SaveCommand { get; } = new();
 
+        /// <summary>
+        /// 設定をファイルから読み込むコマンド
+        /// </summary>
         public ReactiveCommand OpenCommand { get; } = new();
 
+        /// <summary>
+        /// Aaaページに遷移するコマンド
+        /// </summary>
         public ReactiveCommand PageAaaCommand { get; } = new();
 
+        /// <summary>
+        /// Bbbページに遷移するコマンド
+        /// </summary>
         public ReactiveCommand PageBbbCommand { get; } = new();
 
+        /// <summary>
+        /// Aaa and Bbbページに遷移するコマンド
+        /// </summary>
         public ReactiveCommand PageAaaAndBbbCommand { get; } = new();
 
         private void MainWindowViewModel(MainWindowModel model)

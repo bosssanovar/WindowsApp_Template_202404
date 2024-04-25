@@ -5,6 +5,10 @@
     /// </summary>
     public partial class AaaPageView : PageViewBase
     {
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="model">モデル</param>
         public AaaPageView(AaaPageModel model)
             : base(model)
         {

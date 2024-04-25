@@ -5,6 +5,10 @@
     /// </summary>
     public partial class StartWindowView : WindowBase
     {
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="model">モデル</param>
         public StartWindowView(StartWindowModel model)
             : base(model)
         {

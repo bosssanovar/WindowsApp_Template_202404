@@ -2,6 +2,9 @@
 
 namespace UiParts
 {
+    /// <summary>
+    /// DI(Dependency Injection)のServiceProviderのグローバルアクセスを可能とする機能クラス
+    /// </summary>
     public static class GlobalServiceProvider
     {
         #region Constants -------------------------------------------------------------------------------------
@@ -28,11 +31,21 @@ namespace UiParts
 
         #region Methods - public ------------------------------------------------------------------------------
 
+        /// <summary>
+        /// 構築済みのService Providerを設定します。
+        /// </summary>
+        /// <param name="provider">Service Provider</param>
         public static void SetProvider(IServiceProvider provider)
         {
             _provider = provider;
         }
 
+        /// <summary>
+        /// インスタンスを取得します。
+        /// </summary>
+        /// <typeparam name="T">取得するインスタンスのクラス</typeparam>
+        /// <returns>インスタンス</returns>
+        /// <exception cref="InvalidOperationException">ServiceProviderが設定されていない場合に発行されます。</exception>
         public static T GetRequiredService<T>()
              where T : notnull
         {

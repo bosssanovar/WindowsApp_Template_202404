@@ -11,14 +11,26 @@ using System.Windows;
 
 namespace UiParts.UserControls.BbbPage
 {
+    /// <summary>
+    /// BBBページの疑似ViewModel
+    /// </summary>
     public partial class BbbPageView
     {
         private BbbPageModel? _model;
 
+        /// <summary>
+        /// AAA設定値
+        /// </summary>
         public ReadOnlyReactivePropertySlim<int>? AAAVal { get; private set; }
 
+        /// <summary>
+        /// BBB設定値
+        /// </summary>
         public ReactivePropertySlim<string> BBBVal { get; private set; } = new(string.Empty);
 
+        /// <summary>
+        /// BBB2設定値
+        /// </summary>
         public ReactivePropertySlim<string> BBB2Val { get; private set; } = new(string.Empty);
 
         private void BbbPageViewModel(BbbPageModel model)

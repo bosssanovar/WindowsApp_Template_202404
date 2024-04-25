@@ -1,5 +1,8 @@
 ﻿namespace UiParts.UiWindow.StartWindow
 {
+    /// <summary>
+    /// Home画面のModel
+    /// </summary>
     public class StartWindowModel : WindowModelBase
     {
         #region Constants -------------------------------------------------------------------------------------
