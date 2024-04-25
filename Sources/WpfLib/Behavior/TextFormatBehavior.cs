@@ -8,12 +8,15 @@ using System.Windows.Input;
 
 namespace WpfLib.Behavior
 {
+    /// <summary>
+    /// テキストボックスの入力可能文字形式を設定するビヘイビア
+    /// </summary>
     public class TextFormatBehavior : Behavior<TextBox>
     {
         #region TextFormatProperty
 
         /// <summary>
-        /// 入力文字を制限します。
+        /// 入力可能文字形式プロパティ
         /// </summary>
         public static readonly DependencyProperty TextFormatProperty =
                     DependencyProperty.RegisterAttached(
@@ -23,25 +26,38 @@ namespace WpfLib.Behavior
                         new UIPropertyMetadata(TextFormatType.None, TextFormatChanged)
                     );
 
+        /// <summary>
+        /// 入力可能文字形式を取得します。
+        /// </summary>
+        /// <param name="obj">対象</param>
+        /// <returns>入力可能文字形式</returns>
         [AttachedPropertyBrowsableForType(typeof(TextBox))]
         public static TextFormatType GetTextFormat(DependencyObject obj)
         {
             return (TextFormatType)obj.GetValue(TextFormatProperty);
         }
 
+        /// <summary>
+        /// 入力可能文字形式を設定します。
+        /// </summary>
+        /// <param name="obj">対象</param>
+        /// <param name="value">入力可能文字形式</param>
         [AttachedPropertyBrowsableForType(typeof(TextBox))]
         public static void SetTextFormat(DependencyObject obj, TextFormatType value)
         {
             obj.SetValue(TextFormatProperty, value);
         }
 
-        private static void TextFormatChanged
-           (DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        private static void TextFormatChanged(
+           DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
             var textBox = sender as TextBox;
-            if (textBox == null) return;
+            if (textBox == null)
+            {
+                return;
+            }
 
-            // イベントを登録・削除 
+            // イベントを登録・削除
             textBox.PreviewKeyDown -= AssociatedObject_PreviewKeyDown;
             textBox.PreviewTextInput -= AssociatedObject_PreviewTextInput;
             textBox.PreviewLostKeyboardFocus -= TextBox_PreviewLostKeyboardFocus;
@@ -75,7 +91,7 @@ namespace WpfLib.Behavior
         #region BytesSJisProperty
 
         /// <summary>
-        /// Shift-JISでのバイト数。
+        /// Shift-JISでのバイト数　プロパティ
         /// </summary>
         public static readonly DependencyProperty BytesSJisProperty =
                     DependencyProperty.RegisterAttached(
@@ -85,12 +101,22 @@ namespace WpfLib.Behavior
                         new UIPropertyMetadata(0)
                     );
 
+        /// <summary>
+        /// Shift-JISでのバイト数を取得します。
+        /// </summary>
+        /// <param name="obj">対象</param>
+        /// <returns>Shift-JISでのバイト数</returns>
         [AttachedPropertyBrowsableForType(typeof(TextBox))]
         public static int GetBytesSJis(DependencyObject obj)
         {
             return (int)obj.GetValue(BytesSJisProperty);
         }
 
+        /// <summary>
+        /// Shift-JISでのバイト数を設定します。
+        /// </summary>
+        /// <param name="obj">対象</param>
+        /// <param name="value">Shift-JISでのバイト数</param>
         [AttachedPropertyBrowsableForType(typeof(TextBox))]
         public static void SetBytesSJis(DependencyObject obj, int value)
         {
@@ -104,7 +130,10 @@ namespace WpfLib.Behavior
         private static void TextBox_PreviewLostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
             var textBox = sender as TextBox;
-            if (textBox == null) return;
+            if (textBox == null)
+            {
+                return;
+            }
 
             if (GetTextFormat(textBox) is TextFormatType.Number
                 || GetTextFormat(textBox) is TextFormatType.NumberAndMinus
@@ -123,7 +152,10 @@ namespace WpfLib.Behavior
         private static void AssociatedObject_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             var textBox = sender as TextBox;
-            if (textBox == null) return;
+            if (textBox == null)
+            {
+                return;
+            }
 
             // 利用可能文字以外の入力を拒否
             if (!e.Text.IsFormatValid(GetTextFormat(textBox)))
@@ -149,7 +181,10 @@ namespace WpfLib.Behavior
         private static void AssociatedObject_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             var textBox = sender as TextBox;
-            if (textBox == null) return;
+            if (textBox == null)
+            {
+                return;
+            }
 
             // PreviewTextInputでは半角スペースを検知できないので、PreviewKeyDownで検知
             if (e.Key == Key.Space && !' '.IsFormatValid(GetTextFormat(textBox)))
@@ -160,10 +195,13 @@ namespace WpfLib.Behavior
 
         private static void PastingHandler(object sender, DataObjectPastingEventArgs e)
         {
-            e.CancelCommand();// 自前でペースト処理を実現しているため、標準動作はキャンセル
+            e.CancelCommand(); // 自前でペースト処理を実現しているため、標準動作はキャンセル
 
             var textBox = sender as TextBox;
-            if (textBox == null) return;
+            if (textBox == null)
+            {
+                return;
+            }
 
             // 貼り付け時に文字列を補正
 
@@ -172,10 +210,17 @@ namespace WpfLib.Behavior
 
             // ペーストする文字列から有効文字列を抽出
             var isText = e.SourceDataObject.GetDataPresent(DataFormats.UnicodeText, true);
-            if (!isText) return;
+            if (!isText)
+            {
+                return;
+            }
+
             string text = e.SourceDataObject.GetData(DataFormats.UnicodeText) as string ?? string.Empty;
             string correctedText = text.ExtractOnlyAbailableCharacters(GetTextFormat(textBox));
-            if (string.IsNullOrEmpty(correctedText)) return;
+            if (string.IsNullOrEmpty(correctedText))
+            {
+                return;
+            }
 
             // 残りの入力可能文字数分だけ挿入する
             string insertText;

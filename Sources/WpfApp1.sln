@@ -33,20 +33,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{596C3664-3
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AAAEntity_Test", "AAAEntity_Test\AAAEntity_Test.csproj", "{B19A1CF9-6E9C-4586-BDDB-0F08C5145A72}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{911CD809-DED7-475D-B183-70F3C6313C05}"
-	ProjectSection(SolutionItems) = preProject
-		.editorconfig = .editorconfig
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Feature", "Feature\Feature.csproj", "{A73B3483-63BA-4160-A195-BD6E40AE17FA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileAccessor", "FileAccessor\FileAccessor.csproj", "{4313BF91-0595-4D51-9913-63DBCE0FCFFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainModelCommon", "DomainModelCommon\DomainModelCommon.csproj", "{38A0C171-0D30-4B6C-93EE-21D5EF855E1F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainModelCommon", "DomainModelCommon\DomainModelCommon.csproj", "{38A0C171-0D30-4B6C-93EE-21D5EF855E1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainModelCommon_Test", "DomainModelCommon_Test\DomainModelCommon_Test.csproj", "{33DD7347-FC1D-4D86-9557-77E7A66DD07B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainModelCommon_Test", "DomainModelCommon_Test\DomainModelCommon_Test.csproj", "{33DD7347-FC1D-4D86-9557-77E7A66DD07B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfLib", "WpfLib\WpfLib.csproj", "{7D851ABC-909C-4CB4-95D7-9B0D2D92C8AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfLib", "WpfLib\WpfLib.csproj", "{7D851ABC-909C-4CB4-95D7-9B0D2D92C8AF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{20306A1B-2883-4917-A664-674CCE44E004}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
