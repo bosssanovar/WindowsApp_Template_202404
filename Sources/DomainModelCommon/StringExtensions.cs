@@ -3,7 +3,6 @@ using System.Text.RegularExpressions;
 
 namespace DomainModelCommon
 {
-
     /// <summary>
     /// string型の拡張メソッド群
     /// </summary>
