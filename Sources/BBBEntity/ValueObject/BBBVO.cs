@@ -78,7 +78,6 @@ namespace BBBEntity.ValueObject
         /// <inheritdoc/>
         protected override void Validate()
         {
-            // TODO K.I : overrideを整頓
             if (!IsValid(Value))
             {
                 throw new ArgumentException("Invalid Value", nameof(Value));

@@ -2,12 +2,14 @@
 using AAAEntity.DomainSreviceInterface;
 using AAAEntity.ValueObject;
 
+using DomainModelCommon;
+
 namespace AAAEntity.Entity
 {
     /// <summary>
     /// AAA Entityクラス
     /// </summary>
-    public class AAAEntity
+    public class AAAEntity : EntityBase<AAAEntity>
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -124,15 +126,6 @@ namespace AAAEntity.Entity
         public bool IsValidAAA(int aaa)
         {
             return ZZZ.Value < aaa;
-        }
-
-        /// <summary>
-        /// AAA Entityを複製します。
-        /// </summary>
-        /// <returns>複製されたインスタンス</returns>
-        public AAAEntity Clone()
-        {
-            return (AAAEntity)MemberwiseClone();
         }
 
         /// <summary>

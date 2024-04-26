@@ -2,12 +2,14 @@
 using BBBEntity.DomainSreviceInterface;
 using BBBEntity.ValueObject;
 
+using DomainModelCommon;
+
 namespace BBBEntity.Entity
 {
     /// <summary>
     /// BBB Entityクラス
     /// </summary>
-    public class BBBEntity
+    public class BBBEntity : EntityBase<BBBEntity>
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -90,16 +92,6 @@ namespace BBBEntity.Entity
             }
 
             BBB2 = bbb2;
-        }
-
-        /// <summary>
-        /// 複製します。
-        /// </summary>
-        /// <returns>複製したインスタンス</returns>
-        public BBBEntity Clone()
-        {
-            // TODO K.I : Entity Clone
-            return (BBBEntity)MemberwiseClone();
         }
 
         /// <summary>
