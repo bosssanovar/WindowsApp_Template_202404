@@ -18,6 +18,11 @@ namespace CCCEntity.Entity
         /// </summary>
         public const bool CCCInitValue = false;
 
+        /// <summary>
+        /// Detailの要素数初期値
+        /// </summary>
+        public const int DetailCountInitValue = 100;
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Fields ----------------------------------------------------------------------------------------
@@ -29,7 +34,7 @@ namespace CCCEntity.Entity
         /// <summary>
         /// CCC Detail
         /// </summary>
-        public ReadOnlyCollection<CCCVO> Detail { get; private set; }
+        public ReadOnlyCollection<CCCVO> Detail { get; private set; } = new(new List<CCCVO>());
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -44,7 +49,7 @@ namespace CCCEntity.Entity
         /// </summary>
         public CCCDetailEntity()
         {
-            Detail = new(new List<CCCVO>());
+            ChangeCount(DetailCountInitValue);
         }
 
         #endregion --------------------------------------------------------------------------------------------

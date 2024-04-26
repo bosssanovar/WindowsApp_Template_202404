@@ -13,6 +13,11 @@ namespace CCCEntity.Entity
     {
         #region Constants -------------------------------------------------------------------------------------
 
+        /// <summary>
+        /// CCCsの要素数初期値
+        /// </summary>
+        public const int CccsCountInitValue = 100;
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Fields ----------------------------------------------------------------------------------------
@@ -24,7 +29,7 @@ namespace CCCEntity.Entity
         /// <summary>
         /// CCCのマトリクス
         /// </summary>
-        public ReadOnlyCollection<CCCDetailEntity> CCCs { get; private set; }
+        public ReadOnlyCollection<CCCDetailEntity> CCCs { get; private set; } = new(new List<CCCDetailEntity>());
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -39,7 +44,7 @@ namespace CCCEntity.Entity
         /// </summary>
         public CCCEntity()
         {
-            CCCs = new(new List<CCCDetailEntity>());
+            ChangeCount(CccsCountInitValue);
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -56,7 +61,6 @@ namespace CCCEntity.Entity
             for (int i = 0; i < count; i++)
             {
                 var detail = new CCCDetailEntity();
-                detail.ChangeCount(count);
                 list.Add(detail);
             }
 
