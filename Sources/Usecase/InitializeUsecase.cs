@@ -37,14 +37,8 @@ namespace Usecase
         /// </summary>
         public void Execute()
         {
-            // TODO K.I : 関数化
-            var aaaEntity = _aaaRepository.Pull();
-            aaaEntity.Initialize();
-            _aaaRepository.Commit(aaaEntity);
-
-            var bbbEntity = _bbbRepository.Pull();
-            bbbEntity.Initialize();
-            _bbbRepository.Commit(bbbEntity);
+            InitAaaEntity();
+            InitBbbEntity();
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -58,6 +52,20 @@ namespace Usecase
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - private -----------------------------------------------------------------------------
+
+        private void InitAaaEntity()
+        {
+            var aaaEntity = _aaaRepository.Pull();
+            aaaEntity.Initialize();
+            _aaaRepository.Commit(aaaEntity);
+        }
+
+        private void InitBbbEntity()
+        {
+            var bbbEntity = _bbbRepository.Pull();
+            bbbEntity.Initialize();
+            _bbbRepository.Commit(bbbEntity);
+        }
 
         #endregion --------------------------------------------------------------------------------------------
 
