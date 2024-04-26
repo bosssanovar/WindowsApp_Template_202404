@@ -1,11 +1,15 @@
-﻿using Repository;
+﻿using CCCEntity.ValueObject;
 
-namespace InMemoryRepository
+using DomainModelCommon;
+
+using System.Collections.ObjectModel;
+
+namespace CCCEntity.Entity
 {
     /// <summary>
-    /// BBB Entityのin Memory リポジトリ
+    /// CCCのEntity
     /// </summary>
-    public class BBBRepository : IBBBRepository
+    public class CCCEntity : EntityBase<CCCEntity>
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -13,11 +17,14 @@ namespace InMemoryRepository
 
         #region Fields ----------------------------------------------------------------------------------------
 
-        private BBBEntity.Entity.BBBEntity _bbbEntity;
-
         #endregion --------------------------------------------------------------------------------------------
 
         #region Properties ------------------------------------------------------------------------------------
+
+        /// <summary>
+        /// CCCのマトリクス
+        /// </summary>
+        public ReadOnlyCollection<CCCDetailEntity> CCCs { get; private set; }
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -30,25 +37,30 @@ namespace InMemoryRepository
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public BBBRepository()
+        public CCCEntity()
         {
-            _bbbEntity = new BBBEntity.Entity.BBBEntity();
+            CCCs = new(new List<CCCDetailEntity>());
         }
 
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - public ------------------------------------------------------------------------------
 
-        /// <inheritdoc/>
-        public void Commit(BBBEntity.Entity.BBBEntity etity)
+        /// <summary>
+        /// 要素数を変更します。
+        /// </summary>
+        /// <param name="count">要素数</param>
+        public void ChangeCount(int count)
         {
-            _bbbEntity = etity.Clone();
-        }
+            var list = new List<CCCDetailEntity>();
+            for (int i = 0; i < count; i++)
+            {
+                var detail = new CCCDetailEntity();
+                detail.ChangeCount(count);
+                list.Add(detail);
+            }
 
-        /// <inheritdoc/>
-        public BBBEntity.Entity.BBBEntity Pull()
-        {
-            return _bbbEntity.Clone();
+            CCCs = new(list);
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -67,9 +79,25 @@ namespace InMemoryRepository
 
         #region Methods - override ----------------------------------------------------------------------------
 
+        /// <inheritdoc/>
+        public override CCCEntity Clone()
+        {
+            var ret = base.Clone();
+
+            var list = new List<CCCDetailEntity>();
+            for (int i = 0; i < CCCs.Count; i++)
+            {
+                list.Add(CCCs[i].Clone());
+            }
+
+            ret.CCCs = new(list);
+
+            return ret;
+        }
+
         #endregion --------------------------------------------------------------------------------------------
 
-        #region Inner Class/Enum/etc. -------------------------------------------------------------------------
+        #region Inner Class/Enum ------------------------------------------------------------------------------
 
         #endregion --------------------------------------------------------------------------------------------
     }

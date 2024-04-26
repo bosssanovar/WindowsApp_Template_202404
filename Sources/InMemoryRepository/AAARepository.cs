@@ -3,7 +3,7 @@
 namespace InMemoryRepository
 {
     /// <summary>
-    /// AAAEntityのリポジトリ
+    /// AAAEntityのin Memory リポジトリ
     /// </summary>
     public class AAARepository : IAAARepository
     {

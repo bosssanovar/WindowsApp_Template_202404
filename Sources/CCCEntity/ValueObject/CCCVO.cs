@@ -1,19 +1,18 @@
-﻿using Repository;
+﻿using DomainModelCommon;
 
-namespace InMemoryRepository
+namespace CCCEntity.ValueObject
 {
     /// <summary>
-    /// BBB Entityのin Memory リポジトリ
+    /// CCC設定の値オブジェクト　クラス
     /// </summary>
-    public class BBBRepository : IBBBRepository
+    /// <param name="Value">設定値</param>
+    public record CCCVO(bool Value) : ValueObjectBase<bool>(Value), IInputLimit<bool>
     {
         #region Constants -------------------------------------------------------------------------------------
 
         #endregion --------------------------------------------------------------------------------------------
 
         #region Fields ----------------------------------------------------------------------------------------
-
-        private BBBEntity.Entity.BBBEntity _bbbEntity;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -27,28 +26,20 @@ namespace InMemoryRepository
 
         #region Constructor -----------------------------------------------------------------------------------
 
-        /// <summary>
-        /// コンストラクタ
-        /// </summary>
-        public BBBRepository()
-        {
-            _bbbEntity = new BBBEntity.Entity.BBBEntity();
-        }
-
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - public ------------------------------------------------------------------------------
 
         /// <inheritdoc/>
-        public void Commit(BBBEntity.Entity.BBBEntity etity)
+        public static bool CurrectValue(bool value)
         {
-            _bbbEntity = etity.Clone();
+            return value;
         }
 
         /// <inheritdoc/>
-        public BBBEntity.Entity.BBBEntity Pull()
+        public static bool IsValid(bool value)
         {
-            return _bbbEntity.Clone();
+            return true;
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -67,9 +58,18 @@ namespace InMemoryRepository
 
         #region Methods - override ----------------------------------------------------------------------------
 
+        /// <inheritdoc/>
+        protected override void Validate()
+        {
+            if (!IsValid(Value))
+            {
+                throw new ArgumentException("Invalid Value", nameof(Value));
+            }
+        }
+
         #endregion --------------------------------------------------------------------------------------------
 
-        #region Inner Class/Enum/etc. -------------------------------------------------------------------------
+        #region Inner Class/Enum ------------------------------------------------------------------------------
 
         #endregion --------------------------------------------------------------------------------------------
     }

@@ -48,6 +48,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCCEntity", "CCCEntity\CCCEntity.csproj", "{806364FC-8215-4E90-99B5-E6034989745D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -110,6 +112,10 @@ Global
 		{7D851ABC-909C-4CB4-95D7-9B0D2D92C8AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D851ABC-909C-4CB4-95D7-9B0D2D92C8AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D851ABC-909C-4CB4-95D7-9B0D2D92C8AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{806364FC-8215-4E90-99B5-E6034989745D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{806364FC-8215-4E90-99B5-E6034989745D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{806364FC-8215-4E90-99B5-E6034989745D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{806364FC-8215-4E90-99B5-E6034989745D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -129,6 +135,7 @@ Global
 		{38A0C171-0D30-4B6C-93EE-21D5EF855E1F} = {9A31BFE5-2383-4E55-A3A9-2DCC036E1D06}
 		{33DD7347-FC1D-4D86-9557-77E7A66DD07B} = {596C3664-30E9-4BB1-9AE3-273797963A41}
 		{7D851ABC-909C-4CB4-95D7-9B0D2D92C8AF} = {59ADE362-C470-41AE-8731-B739AC017979}
+		{806364FC-8215-4E90-99B5-E6034989745D} = {9A31BFE5-2383-4E55-A3A9-2DCC036E1D06}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D8163E1B-02FF-4F80-9177-95F151793427}

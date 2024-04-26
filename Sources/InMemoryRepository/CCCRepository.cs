@@ -1,11 +1,13 @@
-﻿using Repository;
+﻿using BBBEntity.Entity;
+
+using Repository;
 
 namespace InMemoryRepository
 {
     /// <summary>
-    /// BBB Entityのin Memory リポジトリ
+    /// CCC Entityのin Memory リポジトリ
     /// </summary>
-    public class BBBRepository : IBBBRepository
+    public class CCCRepository : ICCCRepository
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -13,7 +15,7 @@ namespace InMemoryRepository
 
         #region Fields ----------------------------------------------------------------------------------------
 
-        private BBBEntity.Entity.BBBEntity _bbbEntity;
+        private CCCEntity.Entity.CCCEntity _cccEntity;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -30,9 +32,9 @@ namespace InMemoryRepository
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public BBBRepository()
+        public CCCRepository()
         {
-            _bbbEntity = new BBBEntity.Entity.BBBEntity();
+            _cccEntity = new CCCEntity.Entity.CCCEntity();
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -40,15 +42,15 @@ namespace InMemoryRepository
         #region Methods - public ------------------------------------------------------------------------------
 
         /// <inheritdoc/>
-        public void Commit(BBBEntity.Entity.BBBEntity etity)
+        public void Commit(CCCEntity.Entity.CCCEntity entity)
         {
-            _bbbEntity = etity.Clone();
+            _cccEntity = entity.Clone();
         }
 
         /// <inheritdoc/>
-        public BBBEntity.Entity.BBBEntity Pull()
+        public CCCEntity.Entity.CCCEntity Pull()
         {
-            return _bbbEntity.Clone();
+            return _cccEntity.Clone();
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -69,7 +71,7 @@ namespace InMemoryRepository
 
         #endregion --------------------------------------------------------------------------------------------
 
-        #region Inner Class/Enum/etc. -------------------------------------------------------------------------
+        #region Inner Class/Enum ------------------------------------------------------------------------------
 
         #endregion --------------------------------------------------------------------------------------------
     }
