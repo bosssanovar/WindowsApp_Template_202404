@@ -7,8 +7,12 @@ namespace Usecase
     /// </summary>
     /// <param name="_aaaRepository"><see cref="IAAARepository"/>インスタンス</param>
     /// <param name="_bbbRepository"><see cref="IBBBRepository"/>インスタンス</param>
+    /// <param name="_cccRepository"><see cref="ICCCRepository"/>インスタンス</param>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.NamingRules", "SA1313:Parameter names should begin with lower-case letter", Justification = "<保留中>")]
-    public class DisplaySettingsUsecase(IAAARepository _aaaRepository, IBBBRepository _bbbRepository)
+    public class DisplaySettingsUsecase(
+        IAAARepository _aaaRepository,
+        IBBBRepository _bbbRepository,
+        ICCCRepository _cccRepository)
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -48,6 +52,15 @@ namespace Usecase
         public BBBEntity.Entity.BBBEntity GetBBBEntity()
         {
             return _bbbRepository.Pull();
+        }
+
+        /// <summary>
+        /// CCC Entityを取得します。
+        /// </summary>
+        /// <returns>CCC Entity</returns>
+        public CCCEntity.Entity.CCCEntity GetCCCEntity()
+        {
+            return _cccRepository.Pull();
         }
 
         #endregion --------------------------------------------------------------------------------------------

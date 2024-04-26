@@ -7,8 +7,12 @@ namespace Usecase
     /// </summary>
     /// <param name="_aaaRepository"><see cref="IAAARepository"/>インスタンス</param>
     /// <param name="_bbbRepository"><see cref="IBBBRepository"/>インスタンス</param>
+    /// <param name="_cccRepository"><see cref="ICCCRepository"/>インスタンス</param>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.NamingRules", "SA1313:Parameter names should begin with lower-case letter", Justification = "<保留中>")]
-    public class CommitSettingsUsecase(IAAARepository _aaaRepository, IBBBRepository _bbbRepository)
+    public class CommitSettingsUsecase(
+        IAAARepository _aaaRepository,
+        IBBBRepository _bbbRepository,
+        ICCCRepository _cccRepository)
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -48,6 +52,15 @@ namespace Usecase
         public void CommitBBBEntity(BBBEntity.Entity.BBBEntity entity)
         {
             _bbbRepository.Commit(entity);
+        }
+
+        /// <summary>
+        /// CCC Entityを確定しますl
+        /// </summary>
+        /// <param name="entity">CCC Entity</param>
+        public void CommitCCCEntity(CCCEntity.Entity.CCCEntity entity)
+        {
+            _cccRepository.Commit(entity);
         }
 
         #endregion --------------------------------------------------------------------------------------------

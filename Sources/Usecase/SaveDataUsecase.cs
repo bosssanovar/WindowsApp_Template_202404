@@ -17,6 +17,7 @@ namespace Usecase
                                  IBBBRepository _bbbRepository,
                                  DataFileAccessor _dataFileAccessor)
     {
+        // TODO K.I : 要対応
         #region Constants -------------------------------------------------------------------------------------
 
         #endregion --------------------------------------------------------------------------------------------
