@@ -12,12 +12,11 @@ namespace UiParts.UiWindow
     /// </summary>
     public abstract class WindowBase : Window, INotifyPropertyChanged
     {
-#pragma warning disable CS0067 // イベント 'MainWindowView.PropertyChanged' は使用されていません
-        /// <summary>
-        /// 変更通知
-        /// </summary>
-        public event PropertyChangedEventHandler? PropertyChanged;
-#pragma warning restore CS0067 // イベント 'MainWindowView.PropertyChanged' は使用されていません
+        #region Constants -------------------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Fields ----------------------------------------------------------------------------------------
 
         private readonly WindowModelBase _model;
 
@@ -29,6 +28,50 @@ namespace UiParts.UiWindow
         protected readonly CompositeDisposable _compositeDisposable = [];
 #pragma warning restore SA1401 // Fields should be private
 #pragma warning restore CA1051 // 参照可能なインスタンス フィールドを宣言しません
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Properties ------------------------------------------------------------------------------------
+
+        /// <summary>
+        /// ウィンドウ最小化コマンド
+        /// </summary>
+        public ReactiveCommand WindowMinimumCommand { get; } = new();
+
+        /// <summary>
+        /// ウィンドウのサイズ切り替えコマンド
+        /// </summary>
+        public ReactiveCommand WindowSizeCommand { get; } = new();
+
+        /// <summary>
+        /// ウィンドウを閉じるコマンド
+        /// </summary>
+        public ReactiveCommand WindowCloseCommand { get; } = new();
+
+        /// <summary>
+        /// 最大化、通常サイズのボタンデザイン指定
+        /// </summary>
+        public ReactivePropertySlim<string> ButtonStyle { get; } = new("1");
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Events ----------------------------------------------------------------------------------------
+
+        /// <summary>
+        /// 変更通知
+        /// </summary>
+#pragma warning disable CS0067 // イベント 'MainWindowView.PropertyChanged' は使用されていません
+        public event PropertyChangedEventHandler? PropertyChanged;
+#pragma warning restore CS0067 // イベント 'MainWindowView.PropertyChanged' は使用されていません
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Constructor -----------------------------------------------------------------------------------
+
+        static WindowBase()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(WindowBase), new FrameworkPropertyMetadata(typeof(WindowBase)));
+        }
 
         /// <summary>
         /// コンストラクタ
@@ -67,40 +110,41 @@ namespace UiParts.UiWindow
                 .AddTo(_compositeDisposable);
         }
 
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods - public ------------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods - internal ----------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods - protected ---------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods - private -----------------------------------------------------------------------------
+
         private void WindowBase_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
         {
             _model.Dispose();
             _compositeDisposable.Dispose();
         }
 
-        /// <summary>
-        /// ウィンドウ最小化コマンド
-        /// </summary>
-        public ReactiveCommand WindowMinimumCommand { get; } = new();
-
-        /// <summary>
-        /// ウィンドウのサイズ切り替えコマンド
-        /// </summary>
-        public ReactiveCommand WindowSizeCommand { get; } = new();
-
-        /// <summary>
-        /// ウィンドウを閉じるコマンド
-        /// </summary>
-        public ReactiveCommand WindowCloseCommand { get; } = new();
-
-        /// <summary>
-        /// 最大化、通常サイズのボタンデザイン指定
-        /// </summary>
-        public ReactivePropertySlim<string> ButtonStyle { get; } = new("1");
-
-        static WindowBase()
-        {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(WindowBase), new FrameworkPropertyMetadata(typeof(WindowBase)));
-        }
-
         private void WindowBase_StateChanged(object? sender, EventArgs e)
         {
             ButtonStyle.Value = this.WindowState == WindowState.Normal ? "1" : "2";
         }
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods - override ----------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Inner Class/Enum/etc. -------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
     }
 }
