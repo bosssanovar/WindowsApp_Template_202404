@@ -3,6 +3,8 @@
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 
+using System.Collections.ObjectModel;
+
 using Usecase;
 
 namespace UiParts.UserControls.CccPage
@@ -24,12 +26,17 @@ namespace UiParts.UserControls.CccPage
 
         #endregion --------------------------------------------------------------------------------------------
 
-            #region Properties ------------------------------------------------------------------------------------
+        #region Properties ------------------------------------------------------------------------------------
 
         /// <summary>
         /// CCC Entity
         /// </summary>
         public ReactivePropertySlim<CCCEntity.Entity.CCCEntity> CccEntity { get; }
+
+        /// <summary>
+        /// コレクション型のModel
+        /// </summary>
+        public ObservableCollection<CccDetailModel> Details { get; } = [];
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -53,6 +60,8 @@ namespace UiParts.UserControls.CccPage
 
             CccEntity = new(_displaySettingsUsecase.GetCCCEntity());
             CccEntity.AddTo(_compositeDisposable);
+
+            InitDetails();
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -78,6 +87,21 @@ namespace UiParts.UserControls.CccPage
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - private -----------------------------------------------------------------------------
+
+        private void InitDetails()
+        {
+            ClearDetails();
+            foreach (var eintity in CccEntity.Value.CCCs)
+            {
+                var detail = new CccDetailModel(eintity);
+                Details.Add(detail);
+            }
+        }
+
+        private void ClearDetails()
+        {
+            Details.Clear();
+        }
 
         #endregion --------------------------------------------------------------------------------------------
 

@@ -180,6 +180,9 @@ dotnet_diagnostic.SA1108.severity = none
 # SYSLIB1045: 'GeneratedRegexAttribute' に変換します。
 dotnet_diagnostic.SYSLIB1045.severity = none
 
+# SA1214: Readonly fields should appear before non-readonly fields
+dotnet_diagnostic.SA1214.severity = none
+
 [*.vb]
 #### 命名スタイル ####
 

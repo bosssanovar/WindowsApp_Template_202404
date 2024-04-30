@@ -5,6 +5,7 @@ using DomainService;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 
+using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Text;
 using System.Windows;
@@ -24,9 +25,16 @@ namespace UiParts.UserControls.CccPage
 
         private CccPageModel? _model;
 
+        private readonly CompositeDisposable _disposable = [];
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Properties ------------------------------------------------------------------------------------
+
+        /// <summary>
+        /// CCC設定
+        /// </summary>
+        public ReadOnlyReactiveCollection<CccDetailViewModel> CCCs { get; private set; }
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -55,6 +63,9 @@ namespace UiParts.UserControls.CccPage
         private void CccPageViewModel(CccPageModel model)
         {
             _model = model;
+
+            CCCs = _model.Details.ToReadOnlyReactiveCollection(x => new CccDetailViewModel(x))
+                .AddTo(_disposable);
         }
 
         #endregion --------------------------------------------------------------------------------------------

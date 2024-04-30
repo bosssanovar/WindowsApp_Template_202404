@@ -12,7 +12,7 @@ namespace UiParts.UserControls.CccPage
     /// <summary>
     /// CCC Detail ViewModelクラス
     /// </summary>
-    internal class CccDetailViewModel : INotifyPropertyChanged, IDisposable
+    public class CccDetailViewModel : INotifyPropertyChanged, IDisposable
     {
         #region Constants -------------------------------------------------------------------------------------
 
