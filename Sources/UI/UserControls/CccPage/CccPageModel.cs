@@ -1,40 +1,35 @@
-﻿using CCCEntity.ValueObject;
+﻿using CCCEntity.Entity;
 
-using DomainModelCommon;
+using Reactive.Bindings;
+using Reactive.Bindings.Extensions;
 
-using System.Collections.ObjectModel;
+using Usecase;
 
-namespace CCCEntity.Entity
+namespace UiParts.UserControls.CccPage
 {
     /// <summary>
-    /// CCCのDetail Entity
+    /// CCCページのモデル
     /// </summary>
-    public class CCCDetailEntity : EntityBase<CCCDetailEntity>
+    public class CccPageModel : PageModelBase
     {
         #region Constants -------------------------------------------------------------------------------------
-
-        /// <summary>
-        /// CCC設定の初期値
-        /// </summary>
-        public const bool CCCInitValue = false;
-
-        /// <summary>
-        /// Detailの要素数初期値
-        /// </summary>
-        public const int DetailCountInitValue = 100;
 
         #endregion --------------------------------------------------------------------------------------------
 
         #region Fields ----------------------------------------------------------------------------------------
 
+        private readonly DisplaySettingsUsecase _displaySettingsUsecase;
+
+        private readonly CommitSettingsUsecase _commitSettingsUsecase;
+
         #endregion --------------------------------------------------------------------------------------------
 
-        #region Properties ------------------------------------------------------------------------------------
+            #region Properties ------------------------------------------------------------------------------------
 
         /// <summary>
-        /// CCC Detail
+        /// CCC Entity
         /// </summary>
-        public List<CCCVO> Detail { get; private set; } = [];
+        public ReactivePropertySlim<CCCEntity.Entity.CCCEntity> CccEntity { get; }
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -47,9 +42,17 @@ namespace CCCEntity.Entity
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public CCCDetailEntity()
+        /// <param name="displaySettingsUsecase"><see cref="DisplaySettingsUsecase"/>インスタンス</param>
+        /// <param name="commitSettingsUsecase"><see cref="CommitSettingsUsecase"/>インスタンス</param>
+        public CccPageModel(
+            DisplaySettingsUsecase displaySettingsUsecase,
+            CommitSettingsUsecase commitSettingsUsecase)
         {
-            ChangeCount(DetailCountInitValue);
+            _displaySettingsUsecase = displaySettingsUsecase;
+            _commitSettingsUsecase = commitSettingsUsecase;
+
+            CccEntity = new(_displaySettingsUsecase.GetCCCEntity());
+            CccEntity.AddTo(_compositeDisposable);
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -57,18 +60,11 @@ namespace CCCEntity.Entity
         #region Methods - public ------------------------------------------------------------------------------
 
         /// <summary>
-        /// 要素数を変更します。
+        /// CCC Entityの更新通知を発行します。
         /// </summary>
-        /// <param name="count">要素数</param>
-        public void ChangeCount(int count)
+        public void ForceNotifyCccEntity()
         {
-            var list = new List<CCCVO>();
-            for (int i = 0; i < count; i++)
-            {
-                list.Add(new(CCCInitValue));
-            }
-
-            Detail = new(list);
+            CccEntity.ForceNotify();
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -87,25 +83,25 @@ namespace CCCEntity.Entity
 
         #region Methods - override ----------------------------------------------------------------------------
 
-        /// <inheritdoc/>
-        public override CCCDetailEntity Clone()
+        /// <summary>
+        /// 全てのEntityを更新します。
+        /// </summary>
+        public override void UpdateEntities()
         {
-            var ret = base.Clone();
+            CccEntity.Value = _displaySettingsUsecase.GetCCCEntity();
+        }
 
-            var list = new List<CCCVO>();
-            for (int i = 0; i < Detail.Count; i++)
-            {
-                list.Add(new(Detail[i].Value));
-            }
-
-            ret.Detail = new(list);
-
-            return ret;
+        /// <summary>
+        /// BBBEntityの設定値を確定します。
+        /// </summary>
+        public override void CommitEntities()
+        {
+            _commitSettingsUsecase.CommitCCCEntity(CccEntity.Value);
         }
 
         #endregion --------------------------------------------------------------------------------------------
 
-        #region Inner Class/Enum ------------------------------------------------------------------------------
+        #region Inner Class/Enum/etc. -------------------------------------------------------------------------
 
         #endregion --------------------------------------------------------------------------------------------
     }

@@ -1,44 +1,48 @@
 ﻿using CCCEntity.ValueObject;
 
-using DomainModelCommon;
+using Reactive.Bindings;
+using Reactive.Bindings.Extensions;
 
-using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;
 
-namespace CCCEntity.Entity
+namespace UiParts.UserControls.CccPage
 {
     /// <summary>
-    /// CCCのDetail Entity
+    /// CCC Detail ViewModelクラス
     /// </summary>
-    public class CCCDetailEntity : EntityBase<CCCDetailEntity>
+    internal class CccDetailViewModel : INotifyPropertyChanged, IDisposable
     {
         #region Constants -------------------------------------------------------------------------------------
-
-        /// <summary>
-        /// CCC設定の初期値
-        /// </summary>
-        public const bool CCCInitValue = false;
-
-        /// <summary>
-        /// Detailの要素数初期値
-        /// </summary>
-        public const int DetailCountInitValue = 100;
 
         #endregion --------------------------------------------------------------------------------------------
 
         #region Fields ----------------------------------------------------------------------------------------
+
+        private readonly CccDetailModel _model;
+
+        private readonly CompositeDisposable _disposable = [];
 
         #endregion --------------------------------------------------------------------------------------------
 
         #region Properties ------------------------------------------------------------------------------------
 
         /// <summary>
-        /// CCC Detail
+        /// Ccc設定
         /// </summary>
-        public List<CCCVO> Detail { get; private set; } = [];
+        public List<ReactivePropertySlim<bool>> CCCs { get; } = [];
 
         #endregion --------------------------------------------------------------------------------------------
 
         #region Events ----------------------------------------------------------------------------------------
+
+        /// <summary>
+        /// 変更通知イベント（ReactiveProperty採用時のメモリリーク対策）
+        /// </summary>
+#pragma warning disable CS0067 // イベント 'DetailViewModel.PropertyChanged' は使用されていません
+        public event PropertyChangedEventHandler? PropertyChanged;
+#pragma warning restore CS0067 // イベント 'DetailViewModel.PropertyChanged' は使用されていません
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -47,9 +51,32 @@ namespace CCCEntity.Entity
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public CCCDetailEntity()
+        /// <param name="model">コレクション型のModel</param>
+        public CccDetailViewModel(CccDetailModel model)
         {
-            ChangeCount(DetailCountInitValue);
+            _model = model;
+
+            var count = _model.Entity.Value.Detail.Count;
+            for (int i = 0; i < count; i++)
+            {
+                int index = i;
+                var sp = _model.Entity.ToReactivePropertySlimAsSynchronized(
+                    x => x.Value,
+                    x => x.Detail[index].Value,
+                    x =>
+                    {
+                        var corrected = CCCVO.CurrectValue(x);
+                        _model.Entity.Value.Detail[index] = new(corrected);
+
+                        _model.ForceNotify();
+
+                        return _model.Entity.Value;
+                    },
+                    ReactivePropertyMode.DistinctUntilChanged)
+                    .AddTo(_disposable);
+
+                CCCs.Add(sp);
+            }
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -57,18 +84,11 @@ namespace CCCEntity.Entity
         #region Methods - public ------------------------------------------------------------------------------
 
         /// <summary>
-        /// 要素数を変更します。
+        /// オブジェクトの後始末
         /// </summary>
-        /// <param name="count">要素数</param>
-        public void ChangeCount(int count)
+        public void Dispose()
         {
-            var list = new List<CCCVO>();
-            for (int i = 0; i < count; i++)
-            {
-                list.Add(new(CCCInitValue));
-            }
-
-            Detail = new(list);
+            _disposable.Dispose();
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -86,22 +106,6 @@ namespace CCCEntity.Entity
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - override ----------------------------------------------------------------------------
-
-        /// <inheritdoc/>
-        public override CCCDetailEntity Clone()
-        {
-            var ret = base.Clone();
-
-            var list = new List<CCCVO>();
-            for (int i = 0; i < Detail.Count; i++)
-            {
-                list.Add(new(Detail[i].Value));
-            }
-
-            ret.Detail = new(list);
-
-            return ret;
-        }
 
         #endregion --------------------------------------------------------------------------------------------
 

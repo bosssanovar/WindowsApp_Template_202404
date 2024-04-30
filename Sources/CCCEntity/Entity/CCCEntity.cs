@@ -29,7 +29,7 @@ namespace CCCEntity.Entity
         /// <summary>
         /// CCCのマトリクス
         /// </summary>
-        public ReadOnlyCollection<CCCDetailEntity> CCCs { get; private set; } = new(new List<CCCDetailEntity>());
+        public List<CCCDetailEntity> CCCs { get; private set; } = [];
 
         #endregion --------------------------------------------------------------------------------------------
 

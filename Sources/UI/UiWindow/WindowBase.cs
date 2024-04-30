@@ -58,7 +58,7 @@ namespace UiParts.UiWindow
         #region Events ----------------------------------------------------------------------------------------
 
         /// <summary>
-        /// 変更通知
+        /// 変更通知イベント（ReactiveProperty採用時のメモリリーク対策）
         /// </summary>
 #pragma warning disable CS0067 // イベント 'MainWindowView.PropertyChanged' は使用されていません
         public event PropertyChangedEventHandler? PropertyChanged;

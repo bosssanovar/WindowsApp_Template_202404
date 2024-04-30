@@ -48,6 +48,9 @@
     <Compile Update="UserControls\AaaPage\AaaPageView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="UserControls\CccPage\CccPageView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 
 </Project>

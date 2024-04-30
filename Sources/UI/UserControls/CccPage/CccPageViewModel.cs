@@ -1,40 +1,32 @@
-﻿using CCCEntity.ValueObject;
+﻿using BBBEntity.ValueObject;
 
-using DomainModelCommon;
+using DomainService;
 
-using System.Collections.ObjectModel;
+using Reactive.Bindings;
+using Reactive.Bindings.Extensions;
 
-namespace CCCEntity.Entity
+using System.Reactive.Linq;
+using System.Text;
+using System.Windows;
+
+namespace UiParts.UserControls.CccPage
 {
     /// <summary>
-    /// CCCのDetail Entity
+    /// CCCページの疑似ViewModel
     /// </summary>
-    public class CCCDetailEntity : EntityBase<CCCDetailEntity>
+    public partial class CccPageView
     {
         #region Constants -------------------------------------------------------------------------------------
-
-        /// <summary>
-        /// CCC設定の初期値
-        /// </summary>
-        public const bool CCCInitValue = false;
-
-        /// <summary>
-        /// Detailの要素数初期値
-        /// </summary>
-        public const int DetailCountInitValue = 100;
 
         #endregion --------------------------------------------------------------------------------------------
 
         #region Fields ----------------------------------------------------------------------------------------
 
+        private CccPageModel? _model;
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Properties ------------------------------------------------------------------------------------
-
-        /// <summary>
-        /// CCC Detail
-        /// </summary>
-        public List<CCCVO> Detail { get; private set; } = [];
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -44,32 +36,9 @@ namespace CCCEntity.Entity
 
         #region Constructor -----------------------------------------------------------------------------------
 
-        /// <summary>
-        /// コンストラクタ
-        /// </summary>
-        public CCCDetailEntity()
-        {
-            ChangeCount(DetailCountInitValue);
-        }
-
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - public ------------------------------------------------------------------------------
-
-        /// <summary>
-        /// 要素数を変更します。
-        /// </summary>
-        /// <param name="count">要素数</param>
-        public void ChangeCount(int count)
-        {
-            var list = new List<CCCVO>();
-            for (int i = 0; i < count; i++)
-            {
-                list.Add(new(CCCInitValue));
-            }
-
-            Detail = new(list);
-        }
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -83,29 +52,18 @@ namespace CCCEntity.Entity
 
         #region Methods - private -----------------------------------------------------------------------------
 
-        #endregion --------------------------------------------------------------------------------------------
-
-        #region Methods - override ----------------------------------------------------------------------------
-
-        /// <inheritdoc/>
-        public override CCCDetailEntity Clone()
+        private void CccPageViewModel(CccPageModel model)
         {
-            var ret = base.Clone();
-
-            var list = new List<CCCVO>();
-            for (int i = 0; i < Detail.Count; i++)
-            {
-                list.Add(new(Detail[i].Value));
-            }
-
-            ret.Detail = new(list);
-
-            return ret;
+            _model = model;
         }
 
         #endregion --------------------------------------------------------------------------------------------
 
-        #region Inner Class/Enum ------------------------------------------------------------------------------
+        #region Methods - override ----------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Inner Class/Enum/etc. -------------------------------------------------------------------------
 
         #endregion --------------------------------------------------------------------------------------------
     }

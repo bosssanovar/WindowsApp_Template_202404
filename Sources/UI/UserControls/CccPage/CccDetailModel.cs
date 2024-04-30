@@ -1,40 +1,28 @@
-﻿using CCCEntity.ValueObject;
+﻿using CCCEntity.Entity;
 
-using DomainModelCommon;
+using Reactive.Bindings;
 
-using System.Collections.ObjectModel;
-
-namespace CCCEntity.Entity
+namespace UiParts.UserControls.CccPage
 {
     /// <summary>
-    /// CCCのDetail Entity
+    /// CCC Detail Modelクラス
     /// </summary>
-    public class CCCDetailEntity : EntityBase<CCCDetailEntity>
+    public class CccDetailModel
     {
         #region Constants -------------------------------------------------------------------------------------
-
-        /// <summary>
-        /// CCC設定の初期値
-        /// </summary>
-        public const bool CCCInitValue = false;
-
-        /// <summary>
-        /// Detailの要素数初期値
-        /// </summary>
-        public const int DetailCountInitValue = 100;
 
         #endregion --------------------------------------------------------------------------------------------
 
         #region Fields ----------------------------------------------------------------------------------------
 
-        #endregion --------------------------------------------------------------------------------------------
-
-        #region Properties ------------------------------------------------------------------------------------
-
         /// <summary>
         /// CCC Detail
         /// </summary>
-        public List<CCCVO> Detail { get; private set; } = [];
+        public ReactivePropertySlim<CCCDetailEntity> Entity { get; }
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Properties ------------------------------------------------------------------------------------
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -47,9 +35,11 @@ namespace CCCEntity.Entity
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public CCCDetailEntity()
+        /// <param name="entity">CCC Detail</param>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0290:プライマリ コンストラクターの使用", Justification = "<保留中>")]
+        public CccDetailModel(CCCDetailEntity entity)
         {
-            ChangeCount(DetailCountInitValue);
+            Entity = new(entity);
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -57,18 +47,11 @@ namespace CCCEntity.Entity
         #region Methods - public ------------------------------------------------------------------------------
 
         /// <summary>
-        /// 要素数を変更します。
+        /// Entityの変更通知を発行します。
         /// </summary>
-        /// <param name="count">要素数</param>
-        public void ChangeCount(int count)
+        internal void ForceNotify()
         {
-            var list = new List<CCCVO>();
-            for (int i = 0; i < count; i++)
-            {
-                list.Add(new(CCCInitValue));
-            }
-
-            Detail = new(list);
+            Entity.ForceNotify();
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -86,22 +69,6 @@ namespace CCCEntity.Entity
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - override ----------------------------------------------------------------------------
-
-        /// <inheritdoc/>
-        public override CCCDetailEntity Clone()
-        {
-            var ret = base.Clone();
-
-            var list = new List<CCCVO>();
-            for (int i = 0; i < Detail.Count; i++)
-            {
-                list.Add(new(Detail[i].Value));
-            }
-
-            ret.Detail = new(list);
-
-            return ret;
-        }
 
         #endregion --------------------------------------------------------------------------------------------
 
