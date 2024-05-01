@@ -18,7 +18,7 @@ namespace AAAEntity.ValueObject
         /// <summary>
         /// 最大値
         /// </summary>
-        public const int MaxValue = 100;
+        public const int MaxValue = 700;
 
         /// <summary>
         /// ステップ

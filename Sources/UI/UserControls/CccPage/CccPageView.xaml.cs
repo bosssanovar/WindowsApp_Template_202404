@@ -87,9 +87,9 @@ namespace UiParts.UserControls.CccPage
 
         private void InitColumns(int count)
         {
+            // TODO : DataGridのUI仮想化が働いていない
             // TODO : 多重の列ヘッダーを追加
             // TODO : 連動する行ヘッダ―を追加
-            // TODO : YYY設定にリンクする
             grid.Columns.Clear();
 
             var converter = new BooleanToVisibilityConverter();

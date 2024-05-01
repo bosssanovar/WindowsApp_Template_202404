@@ -29,7 +29,7 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Row="0" Grid.Column="0" Text="YYY設定（5, 10, 15・・・100）" Margin="5"/>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="YYY設定（5, 10, 15・・・700）" Margin="5"/>
                     <TextBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Width="50"
                          Text="{Binding YYYVal.Value}" Margin="5" MaxLength="3"
                          behavior:TextFormatBehavior.TextFormat="Number"/>
