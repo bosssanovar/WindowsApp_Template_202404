@@ -120,10 +120,11 @@ namespace BBBEntity.Entity
         /// 設定データ群を取り込みます。
         /// </summary>
         /// <param name="packet">設定データ群</param>
-        public void ImportPacketData(BBBEntityPacket packet)
+        /// <param name="checker">BBB文字長チェッカー</param>
+        public void ImportPacketData(BBBEntityPacket packet, IBBBLehgthChecker checker)
         {
-            BBB = new(packet.BBB);
-            BBB2 = new(packet.BBB2);
+            SetBBB(new(packet.BBB), checker);
+            SetBBB2(new(packet.BBB2), checker);
         }
 
         #endregion --------------------------------------------------------------------------------------------

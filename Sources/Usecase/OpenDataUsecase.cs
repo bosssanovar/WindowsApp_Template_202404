@@ -84,12 +84,11 @@ namespace Usecase
         private void ImportData(DataPacket packet)
         {
             var aaaEntity = _aaaRepository.Pull();
-            aaaEntity.ImportPacketData(packet.AAAEntityPacket);
-
             var bbbEntity = _bbbRepository.Pull();
-            bbbEntity.ImportPacketData(packet.BBBEntityPacket);
-
             var cccEntity = _cccRepository.Pull();
+
+            aaaEntity.ImportPacketData(packet.AAAEntityPacket, new AAAChangedEvent(aaaEntity, bbbEntity));
+            bbbEntity.ImportPacketData(packet.BBBEntityPacket, new BBBLehgthChecker(aaaEntity));
             cccEntity.ImportDataPacket(packet.CCCEntityPacket);
 
             // データのImport中の例外でそのまま処理を抜けて副作用がないように、
