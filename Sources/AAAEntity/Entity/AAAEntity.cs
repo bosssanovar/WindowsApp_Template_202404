@@ -168,13 +168,16 @@ namespace AAAEntity.Entity
         /// 設定データ群を取り込みます。
         /// </summary>
         /// <param name="packet">取り込む設定データ群</param>
-        /// <param name="changedEvent">AAA変更時イベント</param>
-        public void ImportPacketData(AAAEntityPacket packet, IAAAChangedEvent changedEvent)
+        /// <param name="aaaChangedEvent">AAA変更時イベント</param>
+        /// <param name="yyyChangedEvent">YYY変更時イベント</param>
+        public void ImportPacketData(
+            AAAEntityPacket packet,
+            IAAAChangedEvent aaaChangedEvent,
+            IYYYChangedEvent yyyChangedEvent)
         {
-            // TODO : SetYYY
-            YYY = new(packet.YYY);
-            SetZZZ(new(packet.ZZZ), changedEvent);
-            SetAAA(new(packet.AAA), changedEvent);
+            SetYYY(new(packet.YYY), yyyChangedEvent);
+            SetZZZ(new(packet.ZZZ), aaaChangedEvent);
+            SetAAA(new(packet.AAA), aaaChangedEvent);
         }
 
         #endregion --------------------------------------------------------------------------------------------

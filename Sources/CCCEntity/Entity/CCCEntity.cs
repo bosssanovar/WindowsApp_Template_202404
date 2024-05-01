@@ -106,13 +106,14 @@ namespace CCCEntity.Entity
         /// <param name="packet">設定データ</param>
         public void ImportDataPacket(CCCEntityPacket packet)
         {
-            Details.Clear();
-
-            foreach (var item in packet.Details)
+            if (Details.Count != packet.Details.Count)
             {
-                var detail = new CCCDetailEntity();
-                detail.ImportDataPacket(item);
-                Details.Add(detail);
+                throw new ArgumentOutOfRangeException(nameof(packet), "要素数不一致");
+            }
+
+            for(int index = 0; index < Details.Count; index++)
+            {
+                Details[index].ImportDataPacket(packet.Details[index]);
             }
         }
 

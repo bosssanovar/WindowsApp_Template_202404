@@ -94,6 +94,11 @@ namespace CCCEntity.Entity
         /// <param name="packet">設定データ</param>
         public void ImportDataPacket(CCCDetailPacket packet)
         {
+            if(CCCs.Count != packet.CCCs.Count)
+            {
+                throw new ArgumentOutOfRangeException(nameof(packet), "要素数不一致");
+            }
+
             CCCs.Clear();
 
             foreach(var value in packet.CCCs)

@@ -87,7 +87,10 @@ namespace Usecase
             var bbbEntity = _bbbRepository.Pull();
             var cccEntity = _cccRepository.Pull();
 
-            aaaEntity.ImportPacketData(packet.AAAEntityPacket, new AAAChangedEvent(aaaEntity, bbbEntity));
+            aaaEntity.ImportPacketData(
+                packet.AAAEntityPacket,
+                new AAAChangedEvent(aaaEntity, bbbEntity),
+                new YYYChangedEvent(aaaEntity, cccEntity));
             bbbEntity.ImportPacketData(packet.BBBEntityPacket, new BBBLehgthChecker(aaaEntity));
             cccEntity.ImportDataPacket(packet.CCCEntityPacket);
 
