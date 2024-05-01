@@ -32,7 +32,12 @@ namespace UiParts.UiWindow.MainWindow
         /// <summary>
         /// Pageコンテンツ
         /// </summary>
-        public ReactivePropertySlim<PageViewBase> Page { get; } = new();
+        public ReactivePropertySlim<PageViewBase?> Page { get; } = new();
+
+        /// <summary>
+        /// スクロール対応Pageコンテンツ
+        /// </summary>
+        public ReactivePropertySlim<PageViewBase?> ScrollablePage { get; } = new();
 
         /// <summary>
         /// Homeに異動するコマンド
@@ -167,23 +172,41 @@ namespace UiParts.UiWindow.MainWindow
 
             PageAaaCommand.Subscribe(() =>
             {
-                Page.Value = GlobalServiceProvider.GetRequiredService<AaaPageView>();
+                SetPage(GlobalServiceProvider.GetRequiredService<AaaPageView>());
             });
 
             PageBbbCommand.Subscribe(() =>
             {
-                Page.Value = GlobalServiceProvider.GetRequiredService<BbbPageView>();
+                SetPage(GlobalServiceProvider.GetRequiredService<BbbPageView>());
             });
 
             PageAaaAndBbbCommand.Subscribe(() =>
             {
-                Page.Value = GlobalServiceProvider.GetRequiredService<AaaAndBbbPageView>();
+                SetPage(GlobalServiceProvider.GetRequiredService<AaaAndBbbPageView>());
             });
 
             PageCccCommand.Subscribe(() =>
             {
-                Page.Value = GlobalServiceProvider.GetRequiredService<CccPageView>();
+                SetScrollablePage(GlobalServiceProvider.GetRequiredService<CccPageView>());
             });
+        }
+
+        private void SetPage(PageViewBase page)
+        {
+            InitPageContent();
+            Page.Value = page;
+        }
+
+        private void SetScrollablePage(PageViewBase page)
+        {
+            InitPageContent();
+            ScrollablePage.Value = page;
+        }
+
+        private void InitPageContent()
+        {
+            Page.Value = null;
+            ScrollablePage.Value = null;
         }
 
         #endregion --------------------------------------------------------------------------------------------

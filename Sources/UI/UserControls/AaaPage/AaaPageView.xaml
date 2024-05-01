@@ -10,34 +10,36 @@
     DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
     d:Background="White">
 
-    <Grid>
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid>
 
-        <Grid Margin="5">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+            <Grid Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="YYY設定（5, 10, 15・・・100）" Margin="5"/>
-            <TextBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Width="50"
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="YYY設定（5, 10, 15・・・100）" Margin="5"/>
+                <TextBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Width="50"
                          Text="{Binding YYYVal.Value}" Margin="5" MaxLength="3"
                          behavior:TextFormatBehavior.TextFormat="Number"/>
 
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="ZZZ設定（AAA設定の上限値指定）（1～20）" Margin="5"/>
-            <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Width="50"
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="ZZZ設定（AAA設定の上限値指定）（1～20）" Margin="5"/>
+                <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Width="50"
                          Text="{Binding ZZZVal.Value}" Margin="5" MaxLength="2"
                          behavior:TextFormatBehavior.TextFormat="Number"/>
 
-            <TextBlock Grid.Row="2" Grid.Column="0" Text="AAA設定（BBB設定の入力文字数指定）" Margin="5"/>
-            <TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" Width="50"
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="AAA設定（BBB設定の入力文字数指定）" Margin="5"/>
+                <TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" Width="50"
                          Text="{Binding AAAVal.Value}" Margin="5" MaxLength="2"
                          behavior:TextFormatBehavior.TextFormat="Number"/>
-        </Grid>
+            </Grid>
 
-    </Grid>
+        </Grid>
+    </ScrollViewer>
 </local:PageViewBase>

@@ -8,64 +8,65 @@
     xmlns:behavior="clr-namespace:WpfLib.Behavior;assembly=WpfLib"
     mc:Ignorable="d" 
     DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
-    d:Background="White"
-    Width="500">
+    d:Background="White">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
-        <GroupBox Grid.Row="0" Margin="5" Header="AAAEntity">
-            <Grid Margin="5">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+            <GroupBox Grid.Row="0" Margin="5" Header="AAAEntity">
+                <Grid Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="0" Text="YYY設定（5, 10, 15・・・100）" Margin="5"/>
-                <TextBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Width="50"
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="YYY設定（5, 10, 15・・・100）" Margin="5"/>
+                    <TextBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Width="50"
                          Text="{Binding YYYVal.Value}" Margin="5" MaxLength="3"
                          behavior:TextFormatBehavior.TextFormat="Number"/>
 
-                <TextBlock Grid.Row="1" Grid.Column="0" Text="ZZZ設定（AAA設定の上限値指定）（1～20）" Margin="5"/>
-                <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Width="50"
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="ZZZ設定（AAA設定の上限値指定）（1～20）" Margin="5"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Width="50"
                          Text="{Binding ZZZVal.Value}" Margin="5" MaxLength="2"
                          behavior:TextFormatBehavior.TextFormat="Number"/>
 
-                <TextBlock Grid.Row="2" Grid.Column="0" Text="AAA設定（BBB設定の入力文字数指定）" Margin="5"/>
-                <TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" Width="50"
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="AAA設定（BBB設定の入力文字数指定）" Margin="5"/>
+                    <TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" Width="50"
                          Text="{Binding AAAVal.Value}" Margin="5" MaxLength="2"
                          behavior:TextFormatBehavior.TextFormat="Number"/>
-            </Grid>
-        </GroupBox>
+                </Grid>
+            </GroupBox>
 
-        <GroupBox Grid.Row="1" Margin="5" Header="BBBEntity">
-            <Grid Margin="5">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+            <GroupBox Grid.Row="1" Margin="5" Header="BBBEntity">
+                <Grid Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0" Text="BBB設定（半角英数字以外、AAA設定値を超えては入力不可）" Margin="5"/>
-                <TextBox Grid.Column="1" Text="{Binding BBBVal.Value}" Margin="5"
+                    <TextBlock Grid.Column="0" Text="BBB設定（半角英数字以外、AAA設定値を超えては入力不可）" Margin="5"/>
+                    <TextBox Grid.Column="1" Text="{Binding BBBVal.Value}" Margin="5" Width="100"
                          behavior:TextFormatBehavior.TextFormat="HalfWidthAlphanumeric"
                          MaxLength="{Binding AAAVal.Value}"/>
 
-                <TextBlock Grid.Row="1" Grid.Column="0" Text="BBB2設定（文字種、文字数は確定時補正）" Margin="5"/>
-                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding BBB2Val.Value}" Margin="5"/>
-            </Grid>
-        </GroupBox>
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="BBB2設定（文字種、文字数は確定時補正）" Margin="5"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding BBB2Val.Value}" Margin="5" Width="100"/>
+                </Grid>
+            </GroupBox>
 
-    </Grid>
+        </Grid>
+    </ScrollViewer>
 </local:PageViewBase>
