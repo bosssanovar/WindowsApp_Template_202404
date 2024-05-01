@@ -86,6 +86,7 @@ namespace UiParts.UserControls.CccPage
 
         private void InitColumns(int count)
         {
+            // TODO : YYY設定にリンクする
             grid.Columns.Clear();
 
             var converter = new BooleanToVisibilityConverter();
@@ -224,139 +225,6 @@ namespace UiParts.UserControls.CccPage
 
         #endregion
 
-        #region ミニマップ
-
-        #region 表示位置
-
-        private void Thumb_DragStarted(object sender, DragStartedEventArgs e)
-        {
-            var thumb = sender as Thumb;
-            if (thumb != null)
-            {
-                var border = thumb.Template.FindName("Thumb_Border", thumb) as Border;
-                if (border != null)
-                {
-                    border.BorderThickness = new Thickness(1);
-
-                    e.Handled = true;
-                }
-            }
-        }
-
-        private void Thumb_DragCompleted(object sender, DragCompletedEventArgs e)
-        {
-            var thumb = sender as Thumb;
-            if (thumb != null)
-            {
-                var border = thumb.Template.FindName("Thumb_Border", thumb) as Border;
-                if (border != null)
-                {
-                    border.BorderThickness = new Thickness(0);
-
-                    e.Handled = true;
-                }
-            }
-        }
-
-        private void Thumb_DragDelta(object sender, DragDeltaEventArgs e)
-        {
-            var thumb = sender as Thumb;
-            if (thumb != null)
-            {
-                var x = Canvas.GetRight(thumb) - e.HorizontalChange;
-                var y = Canvas.GetBottom(thumb) - e.VerticalChange;
-
-                var canvas = thumb.Parent as Canvas;
-                if (canvas != null)
-                {
-                    x = Math.Max(x, 0);
-                    y = Math.Max(y, 0);
-                    x = Math.Min(x, canvas.ActualWidth - thumb.ActualWidth);
-                    y = Math.Min(y, canvas.ActualHeight - thumb.ActualHeight);
-                }
-
-                Canvas.SetRight(thumb, x);
-                Canvas.SetBottom(thumb, y);
-
-                e.Handled = true;
-            }
-        }
-
-        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            // TODO : スクロールバーのサイズ感を行列サイズ、画面サイズに応じて変更
-            squares.InvalidateVisual();
-            MoveScroll();
-        }
-
-        #endregion
-
-        #region スクロール
-
-        private void Thumb_DragStarted2(object sender, DragStartedEventArgs e)
-        {
-            var thumb = sender as Thumb;
-            if (thumb != null)
-            {
-                var border = thumb.Template.FindName("Area_Thumb_Border", thumb) as Border;
-                if (border != null)
-                {
-                    border.BorderThickness = new Thickness(1);
-                }
-
-                gridPanel.Children.Remove(grid);
-
-                previewScroll.Visibility = Visibility.Visible;
-
-                squares.InvalidateVisual();
-
-                e.Handled = true;
-            }
-        }
-
-        private void Thumb_DragCompleted2(object sender, DragCompletedEventArgs e)
-        {
-            Cursor = Cursors.Wait;
-
-            var thumb = sender as Thumb;
-            if (thumb != null)
-            {
-                var border = thumb.Template.FindName("Area_Thumb_Border", thumb) as Border;
-                if (border != null)
-                {
-                    border.BorderThickness = new Thickness(0);
-                }
-
-                gridPanel.Children.Insert(1, grid);
-
-                Dispatcher.InvokeAsync(
-                    () =>
-                    {
-                        if (gridPanel.Children.Contains(grid)) // ドラッグ開始終了の連続動作時にプレビュー表示されなくなる問題回避のため
-                        {
-                            previewScroll.Visibility = Visibility.Collapsed;
-                        }
-
-                        Cursor = null;
-                    },
-                    System.Windows.Threading.DispatcherPriority.Background);
-
-                e.Handled = true;
-            }
-        }
-
-        private void Thumb_DragDelta2(object sender, DragDeltaEventArgs e)
-        {
-            VerticalScrollDelta(sender, e);
-            HorizontalScrollDelta(sender, e);
-
-            e.Handled = true;
-        }
-
-        #endregion
-
-        #endregion
-
         #region ダミー表示
 
         private void UpdatePreview()
@@ -490,6 +358,135 @@ namespace UiParts.UserControls.CccPage
                     previewScroll.ScrollToHorizontalOffset(previewScroll.ScrollableWidth * (Canvas.GetLeft(thumb) / canvas.ActualWidth));
                 }
             }
+        }
+
+        #endregion
+
+        #region 表示位置
+
+        private void Thumb_DragStarted(object sender, DragStartedEventArgs e)
+        {
+            var thumb = sender as Thumb;
+            if (thumb != null)
+            {
+                var border = thumb.Template.FindName("Thumb_Border", thumb) as Border;
+                if (border != null)
+                {
+                    border.BorderThickness = new Thickness(1);
+
+                    e.Handled = true;
+                }
+            }
+        }
+
+        private void Thumb_DragCompleted(object sender, DragCompletedEventArgs e)
+        {
+            var thumb = sender as Thumb;
+            if (thumb != null)
+            {
+                var border = thumb.Template.FindName("Thumb_Border", thumb) as Border;
+                if (border != null)
+                {
+                    border.BorderThickness = new Thickness(0);
+
+                    e.Handled = true;
+                }
+            }
+        }
+
+        private void Thumb_DragDelta(object sender, DragDeltaEventArgs e)
+        {
+            var thumb = sender as Thumb;
+            if (thumb != null)
+            {
+                var x = Canvas.GetRight(thumb) - e.HorizontalChange;
+                var y = Canvas.GetBottom(thumb) - e.VerticalChange;
+
+                var canvas = thumb.Parent as Canvas;
+                if (canvas != null)
+                {
+                    x = Math.Max(x, 0);
+                    y = Math.Max(y, 0);
+                    x = Math.Min(x, canvas.ActualWidth - thumb.ActualWidth);
+                    y = Math.Min(y, canvas.ActualHeight - thumb.ActualHeight);
+                }
+
+                Canvas.SetRight(thumb, x);
+                Canvas.SetBottom(thumb, y);
+
+                e.Handled = true;
+            }
+        }
+
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            // TODO : スクロールバーのサイズ感を行列サイズ、画面サイズに応じて変更
+            squares.InvalidateVisual();
+            MoveScroll();
+        }
+
+        #endregion
+
+        #region スクロール
+
+        private void Thumb_DragStarted2(object sender, DragStartedEventArgs e)
+        {
+            var thumb = sender as Thumb;
+            if (thumb != null)
+            {
+                var border = thumb.Template.FindName("Area_Thumb_Border", thumb) as Border;
+                if (border != null)
+                {
+                    border.BorderThickness = new Thickness(1);
+                }
+
+                gridPanel.Children.Remove(grid);
+
+                previewScroll.Visibility = Visibility.Visible;
+
+                squares.InvalidateVisual();
+
+                e.Handled = true;
+            }
+        }
+
+        private void Thumb_DragCompleted2(object sender, DragCompletedEventArgs e)
+        {
+            Cursor = Cursors.Wait;
+
+            var thumb = sender as Thumb;
+            if (thumb != null)
+            {
+                var border = thumb.Template.FindName("Area_Thumb_Border", thumb) as Border;
+                if (border != null)
+                {
+                    border.BorderThickness = new Thickness(0);
+                }
+
+                gridPanel.Children.Insert(1, grid);
+
+                Dispatcher.InvokeAsync(
+                    () =>
+                    {
+                        if (gridPanel.Children.Contains(grid)) // ドラッグ開始終了の連続動作時にプレビュー表示されなくなる問題回避のため
+                        {
+                            previewScroll.Visibility = Visibility.Collapsed;
+                        }
+
+                        Cursor = null;
+                    },
+                    System.Windows.Threading.DispatcherPriority.Background);
+
+                e.Handled = true;
+            }
+        }
+
+        private void Thumb_DragDelta2(object sender, DragDeltaEventArgs e)
+        {
+            VerticalScrollDelta(sender, e);
+            HorizontalScrollDelta(sender, e);
+
+            e.Handled = true;
         }
 
         #endregion
