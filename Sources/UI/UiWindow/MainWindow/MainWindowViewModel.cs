@@ -128,14 +128,16 @@ namespace UiParts.UiWindow.MainWindow
                 {
                     _model.Initialize();
 
-                    Page.Value.Update();
+                    Page.Value?.Update();
+                    ScrollablePage.Value?.Update();
                 }
             })
                 .AddTo(_compositeDisposable);
 
             SaveCommand.Subscribe(() =>
             {
-                Page.Value.Commit();
+                Page.Value?.Commit();
+                ScrollablePage.Value?.Commit();
 
                 var result = _model.SaveDataFile();
 
@@ -153,7 +155,8 @@ namespace UiParts.UiWindow.MainWindow
                 switch (result)
                 {
                     case Usecase.OpenDataUsecase.OpenResult.Completed:
-                        Page.Value.Update();
+                        Page.Value?.Update();
+                        ScrollablePage.Value?.Update();
                         MessageBox.Show("データを開きました。", "情報");
                         break;
                     case Usecase.OpenDataUsecase.OpenResult.Canceled:

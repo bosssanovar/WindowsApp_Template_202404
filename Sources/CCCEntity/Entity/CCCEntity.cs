@@ -1,4 +1,5 @@
-﻿using CCCEntity.ValueObject;
+﻿using CCCEntity.DataPacket;
+using CCCEntity.ValueObject;
 
 using DomainModelCommon;
 
@@ -29,7 +30,7 @@ namespace CCCEntity.Entity
         /// <summary>
         /// CCCのマトリクス
         /// </summary>
-        public List<CCCDetailEntity> CCCs { get; private set; } = [];
+        public List<CCCDetailEntity> Details { get; private set; } = [];
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -64,7 +65,7 @@ namespace CCCEntity.Entity
                 list.Add(detail);
             }
 
-            CCCs = new(list);
+            Details = new(list);
         }
 
         /// <summary>
@@ -79,7 +80,39 @@ namespace CCCEntity.Entity
                 list.Add(detail);
             }
 
-            CCCs = new(list);
+            Details = new(list);
+        }
+
+        /// <summary>
+        /// 設定データを吐き出します。
+        /// </summary>
+        /// <returns>設定データ</returns>
+        public CCCEntityPacket ExportDataPacket()
+        {
+            CCCEntityPacket ret = new();
+
+            foreach (var item in Details)
+            {
+                ret.Details.Add(item.ExportDataPacket());
+            }
+
+            return ret;
+        }
+
+        /// <summary>
+        /// 設定データを取り込みます。
+        /// </summary>
+        /// <param name="packet">設定データ</param>
+        public void ImportDataPacket(CCCEntityPacket packet)
+        {
+            Details.Clear();
+
+            foreach (var item in packet.Details)
+            {
+                var detail = new CCCDetailEntity();
+                detail.ImportDataPacket(item);
+                Details.Add(detail);
+            }
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -104,12 +137,12 @@ namespace CCCEntity.Entity
             var ret = base.Clone();
 
             var list = new List<CCCDetailEntity>();
-            for (int i = 0; i < CCCs.Count; i++)
+            for (int i = 0; i < Details.Count; i++)
             {
-                list.Add(CCCs[i].Clone());
+                list.Add(Details[i].Clone());
             }
 
-            ret.CCCs = new(list);
+            ret.Details = new(list);
 
             return ret;
         }

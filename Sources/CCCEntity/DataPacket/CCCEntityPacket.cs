@@ -1,23 +1,9 @@
-﻿using DomainService;
-
-using Feature.DataFile;
-
-using Repository;
-
-namespace Usecase
+﻿namespace CCCEntity.DataPacket
 {
     /// <summary>
-    /// 設定をファイルに保存するユースケース
+    /// <see cref="CCCEntity.Entity.CCCEntity"/>の設定データ群
     /// </summary>
-    /// <param name="_aaaRepository"><see cref="IAAARepository"/>インスタンス</param>
-    /// <param name="_bbbRepository"><see cref="IBBBRepository"/>インスタンス</param>
-    /// <param name="_cccReporitory"><see cref="ICCCRepository"/>インスタンス</param>
-    /// <param name="_dataFileAccessor"><see cref="DataFileAccessor"/>インスタンス</param>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.NamingRules", "SA1313:Parameter names should begin with lower-case letter", Justification = "<保留中>")]
-    public class SaveDataUsecase(IAAARepository _aaaRepository,
-                                 IBBBRepository _bbbRepository,
-                                 ICCCRepository _cccReporitory,
-                                 DataFileAccessor _dataFileAccessor)
+    public class CCCEntityPacket
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -28,6 +14,11 @@ namespace Usecase
         #endregion --------------------------------------------------------------------------------------------
 
         #region Properties ------------------------------------------------------------------------------------
+
+        /// <summary>
+        /// CCC設定
+        /// </summary>
+        public List<CCCDetailPacket> Details { get; set; } = [];
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -41,17 +32,6 @@ namespace Usecase
 
         #region Methods - public ------------------------------------------------------------------------------
 
-        /// <summary>
-        /// 保存します。
-        /// </summary>
-        /// <returns>保存が正常終了したらtrue</returns>
-        public bool Execute()
-        {
-            DataPacket packet = GetDataPacket();
-
-            return _dataFileAccessor.Save(packet);
-        }
-
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - internal ----------------------------------------------------------------------------
@@ -64,34 +44,13 @@ namespace Usecase
 
         #region Methods - private -----------------------------------------------------------------------------
 
-        private DataPacket GetDataPacket()
-        {
-            var aaaEntity = _aaaRepository.Pull();
-            var aaaEntityPacket = aaaEntity.ExportPacketData();
-
-            var bbbEntity = _bbbRepository.Pull();
-            var bbbEntityPacket = bbbEntity.ExportPacketData();
-
-            var cccEntity = _cccReporitory.Pull();
-            var cccEntityPacket = cccEntity.ExportDataPacket();
-
-            var packet = new DataPacket()
-            {
-                AAAEntityPacket = aaaEntityPacket,
-                BBBEntityPacket = bbbEntityPacket,
-                CCCEntityPacket = cccEntityPacket,
-            };
-
-            return packet;
-        }
-
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - override ----------------------------------------------------------------------------
 
         #endregion --------------------------------------------------------------------------------------------
 
-        #region Inner Class/Enum/etc. -------------------------------------------------------------------------
+        #region Inner Class/Enum ------------------------------------------------------------------------------
 
         #endregion --------------------------------------------------------------------------------------------
     }

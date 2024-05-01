@@ -2,6 +2,8 @@
 
 using BBBEntity.DataPacket;
 
+using CCCEntity.DataPacket;
+
 namespace DomainService
 {
     /// <summary>
@@ -28,6 +30,11 @@ namespace DomainService
         /// BBB Entityの設定データ群
         /// </summary>
         public BBBEntityPacket BBBEntityPacket { get; set; } = new();
+
+        /// <summary>
+        /// CCC Entityの設定データ群
+        /// </summary>
+        public CCCEntityPacket CCCEntityPacket { get; set; } = new();
 
         #endregion --------------------------------------------------------------------------------------------
 

@@ -33,6 +33,7 @@
   <ItemGroup>
     <ProjectReference Include="..\AAAEntity\AAAEntity.csproj" />
     <ProjectReference Include="..\BBBEntity\BBBEntity.csproj" />
+    <ProjectReference Include="..\CCCEntity\CCCEntity.csproj" />
   </ItemGroup>
 
 </Project>

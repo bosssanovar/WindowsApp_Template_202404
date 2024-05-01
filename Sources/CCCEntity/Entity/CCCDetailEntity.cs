@@ -1,4 +1,5 @@
-﻿using CCCEntity.ValueObject;
+﻿using CCCEntity.DataPacket;
+using CCCEntity.ValueObject;
 
 using DomainModelCommon;
 
@@ -34,7 +35,7 @@ namespace CCCEntity.Entity
         /// <summary>
         /// CCC Detail
         /// </summary>
-        public List<CCCVO> Detail { get; private set; } = [];
+        public List<CCCVO> CCCs { get; private set; } = [];
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -68,7 +69,37 @@ namespace CCCEntity.Entity
                 list.Add(new(CCCInitValue));
             }
 
-            Detail = new(list);
+            CCCs = new(list);
+        }
+
+        /// <summary>
+        /// 設定データを吐き出します。
+        /// </summary>
+        /// <returns>設定データ</returns>
+        public CCCDetailPacket ExportDataPacket()
+        {
+            CCCDetailPacket ret = new();
+
+            foreach(var item in CCCs)
+            {
+                ret.CCCs.Add(item.Value);
+            }
+
+            return ret;
+        }
+
+        /// <summary>
+        /// 設定データを取り込みます。
+        /// </summary>
+        /// <param name="packet">設定データ</param>
+        public void ImportDataPacket(CCCDetailPacket packet)
+        {
+            CCCs.Clear();
+
+            foreach(var value in packet.CCCs)
+            {
+                CCCs.Add(new(value));
+            }
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -93,12 +124,12 @@ namespace CCCEntity.Entity
             var ret = base.Clone();
 
             var list = new List<CCCVO>();
-            for (int i = 0; i < Detail.Count; i++)
+            for (int i = 0; i < CCCs.Count; i++)
             {
-                list.Add(new(Detail[i].Value));
+                list.Add(new(CCCs[i].Value));
             }
 
-            ret.Detail = new(list);
+            ret.CCCs = new(list);
 
             return ret;
         }

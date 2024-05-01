@@ -52,6 +52,8 @@ namespace UiParts.UserControls.CccPage
 
                     squares.ScrollViewer = previewScroll;
 
+                    initializingText.Visibility = Visibility.Collapsed;
+
                     grid.Visibility = Visibility.Visible;
 
                     Dispatcher.InvokeAsync(
@@ -60,8 +62,6 @@ namespace UiParts.UserControls.CccPage
                             Cursor = null;
 
                             InitScrollSynchronizer();
-
-                            initializingText.Visibility = Visibility.Collapsed;
                         },
                         System.Windows.Threading.DispatcherPriority.Background);
                 },
@@ -88,6 +88,8 @@ namespace UiParts.UserControls.CccPage
 
         private void InitColumns(int count)
         {
+            // TODO : 多重の列ヘッダーを追加
+            // TODO : 連動する行ヘッダ―を追加
             // TODO : YYY設定にリンクする
             grid.Columns.Clear();
 

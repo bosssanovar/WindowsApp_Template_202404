@@ -91,10 +91,10 @@ namespace UiParts.UserControls.CccPage
         private void InitDetails()
         {
             ClearDetails();
-            foreach (var eintity in CccEntity.Value.CCCs)
+            foreach (var detail in CccEntity.Value.Details)
             {
-                var detail = new CccDetailModel(eintity);
-                Details.Add(detail);
+                var detailModel = new CccDetailModel(detail);
+                Details.Add(detailModel);
             }
         }
 
@@ -113,6 +113,8 @@ namespace UiParts.UserControls.CccPage
         public override void UpdateEntities()
         {
             CccEntity.Value = _displaySettingsUsecase.GetCCCEntity();
+
+            InitDetails();
         }
 
         /// <summary>

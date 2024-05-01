@@ -57,26 +57,26 @@ namespace UiParts.UserControls.CccPage
         {
             _model = model;
 
-            var count = _model.Entity.Value.Detail.Count;
+            var count = _model.Detail.Value.CCCs.Count;
             for (int i = 0; i < count; i++)
             {
                 int index = i;
-                var sp = _model.Entity.ToReactivePropertySlimAsSynchronized(
+                var ccc = _model.Detail.ToReactivePropertySlimAsSynchronized(
                     x => x.Value,
-                    x => x.Detail[index].Value,
+                    x => x.CCCs[index].Value,
                     x =>
                     {
                         var corrected = CCCVO.CurrectValue(x);
-                        _model.Entity.Value.Detail[index] = new(corrected);
+                        _model.Detail.Value.CCCs[index] = new(corrected);
 
                         _model.ForceNotify();
 
-                        return _model.Entity.Value;
+                        return _model.Detail.Value;
                     },
                     ReactivePropertyMode.DistinctUntilChanged)
                     .AddTo(_disposable);
 
-                CCCs.Add(sp);
+                CCCs.Add(ccc);
             }
         }
 

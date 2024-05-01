@@ -13,13 +13,14 @@ namespace Usecase
     /// </summary>
     /// <param name="_aaaRepository"><see cref="IAAARepository"/>インスタンス</param>
     /// <param name="_bbbRepository"><see cref="IBBBRepository"/>インスタンス</param>
+    /// <param name="_cccRepository"><see cref="ICCCRepository"/>インスタンス</param>
     /// <param name="_dataFileAccessor"><see cref="DataFileAccessor"/>インスタンス</param>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.NamingRules", "SA1313:Parameter names should begin with lower-case letter", Justification = "<保留中>")]
     public class OpenDataUsecase(IAAARepository _aaaRepository,
                                  IBBBRepository _bbbRepository,
+                                 ICCCRepository _cccRepository,
                                  DataFileAccessor _dataFileAccessor)
     {
-        // TODO K.I : 要対応
         #region Constants -------------------------------------------------------------------------------------
 
         #endregion --------------------------------------------------------------------------------------------
@@ -82,16 +83,20 @@ namespace Usecase
 
         private void ImportData(DataPacket packet)
         {
-            // データのDecode中の例外でそのまま処理が追われるように、
-            // Commitは最後にまとめて行う
             var aaaEntity = _aaaRepository.Pull();
             aaaEntity.ImportPacketData(packet.AAAEntityPacket);
 
             var bbbEntity = _bbbRepository.Pull();
             bbbEntity.ImportPacketData(packet.BBBEntityPacket);
 
+            var cccEntity = _cccRepository.Pull();
+            cccEntity.ImportDataPacket(packet.CCCEntityPacket);
+
+            // データのImport中の例外でそのまま処理を抜けて副作用がないように、
+            // Commitは最後にまとめて行う
             _aaaRepository.Commit(aaaEntity);
             _bbbRepository.Commit(bbbEntity);
+            _cccRepository.Commit(cccEntity);
         }
 
         #endregion --------------------------------------------------------------------------------------------

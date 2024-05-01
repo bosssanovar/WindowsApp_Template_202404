@@ -18,7 +18,7 @@ namespace UiParts.UserControls.CccPage
         /// <summary>
         /// CCC Detail
         /// </summary>
-        public ReactivePropertySlim<CCCDetailEntity> Entity { get; }
+        public ReactivePropertySlim<CCCDetailEntity> Detail { get; }
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -39,7 +39,7 @@ namespace UiParts.UserControls.CccPage
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0290:プライマリ コンストラクターの使用", Justification = "<保留中>")]
         public CccDetailModel(CCCDetailEntity entity)
         {
-            Entity = new(entity);
+            Detail = new(entity);
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -51,7 +51,7 @@ namespace UiParts.UserControls.CccPage
         /// </summary>
         internal void ForceNotify()
         {
-            Entity.ForceNotify();
+            Detail.ForceNotify();
         }
 
         #endregion --------------------------------------------------------------------------------------------
