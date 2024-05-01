@@ -4,7 +4,6 @@
 
 ## StyleCop
 
-
 ルール無効方法
 
 ```xml
@@ -17,4 +16,9 @@
 APIドキュメント
 
 StyleCop  
-StyleCop.json 
+StyleCop.json
+
+## regionでのソース整理
+
+項目テンプレート
+CodeSnippets
