@@ -3,6 +3,7 @@
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 
+using System;
 using System.ComponentModel;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
@@ -89,6 +90,33 @@ namespace UiParts.UserControls.CccPage
         public void Dispose()
         {
             _disposable.Dispose();
+        }
+
+        /// <summary>
+        /// 設定値を反転します。
+        /// </summary>
+        /// <param name="index">要素インデックス</param>
+        internal void Invert(int index)
+        {
+            CCCs[index].Value = !CCCs[index].Value;
+        }
+
+        /// <summary>
+        /// 一括設定します。
+        /// </summary>
+        /// <param name="v">設定値</param>
+        internal void SetAll(bool v)
+        {
+            CCCs.ForEach(x => x.Value = v);
+        }
+
+        /// <summary>
+        /// 設定をＯＮします。
+        /// </summary>
+        /// <param name="index">インデックス</param>
+        internal void SetOn(int index)
+        {
+            CCCs[index].Value = true;
         }
 
         #endregion --------------------------------------------------------------------------------------------
