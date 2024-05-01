@@ -22,7 +22,7 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Text="DataGrid表示初期化中..." FontSize="20"/>
+        <TextBlock x:Name="initializingText" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Text="DataGrid表示初期化中..." FontSize="20"/>
 
         <!--設定グリッド-->
         <DataGrid x:Name="grid" Grid.Row="1" Margin="5, 5, 0, 0" AutoGenerateColumns="False" Visibility="Collapsed"
@@ -33,7 +33,8 @@
                   CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False"
                   CanUserResizeRows="False" CanUserSortColumns="False"
                   VirtualizingPanel.ScrollUnit="Pixel" MaxWidth="2000" MaxHeight="1200"
-                  HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden">
+                  HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
+                  RowBackground="Transparent" Background="Transparent">
             <DataGrid.InputBindings>
                 <KeyBinding Gesture="Ctrl+A" Command="ApplicationCommands.NotACommand"/>
             </DataGrid.InputBindings>
@@ -50,14 +51,14 @@
             <ScrollViewer x:Name="previewScroll" Visibility="Hidden"
                       HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
                       ScrollChanged="PreviewScroll_ScrollChanged">
-                <Canvas x:Name="previewCanvas" Width="17920" Height="17920" Background="White">
+                <Canvas x:Name="previewCanvas" Width="17920" Height="17920">
                     <cccPage:Squares x:Name="squares"/>
                 </Canvas>
             </ScrollViewer>
         </Border>
 
         <!--スクロールバー　垂直-->
-        <Canvas x:Name="verticalScrollCanvas" Grid.Row="1" Grid.Column="1" Width="20" Margin="0, 5" Background="#F0F0F0">
+        <Canvas x:Name="verticalScrollCanvas" Grid.Row="1" Grid.Column="1" Width="20" Margin="0, 5">
             <Thumb x:Name="verticalScrollThumb" Width="20" Height="50"
                    Canvas.Left="0" Canvas.Top="0"
                    DragStarted="Thumb_DragStarted2" DragCompleted="Thumb_DragCompleted2" DragDelta="VerticalScrollThumb_DragDelta">
@@ -72,7 +73,7 @@
         </Canvas>
 
         <!--スクロールバー　水平-->
-        <Canvas x:Name="horizontalScrollCanvas" Grid.Row="2" Height="20" Margin="5, 0" Background="#F0F0F0">
+        <Canvas x:Name="horizontalScrollCanvas" Grid.Row="2" Height="20" Margin="5, 0">
             <Thumb x:Name="horizontalScrollThumb" Width="50" Height="20"
                    Canvas.Left="0" Canvas.Top="0"
                    DragStarted="Thumb_DragStarted2" DragCompleted="Thumb_DragCompleted2" DragDelta="HorizontalScrollThumb_DragDelta">
