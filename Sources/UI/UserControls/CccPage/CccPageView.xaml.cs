@@ -45,18 +45,23 @@ namespace UiParts.UserControls.CccPage
         {
             Cursor = Cursors.Wait;
 
-            InitColumns(InitCulumnCount);
-
-            squares.ScrollViewer = previewScroll;
-
-            grid.Visibility = Visibility.Visible;
-
             Dispatcher.InvokeAsync(
                 () =>
                 {
-                    Cursor = null;
+                    InitColumns(InitCulumnCount);
 
-                    InitScrollSynchronizer();
+                    squares.ScrollViewer = previewScroll;
+
+                    grid.Visibility = Visibility.Visible;
+
+                    Dispatcher.InvokeAsync(
+                        () =>
+                        {
+                            Cursor = null;
+
+                            InitScrollSynchronizer();
+                        },
+                        System.Windows.Threading.DispatcherPriority.Background);
                 },
                 System.Windows.Threading.DispatcherPriority.Background);
         }
@@ -279,6 +284,7 @@ namespace UiParts.UserControls.CccPage
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
+            // TODO : スクロールバーのサイズ感を行列サイズ、画面サイズに応じて変更
             squares.InvalidateVisual();
             MoveScroll();
         }

@@ -9,7 +9,8 @@
     xmlns:behavior="clr-namespace:WpfLib.Behavior;assembly=WpfLib"
     mc:Ignorable="d" 
     DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
-    d:Background="White">
+    d:Background="White"
+    d:Width="500" d:Height="500">
     <Grid x:Name="gridPanel" Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
