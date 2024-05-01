@@ -231,7 +231,6 @@ namespace UiParts.UserControls.CccPage
 
         private void UpdatePreview()
         {
-            // TODO : ファイル開いた後のプレビュー更新
             squares.Objects.Clear();
 
             var rowMax = CCCs.Count;

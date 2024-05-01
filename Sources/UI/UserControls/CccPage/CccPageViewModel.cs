@@ -5,6 +5,7 @@ using DomainService;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 
+using System.Reactive.Concurrency;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Text;
@@ -71,7 +72,10 @@ namespace UiParts.UserControls.CccPage
 
             Count = _model.AaaEntity.Select(x => x.YYY.Value).ToReadOnlyReactivePropertySlim();
 
-            CCCs = _model.Details.ToReadOnlyReactiveCollection(x => new CccDetailViewModel(x))
+            CCCs =
+                _model.Details.ToReadOnlyReactiveCollection(
+                    x => new CccDetailViewModel(x),
+                    Scheduler.Immediate)
                 .AddTo(_disposable);
         }
 
@@ -85,6 +89,7 @@ namespace UiParts.UserControls.CccPage
             base.Update();
 
             InitColumns(Count.Value);
+            UpdatePreview();
         }
 
         #endregion --------------------------------------------------------------------------------------------
