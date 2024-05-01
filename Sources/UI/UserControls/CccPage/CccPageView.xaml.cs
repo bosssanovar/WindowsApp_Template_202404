@@ -41,7 +41,6 @@ namespace UiParts.UserControls.CccPage
 
         private void CccPageView_Loaded(object sender, RoutedEventArgs e)
         {
-            // TODO : ファイル開いた後の描画更新
             Cursor = Cursors.Wait;
 
             Dispatcher.InvokeAsync(

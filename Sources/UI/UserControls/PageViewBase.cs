@@ -64,7 +64,7 @@ namespace UiParts.UserControls
         /// <summary>
         /// 表示更新します。
         /// </summary>
-        public void Update()
+        public virtual void Update()
         {
             _modelBase.UpdateEntities();
         }

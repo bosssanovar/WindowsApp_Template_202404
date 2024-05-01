@@ -79,6 +79,14 @@ namespace UiParts.UserControls.CccPage
 
         #region Methods - override ----------------------------------------------------------------------------
 
+        /// <inheritdoc/>
+        public override void Update()
+        {
+            base.Update();
+
+            InitColumns(Count.Value);
+        }
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Inner Class/Enum/etc. -------------------------------------------------------------------------
