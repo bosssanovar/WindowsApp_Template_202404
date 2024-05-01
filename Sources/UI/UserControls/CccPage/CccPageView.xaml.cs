@@ -86,7 +86,7 @@ namespace UiParts.UserControls.CccPage
             var converter = new BooleanToVisibilityConverter();
             for (int columnIndex = 0; columnIndex < count; ++columnIndex)
             {
-                var binding = new Binding($"Values[{columnIndex}].Value")
+                var binding = new Binding($"CCCs[{columnIndex}].Value")
                 {
                     Converter = converter,
                 };

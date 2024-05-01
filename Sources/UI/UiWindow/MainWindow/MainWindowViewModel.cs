@@ -8,6 +8,7 @@ using UiParts.UserControls;
 using UiParts.UserControls.AaaAndBbbPage;
 using UiParts.UserControls.AaaPage;
 using UiParts.UserControls.BbbPage;
+using UiParts.UserControls.CccPage;
 
 namespace UiParts.UiWindow.MainWindow
 {
@@ -67,6 +68,11 @@ namespace UiParts.UiWindow.MainWindow
         /// Aaa and Bbbページに遷移するコマンド
         /// </summary>
         public ReactiveCommand PageAaaAndBbbCommand { get; } = new();
+
+        /// <summary>
+        /// Cccページに遷移するコマンド
+        /// </summary>
+        public ReactiveCommand PageCccCommand { get; } = new();
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -172,6 +178,11 @@ namespace UiParts.UiWindow.MainWindow
             PageAaaAndBbbCommand.Subscribe(() =>
             {
                 Page.Value = GlobalServiceProvider.GetRequiredService<AaaAndBbbPageView>();
+            });
+
+            PageCccCommand.Subscribe(() =>
+            {
+                Page.Value = GlobalServiceProvider.GetRequiredService<CccPageView>();
             });
         }
 

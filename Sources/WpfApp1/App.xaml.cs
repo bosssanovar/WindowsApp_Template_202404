@@ -14,6 +14,7 @@ using UiParts.UiWindow.StartWindow;
 using UiParts.UserControls.AaaAndBbbPage;
 using UiParts.UserControls.AaaPage;
 using UiParts.UserControls.BbbPage;
+using UiParts.UserControls.CccPage;
 
 using Usecase;
 
@@ -38,6 +39,7 @@ namespace WpfApp1
             var services = new ServiceCollection();
             services.AddSingleton<IAAARepository, AAARepository>();
             services.AddSingleton<IBBBRepository, BBBRepository>();
+            services.AddSingleton<ICCCRepository, CCCRepository>();
 
             services.AddTransient<Feature.DataFile.DataFileAccessor>();
 
@@ -53,12 +55,15 @@ namespace WpfApp1
             services.AddTransient<MainWindowView>();
             services.AddTransient<StartWindowModel>();
             services.AddTransient<StartWindowView>();
+
             services.AddTransient<AaaPageModel>();
             services.AddTransient<AaaPageView>();
             services.AddTransient<BbbPageModel>();
             services.AddTransient<BbbPageView>();
             services.AddTransient<AaaAndBbbPageModel>();
             services.AddTransient<AaaAndBbbPageView>();
+            services.AddTransient<CccPageModel>();
+            services.AddTransient<CccPageView>();
 
             GlobalServiceProvider.SetProvider(services.BuildServiceProvider());
         }
