@@ -83,7 +83,7 @@ namespace UiParts.UserControls.AaaPage
                     }
 
                     var entity = _model.AaaEntity.Value;
-                    entity.YYY = new(value);
+                    entity.SetYYY(new(value), new YYYChangedEvent(_model.AaaEntity.Value, _model.CccEntity.Value));
 
                     _model.ForceNotifyAaaEntity();
 

@@ -39,7 +39,7 @@ namespace AAAEntity.Entity
         /// <summary>
         /// YYY設定
         /// </summary>
-        public YYYVO YYY { get; set; }
+        public YYYVO YYY { get; private set; }
 
         /// <summary>
         /// ZZZ設定
@@ -129,6 +129,18 @@ namespace AAAEntity.Entity
         }
 
         /// <summary>
+        /// YYY設定を設定します。
+        /// </summary>
+        /// <param name="yyy">YYY設定値</param>
+        /// <param name="changedEvent">YYY変更イベント</param>
+        public void SetYYY(YYYVO yyy, IYYYChangedEvent changedEvent)
+        {
+            YYY = yyy;
+
+            changedEvent.Execute();
+        }
+
+        /// <summary>
         /// 初期化します。
         /// </summary>
         public void Initialize()
@@ -159,6 +171,7 @@ namespace AAAEntity.Entity
         /// <param name="changedEvent">AAA変更時イベント</param>
         public void ImportPacketData(AAAEntityPacket packet, IAAAChangedEvent changedEvent)
         {
+            // TODO : SetYYY
             YYY = new(packet.YYY);
             SetZZZ(new(packet.ZZZ), changedEvent);
             SetAAA(new(packet.AAA), changedEvent);

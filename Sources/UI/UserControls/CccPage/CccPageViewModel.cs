@@ -32,6 +32,11 @@ namespace UiParts.UserControls.CccPage
         #region Properties ------------------------------------------------------------------------------------
 
         /// <summary>
+        /// マトリクス行列数
+        /// </summary>
+        public ReadOnlyReactivePropertySlim<int> Count { get; private set; }
+
+        /// <summary>
         /// CCC設定
         /// </summary>
         public ReadOnlyReactiveCollection<CccDetailViewModel> CCCs { get; private set; }
@@ -63,6 +68,8 @@ namespace UiParts.UserControls.CccPage
         private void CccPageViewModel(CccPageModel model)
         {
             _model = model;
+
+            Count = _model.AaaEntity.Select(x => x.YYY.Value).ToReadOnlyReactivePropertySlim();
 
             CCCs = _model.Details.ToReadOnlyReactiveCollection(x => new CccDetailViewModel(x))
                 .AddTo(_disposable);

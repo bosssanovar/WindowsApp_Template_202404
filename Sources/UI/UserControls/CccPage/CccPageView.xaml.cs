@@ -18,8 +18,6 @@ namespace UiParts.UserControls.CccPage
     /// </summary>
     public partial class CccPageView : PageViewBase
     {
-        private const int InitCulumnCount = 100;
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0052:読み取られていないプライベート メンバーを削除", Justification = "<保留中>")]
         private ScrollSynchronizer? _scrollSynchronizer;
 
@@ -43,12 +41,13 @@ namespace UiParts.UserControls.CccPage
 
         private void CccPageView_Loaded(object sender, RoutedEventArgs e)
         {
+            // TODO : ファイル開いた後の描画更新
             Cursor = Cursors.Wait;
 
             Dispatcher.InvokeAsync(
                 () =>
                 {
-                    InitColumns(InitCulumnCount);
+                    InitColumns(Count.Value);
 
                     squares.ScrollViewer = previewScroll;
 
@@ -233,6 +232,7 @@ namespace UiParts.UserControls.CccPage
 
         private void UpdatePreview()
         {
+            // TODO : ファイル開いた後のプレビュー更新
             squares.Objects.Clear();
 
             var rowMax = CCCs.Count;

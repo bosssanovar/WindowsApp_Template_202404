@@ -3,7 +3,7 @@
 namespace DomainService
 {
     /// <summary>
-    /// AAAEntityの設定に関連する設定値を補正するクラス
+    /// AAA設定に関連する設定値を補正するクラス
     /// </summary>
     /// <param name="_aaaEntity">AAA Entity</param>
     /// <param name="_bbbEntity">BBB Entity</param>

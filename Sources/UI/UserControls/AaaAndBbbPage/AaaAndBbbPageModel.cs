@@ -34,6 +34,11 @@ namespace UiParts.UserControls.AaaAndBbbPage
         /// </summary>
         public ReactivePropertySlim<BBBEntity.Entity.BBBEntity> BbbEntity { get; }
 
+        /// <summary>
+        /// CCC Entity
+        /// </summary>
+        public ReactivePropertySlim<CCCEntity.Entity.CCCEntity> CccEntity { get; }
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Events ----------------------------------------------------------------------------------------
@@ -59,6 +64,9 @@ namespace UiParts.UserControls.AaaAndBbbPage
 
             BbbEntity = new(_displaySettingsUsecase.GetBBBEntity());
             BbbEntity.AddTo(_compositeDisposable);
+
+            CccEntity = new(_displaySettingsUsecase.GetCCCEntity());
+            CccEntity.AddTo(_compositeDisposable);
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -104,6 +112,7 @@ namespace UiParts.UserControls.AaaAndBbbPage
         {
             AaaEntity.Value = _displaySettingsUsecase.GetAAAEntity();
             BbbEntity.Value = _displaySettingsUsecase.GetBBBEntity();
+            CccEntity.Value = _displaySettingsUsecase.GetCCCEntity();
         }
 
         /// <summary>
@@ -113,6 +122,7 @@ namespace UiParts.UserControls.AaaAndBbbPage
         {
             _commitSettingsUsecase.CommitAAAEntity(AaaEntity.Value);
             _commitSettingsUsecase.CommitBBBEntity(BbbEntity.Value);
+            _commitSettingsUsecase.CommitCCCEntity(CccEntity.Value);
         }
 
         #endregion --------------------------------------------------------------------------------------------

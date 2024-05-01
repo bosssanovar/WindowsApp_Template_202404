@@ -62,6 +62,7 @@ namespace CCCEntity.Entity
             for (int i = 0; i < count; i++)
             {
                 var detail = new CCCDetailEntity();
+                detail.ChangeCount(count);
                 list.Add(detail);
             }
 

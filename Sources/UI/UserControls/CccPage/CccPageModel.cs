@@ -29,6 +29,11 @@ namespace UiParts.UserControls.CccPage
         #region Properties ------------------------------------------------------------------------------------
 
         /// <summary>
+        /// AAA Entity
+        /// </summary>
+        public ReactivePropertySlim<AAAEntity.Entity.AAAEntity> AaaEntity { get; }
+
+        /// <summary>
         /// CCC Entity
         /// </summary>
         public ReactivePropertySlim<CCCEntity.Entity.CCCEntity> CccEntity { get; }
@@ -58,6 +63,8 @@ namespace UiParts.UserControls.CccPage
             _displaySettingsUsecase = displaySettingsUsecase;
             _commitSettingsUsecase = commitSettingsUsecase;
 
+            AaaEntity = new(_displaySettingsUsecase.GetAAAEntity());
+            AaaEntity.AddTo(_compositeDisposable);
             CccEntity = new(_displaySettingsUsecase.GetCCCEntity());
             CccEntity.AddTo(_compositeDisposable);
 
@@ -112,6 +119,7 @@ namespace UiParts.UserControls.CccPage
         /// </summary>
         public override void UpdateEntities()
         {
+            AaaEntity.Value = _displaySettingsUsecase.GetAAAEntity();
             CccEntity.Value = _displaySettingsUsecase.GetCCCEntity();
 
             InitDetails();
