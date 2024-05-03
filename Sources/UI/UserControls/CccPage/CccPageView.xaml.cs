@@ -30,11 +30,11 @@ namespace UiParts.UserControls.CccPage
         {
             CccPageViewModel(model);
 
+            this.Loaded += CccPageView_Loaded;
+
             InitializeComponent();
 
             InitData();
-
-            this.Loaded += CccPageView_Loaded;
         }
 
         #region 画面の初期化
@@ -121,22 +121,22 @@ namespace UiParts.UserControls.CccPage
 
         private void InitData()
         {
-            // バインドを一時切断
-            Binding b = new("CCCs")
-            {
-                Source = null,
-            };
-            grid.SetBinding(DataGrid.ItemsSourceProperty, b);
+            //// バインドを一時切断
+            //Binding b = new("CCCs")
+            //{
+            //    Source = null,
+            //};
+            //grid.SetBinding(DataGrid.ItemsSourceProperty, b);
 
-            // TODO : 要実装
-            // モデルの再構築
+            //// TODO : 要実装
+            //// モデルの再構築
 
-            // バインドを再構築
-            b = new Binding("CCCs")
-            {
-                Source = this,
-            };
-            grid.SetBinding(DataGrid.ItemsSourceProperty, b);
+            //// バインドを再構築
+            //b = new Binding("CCCs")
+            //{
+            //    Source = this,
+            //};
+            //grid.SetBinding(DataGrid.ItemsSourceProperty, b);
         }
         #endregion
 
@@ -423,6 +423,7 @@ namespace UiParts.UserControls.CccPage
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             // TODO : スクロールバーのサイズ感を行列サイズ、画面サイズに応じて変更
+            // TODO : スクロールバーを標準品に変更
             squares.InvalidateVisual();
             MoveScroll();
         }
