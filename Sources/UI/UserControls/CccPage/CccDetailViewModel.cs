@@ -61,6 +61,7 @@ namespace UiParts.UserControls.CccPage
             for (int i = 0; i < count; i++)
             {
                 int index = i;
+                // TODO : 時間が掛かりすぎている問題
                 var ccc = _model.Detail.ToReactivePropertySlimAsSynchronized(
                     x => x.Value,
                     x => x.CCCs[index].Value,
