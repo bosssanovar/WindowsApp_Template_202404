@@ -175,40 +175,49 @@ namespace UiParts.UiWindow.MainWindow
 
             PageAaaCommand.Subscribe(() =>
             {
-                SetPage(GlobalServiceProvider.GetRequiredService<AaaPageView>());
+                SetPage<AaaPageView>();
             });
 
             PageBbbCommand.Subscribe(() =>
             {
-                SetPage(GlobalServiceProvider.GetRequiredService<BbbPageView>());
+                SetPage<BbbPageView>();
             });
 
             PageAaaAndBbbCommand.Subscribe(() =>
             {
-                SetPage(GlobalServiceProvider.GetRequiredService<AaaAndBbbPageView>());
+                SetPage<AaaAndBbbPageView>();
             });
 
             PageCccCommand.Subscribe(() =>
             {
-                SetScrollablePage(GlobalServiceProvider.GetRequiredService<CccPageView>());
+                SetScrollablePage<CccPageView>();
             });
         }
 
-        private void SetPage(PageViewBase page)
+        private void SetPage<T>()
+            where T : PageViewBase
         {
             InitPageContent();
+
+            var page = GlobalServiceProvider.GetRequiredService<T>();
             Page.Value = page;
         }
 
-        private void SetScrollablePage(PageViewBase page)
+        private void SetScrollablePage<T>()
+            where T : PageViewBase
         {
             InitPageContent();
+
+            var page = GlobalServiceProvider.GetRequiredService<T>();
             ScrollablePage.Value = page;
         }
 
         private void InitPageContent()
         {
+            Page.Value?.Commit();
             Page.Value = null;
+
+            ScrollablePage.Value?.Commit();
             ScrollablePage.Value = null;
         }
 
