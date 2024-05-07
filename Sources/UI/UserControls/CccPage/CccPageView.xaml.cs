@@ -33,8 +33,6 @@ namespace UiParts.UserControls.CccPage
             this.Loaded += CccPageView_Loaded;
 
             InitializeComponent();
-
-            InitData();
         }
 
         #region 画面の初期化
@@ -119,25 +117,6 @@ namespace UiParts.UserControls.CccPage
             }
         }
 
-        private void InitData()
-        {
-            //// バインドを一時切断
-            //Binding b = new("CCCs")
-            //{
-            //    Source = null,
-            //};
-            //grid.SetBinding(DataGrid.ItemsSourceProperty, b);
-
-            //// TODO : 要実装
-            //// モデルの再構築
-
-            //// バインドを再構築
-            //b = new Binding("CCCs")
-            //{
-            //    Source = this,
-            //};
-            //grid.SetBinding(DataGrid.ItemsSourceProperty, b);
-        }
         #endregion
 
         #region 設定値変更
@@ -493,5 +472,27 @@ namespace UiParts.UserControls.CccPage
         }
 
         #endregion
+
+        /// <inheritdoc/>
+        protected override void OnBeforeUpdateEntities()
+        {
+            // バインドを一時切断
+            Binding b = new("CCCs")
+            {
+                Source = null,
+            };
+            grid.SetBinding(DataGrid.ItemsSourceProperty, b);
+        }
+
+        /// <inheritdoc/>
+        protected override void OnAfterUpdateEntities()
+        {
+            // バインドを再構築
+            Binding b = new Binding("CCCs")
+            {
+                Source = this,
+            };
+            grid.SetBinding(DataGrid.ItemsSourceProperty, b);
+        }
     }
 }

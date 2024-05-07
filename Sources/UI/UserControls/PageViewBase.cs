@@ -85,13 +85,31 @@ namespace UiParts.UserControls
 
         #region Methods - protected ---------------------------------------------------------------------------
 
+        /// <summary>
+        /// Modelオブジェクトの更新前処理
+        /// </summary>
+        protected virtual void OnBeforeUpdateEntities()
+        {
+        }
+
+        /// <summary>
+        /// Modelオブジェクトの更新後処理
+        /// </summary>
+        protected virtual void OnAfterUpdateEntities()
+        {
+        }
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - private -----------------------------------------------------------------------------
 
         private void PageViewBase_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
+            OnBeforeUpdateEntities();
+
             _modelBase.UpdateEntities();
+
+            OnAfterUpdateEntities();
         }
 
         private void PageViewBase_Unloaded(object sender, System.Windows.RoutedEventArgs e)
