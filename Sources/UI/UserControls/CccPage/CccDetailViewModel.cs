@@ -61,20 +61,13 @@ namespace UiParts.UserControls.CccPage
             for (int i = 0; i < count; i++)
             {
                 int index = i;
-                // TODO : 時間が掛かりすぎている問題
-                var ccc = _model.Detail.ToReactivePropertySlimAsSynchronized(
-                    x => x.Value,
-                    x => x.CCCs[index].Value,
+                var ccc = new ReactivePropertySlim<bool>(_model.Detail.Value.CCCs[index].Value);
+                ccc.Subscribe(
                     x =>
                     {
-                        var corrected = CCCVO.CurrectValue(x);
-                        _model.Detail.Value.CCCs[index] = new(corrected);
-
-                        _model.ForceNotify();
-
-                        return _model.Detail.Value;
-                    },
-                    ReactivePropertyMode.DistinctUntilChanged)
+                        var correct = new CCCVO(x);
+                        _model.Detail.Value.CCCs[index] = correct;
+                    })
                     .AddTo(_disposable);
 
                 CCCs.Add(ccc);
