@@ -106,6 +106,7 @@ namespace UiParts.UserControls.CccPage
 
             InitColumns(Count.Value);
             UpdatePreview();
+            ResizeGridDummy();
         }
 
         #endregion --------------------------------------------------------------------------------------------

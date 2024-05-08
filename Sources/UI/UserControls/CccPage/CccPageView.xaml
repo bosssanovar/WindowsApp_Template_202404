@@ -10,22 +10,27 @@
     mc:Ignorable="d" 
     DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
     d:Background="White"
-    d:Width="500" d:Height="500">
+    d:Width="500" d:Height="500" SizeChanged="PageViewBase_SizeChanged">
     <Grid x:Name="gridPanel" Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
         <TextBlock x:Name="initializingText" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Text="DataGrid表示初期化中..." FontSize="20"/>
 
+        <!--スクロール-->
+        <ScrollViewer x:Name="scroll" Grid.Row="1" Margin="5, 5, 0, 0"
+                      HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
+                      Thumb.DragStarted="Thumb_DragStarted" Thumb.DragCompleted="Thumb_DragCompleted">
+            <Grid x:Name="gridDummy" Height="500" Width="1500"/>
+        </ScrollViewer>
+
         <!--設定グリッド-->
-        <DataGrid x:Name="grid" Grid.Row="1" Margin="5, 5, 0, 0" AutoGenerateColumns="False" Visibility="Collapsed"
+        <DataGrid x:Name="grid" Grid.Row="1" Margin="5, 5, 20, 20" AutoGenerateColumns="False" Visibility="Collapsed"
                   EnableColumnVirtualization="True" EnableRowVirtualization="True"
                   VirtualizingPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True"
                   VirtualizingPanel.VirtualizationMode="Recycling"
@@ -49,7 +54,7 @@
         </DataGrid>
 
         <!--閲覧ビュー-->
-        <Border Grid.Row="1" Margin="5, 5, 0, 0" BorderBrush="Black" BorderThickness="1">
+        <Border Grid.Row="1" Margin="5, 5, 20, 20" BorderBrush="Black" BorderThickness="1">
             <ScrollViewer x:Name="previewScroll" Visibility="Hidden"
                       HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
                       ScrollChanged="PreviewScroll_ScrollChanged">
@@ -58,36 +63,6 @@
                 </Canvas>
             </ScrollViewer>
         </Border>
-
-        <!--スクロールバー　垂直-->
-        <Canvas x:Name="verticalScrollCanvas" Grid.Row="1" Grid.Column="1" Width="20" Margin="0, 5">
-            <Thumb x:Name="verticalScrollThumb" Width="20" Height="50"
-                   Canvas.Left="0" Canvas.Top="0"
-                   DragStarted="Thumb_DragStarted2" DragCompleted="Thumb_DragCompleted2" DragDelta="VerticalScrollThumb_DragDelta">
-                <Thumb.Template>
-                    <ControlTemplate>
-                        <Border BorderBrush="Red" BorderThickness="0" Background="#99000000">
-
-                        </Border>
-                    </ControlTemplate>
-                </Thumb.Template>
-            </Thumb>
-        </Canvas>
-
-        <!--スクロールバー　水平-->
-        <Canvas x:Name="horizontalScrollCanvas" Grid.Row="2" Height="20" Margin="5, 0">
-            <Thumb x:Name="horizontalScrollThumb" Width="50" Height="20"
-                   Canvas.Left="0" Canvas.Top="0"
-                   DragStarted="Thumb_DragStarted2" DragCompleted="Thumb_DragCompleted2" DragDelta="HorizontalScrollThumb_DragDelta">
-                <Thumb.Template>
-                    <ControlTemplate>
-                        <Border BorderBrush="Red" BorderThickness="0" Background="#99000000">
-
-                        </Border>
-                    </ControlTemplate>
-                </Thumb.Template>
-            </Thumb>
-        </Canvas>
 
     </Grid>
 </local:PageViewBase>
