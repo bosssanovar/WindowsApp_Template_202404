@@ -107,12 +107,9 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                
-            </DataGrid.Columns>            
-        </DataGrid>
 
-        <!--DataGridロード待ちテキスト-->
-        <TextBlock x:Name="initializingText" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Text="DataGrid表示初期化中..." FontSize="20"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
         <!--スクロール-->
         <ScrollViewer x:Name="scroll" Grid.Row="1" Grid.Column="1"
@@ -154,6 +151,12 @@
                     <cccPage:Squares x:Name="squares"/>
                 </Canvas>
             </ScrollViewer>
+        </Border>
+
+        <!--DataGridロード待ちテキスト-->
+        <Border x:Name="initializingText" Grid.RowSpan="3" Grid.ColumnSpan="3" Background="Gray">
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+                       Text="DataGrid表示初期化中..." FontSize="20"/>
         </Border>
 
     </Grid>

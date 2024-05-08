@@ -336,7 +336,7 @@ namespace UiParts.UserControls.CccPage
         {
             Cursor = Cursors.Wait;
 
-            gridPanel.Children.Insert(4, grid);     // gridPanelの子要素の内、5番目（index = 4）にgridはある
+            gridPanel.Children.Insert(3, grid);     // gridPanelの子要素の内、4番目（index = 3）にgridはある
 
             Dispatcher.InvokeAsync(
                 () =>

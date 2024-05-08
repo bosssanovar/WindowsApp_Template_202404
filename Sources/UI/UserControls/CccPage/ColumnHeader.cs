@@ -16,7 +16,7 @@
         /// <param name="text">負荷テキスト</param>
         public ColumnHeader(string text)
         {
-            for (int i = 1; i < 700; i++)
+            for (int i = 1; i <= 700; i++)
             {
                 Values.Add($"{text} {i}");
             }
