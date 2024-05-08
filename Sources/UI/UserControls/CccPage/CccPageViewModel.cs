@@ -45,6 +45,11 @@ namespace UiParts.UserControls.CccPage
         public List<RowHeader> RowHeaders { get; } = [];
 
         /// <summary>
+        /// 列ヘッダー
+        /// </summary>
+        public List<ColumnHeader> ColumnHeaders { get; } = [];
+
+        /// <summary>
         /// CCC設定
         /// </summary>
         public ReadOnlyReactiveCollection<CccDetailViewModel> CCCs { get; private set; }
@@ -79,10 +84,13 @@ namespace UiParts.UserControls.CccPage
 
             Count = _model.AaaEntity.Select(x => x.YYY.Value).ToReadOnlyReactivePropertySlim();
 
-            for(int i = 0; i < Count.Value; i++)
+            for (int i = 0; i < Count.Value; i++)
             {
                 RowHeaders.Add(new($"{i + 1}", $"スイッチ{i + 1}", "放送階選択", "EL1"));
             }
+
+            ColumnHeaders.Add(new("スピーカー名称"));
+            ColumnHeaders.Add(new("SP"));
 
             CCCs =
                 _model.Details.ToReadOnlyReactiveCollection(

@@ -19,7 +19,9 @@ namespace UiParts.UserControls.CccPage
     public partial class CccPageView : PageViewBase
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0052:読み取られていないプライベート メンバーを削除", Justification = "<保留中>")]
-        private ScrollSynchronizer? _scrollSynchronizer;
+        private ScrollSynchronizer? _horizontalScrollSynchronizer;
+
+        private ScrollSynchronizer? _verticalScrollSynchronizer;
 
         /// <summary>
         /// コンストラクタ
@@ -81,7 +83,12 @@ namespace UiParts.UserControls.CccPage
 
         private void InitScrollSynchronizer()
         {
-            var scrollList = new List<ScrollViewer>
+            var horizontalScrollList = new List<ScrollViewer>
+            {
+                previewScroll,
+                scroll,
+            };
+            var verticalScrollList = new List<ScrollViewer>
             {
                 previewScroll,
                 scroll,
@@ -90,16 +97,24 @@ namespace UiParts.UserControls.CccPage
             var gridScroll = DataGridHelper.GetScrollViewer(grid);
             if (gridScroll is not null)
             {
-                scrollList.Add(gridScroll);
+                horizontalScrollList.Add(gridScroll);
+                verticalScrollList.Add(gridScroll);
             }
 
             var rowHeader = DataGridHelper.GetScrollViewer(rowHeaderGrid);
             if(rowHeader is not null)
             {
-                scrollList.Add(rowHeader);
+                verticalScrollList.Add(rowHeader);
             }
 
-            _scrollSynchronizer = new ScrollSynchronizer(scrollList);
+            var columnHeader = DataGridHelper.GetScrollViewer(columnHeaderGrid);
+            if(columnHeader is not null)
+            {
+                horizontalScrollList.Add(columnHeader);
+            }
+
+            _horizontalScrollSynchronizer = new ScrollSynchronizer(horizontalScrollList, ScrollSynchronizer.SynchronizeDirection.Horizontal);
+            _verticalScrollSynchronizer = new ScrollSynchronizer(verticalScrollList, ScrollSynchronizer.SynchronizeDirection.Vertical);
         }
         #endregion
 
@@ -108,6 +123,13 @@ namespace UiParts.UserControls.CccPage
         private void InitColumns(int count)
         {
             // TODO : 多重の列ヘッダーを追加
+            InitSettingAreaColumns(count);
+
+            InitColumnHeaderColumns(count);
+        }
+
+        private void InitSettingAreaColumns(int count)
+        {
             grid.Columns.Clear();
 
             var converter = new BooleanToVisibilityConverter();
@@ -135,6 +157,35 @@ namespace UiParts.UserControls.CccPage
                 };
 
                 grid.Columns.Add(column);
+            }
+        }
+
+        private void InitColumnHeaderColumns(int count)
+        {
+            columnHeaderGrid.Columns.Clear();
+
+            for (int columnIndex = 0; columnIndex < count; ++columnIndex)
+            {
+                var binding = new Binding($"Values[{columnIndex}]");
+
+                var factory = new FrameworkElementFactory(typeof(TextBlock));
+                factory.SetValue(TextBlock.VerticalAlignmentProperty, VerticalAlignment.Center);
+                factory.SetValue(TextBlock.HorizontalAlignmentProperty, HorizontalAlignment.Center);
+                factory.SetValue(TextBlock.PaddingProperty, new Thickness(5, 0, 5, 0));
+                factory.SetValue(TextBlock.LayoutTransformProperty, new RotateTransform(-90));
+                factory.SetBinding(TextBlock.TextProperty, binding);
+
+                var dataTemplate = new DataTemplate
+                {
+                    VisualTree = factory,
+                };
+
+                var column = new DataGridTemplateColumn
+                {
+                    CellTemplate = dataTemplate,
+                };
+
+                columnHeaderGrid.Columns.Add(column);
             }
         }
 
