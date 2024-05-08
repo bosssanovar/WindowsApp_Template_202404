@@ -10,7 +10,7 @@
     mc:Ignorable="d" 
     DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
     d:Background="White"
-    d:Width="500" d:Height="500" SizeChanged="PageViewBase_SizeChanged">
+    d:Width="500" d:Height="500">
     <Grid x:Name="gridPanel" Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -58,7 +58,7 @@
             <ScrollViewer x:Name="previewScroll" Visibility="Hidden"
                       HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
                       ScrollChanged="PreviewScroll_ScrollChanged">
-                <Canvas x:Name="previewCanvas" Width="17920" Height="17920">
+                <Canvas x:Name="previewCanvas" Width="500" Height="500">
                     <cccPage:Squares x:Name="squares"/>
                 </Canvas>
             </ScrollViewer>

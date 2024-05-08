@@ -59,6 +59,8 @@ namespace UiParts.UserControls.CccPage
 
                             ResizeGridDummy();
 
+                            UpdatePreview();
+
                             InitScrollSynchronizer();
                         },
                         System.Windows.Threading.DispatcherPriority.Background);
@@ -73,6 +75,9 @@ namespace UiParts.UserControls.CccPage
             {
                 gridDummy.Width = scrollViewer.ExtentWidth;
                 gridDummy.Height = scrollViewer.ExtentHeight;
+
+                previewCanvas.Width = scrollViewer.ExtentWidth;
+                previewCanvas.Height = scrollViewer.ExtentHeight;
             }
         }
 
@@ -255,11 +260,6 @@ namespace UiParts.UserControls.CccPage
 
         private void PreviewScroll_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
-            squares.InvalidateVisual();
-        }
-
-        private void PageViewBase_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
             // TODO : 設定ダミーの消えるのが遅い
             squares.InvalidateVisual();
         }
@@ -275,8 +275,6 @@ namespace UiParts.UserControls.CccPage
             previewScroll.Visibility = Visibility.Visible;
 
             squares.InvalidateVisual();
-
-            e.Handled = true;
         }
 
         private void Thumb_DragCompleted(object sender, DragCompletedEventArgs e)
@@ -296,8 +294,6 @@ namespace UiParts.UserControls.CccPage
                     Cursor = null;
                 },
                 System.Windows.Threading.DispatcherPriority.Background);
-
-            e.Handled = true;
         }
 
         #endregion
