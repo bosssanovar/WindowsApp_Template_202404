@@ -10,27 +10,118 @@
     mc:Ignorable="d" 
     DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
     d:Background="White"
-    d:Width="500" d:Height="500">
+    d:Width="800" d:Height="500">
     <Grid x:Name="gridPanel" Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock x:Name="initializingText" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Text="DataGrid表示初期化中..." FontSize="20"/>
+        <!--列ヘッダ-->
+        <DataGrid x:Name="columnHeaderGrid" Grid.Row="0" Grid.Column="1" Margin="0,5,20,0"
+                  AutoGenerateColumns="False"
+                  EnableColumnVirtualization="True" EnableRowVirtualization="True"
+                  VirtualizingPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True"
+                  VirtualizingPanel.VirtualizationMode="Recycling"
+                  ItemsSource="{Binding ColumnHeaders}" HeadersVisibility="None" ColumnWidth="28"
+                  SelectionMode="Extended" SelectionUnit="Cell"
+                  CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False"
+                  CanUserResizeColumns="False"
+                  CanUserResizeRows="False" CanUserSortColumns="False"
+                  VirtualizingPanel.ScrollUnit="Pixel" MaxWidth="2000" MaxHeight="300"
+                  HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
+                  RowBackground="Transparent" Background="Transparent">
+
+        </DataGrid>
+
+        <!--行ヘッダ-->
+        <DataGrid x:Name="rowHeaderGrid" Grid.Row="1" Grid.Column="0" Margin="5,0,0,20"
+                  AutoGenerateColumns="False"
+                  EnableColumnVirtualization="True" EnableRowVirtualization="True"
+                  VirtualizingPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True"
+                  VirtualizingPanel.VirtualizationMode="Recycling"
+                  ItemsSource="{Binding RowHeaders}" RowHeight="28"  HeadersVisibility="None"
+                  SelectionMode="Extended" SelectionUnit="Cell"
+                  CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False"
+                  CanUserResizeColumns="False"
+                  CanUserResizeRows="False" CanUserSortColumns="False"
+                  VirtualizingPanel.ScrollUnit="Pixel" MaxWidth="1000" MaxHeight="1200"
+                  HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
+                  RowBackground="Transparent" Background="Transparent"
+                  d:ItemsSource="{d:SampleData ItemCount=100}">
+            <DataGrid.Columns>
+
+                <!--No.-->
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.Header>
+                        <TextBlock Text="No."/>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Number}" Padding="5,0"
+                                       VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <!--SW名称-->
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.Header>
+                        <TextBlock Text="SW名称"/>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding SwName}" Padding="5,0"
+                                       VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <!--放送種別-->
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.Header>
+                        <TextBlock Text="放送種別"/>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Type}" Padding="5,0"
+                                       VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <!--EL-->
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.Header>
+                        <TextBlock Text="EL"/>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding EL}" Padding="5,0"
+                                       VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
+            </DataGrid.Columns>            
+        </DataGrid>
+
+        <!--DataGridロード待ちテキスト-->
+        <TextBlock x:Name="initializingText" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Text="DataGrid表示初期化中..." FontSize="20"/>
 
         <!--スクロール-->
-        <ScrollViewer x:Name="scroll" Grid.Row="1" Margin="5, 5, 0, 0"
+        <ScrollViewer x:Name="scroll" Grid.Row="1" Grid.Column="1"
                       HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
                       Thumb.DragStarted="Thumb_DragStarted" Thumb.DragCompleted="Thumb_DragCompleted">
             <Grid x:Name="gridDummy" Height="500" Width="1500"/>
         </ScrollViewer>
 
         <!--設定グリッド-->
-        <DataGrid x:Name="grid" Grid.Row="1" Margin="5, 5, 20, 20" AutoGenerateColumns="False" Visibility="Collapsed"
+        <DataGrid x:Name="grid" Grid.Row="1" Grid.Column="1" Margin="0, 0, 20, 20" AutoGenerateColumns="False" Visibility="Collapsed"
                   EnableColumnVirtualization="True" EnableRowVirtualization="True"
                   VirtualizingPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True"
                   VirtualizingPanel.VirtualizationMode="Recycling"
@@ -54,7 +145,7 @@
         </DataGrid>
 
         <!--閲覧ビュー-->
-        <Border Grid.Row="1" Margin="5, 5, 20, 20" BorderBrush="Black" BorderThickness="1">
+        <Border Grid.Row="1" Grid.Column="1" Margin="0, 0, 20, 20" BorderBrush="Black" BorderThickness="1">
             <ScrollViewer x:Name="previewScroll" Visibility="Hidden"
                       HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
                       ScrollChanged="PreviewScroll_ScrollChanged">

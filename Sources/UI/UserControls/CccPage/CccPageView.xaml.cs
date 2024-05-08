@@ -86,10 +86,17 @@ namespace UiParts.UserControls.CccPage
                 previewScroll,
                 scroll,
             };
+
             var gridScroll = DataGridHelper.GetScrollViewer(grid);
             if (gridScroll is not null)
             {
                 scrollList.Add(gridScroll);
+            }
+
+            var rowHeader = DataGridHelper.GetScrollViewer(rowHeaderGrid);
+            if(rowHeader is not null)
+            {
+                scrollList.Add(rowHeader);
             }
 
             _scrollSynchronizer = new ScrollSynchronizer(scrollList);
@@ -101,7 +108,6 @@ namespace UiParts.UserControls.CccPage
         private void InitColumns(int count)
         {
             // TODO : 多重の列ヘッダーを追加
-            // TODO : 連動する行ヘッダ―を追加
             grid.Columns.Clear();
 
             var converter = new BooleanToVisibilityConverter();
@@ -280,7 +286,7 @@ namespace UiParts.UserControls.CccPage
         {
             Cursor = Cursors.Wait;
 
-            gridPanel.Children.Insert(2, grid);     // gridPanelの子要素の内、3番目（index = 2）にgridはある
+            gridPanel.Children.Insert(4, grid);     // gridPanelの子要素の内、5番目（index = 4）にgridはある
 
             Dispatcher.InvokeAsync(
                 () =>
