@@ -130,7 +130,8 @@
                   CanUserResizeRows="False" CanUserSortColumns="False"
                   VirtualizingPanel.ScrollUnit="Pixel" MaxWidth="2000" MaxHeight="1200"
                   HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
-                  RowBackground="Transparent" Background="Transparent">
+                  RowBackground="Transparent" Background="Transparent"
+                  PreviewMouseWheel="Grid_PreviewMouseWheel">
             <DataGrid.InputBindings>
                 <KeyBinding Gesture="Ctrl+A" Command="ApplicationCommands.NotACommand"/>
             </DataGrid.InputBindings>

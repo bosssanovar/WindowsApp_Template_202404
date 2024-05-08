@@ -102,13 +102,13 @@ namespace UiParts.UserControls.CccPage
             }
 
             var rowHeader = DataGridHelper.GetScrollViewer(rowHeaderGrid);
-            if(rowHeader is not null)
+            if (rowHeader is not null)
             {
                 verticalScrollList.Add(rowHeader);
             }
 
             var columnHeader = DataGridHelper.GetScrollViewer(columnHeaderGrid);
-            if(columnHeader is not null)
+            if (columnHeader is not null)
             {
                 horizontalScrollList.Add(columnHeader);
             }
@@ -354,5 +354,45 @@ namespace UiParts.UserControls.CccPage
         }
 
         #endregion
+
+        private void Grid_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            if (IsShiftKeyPressed)
+            {
+                DataGrid grid = (DataGrid)sender;
+
+                if (grid.Items.Count > 0)
+                {
+                    //==== ScrollViewerオブジェクト取得 ====//
+                    var child = VisualTreeHelper.GetChild(grid, 0) as Decorator;
+                    if (child != null)
+                    {
+                        var scroll = child.Child as ScrollViewer;
+                        if (scroll != null)
+                        {
+                            if (e.Delta > 0)
+                            {
+                                scroll.LineLeft();
+                            }
+                            else
+                            {
+                                scroll.LineRight();
+                            }
+
+                            e.Handled = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        private bool IsShiftKeyPressed
+        {
+            get
+            {
+                return (Keyboard.GetKeyStates(Key.LeftShift) & KeyStates.Down) == KeyStates.Down ||
+                     (Keyboard.GetKeyStates(Key.RightShift) & KeyStates.Down) == KeyStates.Down;
+            }
+        }
     }
 }
