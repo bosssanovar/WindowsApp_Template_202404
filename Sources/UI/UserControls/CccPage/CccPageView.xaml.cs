@@ -55,13 +55,11 @@ namespace UiParts.UserControls.CccPage
                     Dispatcher.InvokeAsync(
                         () =>
                         {
-                            Cursor = null;
-
-                            ResizeGridDummy();
-
-                            UpdatePreview();
+                            Update();
 
                             InitScrollSynchronizer();
+
+                            Cursor = null;
                         },
                         System.Windows.Threading.DispatcherPriority.Background);
                 },
@@ -275,6 +273,8 @@ namespace UiParts.UserControls.CccPage
             previewScroll.Visibility = Visibility.Visible;
 
             squares.InvalidateVisual();
+
+            e.Handled = true;
         }
 
         private void Thumb_DragCompleted(object sender, DragCompletedEventArgs e)
@@ -294,6 +294,8 @@ namespace UiParts.UserControls.CccPage
                     Cursor = null;
                 },
                 System.Windows.Threading.DispatcherPriority.Background);
+
+            e.Handled = true;
         }
 
         #endregion
