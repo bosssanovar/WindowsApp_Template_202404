@@ -122,7 +122,6 @@ namespace UiParts.UserControls.CccPage
 
         private void InitColumns(int count)
         {
-            // TODO : 多重の列ヘッダーを追加
             InitSettingAreaColumns(count);
 
             InitColumnHeaderColumns(count);
