@@ -155,7 +155,7 @@
         </Border>
 
         <!--DataGridロード待ちテキスト-->
-        <Border x:Name="initializingText" Grid.RowSpan="3" Grid.ColumnSpan="3" Background="Gray">
+        <Border x:Name="initializingText" Grid.RowSpan="3" Grid.ColumnSpan="3" Background="Gray" d:Visibility="Collapsed">
             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
                        Text="DataGrid表示初期化中..." FontSize="20"/>
         </Border>

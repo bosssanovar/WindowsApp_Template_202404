@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Shapes;
 
 using WpfLib;
+using WpfLib.Behavior;
 
 namespace UiParts.UserControls.CccPage
 {
@@ -21,7 +22,14 @@ namespace UiParts.UserControls.CccPage
         [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0052:読み取られていないプライベート メンバーを削除", Justification = "<保留中>")]
         private ScrollSynchronizer? _horizontalScrollSynchronizer;
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0052:読み取られていないプライベート メンバーを削除", Justification = "<保留中>")]
         private ScrollSynchronizer? _verticalScrollSynchronizer;
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0052:読み取られていないプライベート メンバーを削除", Justification = "<保留中>")]
+        private TiltScroll? _tiltScrillColumnHeader;
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0052:読み取られていないプライベート メンバーを削除", Justification = "<保留中>")]
+        private TiltScroll? _tiltScrillSettingArea;
 
         /// <summary>
         /// コンストラクタ
@@ -61,11 +69,19 @@ namespace UiParts.UserControls.CccPage
 
                             InitScrollSynchronizer();
 
+                            InitTiltScroll();
+
                             Cursor = null;
                         },
                         System.Windows.Threading.DispatcherPriority.Background);
                 },
                 System.Windows.Threading.DispatcherPriority.Background);
+        }
+
+        private void InitTiltScroll()
+        {
+            _tiltScrillColumnHeader = new(columnHeaderGrid);
+            _tiltScrillSettingArea = new(grid);
         }
 
         private void ResizeGridDummy()
@@ -384,7 +400,7 @@ namespace UiParts.UserControls.CccPage
             }
         }
 
-        private bool IsShiftKeyPressed
+        private static bool IsShiftKeyPressed
         {
             get
             {
