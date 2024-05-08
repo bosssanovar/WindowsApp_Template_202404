@@ -353,8 +353,6 @@ namespace UiParts.UserControls.CccPage
             e.Handled = true;
         }
 
-        #endregion
-
         private void Grid_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
         {
             if (IsShiftKeyPressed)
@@ -394,5 +392,7 @@ namespace UiParts.UserControls.CccPage
                      (Keyboard.GetKeyStates(Key.RightShift) & KeyStates.Down) == KeyStates.Down;
             }
         }
+
+        #endregion
     }
 }
