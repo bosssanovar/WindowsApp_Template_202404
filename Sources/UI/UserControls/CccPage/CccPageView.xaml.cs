@@ -258,7 +258,6 @@ namespace UiParts.UserControls.CccPage
 
         private void PreviewScroll_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
-            // TODO : 設定ダミーの消えるのが遅い
             squares.InvalidateVisual();
         }
 
