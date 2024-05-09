@@ -62,7 +62,7 @@
                               ResizeBorderThickness="{x:Static SystemParameters.WindowResizeBorderThickness}"/>
             </Setter.Value>
         </Setter>
-        <Setter Property="FontFamily" Value="Yu Gothic UI"/>
+        <Setter Property="FontFamily" Value="Meiryo UI"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="Template">
@@ -80,7 +80,7 @@
                             </Grid.RowDefinitions>
 
                             <!--タイトルバー-->
-                            <Grid x:Name="titleBar" Background="Blue">
+                            <Grid x:Name="titleBar" Background="DarkBlue">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="3"/>
                                     <ColumnDefinition Width="30"/>
@@ -144,7 +144,7 @@
                               ResizeBorderThickness="{x:Static SystemParameters.WindowResizeBorderThickness}"/>
             </Setter.Value>
         </Setter>
-        <Setter Property="FontFamily" Value="Yu Gothic UI"/>
+        <Setter Property="FontFamily" Value="Meiryo UI"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="Template">

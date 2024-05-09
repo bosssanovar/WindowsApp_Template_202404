@@ -144,7 +144,7 @@ namespace UiParts.UserControls.CccPage
                 var factory = new FrameworkElementFactory(typeof(Rectangle));
                 factory.SetValue(Rectangle.HeightProperty, 10.0);
                 factory.SetValue(Rectangle.WidthProperty, 10.0);
-                factory.SetValue(Rectangle.FillProperty, Brushes.DarkBlue);
+                factory.SetValue(Rectangle.FillProperty, Brushes.LightSkyBlue);
                 factory.SetBinding(Rectangle.VisibilityProperty, binding);
 
                 var dataTemplate = new DataTemplate

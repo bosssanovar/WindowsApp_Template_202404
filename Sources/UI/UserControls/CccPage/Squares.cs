@@ -47,7 +47,7 @@ namespace UiParts.UserControls.CccPage
                 // 四角形が表示領域内に含まれる場合のみ描画する
                 if (viewRect.IntersectsWith(rect))
                 {
-                    drawingContext.DrawRectangle(Brushes.DarkBlue, new Pen(Brushes.DarkBlue, 1), rect);
+                    drawingContext.DrawRectangle(Brushes.LightSkyBlue, new Pen(Brushes.LightSkyBlue, 1), rect);
                 }
             }
         }
