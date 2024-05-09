@@ -167,14 +167,13 @@ namespace UiParts.UserControls.CccPage
 
             for (int columnIndex = 0; columnIndex < count; ++columnIndex)
             {
-                var binding = new Binding($"Values[{columnIndex}]");
-
                 var factory = new FrameworkElementFactory(typeof(TextBlock));
                 factory.SetValue(TextBlock.VerticalAlignmentProperty, VerticalAlignment.Center);
                 factory.SetValue(TextBlock.HorizontalAlignmentProperty, HorizontalAlignment.Center);
                 factory.SetValue(TextBlock.PaddingProperty, new Thickness(5, 0, 5, 0));
                 factory.SetValue(TextBlock.LayoutTransformProperty, new RotateTransform(-90));
-                factory.SetBinding(TextBlock.TextProperty, binding);
+                factory.SetBinding(TextBlock.TextProperty, new Binding($"Values[{columnIndex}]"));
+                factory.SetBinding(TextBlock.WidthProperty, new Binding($"Width"));
 
                 var dataTemplate = new DataTemplate
                 {

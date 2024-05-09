@@ -23,35 +23,18 @@
 
         <!--列ヘッダ-->
         <DataGrid x:Name="columnHeaderGrid" Grid.Row="0" Grid.Column="1" Margin="0,5,20,0"
-                  AutoGenerateColumns="False"
-                  EnableColumnVirtualization="False" EnableRowVirtualization="False"
-                  VirtualizingPanel.IsVirtualizing="False" ScrollViewer.CanContentScroll="True"
-                  VirtualizingPanel.VirtualizationMode="Recycling"
                   ItemsSource="{Binding ColumnHeaders}" HeadersVisibility="None" ColumnWidth="28"
                   SelectionMode="Extended" SelectionUnit="Cell"
-                  CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False"
-                  CanUserResizeColumns="False"
-                  CanUserResizeRows="False" CanUserSortColumns="False"
-                  VirtualizingPanel.ScrollUnit="Pixel" MaxWidth="2000" MaxHeight="300"
                   HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
                   RowBackground="Transparent" Background="Transparent"
-                  d:ItemsSource="{d:SampleData ItemCount=2}"
-                  behavior:HorizontalScrollBehavior.Enable="True">
+                  d:ItemsSource="{d:SampleData ItemCount=2}">
 
         </DataGrid>
 
         <!--行ヘッダ-->
         <DataGrid x:Name="rowHeaderGrid" Grid.Row="1" Grid.Column="0" Margin="5,0,0,20"
-                  AutoGenerateColumns="False"
-                  EnableColumnVirtualization="True" EnableRowVirtualization="True"
-                  VirtualizingPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True"
-                  VirtualizingPanel.VirtualizationMode="Recycling"
                   ItemsSource="{Binding RowHeaders}" RowHeight="28"  HeadersVisibility="None"
                   SelectionMode="Extended" SelectionUnit="Cell"
-                  CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False"
-                  CanUserResizeColumns="False"
-                  CanUserResizeRows="False" CanUserSortColumns="False"
-                  VirtualizingPanel.ScrollUnit="Pixel" MaxWidth="1000" MaxHeight="1200"
                   HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
                   RowBackground="Transparent" Background="Transparent"
                   d:ItemsSource="{d:SampleData ItemCount=100}">
@@ -120,19 +103,11 @@
         </ScrollViewer>
 
         <!--設定グリッド-->
-        <DataGrid x:Name="grid" Grid.Row="1" Grid.Column="1" Margin="0, 0, 20, 20" AutoGenerateColumns="False" Visibility="Collapsed"
-                  EnableColumnVirtualization="True" EnableRowVirtualization="True"
-                  VirtualizingPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True"
-                  VirtualizingPanel.VirtualizationMode="Recycling"
+        <DataGrid x:Name="grid" Grid.Row="1" Grid.Column="1" Margin="0, 0, 20, 20" Visibility="Collapsed"
                   ItemsSource="{Binding CCCs}" RowHeight="28" HeadersVisibility="None" ColumnWidth="28"
                   SelectionMode="Extended" SelectionUnit="Cell"
-                  CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False"
-                  CanUserResizeColumns="False"
-                  CanUserResizeRows="False" CanUserSortColumns="False"
-                  VirtualizingPanel.ScrollUnit="Pixel" MaxWidth="2000" MaxHeight="1200"
                   HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
-                  RowBackground="Transparent" Background="Transparent"
-                  behavior:HorizontalScrollBehavior.Enable="True">
+                  RowBackground="Transparent" Background="Transparent">
             <DataGrid.InputBindings>
                 <KeyBinding Gesture="Ctrl+A" Command="ApplicationCommands.NotACommand"/>
             </DataGrid.InputBindings>

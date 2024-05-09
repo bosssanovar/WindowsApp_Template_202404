@@ -89,8 +89,8 @@ namespace UiParts.UserControls.CccPage
                 RowHeaders.Add(new($"{i + 1}", $"スイッチ{i + 1}", "放送階選択", "EL1"));
             }
 
-            ColumnHeaders.Add(new("スピーカー名称"));
-            ColumnHeaders.Add(new("SP"));
+            ColumnHeaders.Add(new("スピーカー名称", 120.0));
+            ColumnHeaders.Add(new("SP", 50.0));
 
             CCCs =
                 _model.Details.ToReadOnlyReactiveCollection(

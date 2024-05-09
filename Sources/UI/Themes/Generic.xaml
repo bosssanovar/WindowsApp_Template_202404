@@ -6,6 +6,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/UiParts;component/Themes/TextBoxStyle.xaml"/>
         <ResourceDictionary Source="/UiParts;component/Themes/WindowStyle.xaml"/>
+        <ResourceDictionary Source="/UiParts;component/Themes/DataGridStyle.xaml"/>
     </ResourceDictionary.MergedDictionaries>
     
 </ResourceDictionary>
