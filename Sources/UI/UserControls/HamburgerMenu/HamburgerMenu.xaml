@@ -1,0 +1,76 @@
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UiParts.UserControls.HamburgerMenu"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors" x:Class="UiParts.UserControls.HamburgerMenu.HamburgerMenu"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             d:Visibility="Visible" Visibility="Collapsed"
+             x:Name="Root">
+    <UserControl.Resources>
+
+        <system:Double x:Key="ControlWidth">300.0</system:Double>
+        <system:Double x:Key="InitPositionX">-300.0</system:Double>
+
+        <Storyboard x:Key="OpenAnimation">
+            <ColorAnimationUsingKeyFrames Storyboard.TargetName="grid" Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                <EasingColorKeyFrame KeyTime="00:00:00" Value="#00000000"/>
+                <EasingColorKeyFrame KeyTime="00:00:00.2" Value="#99000000"/>
+            </ColorAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="stackPanel" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="{StaticResource InitPositionX}">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseInOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.5" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseInOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="CloseAnimation">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="stackPanel" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseInOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.5" Value="{StaticResource InitPositionX}">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseInOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetName="grid" Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                <EasingColorKeyFrame KeyTime="00:00:00" Value="#99000000"/>
+                <EasingColorKeyFrame KeyTime="00:00:00.3" Value="#99000000"/>
+                <EasingColorKeyFrame KeyTime="00:00:00.5" Value="#00000000"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+    </UserControl.Resources>
+
+    <Grid x:Name="grid" Background="#00000000" MouseDown="Grid_MouseDown" PreviewKeyDown="Grid_PreviewKeyDown">
+        <StackPanel x:Name="stackPanel" HorizontalAlignment="Left" Width="{StaticResource ControlWidth}"
+                    Background="#202020" RenderTransformOrigin="0.5,0.5"
+                     KeyboardNavigation.TabNavigation="Cycle">
+            <StackPanel.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform X="{StaticResource InitPositionX}"/>
+                </TransformGroup>
+            </StackPanel.RenderTransform>
+
+            <Button x:Name="aaaButton" Content="AAA Page" Command="{Binding ShowPageAaaCommandInner, ElementName=Root}"/>
+            <Button Content="BBB Page" Command="{Binding ShowPageBbbCommandInner, ElementName=Root}"/>
+            <Button Content="AAA and BBB Page" Command="{Binding ShowPageAaaAndBbbCommandInner, ElementName=Root}"/>
+            <Button Content="CCC Page" Command="{Binding ShowPageCccCommandInner, ElementName=Root}"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

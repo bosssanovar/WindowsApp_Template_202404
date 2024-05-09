@@ -7,47 +7,56 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:UiParts.UiWindow.MainWindow"
     xmlns:behavior="clr-namespace:WpfLib.Behavior;assembly=WpfLib"
+    xmlns:hamburgerMenu="clr-namespace:UiParts.UserControls.HamburgerMenu"
     mc:Ignorable="d"
     DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
     Title="MainWindow" Height="800" Width="1200" MinHeight="200" MinWidth="470"
     WindowStartupLocation="CenterScreen"
     TextElement.Foreground="White">
-    <DockPanel>
-        <Grid DockPanel.Dock="Left" Background="#AAAAAA">
-            <StackPanel Orientation="Vertical" VerticalAlignment="Top">
-                <StackPanel.Resources>
-                    <Style TargetType="{x:Type RadioButton}" BasedOn="{StaticResource {x:Type ToggleButton} }">
-                        <Setter Property="Margin" Value="0"/>
-                        <Setter Property="Padding" Value="15, 3"/>
-                        <Style.Triggers>
-                            <Trigger Property="IsChecked" Value="{x:Null}">
-                                <Setter Property="Background" Value="Transparent" />
-                            </Trigger>
-                            <Trigger Property="IsChecked" Value="False">
-                                <Setter Property="Background" Value="Transparent" />
-                            </Trigger>
-                            <Trigger Property="IsChecked" Value="True">
-                                <Setter Property="Background" Value="Red"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </StackPanel.Resources>
+    <Grid>
+        <DockPanel>
+            <Grid DockPanel.Dock="Left" Background="#AAAAAA">
+                <StackPanel Orientation="Vertical" VerticalAlignment="Top">
+                    <StackPanel.Resources>
+                        <Style TargetType="{x:Type RadioButton}" BasedOn="{StaticResource {x:Type ToggleButton} }">
+                            <Setter Property="Margin" Value="0"/>
+                            <Setter Property="Padding" Value="15, 3"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsChecked" Value="{x:Null}">
+                                    <Setter Property="Background" Value="Transparent" />
+                                </Trigger>
+                                <Trigger Property="IsChecked" Value="False">
+                                    <Setter Property="Background" Value="Transparent" />
+                                </Trigger>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter Property="Background" Value="Red"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </StackPanel.Resources>
 
-                <RadioButton Content="AAA" IsChecked="True" Command="{Binding PageAaaCommand}"/>
-                <RadioButton Content="BBB" Command="{Binding PageBbbCommand}"/>
-                <RadioButton Content="AAA and BBB" Command="{Binding PageAaaAndBbbCommand}"/>
-                <RadioButton Content="CCC" Command="{Binding PageCccCommand}"/>
-            </StackPanel>
-        </Grid>
+                    <RadioButton Content="AAA" IsChecked="True" Command="{Binding PageAaaCommand}"/>
+                    <RadioButton Content="BBB" Command="{Binding PageBbbCommand}"/>
+                    <RadioButton Content="AAA and BBB" Command="{Binding PageAaaAndBbbCommand}"/>
+                    <RadioButton Content="CCC" Command="{Binding PageCccCommand}"/>
+                </StackPanel>
+            </Grid>
 
-        <Grid DockPanel.Dock="Bottom">
-            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                <ContentControl Grid.Row="1" Margin="5" HorizontalAlignment="Left" VerticalAlignment="Top"
+            <Grid DockPanel.Dock="Bottom">
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                    <ContentControl Grid.Row="1" Margin="5" HorizontalAlignment="Left" VerticalAlignment="Top"
                                 Content="{Binding Page.Value}" IsTabStop="False"/>
-            </ScrollViewer>
-            <ContentControl Grid.Row="1" Margin="5" HorizontalAlignment="Left" VerticalAlignment="Top"
+                </ScrollViewer>
+                <ContentControl Grid.Row="1" Margin="5" HorizontalAlignment="Left" VerticalAlignment="Top"
                                 Content="{Binding ScrollablePage.Value}" IsTabStop="False"/>
-        </Grid>
+            </Grid>
 
-    </DockPanel>
+        </DockPanel>
+
+        <hamburgerMenu:HamburgerMenu x:Name="hamburgerMenu"
+                           ShowPageAaaCommand="{Binding PageAaaCommand}"
+                           ShowPageBbbCommand="{Binding PageBbbCommand}"
+                           ShowPageAaaAndBbbCommand="{Binding PageAaaAndBbbCommand}"
+                           ShowPageCccCommand="{Binding PageCccCommand}"/>
+    </Grid>
 </uiwindow:MainWindowBase>

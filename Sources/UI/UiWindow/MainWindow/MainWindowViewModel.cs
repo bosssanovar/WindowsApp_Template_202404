@@ -90,6 +90,18 @@ namespace UiParts.UiWindow.MainWindow
 
             Page.Value = GlobalServiceProvider.GetRequiredService<AaaPageView>();
 
+            OpenHamburgerMenuCommand.Subscribe(() =>
+            {
+                if (hamburgerMenu.Visibility is Visibility.Collapsed)
+                {
+                    hamburgerMenu.Open();
+                }
+                else
+                {
+                    hamburgerMenu.Close();
+                }
+            });
+
             MoveHomeCommand.Subscribe(() =>
             {
                 var homeWindow = GlobalServiceProvider.GetRequiredService<StartWindowView>();

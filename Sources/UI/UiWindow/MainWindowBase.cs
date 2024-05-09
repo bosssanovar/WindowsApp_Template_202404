@@ -20,9 +20,9 @@ namespace UiParts.UiWindow
         #region Properties ------------------------------------------------------------------------------------
 
         /// <summary>
-        /// サイドメニューを開くコマンド
+        /// ハンバーガーメニューを開くコマンド
         /// </summary>
-        public ReactiveCommand OpenSideMenuCommand { get; } = new();
+        public ReactiveCommand OpenHamburgerMenuCommand { get; } = new();
 
         /// <summary>
         /// Homeに移動するコマンド
