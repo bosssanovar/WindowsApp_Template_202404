@@ -180,26 +180,60 @@
                                     <ColumnDefinition Width="8"/>
                                 </Grid.ColumnDefinitions>
 
-                                <!--アプリアイコン-->
-                                <!--<Image Grid.Column="1"
-                                       Source="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Icon}"/>-->
-                                <Ellipse Grid.Column="1" Fill="SkyBlue" Margin="3"/>
+                                <!--ハンバーガーボタン-->
+                                <Button Grid.Column="1" WindowChrome.IsHitTestVisibleInChrome="True"
+                                        Command="{Binding OpenSideMenuCommand}" Margin="2">
+                                    <Viewbox Width="24" Height="24">
+                                        <Canvas Width="24" Height="24">
+                                            <Path Data="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"
+                                                  Fill="Black" />
+                                        </Canvas>
+                                    </Viewbox>
+                                </Button>
 
                                 <!--ホームボタン-->
-                                <Button Grid.Column="3" Content="ホーム" WindowChrome.IsHitTestVisibleInChrome="True"
-                                        Command="{Binding MoveHomeCommand}"/>
-
+                                <Button Grid.Column="3" WindowChrome.IsHitTestVisibleInChrome="True"
+                                        Command="{Binding MoveHomeCommand}" Margin="2">
+                                    <Viewbox Width="24" Height="24">
+                                        <Canvas Width="24" Height="24">
+                                            <Path Data="M12 20C7.6 20 4 16.4 4 12S7.6 4 12 4 20 7.6 20 12 16.4 20 12 20M12 2C6.5 2 2 6.5 2 12S6.5 22 12 22 22 17.5 22 12 17.5 2 12 2M11 14H13V17H16V12H18L12 7L6 12H8V17H11V14"
+                                                  Fill="Black" />
+                                        </Canvas>
+                                    </Viewbox>
+                                </Button>
+                                
                                 <!--初期化ボタン-->
-                                <Button Grid.Column="4" Content="初期化" WindowChrome.IsHitTestVisibleInChrome="True"
-                                        Command="{Binding InitializeCommand}"/>
+                                <Button Grid.Column="4" WindowChrome.IsHitTestVisibleInChrome="True"
+                                        Command="{Binding InitializeCommand}" Margin="2">
+                                    <Viewbox Width="24" Height="24">
+                                        <Canvas Width="24" Height="24">
+                                            <Path Data="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"
+                                                  Fill="Black" />
+                                        </Canvas>
+                                    </Viewbox>
+                                </Button>
 
                                 <!--保存ボタン-->
-                                <Button Grid.Column="5" Content="保存" WindowChrome.IsHitTestVisibleInChrome="True"
-                                        Command="{Binding SaveCommand}"/>
+                                <Button Grid.Column="5" WindowChrome.IsHitTestVisibleInChrome="True"
+                                        Command="{Binding SaveCommand}" Margin="2">
+                                    <Viewbox Width="24" Height="24">
+                                        <Canvas Width="24" Height="24">
+                                            <Path Data="M4 19H10V21H4C2.89 21 2 20.1 2 19V5C2 3.9 2.89 3 4 3H16L20 7V9.12L18 11.12V7.83L15.17 5H4V19M14 10V6H5V10H14M20.42 12.3C20.31 12.19 20.18 12.13 20.04 12.13C19.9 12.13 19.76 12.19 19.65 12.3L18.65 13.3L20.7 15.35L21.7 14.35C21.92 14.14 21.92 13.79 21.7 13.58L20.42 12.3M12 19.94V22H14.06L20.12 15.93L18.07 13.88L12 19.94M14 15C14 13.34 12.66 12 11 12S8 13.34 8 15 9.34 18 11 18C11.04 18 11.08 18 11.13 18L14 15.13C14 15.09 14 15.05 14 15"
+                                                  Fill="Black" />
+                                        </Canvas>
+                                    </Viewbox>
+                                </Button>
 
                                 <!--読み込むボタン-->
-                                <Button Grid.Column="6" Content="開く" WindowChrome.IsHitTestVisibleInChrome="True"
-                                        Command="{Binding OpenCommand}"/>
+                                <Button Grid.Column="6" WindowChrome.IsHitTestVisibleInChrome="True"
+                                        Command="{Binding OpenCommand}" Margin="2">
+                                    <Viewbox Width="24" Height="24">
+                                        <Canvas Width="24" Height="24">
+                                            <Path Data="M6.1,10L4,18V8H21A2,2 0 0,0 19,6H12L10,4H4A2,2 0 0,0 2,6V18A2,2 0 0,0 4,20H19C19.9,20 20.7,19.4 20.9,18.5L23.2,10H6.1M19,18H6L7.6,12H20.6L19,18Z"
+                                                  Fill="Black" />
+                                        </Canvas>
+                                    </Viewbox>
+                                </Button>
 
                                 <!--タイトル文字列-->
                                 <TextBlock Grid.Column="8" Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Title}"  

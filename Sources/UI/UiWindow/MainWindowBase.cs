@@ -20,7 +20,12 @@ namespace UiParts.UiWindow
         #region Properties ------------------------------------------------------------------------------------
 
         /// <summary>
-        /// Homeに異動するコマンド
+        /// サイドメニューを開くコマンド
+        /// </summary>
+        public ReactiveCommand OpenSideMenuCommand { get; } = new();
+
+        /// <summary>
+        /// Homeに移動するコマンド
         /// </summary>
         public ReactiveCommand MoveHomeCommand { get; } = new();
 
