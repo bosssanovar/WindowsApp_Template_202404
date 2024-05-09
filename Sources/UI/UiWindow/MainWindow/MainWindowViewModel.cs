@@ -3,6 +3,7 @@ using Reactive.Bindings.Extensions;
 
 using System.Windows;
 
+using UiParts.UiWindow.AboutWindow;
 using UiParts.UiWindow.StartWindow;
 using UiParts.UserControls;
 using UiParts.UserControls.AaaAndBbbPage;
@@ -150,6 +151,14 @@ namespace UiParts.UiWindow.MainWindow
                             MessageBoxImage.Error);
                         break;
                 }
+            })
+                .AddTo(_compositeDisposable);
+
+            AboutCommand.Subscribe(() =>
+            {
+                var about = GlobalServiceProvider.GetRequiredService<AboutWindowView>();
+                about.Owner = this;
+                about.ShowDialog();
             })
                 .AddTo(_compositeDisposable);
 

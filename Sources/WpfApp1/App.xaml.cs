@@ -9,6 +9,7 @@ using Repository;
 using System.Windows;
 
 using UiParts;
+using UiParts.UiWindow.AboutWindow;
 using UiParts.UiWindow.MainWindow;
 using UiParts.UiWindow.StartWindow;
 using UiParts.UserControls.AaaAndBbbPage;
@@ -55,6 +56,8 @@ namespace WpfApp1
             services.AddTransient<MainWindowView>();
             services.AddTransient<StartWindowModel>();
             services.AddTransient<StartWindowView>();
+            services.AddTransient<AboutWindowModel>();
+            services.AddTransient<AboutWindowView>();
 
             services.AddTransient<AaaPageModel>();
             services.AddTransient<AaaPageView>();

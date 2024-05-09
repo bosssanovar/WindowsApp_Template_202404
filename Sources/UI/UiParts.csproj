@@ -42,6 +42,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="UiWindow\AboutWindow\AboutWindowView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UserControls\BbbPage\BbbPageView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -1,13 +1,9 @@
-﻿using Reactive.Bindings;
-
-using System.Windows;
-
-namespace UiParts.UiWindow
+﻿namespace UiParts.UiWindow.AboutWindow
 {
     /// <summary>
-    /// MainWindowのベースクラス
+    /// Home画面のModel
     /// </summary>
-    public abstract class MainWindowBase : WindowBase
+    public class AboutWindowModel : WindowModelBase
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -19,36 +15,6 @@ namespace UiParts.UiWindow
 
         #region Properties ------------------------------------------------------------------------------------
 
-        /// <summary>
-        /// サイドメニューを開くコマンド
-        /// </summary>
-        public ReactiveCommand OpenSideMenuCommand { get; } = new();
-
-        /// <summary>
-        /// Homeに移動するコマンド
-        /// </summary>
-        public ReactiveCommand MoveHomeCommand { get; } = new();
-
-        /// <summary>
-        /// 設定値を初期化するコマンド
-        /// </summary>
-        public ReactiveCommand InitializeCommand { get; } = new();
-
-        /// <summary>
-        /// 設定をファイルに保存するコマンド
-        /// </summary>
-        public ReactiveCommand SaveCommand { get; } = new();
-
-        /// <summary>
-        /// 設定をファイルから読み込むコマンド
-        /// </summary>
-        public ReactiveCommand OpenCommand { get; } = new();
-
-        /// <summary>
-        /// About画面を開くコマンド
-        /// </summary>
-        public ReactiveCommand AboutCommand { get; } = new();
-
         #endregion --------------------------------------------------------------------------------------------
 
         #region Events ----------------------------------------------------------------------------------------
@@ -56,22 +22,6 @@ namespace UiParts.UiWindow
         #endregion --------------------------------------------------------------------------------------------
 
         #region Constructor -----------------------------------------------------------------------------------
-
-        static MainWindowBase()
-        {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(MainWindowBase), new FrameworkPropertyMetadata(typeof(MainWindowBase)));
-        }
-
-        /// <summary>
-        /// コンストラクタ
-        /// </summary>
-        /// <param name="model">モデル</param>
-#pragma warning disable IDE0290 // プライマリ コンストラクターの使用
-        public MainWindowBase(WindowModelBase model)
-#pragma warning restore IDE0290 // プライマリ コンストラクターの使用
-            : base(model)
-        {
-        }
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -95,7 +45,7 @@ namespace UiParts.UiWindow
 
         #endregion --------------------------------------------------------------------------------------------
 
-        #region Inner Class/Enum/etc. -------------------------------------------------------------------------
+        #region Inner Class/Enum ------------------------------------------------------------------------------
 
         #endregion --------------------------------------------------------------------------------------------
     }

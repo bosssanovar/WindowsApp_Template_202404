@@ -2,12 +2,14 @@
 
 using System.Windows;
 
-namespace UiParts.UiWindow
+using UiParts.UiWindow.MainWindow;
+
+namespace UiParts.UiWindow.AboutWindow
 {
     /// <summary>
-    /// MainWindowのベースクラス
+    /// AboutWindowの疑似ViewModelクラス
     /// </summary>
-    public abstract class MainWindowBase : WindowBase
+    public partial class AboutWindowView
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -15,39 +17,28 @@ namespace UiParts.UiWindow
 
         #region Fields ----------------------------------------------------------------------------------------
 
+#pragma warning disable IDE0052 // 読み取られていないプライベート メンバーを削除
+        private AboutWindowModel? _model;
+#pragma warning restore IDE0052 // 読み取られていないプライベート メンバーを削除
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Properties ------------------------------------------------------------------------------------
 
         /// <summary>
-        /// サイドメニューを開くコマンド
+        /// 新規作成コマンド
         /// </summary>
-        public ReactiveCommand OpenSideMenuCommand { get; } = new();
+        public ReactiveCommand NewCommand { get; } = new();
 
         /// <summary>
-        /// Homeに移動するコマンド
-        /// </summary>
-        public ReactiveCommand MoveHomeCommand { get; } = new();
-
-        /// <summary>
-        /// 設定値を初期化するコマンド
-        /// </summary>
-        public ReactiveCommand InitializeCommand { get; } = new();
-
-        /// <summary>
-        /// 設定をファイルに保存するコマンド
-        /// </summary>
-        public ReactiveCommand SaveCommand { get; } = new();
-
-        /// <summary>
-        /// 設定をファイルから読み込むコマンド
+        /// ファイル開くコマンド
         /// </summary>
         public ReactiveCommand OpenCommand { get; } = new();
 
         /// <summary>
-        /// About画面を開くコマンド
+        /// ダウンロードコマンド
         /// </summary>
-        public ReactiveCommand AboutCommand { get; } = new();
+        public ReactiveCommand DownloadCommand { get; } = new();
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -57,20 +48,18 @@ namespace UiParts.UiWindow
 
         #region Constructor -----------------------------------------------------------------------------------
 
-        static MainWindowBase()
+        private void AboutWindowViewModel(AboutWindowModel model)
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(MainWindowBase), new FrameworkPropertyMetadata(typeof(MainWindowBase)));
-        }
+            _model = model;
 
-        /// <summary>
-        /// コンストラクタ
-        /// </summary>
-        /// <param name="model">モデル</param>
-#pragma warning disable IDE0290 // プライマリ コンストラクターの使用
-        public MainWindowBase(WindowModelBase model)
-#pragma warning restore IDE0290 // プライマリ コンストラクターの使用
-            : base(model)
-        {
+            NewCommand.Subscribe(() =>
+            {
+                var mainWindow = GlobalServiceProvider.GetRequiredService<MainWindowView>();
+                Application.Current.MainWindow = mainWindow;
+                mainWindow.Show();
+
+                this.Close();
+            });
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -92,10 +81,6 @@ namespace UiParts.UiWindow
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - override ----------------------------------------------------------------------------
-
-        #endregion --------------------------------------------------------------------------------------------
-
-        #region Inner Class/Enum/etc. -------------------------------------------------------------------------
 
         #endregion --------------------------------------------------------------------------------------------
     }
