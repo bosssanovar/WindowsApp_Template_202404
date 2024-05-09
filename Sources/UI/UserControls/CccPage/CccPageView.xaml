@@ -35,7 +35,8 @@
                   VirtualizingPanel.ScrollUnit="Pixel" MaxWidth="2000" MaxHeight="300"
                   HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
                   RowBackground="Transparent" Background="Transparent"
-                  d:ItemsSource="{d:SampleData ItemCount=2}">
+                  d:ItemsSource="{d:SampleData ItemCount=2}"
+                  behavior:TiltScrollBehavior.Enable="True">
 
         </DataGrid>
 
@@ -131,7 +132,8 @@
                   VirtualizingPanel.ScrollUnit="Pixel" MaxWidth="2000" MaxHeight="1200"
                   HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
                   RowBackground="Transparent" Background="Transparent"
-                  PreviewMouseWheel="Grid_PreviewMouseWheel">
+                  PreviewMouseWheel="Grid_PreviewMouseWheel"
+                  behavior:TiltScrollBehavior.Enable="True">
             <DataGrid.InputBindings>
                 <KeyBinding Gesture="Ctrl+A" Command="ApplicationCommands.NotACommand"/>
             </DataGrid.InputBindings>
