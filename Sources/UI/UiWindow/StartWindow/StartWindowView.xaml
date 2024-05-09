@@ -13,9 +13,13 @@
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
             <Button Padding="15,3" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center"
-                    Content="簡単新規作成" Command="{Binding EasyStartCommand}"/>
+                    Content="新規作成：壁" Command="{Binding NewCommand}"/>
             <Button Padding="15,3" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center"
-                    Content="新規作成" Command="{Binding StartCommand}"/>
+                    Content="新規作成：ラック" Command="{Binding NewCommand}"/>
+            <Button Padding="15,3" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Content="ファイルを開く" Command="{Binding OpenCommand}"/>
+            <Button Padding="15,3" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Content="ダウンロード" Command="{Binding DownloadCommand}"/>
         </StackPanel>
     </Grid>
 </uiwindow:WindowBase>

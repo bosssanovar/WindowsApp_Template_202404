@@ -28,12 +28,17 @@ namespace UiParts.UiWindow.StartWindow
         /// <summary>
         /// 新規作成コマンド
         /// </summary>
-        public ReactiveCommand StartCommand { get; } = new();
+        public ReactiveCommand NewCommand { get; } = new();
 
         /// <summary>
-        /// 簡単新規作成コマンド
+        /// ファイル開くコマンド
         /// </summary>
-        public ReactiveCommand EasyStartCommand { get; } = new();
+        public ReactiveCommand OpenCommand { get; } = new();
+
+        /// <summary>
+        /// ダウンロードコマンド
+        /// </summary>
+        public ReactiveCommand DownloadCommand { get; } = new();
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -47,7 +52,7 @@ namespace UiParts.UiWindow.StartWindow
         {
             _model = model;
 
-            StartCommand.Subscribe(() =>
+            NewCommand.Subscribe(() =>
             {
                 var mainWindow = GlobalServiceProvider.GetRequiredService<MainWindowView>();
                 Application.Current.MainWindow = mainWindow;
