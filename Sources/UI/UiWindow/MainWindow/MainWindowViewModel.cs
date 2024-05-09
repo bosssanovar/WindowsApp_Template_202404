@@ -40,26 +40,6 @@ namespace UiParts.UiWindow.MainWindow
         public ReactivePropertySlim<PageViewBase?> ScrollablePage { get; } = new();
 
         /// <summary>
-        /// Homeに異動するコマンド
-        /// </summary>
-        public ReactiveCommand MoveHomeCommand { get; } = new();
-
-        /// <summary>
-        /// 設定値を初期化するコマンド
-        /// </summary>
-        public ReactiveCommand InitializeCommand { get; } = new();
-
-        /// <summary>
-        /// 設定をファイルに保存するコマンド
-        /// </summary>
-        public ReactiveCommand SaveCommand { get; } = new();
-
-        /// <summary>
-        /// 設定をファイルから読み込むコマンド
-        /// </summary>
-        public ReactiveCommand OpenCommand { get; } = new();
-
-        /// <summary>
         /// Aaaページに遷移するコマンド
         /// </summary>
         public ReactiveCommand PageAaaCommand { get; } = new();

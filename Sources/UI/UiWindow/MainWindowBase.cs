@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using Reactive.Bindings;
+
+using System.Windows;
 
 namespace UiParts.UiWindow
 {
@@ -16,6 +18,26 @@ namespace UiParts.UiWindow
         #endregion --------------------------------------------------------------------------------------------
 
         #region Properties ------------------------------------------------------------------------------------
+
+        /// <summary>
+        /// Homeに異動するコマンド
+        /// </summary>
+        public ReactiveCommand MoveHomeCommand { get; } = new();
+
+        /// <summary>
+        /// 設定値を初期化するコマンド
+        /// </summary>
+        public ReactiveCommand InitializeCommand { get; } = new();
+
+        /// <summary>
+        /// 設定をファイルに保存するコマンド
+        /// </summary>
+        public ReactiveCommand SaveCommand { get; } = new();
+
+        /// <summary>
+        /// 設定をファイルから読み込むコマンド
+        /// </summary>
+        public ReactiveCommand OpenCommand { get; } = new();
 
         #endregion --------------------------------------------------------------------------------------------
 

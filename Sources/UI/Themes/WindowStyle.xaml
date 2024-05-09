@@ -167,6 +167,11 @@
                                     <ColumnDefinition Width="3"/>
                                     <ColumnDefinition Width="30"/>
                                     <ColumnDefinition Width="3"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="3"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="3"/>
                                     <ColumnDefinition Width="46"/>
@@ -180,16 +185,32 @@
                                        Source="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Icon}"/>-->
                                 <Ellipse Grid.Column="1" Fill="SkyBlue" Margin="3"/>
 
+                                <!--ホームボタン-->
+                                <Button Grid.Column="3" Content="ホーム" WindowChrome.IsHitTestVisibleInChrome="True"
+                                        Command="{Binding MoveHomeCommand}"/>
+
+                                <!--初期化ボタン-->
+                                <Button Grid.Column="4" Content="初期化" WindowChrome.IsHitTestVisibleInChrome="True"
+                                        Command="{Binding InitializeCommand}"/>
+
+                                <!--保存ボタン-->
+                                <Button Grid.Column="5" Content="保存" WindowChrome.IsHitTestVisibleInChrome="True"
+                                        Command="{Binding SaveCommand}"/>
+
+                                <!--読み込むボタン-->
+                                <Button Grid.Column="6" Content="開く" WindowChrome.IsHitTestVisibleInChrome="True"
+                                        Command="{Binding OpenCommand}"/>
+
                                 <!--タイトル文字列-->
-                                <TextBlock Grid.Column="3" Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Title}"  
+                                <TextBlock Grid.Column="8" Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Title}"  
                                            Foreground="White" VerticalAlignment="Center" FontSize="15" TextTrimming="CharacterEllipsis"/>
 
                                 <!--キャプションボタン-->
-                                <Button Grid.Column="5" Content="0" WindowChrome.IsHitTestVisibleInChrome="True"
+                                <Button Grid.Column="10" Content="0" WindowChrome.IsHitTestVisibleInChrome="True"
                                         Command="{Binding WindowMinimumCommand}" Style="{StaticResource SystemMaxMiniButton}"/>
-                                <Button Grid.Column="6" Content="{Binding ButtonStyle.Value}" WindowChrome.IsHitTestVisibleInChrome="True"
+                                <Button Grid.Column="11" Content="{Binding ButtonStyle.Value}" WindowChrome.IsHitTestVisibleInChrome="True"
                                         Command="{Binding WindowSizeCommand}" Style="{StaticResource SystemMaxMiniButton}"/>
-                                <Button Grid.Column="7" Content="r" WindowChrome.IsHitTestVisibleInChrome="True"
+                                <Button Grid.Column="12" Content="r" WindowChrome.IsHitTestVisibleInChrome="True"
                                         Command="{Binding WindowCloseCommand}" Style="{StaticResource SystemCloseButton}"/>
                             </Grid>
 
