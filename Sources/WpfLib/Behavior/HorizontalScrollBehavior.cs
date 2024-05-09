@@ -10,9 +10,10 @@ using System.Windows.Media;
 namespace WpfLib.Behavior
 {
     /// <summary>
-    /// DataGridをチルトスクロールするビヘイビア
+    /// DataGridを水平スクロールするビヘイビア。
+    /// タッチパッドの水平スワイプ、Shiftキー押下でのマウスホイールで動作。
     /// </summary>
-    public class TiltScrollBehavior : Behavior<DataGrid>
+    public class HorizontalScrollBehavior : Behavior<DataGrid>
     {
         /// <summary>
         /// 機能有効/無効プロパティ
@@ -21,7 +22,7 @@ namespace WpfLib.Behavior
                  DependencyProperty.RegisterAttached(
                      "Enable",
                      typeof(bool),
-                     typeof(TiltScrollBehavior),
+                     typeof(HorizontalScrollBehavior),
                      new FrameworkPropertyMetadata(false, OnEnableChanged));
 
         /// <summary>
@@ -61,6 +62,8 @@ namespace WpfLib.Behavior
                 dataGrid.Loaded += DataGrid_Loaded;
                 dataGrid.Unloaded -= DataGrid_Unloaded;
                 dataGrid.Unloaded += DataGrid_Unloaded;
+
+                dataGrid.PreviewMouseWheel += DataGrid_MouseWheel;
             }
             else
             {
@@ -68,6 +71,48 @@ namespace WpfLib.Behavior
                 dataGrid.Unloaded -= DataGrid_Unloaded;
 
                 ChangeHook(dataGrid, false);
+
+                dataGrid.PreviewMouseWheel -= DataGrid_MouseWheel;
+            }
+        }
+
+        private static void DataGrid_MouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            if (IsShiftKeyPressed)
+            {
+                DataGrid grid = (DataGrid)sender;
+
+                if (grid.Items.Count > 0)
+                {
+                    //==== ScrollViewerオブジェクト取得 ====//
+                    var child = VisualTreeHelper.GetChild(grid, 0) as Decorator;
+                    if (child != null)
+                    {
+                        var scroll = child.Child as ScrollViewer;
+                        if (scroll != null)
+                        {
+                            if (e.Delta > 0)
+                            {
+                                scroll.LineLeft();
+                            }
+                            else
+                            {
+                                scroll.LineRight();
+                            }
+
+                            e.Handled = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        private static bool IsShiftKeyPressed
+        {
+            get
+            {
+                return (Keyboard.GetKeyStates(Key.LeftShift) & KeyStates.Down) == KeyStates.Down ||
+                     (Keyboard.GetKeyStates(Key.RightShift) & KeyStates.Down) == KeyStates.Down;
             }
         }
 
