@@ -21,4 +21,8 @@ StyleCop.json
 ## regionでのソース整理
 
 項目テンプレート
-CodeSnippets
+CodeSnippets  
+
+## 設計資料
+
+[設計資料こちら](Documents/Design/DesignDocument.md)
