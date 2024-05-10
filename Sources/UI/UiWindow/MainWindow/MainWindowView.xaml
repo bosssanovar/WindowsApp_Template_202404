@@ -15,31 +15,15 @@
     TextElement.Foreground="White">
     <Grid>
         <DockPanel>
-            <Grid DockPanel.Dock="Left" Background="#AAAAAA">
-                <StackPanel Orientation="Vertical" VerticalAlignment="Top">
-                    <StackPanel.Resources>
-                        <Style TargetType="{x:Type RadioButton}" BasedOn="{StaticResource {x:Type ToggleButton} }">
-                            <Setter Property="Margin" Value="0"/>
-                            <Setter Property="Padding" Value="15, 3"/>
-                            <Style.Triggers>
-                                <Trigger Property="IsChecked" Value="{x:Null}">
-                                    <Setter Property="Background" Value="Transparent" />
-                                </Trigger>
-                                <Trigger Property="IsChecked" Value="False">
-                                    <Setter Property="Background" Value="Transparent" />
-                                </Trigger>
-                                <Trigger Property="IsChecked" Value="True">
-                                    <Setter Property="Background" Value="Red"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </StackPanel.Resources>
-
-                    <RadioButton Content="AAA" IsChecked="True" Command="{Binding PageAaaCommand}"/>
-                    <RadioButton Content="BBB" Command="{Binding PageBbbCommand}"/>
-                    <RadioButton Content="AAA and BBB" Command="{Binding PageAaaAndBbbCommand}"/>
-                    <RadioButton Content="CCC" Command="{Binding PageCccCommand}"/>
-                </StackPanel>
+            <Grid DockPanel.Dock="Left" Background="#303030">
+                <Expander Template="{StaticResource RevealExpanderTemp}" ExpandDirection="Right" IsExpanded="True">
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Top" Width="200">
+                        <RadioButton Content="AAA" IsChecked="True" Command="{Binding PageAaaCommand}"/>
+                        <RadioButton Content="BBB" Command="{Binding PageBbbCommand}"/>
+                        <RadioButton Content="AAA and BBB" Command="{Binding PageAaaAndBbbCommand}"/>
+                        <RadioButton Content="CCC" Command="{Binding PageCccCommand}"/>
+                    </StackPanel>
+                </Expander>
             </Grid>
 
             <Grid DockPanel.Dock="Bottom">

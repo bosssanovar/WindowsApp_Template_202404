@@ -7,6 +7,8 @@
         <ResourceDictionary Source="/UiParts;component/Themes/TextBoxStyle.xaml"/>
         <ResourceDictionary Source="/UiParts;component/Themes/WindowStyle.xaml"/>
         <ResourceDictionary Source="/UiParts;component/Themes/DataGridStyle.xaml"/>
+        <ResourceDictionary Source="/UiParts;component/Themes/RadioButton.xaml"/>
+        <ResourceDictionary Source="/UiParts;component/Themes/ExpanderStyle.xaml"/>
     </ResourceDictionary.MergedDictionaries>
     
 </ResourceDictionary>
