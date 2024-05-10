@@ -9,6 +9,7 @@
         <ResourceDictionary Source="/UiParts;component/Themes/DataGridStyle.xaml"/>
         <ResourceDictionary Source="/UiParts;component/Themes/RadioButton.xaml"/>
         <ResourceDictionary Source="/UiParts;component/Themes/ExpanderStyle.xaml"/>
+        <ResourceDictionary Source="/UiParts;component/Themes/GroupBoxStyle.xaml"/>
     </ResourceDictionary.MergedDictionaries>
     
 </ResourceDictionary>
