@@ -15,8 +15,12 @@ namespace UiParts.UserControls.CccPage
     /// </summary>
     public partial class CccPageView : PageViewBase
     {
+#pragma warning disable IDE0052 // 読み取られていないプライベート メンバーを削除
         private ScrollSynchronizer? _horizontalScrollSynchronizer;
+#pragma warning restore IDE0052 // 読み取られていないプライベート メンバーを削除
+#pragma warning disable IDE0052 // 読み取られていないプライベート メンバーを削除
         private ScrollSynchronizer? _verticalScrollSynchronizer;
+#pragma warning restore IDE0052 // 読み取られていないプライベート メンバーを削除
 
         /// <summary>
         /// コンストラクタ

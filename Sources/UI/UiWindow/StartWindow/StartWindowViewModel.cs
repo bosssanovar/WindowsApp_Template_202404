@@ -17,7 +17,9 @@ namespace UiParts.UiWindow.StartWindow
 
         #region Fields ----------------------------------------------------------------------------------------
 
+#pragma warning disable IDE0052 // 読み取られていないプライベート メンバーを削除
         private StartWindowModel? _model;
+#pragma warning restore IDE0052 // 読み取られていないプライベート メンバーを削除
 
         #endregion --------------------------------------------------------------------------------------------
 
