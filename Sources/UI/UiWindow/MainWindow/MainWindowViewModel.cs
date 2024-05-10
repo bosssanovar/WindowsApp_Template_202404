@@ -61,6 +61,11 @@ namespace UiParts.UiWindow.MainWindow
         /// </summary>
         public ReactiveCommand PageCccCommand { get; } = new();
 
+        /// <summary>
+        /// Blur On/Off
+        /// </summary>
+        public ReactivePropertySlim<bool> IsBlur { get; } = new(false);
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Events ----------------------------------------------------------------------------------------
@@ -96,13 +101,13 @@ namespace UiParts.UiWindow.MainWindow
                 if (hamburgerMenu.Visibility is Visibility.Collapsed)
                 {
                     hamburgerMenu.Open();
-                    ChangeBlurEffect(true);
+                    IsBlur.Value = true;
                 }
                 else
                 {
                     hamburgerMenu.Close(() =>
                     {
-                        ChangeBlurEffect(false);
+                        IsBlur.Value = false;
                     });
                 }
             });
@@ -198,23 +203,6 @@ namespace UiParts.UiWindow.MainWindow
             {
                 SetScrollablePage<CccPageView>();
             });
-        }
-
-        private void ChangeBlurEffect(bool isOn)
-        {
-            if (!isOn)
-            {
-                basePanel.Effect = null;
-            }
-            else
-            {
-                var effect = new BlurEffect()
-                {
-                    Radius = 8.0,
-                    KernelType = KernelType.Gaussian,
-                };
-                basePanel.Effect = effect;
-            }
         }
 
         private void SetPage<T>()
