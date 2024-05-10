@@ -2,6 +2,7 @@
 using Reactive.Bindings.Extensions;
 
 using System.Windows;
+using System.Windows.Media.Effects;
 
 using UiParts.UiWindow.AboutWindow;
 using UiParts.UiWindow.StartWindow;
@@ -95,10 +96,14 @@ namespace UiParts.UiWindow.MainWindow
                 if (hamburgerMenu.Visibility is Visibility.Collapsed)
                 {
                     hamburgerMenu.Open();
+                    ChangeBlurEffect(true);
                 }
                 else
                 {
-                    hamburgerMenu.Close();
+                    hamburgerMenu.Close(() =>
+                    {
+                        ChangeBlurEffect(false);
+                    });
                 }
             });
 
@@ -193,6 +198,23 @@ namespace UiParts.UiWindow.MainWindow
             {
                 SetScrollablePage<CccPageView>();
             });
+        }
+
+        private void ChangeBlurEffect(bool isOn)
+        {
+            if (!isOn)
+            {
+                basePanel.Effect = null;
+            }
+            else
+            {
+                var effect = new BlurEffect()
+                {
+                    Radius = 8.0,
+                    KernelType = KernelType.Gaussian,
+                };
+                basePanel.Effect = effect;
+            }
         }
 
         private void SetPage<T>()

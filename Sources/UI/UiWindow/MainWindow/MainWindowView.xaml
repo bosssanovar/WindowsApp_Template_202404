@@ -14,7 +14,7 @@
     WindowStartupLocation="CenterScreen"
     TextElement.Foreground="White">
     <Grid>
-        <DockPanel>
+        <DockPanel x:Name="basePanel">
             <Grid DockPanel.Dock="Left" Background="#303030">
                 <Expander Template="{StaticResource RevealExpanderTemp}" ExpandDirection="Right" IsExpanded="True">
                     <StackPanel Orientation="Vertical" VerticalAlignment="Top" Width="200">
