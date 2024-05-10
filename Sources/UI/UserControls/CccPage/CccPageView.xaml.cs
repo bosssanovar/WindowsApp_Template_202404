@@ -1,7 +1,4 @@
-﻿using Reactive.Bindings;
-
-using System.Collections.ObjectModel;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
@@ -10,7 +7,6 @@ using System.Windows.Media;
 using System.Windows.Shapes;
 
 using WpfLib;
-using WpfLib.Behavior;
 
 namespace UiParts.UserControls.CccPage
 {
@@ -19,10 +15,7 @@ namespace UiParts.UserControls.CccPage
     /// </summary>
     public partial class CccPageView : PageViewBase
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0052:読み取られていないプライベート メンバーを削除", Justification = "<保留中>")]
         private ScrollSynchronizer? _horizontalScrollSynchronizer;
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0052:読み取られていないプライベート メンバーを削除", Justification = "<保留中>")]
         private ScrollSynchronizer? _verticalScrollSynchronizer;
 
         /// <summary>

@@ -1,6 +1,4 @@
-﻿using CCCEntity.Entity;
-
-using Reactive.Bindings;
+﻿using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 
 using System.Collections.ObjectModel;

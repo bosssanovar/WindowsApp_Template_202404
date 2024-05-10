@@ -21,9 +21,9 @@ namespace WpfLib.Converter
             double result = 1.0;
             for (int i = 0; i < values.Length; i++)
             {
-                if (values[i] is double)
+                if (values[i] is double v)
                 {
-                    result *= (double)values[i];
+                    result *= v;
                 }
             }
 

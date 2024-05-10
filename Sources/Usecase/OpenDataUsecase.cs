@@ -4,8 +4,6 @@ using Feature.DataFile;
 
 using Repository;
 
-using System.Net.Sockets;
-
 namespace Usecase
 {
     /// <summary>

@@ -128,11 +128,11 @@ namespace WpfLib
             return scroll;
         }
 
-         /// <summary>
-         /// 行列インデックス　クラス
-         /// </summary>
-         /// <param name="rowIndex">行インデックス</param>
-         /// <param name="columnIndex">列インデックス</param>
+        /// <summary>
+        /// 行列インデックス　クラス
+        /// </summary>
+        /// <param name="rowIndex">行インデックス</param>
+        /// <param name="columnIndex">列インデックス</param>
         public class RowColumnIndex(int rowIndex, int columnIndex)
         {
             /// <summary>

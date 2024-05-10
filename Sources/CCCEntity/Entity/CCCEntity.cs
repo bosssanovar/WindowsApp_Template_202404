@@ -1,9 +1,6 @@
 ﻿using CCCEntity.DataPacket;
-using CCCEntity.ValueObject;
 
 using DomainModelCommon;
-
-using System.Collections.ObjectModel;
 
 namespace CCCEntity.Entity
 {
@@ -111,7 +108,7 @@ namespace CCCEntity.Entity
                 throw new ArgumentOutOfRangeException(nameof(packet), "要素数不一致");
             }
 
-            for(int index = 0; index < Details.Count; index++)
+            for (int index = 0; index < Details.Count; index++)
             {
                 Details[index].ImportDataPacket(packet.Details[index]);
             }

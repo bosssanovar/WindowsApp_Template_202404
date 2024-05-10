@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 namespace WpfLib
 {
@@ -62,7 +57,7 @@ namespace WpfLib
         private void ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
             var srcScrollViewer = sender as ScrollViewer;
-            if(srcScrollViewer is null)
+            if (srcScrollViewer is null)
             {
                 return;
             }

@@ -1,10 +1,4 @@
-﻿using Reactive.Bindings;
-
-using System.Windows;
-
-using UiParts.UiWindow.MainWindow;
-
-namespace UiParts.UiWindow.AboutWindow
+﻿namespace UiParts.UiWindow.AboutWindow
 {
     /// <summary>
     /// AboutWindowの疑似ViewModelクラス
@@ -17,28 +11,11 @@ namespace UiParts.UiWindow.AboutWindow
 
         #region Fields ----------------------------------------------------------------------------------------
 
-#pragma warning disable IDE0052 // 読み取られていないプライベート メンバーを削除
         private AboutWindowModel? _model;
-#pragma warning restore IDE0052 // 読み取られていないプライベート メンバーを削除
 
         #endregion --------------------------------------------------------------------------------------------
 
         #region Properties ------------------------------------------------------------------------------------
-
-        /// <summary>
-        /// 新規作成コマンド
-        /// </summary>
-        public ReactiveCommand NewCommand { get; } = new();
-
-        /// <summary>
-        /// ファイル開くコマンド
-        /// </summary>
-        public ReactiveCommand OpenCommand { get; } = new();
-
-        /// <summary>
-        /// ダウンロードコマンド
-        /// </summary>
-        public ReactiveCommand DownloadCommand { get; } = new();
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -51,15 +28,6 @@ namespace UiParts.UiWindow.AboutWindow
         private void AboutWindowViewModel(AboutWindowModel model)
         {
             _model = model;
-
-            NewCommand.Subscribe(() =>
-            {
-                var mainWindow = GlobalServiceProvider.GetRequiredService<MainWindowView>();
-                Application.Current.MainWindow = mainWindow;
-                mainWindow.Show();
-
-                this.Close();
-            });
         }
 
         #endregion --------------------------------------------------------------------------------------------
