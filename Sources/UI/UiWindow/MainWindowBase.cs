@@ -49,6 +49,11 @@ namespace UiParts.UiWindow
         /// </summary>
         public ReactiveCommand AboutCommand { get; } = new();
 
+        /// <summary>
+        /// Helpを開くコマンド
+        /// </summary>
+        public ReactiveCommand HelpCommand { get; } = new();
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Events ----------------------------------------------------------------------------------------
