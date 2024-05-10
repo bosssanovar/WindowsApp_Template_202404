@@ -11,14 +11,8 @@
                     Padding="{TemplateBinding Padding}"
                     >
             <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Rectangle Fill="Transparent"
-                               Grid.ColumnSpan="2"/>
+                <Rectangle Fill="Transparent"/>
                 <Ellipse Name="Circle"
-                         Grid.Column="0"
                          Stroke="DarkGray"
                          Width="20"
                          Height="20"
@@ -26,7 +20,6 @@
                          VerticalAlignment="Center"
                          />
                 <Path x:Name="Arrow"
-                      Grid.Column="0"
                       Data="M 1,1.5 L 4.5,5 8,1.5"
                       Stroke="#FF666666"
                       StrokeThickness="2"
@@ -38,10 +31,6 @@
                         <RotateTransform Angle="90"/>
                     </Path.RenderTransform>
                 </Path>
-                <ContentPresenter x:Name="HeaderContent"
-                                      Grid.Column="1"
-                                      Margin="4,0,0,0"
-                                      ContentSource="Content"/>
             </Grid>
         </Border>
         <ControlTemplate.Triggers>
@@ -99,18 +88,20 @@
     <ControlTemplate x:Key="RevealExpanderTemp" TargetType="{x:Type Expander}">
         <DockPanel>
             <ToggleButton x:Name="ExpanderButton" 
-                              DockPanel.Dock="Left"
-                              Template="{StaticResource AnimatedExpanderButtonTemp}"
-                              Content="{TemplateBinding Header}"
-                              IsChecked="{Binding Path=IsExpanded, RelativeSource={RelativeSource TemplatedParent}}"
-                              OverridesDefaultStyle="True"
-                              Padding="1.5,0">
+                          DockPanel.Dock="Top"
+                          Template="{StaticResource AnimatedExpanderButtonTemp}"
+                          HorizontalAlignment="Left"
+                          Content="{TemplateBinding Header}"
+                          IsChecked="{Binding Path=IsExpanded, RelativeSource={RelativeSource TemplatedParent}}"
+                          OverridesDefaultStyle="True"
+                          Padding="1.5,0">
             </ToggleButton>
-            <ScrollViewer x:Name="ExpanderContentScrollView" DockPanel.Dock="Right"
-                              HorizontalScrollBarVisibility="Hidden"
-                              VerticalScrollBarVisibility="Hidden"
-                              HorizontalContentAlignment="Left"
-                              VerticalContentAlignment="Stretch"
+            <ScrollViewer x:Name="ExpanderContentScrollView" DockPanel.Dock="Bottom"
+                          HorizontalScrollBarVisibility="Hidden"
+                          VerticalScrollBarVisibility="Hidden"
+                          HorizontalAlignment="Left"
+                          HorizontalContentAlignment="Left"
+                          VerticalContentAlignment="Stretch"
                               >
                 <ScrollViewer.Tag>
                     <system:Double>1.0</system:Double>
