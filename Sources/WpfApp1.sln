@@ -15,11 +15,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UserInterface", "UserInterf
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DomainService", "DomainService", "{8D934153-49F6-42DD-8564-415173085797}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AAAEntity", "AAAEntity\AAAEntity.csproj", "{75346CA4-00B6-42E5-8AAA-0D9CEB34AF54}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AaaEntity", "AAAEntity\AaaEntity.csproj", "{75346CA4-00B6-42E5-8AAA-0D9CEB34AF54}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainService", "DomainService\DomainService.csproj", "{01B6A430-3E7B-452E-87C4-DDC3C2FBA7C5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BBBEntity", "BBBEntity\BBBEntity.csproj", "{2D261841-3A48-4D02-A7D7-08CE6880F823}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BbbEntity", "BBBEntity\BbbEntity.csproj", "{2D261841-3A48-4D02-A7D7-08CE6880F823}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{481ADBD8-D0FB-45EC-BB77-5F56802CDB7D}"
 EndProject
@@ -31,7 +31,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UiParts", "UI\UiParts.cspro
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{596C3664-30E9-4BB1-9AE3-273797963A41}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AAAEntity_Test", "AAAEntity_Test\AAAEntity_Test.csproj", "{B19A1CF9-6E9C-4586-BDDB-0F08C5145A72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AaaEntity_Test", "AAAEntity_Test\AaaEntity_Test.csproj", "{B19A1CF9-6E9C-4586-BDDB-0F08C5145A72}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Feature", "Feature\Feature.csproj", "{A73B3483-63BA-4160-A195-BD6E40AE17FA}"
 EndProject
@@ -48,7 +48,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCCEntity", "CCCEntity\CCCEntity.csproj", "{806364FC-8215-4E90-99B5-E6034989745D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CccEntity", "CCCEntity\CccEntity.csproj", "{806364FC-8215-4E90-99B5-E6034989745D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

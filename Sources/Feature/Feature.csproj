@@ -31,8 +31,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AAAEntity\AAAEntity.csproj" />
-    <ProjectReference Include="..\BBBEntity\BBBEntity.csproj" />
+    <ProjectReference Include="..\AAAEntity\AaaEntity.csproj" />
+    <ProjectReference Include="..\BBBEntity\BbbEntity.csproj" />
     <ProjectReference Include="..\DomainService\DomainService.csproj" />
   </ItemGroup>
 
