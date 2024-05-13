@@ -14,13 +14,11 @@ namespace UiParts.UiWindow
         /// <summary>
         /// ぼかし機能ON
         /// </summary>
-        /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
-        Task BlurOnAsync();
+        void BlurOn();
 
         /// <summary>
         /// ぼかし機能OFF
         /// </summary>
-        /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
-        Task BlurOffAsync();
+        void BlurOff();
     }
 }

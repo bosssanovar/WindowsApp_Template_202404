@@ -120,9 +120,9 @@ namespace UiParts.UiWindow.MainWindow
                 Close();
             });
 
-            InitializeCommand.Subscribe(async () =>
+            InitializeCommand.Subscribe(() =>
             {
-                if (await MessageWindow.ShowAsync(
+                if (MessageWindow.Show(
                             this,
                             "初期化を実行しますか？",
                             "確認",
@@ -133,8 +133,6 @@ namespace UiParts.UiWindow.MainWindow
 
                     Page.Value?.Update();
                     ScrollablePage.Value?.Update();
-
-                    await MessageWindow.ShowAsync(this, "初期化が完了しました。", "情報");
                 }
             })
                 .AddTo(_compositeDisposable);

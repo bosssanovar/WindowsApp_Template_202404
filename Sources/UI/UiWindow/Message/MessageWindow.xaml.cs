@@ -163,22 +163,16 @@ namespace UiParts.UiWindow.Message
         /// <param name="message">メッセージ文言</param>
         /// <param name="caption">キャプション文言</param>
         /// <returns>結果</returns>
-        public static async Task<MessageBoxResult> ShowAsync(Window owner, string message, string caption)
+        public static MessageBoxResult Show(Window owner, string message, string caption)
         {
-            IBlur? blur = owner as IBlur;
-            if (blur is not null)
-            {
-                await blur.BlurOnAsync();
-            }
+            var blur = owner as IBlur;
+            blur?.BlurOn();
 
             var messageWindowView = new MessageWindow(message, caption);
             messageWindowView.Owner = owner;
             messageWindowView.ShowDialog();
 
-            if (blur is not null)
-            {
-                await blur.BlurOffAsync();
-            }
+            blur?.BlurOff();
 
             return messageWindowView.Result;
         }
@@ -192,27 +186,21 @@ namespace UiParts.UiWindow.Message
         /// <param name="button">ボタン種別</param>
         /// <param name="image">画像種別</param>
         /// <returns>結果</returns>
-        public static async Task<MessageBoxResult> ShowAsync(
+        public static MessageBoxResult Show(
             Window owner,
             string message,
             string caption,
             MessageBoxButton button,
             MessageBoxImage image)
         {
-            IBlur? blur = owner as IBlur;
-            if (blur is not null)
-            {
-                await blur.BlurOnAsync();
-            }
+            var blur = owner as IBlur;
+            blur?.BlurOn();
 
             var messageWindowView = new MessageWindow(message, caption, button, image);
             messageWindowView.Owner = owner;
             messageWindowView.ShowDialog();
 
-            if (blur is not null)
-            {
-                await blur.BlurOffAsync();
-            }
+            blur?.BlurOff();
 
             return messageWindowView.Result;
         }

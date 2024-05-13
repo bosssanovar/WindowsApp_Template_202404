@@ -23,7 +23,7 @@ namespace UiParts.UiWindow.MainWindow
         }
 
         /// <inheritdoc/>
-        public async Task BlurOffAsync()
+        public void BlurOff()
         {
             var sb = blurBorder.FindResource("CloseAnimation") as Storyboard;
             if (sb is not null)
@@ -34,16 +34,17 @@ namespace UiParts.UiWindow.MainWindow
                     blurBorder.Visibility = Visibility.Collapsed;
                 };
 
-                await sb.BeginAsync();
+                sb.Begin();
             }
             else
             {
+                IsBlur.Value = false;
                 blurBorder.Visibility = Visibility.Collapsed;
             }
         }
 
         /// <inheritdoc/>
-        public async Task BlurOnAsync()
+        public void BlurOn()
         {
             blurBorder.Visibility = Visibility.Visible;
             IsBlur.Value = true;
@@ -51,7 +52,7 @@ namespace UiParts.UiWindow.MainWindow
             var sb = blurBorder.FindResource("OpenAnimation") as Storyboard;
             if (sb is not null)
             {
-                await sb.BeginAsync();
+                sb.Begin();
             }
         }
     }
