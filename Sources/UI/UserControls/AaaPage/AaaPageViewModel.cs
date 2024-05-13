@@ -27,6 +27,16 @@ namespace UiParts.UserControls.AaaPage
         #region Properties ------------------------------------------------------------------------------------
 
         /// <summary>
+        /// XXX設定
+        /// </summary>
+        public ReactivePropertySlim<XXXType> XXXVal { get; private set; } = new(XXXType.Xxx1);
+
+        /// <summary>
+        /// XXX設定の選択肢
+        /// </summary>
+        public List<ComboBoxItem<XXXType>> XXXComboItems { get; private set; } = [];
+
+        /// <summary>
         /// YYY設定
         /// </summary>
         public ReactivePropertySlim<int> YYYVal { get; private set; } = new(0);
@@ -68,6 +78,30 @@ namespace UiParts.UserControls.AaaPage
         private void AaaPageViewModel(AaaPageModel model)
         {
             _model = model;
+
+            XXXVal = _model.AaaEntity.ToReactivePropertySlimAsSynchronized(
+                x => x.Value,
+                x => x.XXX.Value,
+                x =>
+                {
+                    var value = x;
+
+                    var entity = _model.AaaEntity.Value;
+                    entity.XXX = new(value);
+
+                    _model.ForceNotifyAaaEntity();
+
+                    return entity;
+                },
+                mode: ReactivePropertyMode.DistinctUntilChanged)
+                .AddTo(_compositeDisposable);
+
+            XXXComboItems = new List<ComboBoxItem<XXXType>>()
+            {
+                new(XXXType.Xxx1, XXXType.Xxx1.GetDisplayText()),
+                new(XXXType.Xxx2, XXXType.Xxx2.GetDisplayText()),
+                new(XXXType.Xxxxxx3, XXXType.Xxxxxx3.GetDisplayText()),
+            };
 
             YYYVal = _model.AaaEntity.ToReactivePropertySlimAsSynchronized(
                 x => x.Value,

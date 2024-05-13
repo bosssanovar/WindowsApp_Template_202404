@@ -14,6 +14,11 @@ namespace AAAEntity.Entity
         #region Constants -------------------------------------------------------------------------------------
 
         /// <summary>
+        /// XXX設定の初期値
+        /// </summary>
+        public const XXXType XxxInitValue = XXXType.Xxx2;
+
+        /// <summary>
         /// YYY設定の初期値
         /// </summary>
         public const int YyyyInitValue = 100;
@@ -35,6 +40,11 @@ namespace AAAEntity.Entity
         #endregion --------------------------------------------------------------------------------------------
 
         #region Properties ------------------------------------------------------------------------------------
+
+        /// <summary>
+        /// XXX設定
+        /// </summary>
+        public XXXVO XXX { get; set; }
 
         /// <summary>
         /// YYY設定
@@ -64,6 +74,7 @@ namespace AAAEntity.Entity
         /// </summary>
         public AAAEntity()
         {
+            XXX = new(XxxInitValue);
             YYY = new(YyyyInitValue);
             ZZZ = new(ZzzInitValue);
             AAA = new(AaaInitValue);
@@ -145,6 +156,7 @@ namespace AAAEntity.Entity
         /// </summary>
         public void Initialize()
         {
+            XXX = new(XxxInitValue);
             YYY = new(YyyyInitValue);
             ZZZ = new(ZzzInitValue);
             AAA = new(AaaInitValue);
@@ -159,6 +171,7 @@ namespace AAAEntity.Entity
             return new()
             {
                 AAA = AAA.Value,
+                XXX = XXX.Value,
                 YYY = YYY.Value,
                 ZZZ = ZZZ.Value,
             };
@@ -175,6 +188,7 @@ namespace AAAEntity.Entity
             IAAAChangedEvent aaaChangedEvent,
             IYYYChangedEvent yyyChangedEvent)
         {
+            XXX = new(packet.XXX);
             SetYYY(new(packet.YYY), yyyChangedEvent);
             SetZZZ(new(packet.ZZZ), aaaChangedEvent);
             SetAAA(new(packet.AAA), aaaChangedEvent);
