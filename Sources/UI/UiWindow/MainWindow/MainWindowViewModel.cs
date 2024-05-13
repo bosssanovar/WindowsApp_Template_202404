@@ -133,6 +133,8 @@ namespace UiParts.UiWindow.MainWindow
 
                     Page.Value?.Update();
                     ScrollablePage.Value?.Update();
+
+                    MessageWindow.Show(this, "初期化が完了しました。", "情報");
                 }
             })
                 .AddTo(_compositeDisposable);
