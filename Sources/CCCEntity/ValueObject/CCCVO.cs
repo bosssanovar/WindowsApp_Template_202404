@@ -1,12 +1,12 @@
 ﻿using DomainModelCommon;
 
-namespace CCCEntity.ValueObject
+namespace CccEntity.ValueObject
 {
     /// <summary>
     /// CCC設定の値オブジェクト　クラス
     /// </summary>
     /// <param name="Value">設定値</param>
-    public record CCCVO(bool Value) : ValueObjectBase<bool>(Value), IInputLimit<bool>
+    public record CccVO(bool Value) : ValueObjectBase<bool>(Value), IInputLimit<bool>
     {
         #region Constants -------------------------------------------------------------------------------------
 

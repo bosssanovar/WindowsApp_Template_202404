@@ -38,9 +38,9 @@ namespace WpfApp1
         private static void CreateDependencyInjectionProvider()
         {
             var services = new ServiceCollection();
-            services.AddSingleton<IAAARepository, AAARepository>();
-            services.AddSingleton<IBBBRepository, BBBRepository>();
-            services.AddSingleton<ICCCRepository, CCCRepository>();
+            services.AddSingleton<IAaaRepository, AaaRepository>();
+            services.AddSingleton<IBbbRepository, BbbRepository>();
+            services.AddSingleton<ICccRepository, CccRepository>();
 
             services.AddTransient<Feature.DataFile.DataFileAccessor>();
 

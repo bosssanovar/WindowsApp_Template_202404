@@ -1,12 +1,12 @@
 ﻿using DomainModelCommon;
 
-namespace AAAEntity.ValueObject
+namespace AaaEntity.ValueObject
 {
     /// <summary>
     /// AAA設定の値オブジェクトクラス
     /// </summary>
     /// <param name="Value">設定値</param>
-    public record AAAVO(int Value) : ValueObjectBase<int>(Value), IInputLimit<int>
+    public record AaaVO(int Value) : ValueObjectBase<int>(Value), IInputLimit<int>
     {
         #region Constants -------------------------------------------------------------------------------------
 

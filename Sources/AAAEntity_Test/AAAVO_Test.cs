@@ -1,8 +1,8 @@
-﻿using AAAEntity.ValueObject;
+﻿using AaaEntity.ValueObject;
 
-namespace AAAEntity_Test
+namespace AaaEntity_Test
 {
-    public class AAAVO_Test
+    public class AaaVO_Test
     {
         [Theory]
         [InlineData(int.MaxValue)]
@@ -13,22 +13,22 @@ namespace AAAEntity_Test
         {
             Assert.Throws<ArgumentException>(() =>
             {
-                var _ = new AAAVO(value);
+                var _ = new AaaVO(value);
             });
         }
 
         [Theory]
-        [InlineData(int.MaxValue, AAAVO.MaxValue)]
-        [InlineData(AAAVO.MaxValue + 1, AAAVO.MaxValue)]
-        [InlineData(AAAVO.MaxValue, AAAVO.MaxValue)]
-        [InlineData(AAAVO.MaxValue - 1, AAAVO.MaxValue - 1)]
-        [InlineData(AAAVO.MinValue + 1, AAAVO.MinValue + 1)]
-        [InlineData(AAAVO.MinValue, AAAVO.MinValue)]
-        [InlineData(AAAVO.MinValue - 1, AAAVO.MinValue)]
-        [InlineData(int.MinValue, AAAVO.MinValue)]
+        [InlineData(int.MaxValue, AaaVO.MaxValue)]
+        [InlineData(AaaVO.MaxValue + 1, AaaVO.MaxValue)]
+        [InlineData(AaaVO.MaxValue, AaaVO.MaxValue)]
+        [InlineData(AaaVO.MaxValue - 1, AaaVO.MaxValue - 1)]
+        [InlineData(AaaVO.MinValue + 1, AaaVO.MinValue + 1)]
+        [InlineData(AaaVO.MinValue, AaaVO.MinValue)]
+        [InlineData(AaaVO.MinValue - 1, AaaVO.MinValue)]
+        [InlineData(int.MinValue, AaaVO.MinValue)]
         public void 補正(int input, int expect)
         {
-            Assert.Equal(expect, AAAVO.CurrectValue(input));
+            Assert.Equal(expect, AaaVO.CurrectValue(input));
         }
     }
 }

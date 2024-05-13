@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AAAEntity.ValueObject
+namespace AaaEntity.ValueObject
 {
     /// <summary>
     /// XXXの種別
     /// </summary>
-    public enum XXXType
+    public enum XxxType
     {
         /// <summary>
         /// XXX 1
@@ -28,23 +28,23 @@ namespace AAAEntity.ValueObject
     }
 
     /// <summary>
-    /// <see cref="XXXType"/>の拡張機能
+    /// <see cref="XxxType"/>の拡張機能
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1649:File name should match first type name", Justification = "<保留中>")]
-    public static class XXXTypeExtension
+    public static class XxxTypeExtension
     {
         /// <summary>
         /// 表示文字列を取得します。
         /// </summary>
         /// <param name="type">対象値</param>
         /// <returns>表示文字列</returns>
-        public static string GetDisplayText(this XXXType type)
+        public static string GetDisplayText(this XxxType type)
         {
             return type switch
             {
-                XXXType.Xxx1 => "XXX 1",
-                XXXType.Xxx2 => "XXX 2",
-                XXXType.Xxxxxx3 => "XXXXXXX 3",
+                XxxType.Xxx1 => "XXX 1",
+                XxxType.Xxx2 => "XXX 2",
+                XxxType.Xxxxxx3 => "XXXXXXX 3",
                 _ => throw new NotImplementedException("実装が不足しています。"),
             };
         }

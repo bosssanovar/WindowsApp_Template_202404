@@ -1,9 +1,9 @@
-﻿namespace AAAEntity.DomainSreviceInterface
+﻿namespace AaaEntity.DomainSreviceInterface
 {
     /// <summary>
     /// YYYの設定に関連する設定値を補正するインターフェース
     /// </summary>
-    public interface IYYYChangedEvent
+    public interface IYyyChangedEvent
     {
         /// <summary>
         /// 補正します。

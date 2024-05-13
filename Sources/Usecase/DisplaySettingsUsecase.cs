@@ -5,14 +5,14 @@ namespace Usecase
     /// <summary>
     /// 設定値を取得するユースケース
     /// </summary>
-    /// <param name="_aaaRepository"><see cref="IAAARepository"/>インスタンス</param>
-    /// <param name="_bbbRepository"><see cref="IBBBRepository"/>インスタンス</param>
-    /// <param name="_cccRepository"><see cref="ICCCRepository"/>インスタンス</param>
+    /// <param name="_aaaRepository"><see cref="IAaaRepository"/>インスタンス</param>
+    /// <param name="_bbbRepository"><see cref="IBbbRepository"/>インスタンス</param>
+    /// <param name="_cccRepository"><see cref="ICccRepository"/>インスタンス</param>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.NamingRules", "SA1313:Parameter names should begin with lower-case letter", Justification = "<保留中>")]
     public class DisplaySettingsUsecase(
-        IAAARepository _aaaRepository,
-        IBBBRepository _bbbRepository,
-        ICCCRepository _cccRepository)
+        IAaaRepository _aaaRepository,
+        IBbbRepository _bbbRepository,
+        ICccRepository _cccRepository)
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -40,7 +40,7 @@ namespace Usecase
         /// AAA Entityを取得します。
         /// </summary>
         /// <returns>AAA Entity</returns>
-        public AAAEntity.Entity.AAAEntity GetAAAEntity()
+        public AaaEntity.Entity.AaaEntity GetAaaEntity()
         {
             return _aaaRepository.Pull();
         }
@@ -49,7 +49,7 @@ namespace Usecase
         /// BBB Entityを取得します。
         /// </summary>
         /// <returns>BBB Entity</returns>
-        public BBBEntity.Entity.BBBEntity GetBBBEntity()
+        public BbbEntity.Entity.BbbEntity GetBbbEntity()
         {
             return _bbbRepository.Pull();
         }
@@ -58,7 +58,7 @@ namespace Usecase
         /// CCC Entityを取得します。
         /// </summary>
         /// <returns>CCC Entity</returns>
-        public CCCEntity.Entity.CCCEntity GetCCCEntity()
+        public CccEntity.Entity.CccEntity GetCccEntity()
         {
             return _cccRepository.Pull();
         }

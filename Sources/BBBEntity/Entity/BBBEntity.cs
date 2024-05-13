@@ -1,15 +1,15 @@
-﻿using BBBEntity.DataPacket;
-using BBBEntity.DomainSreviceInterface;
-using BBBEntity.ValueObject;
+﻿using BbbEntity.DataPacket;
+using BbbEntity.DomainSreviceInterface;
+using BbbEntity.ValueObject;
 
 using DomainModelCommon;
 
-namespace BBBEntity.Entity
+namespace BbbEntity.Entity
 {
     /// <summary>
     /// BBB Entityクラス
     /// </summary>
-    public class BBBEntity : EntityBase<BBBEntity>
+    public class BbbEntity : EntityBase<BbbEntity>
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -34,12 +34,12 @@ namespace BBBEntity.Entity
         /// <summary>
         /// BBB設定値
         /// </summary>
-        public BBBVO BBB { get; private set; }
+        public BbbVO Bbb { get; private set; }
 
         /// <summary>
         /// BBB2設定値
         /// </summary>
-        public BBB2VO BBB2 { get; private set; }
+        public Bbb2VO Bbb2 { get; private set; }
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -52,10 +52,10 @@ namespace BBBEntity.Entity
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public BBBEntity()
+        public BbbEntity()
         {
-            BBB = new(BbbInitValue);
-            BBB2 = new(Bbb2InitValue);
+            Bbb = new(BbbInitValue);
+            Bbb2 = new(Bbb2InitValue);
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -68,14 +68,14 @@ namespace BBBEntity.Entity
         /// <param name="bbb">BBB設定値</param>
         /// <param name="checker">BBB設定値有効チェッカ</param>
         /// <exception cref="ArgumentOutOfRangeException">有効文字列長範囲外</exception>
-        public void SetBBB(BBBVO bbb, IBBBLehgthChecker checker)
+        public void SetBbb(BbbVO bbb, IBbbLehgthChecker checker)
         {
             if (!checker.IsValid(bbb.Value))
             {
                 throw new ArgumentOutOfRangeException(nameof(bbb), "範囲外");
             }
 
-            BBB = bbb;
+            Bbb = bbb;
         }
 
         /// <summary>
@@ -84,14 +84,14 @@ namespace BBBEntity.Entity
         /// <param name="bbb2">BBB2設定値</param>
         /// <param name="checker">BBB2設定値有効チェッカ</param>
         /// <exception cref="ArgumentOutOfRangeException">有効文字列長範囲外</exception>
-        public void SetBBB2(BBB2VO bbb2, IBBBLehgthChecker checker)
+        public void SetBbb2(Bbb2VO bbb2, IBbbLehgthChecker checker)
         {
             if (!checker.IsValid(bbb2.Value))
             {
                 throw new ArgumentOutOfRangeException(nameof(bbb2), "範囲外");
             }
 
-            BBB2 = bbb2;
+            Bbb2 = bbb2;
         }
 
         /// <summary>
@@ -99,20 +99,20 @@ namespace BBBEntity.Entity
         /// </summary>
         public void Initialize()
         {
-            BBB = new(BbbInitValue);
-            BBB2 = new(Bbb2InitValue);
+            Bbb = new(BbbInitValue);
+            Bbb2 = new(Bbb2InitValue);
         }
 
         /// <summary>
         /// 設定データ群を吐き出します。
         /// </summary>
         /// <returns>設定データ群</returns>
-        public BBBEntityPacket ExportPacketData()
+        public BbbEntityPacket ExportPacketData()
         {
             return new()
             {
-                BBB = BBB.Value,
-                BBB2 = BBB2.Value,
+                Bbb = Bbb.Value,
+                Bbb2 = Bbb2.Value,
             };
         }
 
@@ -121,10 +121,10 @@ namespace BBBEntity.Entity
         /// </summary>
         /// <param name="packet">設定データ群</param>
         /// <param name="checker">BBB文字長チェッカー</param>
-        public void ImportPacketData(BBBEntityPacket packet, IBBBLehgthChecker checker)
+        public void ImportPacketData(BbbEntityPacket packet, IBbbLehgthChecker checker)
         {
-            SetBBB(new(packet.BBB), checker);
-            SetBBB2(new(packet.BBB2), checker);
+            SetBbb(new(packet.Bbb), checker);
+            SetBbb2(new(packet.Bbb2), checker);
         }
 
         #endregion --------------------------------------------------------------------------------------------

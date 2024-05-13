@@ -46,7 +46,7 @@ namespace UiParts.UserControls.CccPage
         /// <summary>
         /// CCC設定
         /// </summary>
-        public ReadOnlyReactiveCollection<CccDetailViewModel> CCCs { get; private set; }
+        public ReadOnlyReactiveCollection<CccDetailViewModel> Cccs { get; private set; }
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -76,7 +76,7 @@ namespace UiParts.UserControls.CccPage
         {
             _model = model;
 
-            Count = _model.AaaEntity.Select(x => x.YYY.Value).ToReadOnlyReactivePropertySlim();
+            Count = _model.AaaEntity.Select(x => x.Yyy.Value).ToReadOnlyReactivePropertySlim();
 
             for (int i = 0; i < Count.Value; i++)
             {
@@ -86,7 +86,7 @@ namespace UiParts.UserControls.CccPage
             ColumnHeaders.Add(new("スピーカー名称", 120.0));
             ColumnHeaders.Add(new("SP", 50.0));
 
-            CCCs =
+            Cccs =
                 _model.Details.ToReadOnlyReactiveCollection(
                     x => new CccDetailViewModel(x),
                     Scheduler.Immediate)
@@ -101,7 +101,7 @@ namespace UiParts.UserControls.CccPage
         public override void Update()
         {
             // バインドを一時切断
-            Binding b = new("CCCs")
+            Binding b = new("Cccs")
             {
                 Source = null,
             };
@@ -110,7 +110,7 @@ namespace UiParts.UserControls.CccPage
             base.Update();
 
             // バインドを再構築
-            b = new("CCCs")
+            b = new("Cccs")
             {
                 Source = this,
             };

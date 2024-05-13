@@ -1,4 +1,4 @@
-﻿using BBBEntity.DomainSreviceInterface;
+﻿using BbbEntity.DomainSreviceInterface;
 
 namespace DomainService
 {
@@ -7,7 +7,7 @@ namespace DomainService
     /// </summary>
     /// <param name="_aaaEntity">AAA Entity</param>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.NamingRules", "SA1313:Parameter names should begin with lower-case letter", Justification = "<保留中>")]
-    public class BBBLehgthChecker(AAAEntity.Entity.AAAEntity _aaaEntity) : IBBBLehgthChecker
+    public class BbbLehgthChecker(AaaEntity.Entity.AaaEntity _aaaEntity) : IBbbLehgthChecker
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -39,7 +39,7 @@ namespace DomainService
                 return true;
             }
 
-            return value.Length <= _aaaEntity.AAA.Value;
+            return value.Length <= _aaaEntity.Aaa.Value;
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace DomainService
         /// <returns>有効長に切り出した文字列</returns>
         public string Substring(string value)
         {
-            return value[.._aaaEntity.AAA.Value];
+            return value[.._aaaEntity.Aaa.Value];
         }
 
         #endregion --------------------------------------------------------------------------------------------

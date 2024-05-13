@@ -27,17 +27,17 @@ namespace UiParts.UserControls.AaaAndBbbPage
         /// <summary>
         /// AAA Entity
         /// </summary>
-        public ReactivePropertySlim<AAAEntity.Entity.AAAEntity> AaaEntity { get; }
+        public ReactivePropertySlim<AaaEntity.Entity.AaaEntity> AaaEntity { get; }
 
         /// <summary>
         /// BBB Entity
         /// </summary>
-        public ReactivePropertySlim<BBBEntity.Entity.BBBEntity> BbbEntity { get; }
+        public ReactivePropertySlim<BbbEntity.Entity.BbbEntity> BbbEntity { get; }
 
         /// <summary>
         /// CCC Entity
         /// </summary>
-        public ReactivePropertySlim<CCCEntity.Entity.CCCEntity> CccEntity { get; }
+        public ReactivePropertySlim<CccEntity.Entity.CccEntity> CccEntity { get; }
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -59,13 +59,13 @@ namespace UiParts.UserControls.AaaAndBbbPage
             _displaySettingsUsecase = displaySettingsUsecase;
             _commitSettingsUsecase = commitSettingsUsecase;
 
-            AaaEntity = new(_displaySettingsUsecase.GetAAAEntity());
+            AaaEntity = new(_displaySettingsUsecase.GetAaaEntity());
             AaaEntity.AddTo(_compositeDisposable);
 
-            BbbEntity = new(_displaySettingsUsecase.GetBBBEntity());
+            BbbEntity = new(_displaySettingsUsecase.GetBbbEntity());
             BbbEntity.AddTo(_compositeDisposable);
 
-            CccEntity = new(_displaySettingsUsecase.GetCCCEntity());
+            CccEntity = new(_displaySettingsUsecase.GetCccEntity());
             CccEntity.AddTo(_compositeDisposable);
         }
 
@@ -110,9 +110,9 @@ namespace UiParts.UserControls.AaaAndBbbPage
         /// </summary>
         public override void UpdateEntities()
         {
-            AaaEntity.Value = _displaySettingsUsecase.GetAAAEntity();
-            BbbEntity.Value = _displaySettingsUsecase.GetBBBEntity();
-            CccEntity.Value = _displaySettingsUsecase.GetCCCEntity();
+            AaaEntity.Value = _displaySettingsUsecase.GetAaaEntity();
+            BbbEntity.Value = _displaySettingsUsecase.GetBbbEntity();
+            CccEntity.Value = _displaySettingsUsecase.GetCccEntity();
         }
 
         /// <summary>
@@ -120,9 +120,9 @@ namespace UiParts.UserControls.AaaAndBbbPage
         /// </summary>
         public override void CommitEntities()
         {
-            _commitSettingsUsecase.CommitAAAEntity(AaaEntity.Value);
-            _commitSettingsUsecase.CommitBBBEntity(BbbEntity.Value);
-            _commitSettingsUsecase.CommitCCCEntity(CccEntity.Value);
+            _commitSettingsUsecase.CommitAaaEntity(AaaEntity.Value);
+            _commitSettingsUsecase.CommitBbbEntity(BbbEntity.Value);
+            _commitSettingsUsecase.CommitCccEntity(CccEntity.Value);
         }
 
         #endregion --------------------------------------------------------------------------------------------

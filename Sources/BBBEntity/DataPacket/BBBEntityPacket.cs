@@ -1,9 +1,9 @@
-﻿namespace BBBEntity.DataPacket
+﻿namespace BbbEntity.DataPacket
 {
     /// <summary>
     /// BBB Entityの設定データ群
     /// </summary>
-    public class BBBEntityPacket
+    public class BbbEntityPacket
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -18,12 +18,12 @@
         /// <summary>
         /// BBB設定
         /// </summary>
-        public string BBB { get; set; } = string.Empty;
+        public string Bbb { get; set; } = string.Empty;
 
         /// <summary>
         /// BBB2設定
         /// </summary>
-        public string BBB2 { get; set; } = string.Empty;
+        public string Bbb2 { get; set; } = string.Empty;
 
         #endregion --------------------------------------------------------------------------------------------
 

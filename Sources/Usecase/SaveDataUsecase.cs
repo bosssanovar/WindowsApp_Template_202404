@@ -9,14 +9,14 @@ namespace Usecase
     /// <summary>
     /// 設定をファイルに保存するユースケース
     /// </summary>
-    /// <param name="_aaaRepository"><see cref="IAAARepository"/>インスタンス</param>
-    /// <param name="_bbbRepository"><see cref="IBBBRepository"/>インスタンス</param>
-    /// <param name="_cccReporitory"><see cref="ICCCRepository"/>インスタンス</param>
+    /// <param name="_aaaRepository"><see cref="IAaaRepository"/>インスタンス</param>
+    /// <param name="_bbbRepository"><see cref="IBbbRepository"/>インスタンス</param>
+    /// <param name="_cccReporitory"><see cref="ICccRepository"/>インスタンス</param>
     /// <param name="_dataFileAccessor"><see cref="DataFileAccessor"/>インスタンス</param>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.NamingRules", "SA1313:Parameter names should begin with lower-case letter", Justification = "<保留中>")]
-    public class SaveDataUsecase(IAAARepository _aaaRepository,
-                                 IBBBRepository _bbbRepository,
-                                 ICCCRepository _cccReporitory,
+    public class SaveDataUsecase(IAaaRepository _aaaRepository,
+                                 IBbbRepository _bbbRepository,
+                                 ICccRepository _cccReporitory,
                                  DataFileAccessor _dataFileAccessor)
     {
         #region Constants -------------------------------------------------------------------------------------
@@ -77,9 +77,9 @@ namespace Usecase
 
             var packet = new DataPacket()
             {
-                AAAEntityPacket = aaaEntityPacket,
-                BBBEntityPacket = bbbEntityPacket,
-                CCCEntityPacket = cccEntityPacket,
+                AaaEntityPacket = aaaEntityPacket,
+                BbbEntityPacket = bbbEntityPacket,
+                CccEntityPacket = cccEntityPacket,
             };
 
             return packet;

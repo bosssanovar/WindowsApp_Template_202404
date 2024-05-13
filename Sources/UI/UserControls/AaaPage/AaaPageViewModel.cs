@@ -1,4 +1,4 @@
-﻿using AAAEntity.ValueObject;
+﻿using AaaEntity.ValueObject;
 
 using DomainService;
 
@@ -30,17 +30,17 @@ namespace UiParts.UserControls.AaaPage
         /// <summary>
         /// WWW設定
         /// </summary>
-        public ReactivePropertySlim<bool> WWWVal { get; private set; } = new(false); // TODO : パスカル形式
+        public ReactivePropertySlim<bool> WwwVal { get; private set; } = new(false); // TODO : パスカル形式
 
         /// <summary>
         /// XXX設定
         /// </summary>
-        public ReactivePropertySlim<XXXType> XXXVal { get; private set; } = new(XXXType.Xxx1);
+        public ReactivePropertySlim<XxxType> XxxVal { get; private set; } = new(XxxType.Xxx1);
 
         /// <summary>
         /// XXX設定の選択肢
         /// </summary>
-        public List<ComboBoxItem<XXXType>> XXXComboItems { get; private set; } = [];
+        public List<ComboBoxItem<XxxType>> XxxComboItems { get; private set; } = [];
 
         /// <summary>
         /// XXX設定の有効無効
@@ -50,17 +50,17 @@ namespace UiParts.UserControls.AaaPage
         /// <summary>
         /// YYY設定
         /// </summary>
-        public ReactivePropertySlim<int> YYYVal { get; private set; } = new(0);
+        public ReactivePropertySlim<int> YyyVal { get; private set; } = new(0);
 
         /// <summary>
         /// ZZZ設定
         /// </summary>
-        public ReactivePropertySlim<int> ZZZVal { get; private set; } = new(0);
+        public ReactivePropertySlim<int> ZzzVal { get; private set; } = new(0);
 
         /// <summary>
         /// AAA設定
         /// </summary>
-        public ReactivePropertySlim<int> AAAVal { get; private set; } = new(0);
+        public ReactivePropertySlim<int> AaaVal { get; private set; } = new(0);
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -90,15 +90,15 @@ namespace UiParts.UserControls.AaaPage
         {
             _model = model;
 
-            WWWVal = _model.AaaEntity.ToReactivePropertySlimAsSynchronized(
+            WwwVal = _model.AaaEntity.ToReactivePropertySlimAsSynchronized(
                 x => x.Value,
-                x => x.WWW.Value,
+                x => x.Www.Value,
                 x =>
                 {
                     var value = x;
 
                     var entity = _model.AaaEntity.Value;
-                    entity.WWW = new(value);
+                    entity.Www = new(value);
 
                     _model.ForceNotifyAaaEntity();
 
@@ -107,15 +107,15 @@ namespace UiParts.UserControls.AaaPage
                 mode: ReactivePropertyMode.DistinctUntilChanged)
                 .AddTo(_compositeDisposable);
 
-            XXXVal = _model.AaaEntity.ToReactivePropertySlimAsSynchronized(
+            XxxVal = _model.AaaEntity.ToReactivePropertySlimAsSynchronized(
                 x => x.Value,
-                x => x.XXX.Value,
+                x => x.Xxx.Value,
                 x =>
                 {
                     var value = x;
 
                     var entity = _model.AaaEntity.Value;
-                    entity.XXX = new(value);
+                    entity.Xxx = new(value);
 
                     _model.ForceNotifyAaaEntity();
 
@@ -124,33 +124,33 @@ namespace UiParts.UserControls.AaaPage
                 mode: ReactivePropertyMode.DistinctUntilChanged)
                 .AddTo(_compositeDisposable);
 
-            XXXComboItems =
+            XxxComboItems =
             [
-                new(XXXType.Xxx1, XXXType.Xxx1.GetDisplayText()),
-                new(XXXType.Xxx2, XXXType.Xxx2.GetDisplayText()),
-                new(XXXType.Xxxxxx3, XXXType.Xxxxxx3.GetDisplayText()),
+                new(XxxType.Xxx1, XxxType.Xxx1.GetDisplayText()),
+                new(XxxType.Xxx2, XxxType.Xxx2.GetDisplayText()),
+                new(XxxType.Xxxxxx3, XxxType.Xxxxxx3.GetDisplayText()),
             ];
 
             XxxEnabled = _model.AaaEntity
-                .Select(x => x.WWW.Value)
+                .Select(x => x.Www.Value)
                 .ToReadOnlyReactivePropertySlim()
                 .AddTo(_compositeDisposable);
 
-            YYYVal = _model.AaaEntity.ToReactivePropertySlimAsSynchronized(
+            YyyVal = _model.AaaEntity.ToReactivePropertySlimAsSynchronized(
                 x => x.Value,
-                x => x.YYY.Value,
+                x => x.Yyy.Value,
                 x =>
                 {
                     int value = x;
-                    if (!YYYVO.IsValid(value))
+                    if (!YyyVO.IsValid(value))
                     {
                         MessageBox.Show("設定可能な数値ではありません。\n補正します。", "警告", MessageBoxButton.OK, MessageBoxImage.Warning);
 
-                        value = YYYVO.CurrectValue(value);
+                        value = YyyVO.CurrectValue(value);
                     }
 
                     var entity = _model.AaaEntity.Value;
-                    entity.SetYYY(new(value), new YYYChangedEvent(_model.AaaEntity.Value, _model.CccEntity.Value));
+                    entity.SetYyy(new(value), new YyyChangedEvent(_model.AaaEntity.Value, _model.CccEntity.Value));
 
                     _model.ForceNotifyAaaEntity();
 
@@ -159,15 +159,15 @@ namespace UiParts.UserControls.AaaPage
                 mode: ReactivePropertyMode.DistinctUntilChanged)
                 .AddTo(_compositeDisposable);
 
-            ZZZVal = _model.AaaEntity.ToReactivePropertySlimAsSynchronized(
+            ZzzVal = _model.AaaEntity.ToReactivePropertySlimAsSynchronized(
                 x => x.Value,
-                x => x.ZZZ.Value,
+                x => x.Zzz.Value,
                 x =>
                 {
                     int value = x;
-                    if (!ZZZVO.IsValid(value))
+                    if (!ZzzVO.IsValid(value))
                     {
-                        var currected = ZZZVO.CurrectValue(value);
+                        var currected = ZzzVO.CurrectValue(value);
                         MessageBox.Show($"設定範囲外のため、補正します。\n{value} → {currected}", "警告", MessageBoxButton.OK, MessageBoxImage.Warning);
 
                         value = currected;
@@ -175,7 +175,7 @@ namespace UiParts.UserControls.AaaPage
 
                     var entity = _model.AaaEntity.Value;
 
-                    if (entity.IsHaveToCorrectAAA(value))
+                    if (entity.IsHaveToCorrectAaa(value))
                     {
                         if (MessageBox.Show(
                             "ZZZ設定の変更によりAAA設定の設定値が補正され、それに関わる項目も補正される可能性があります。\n\nZZZ設定を変更しますか？",
@@ -184,12 +184,12 @@ namespace UiParts.UserControls.AaaPage
                             MessageBoxImage.Question,
                             MessageBoxResult.No) == MessageBoxResult.Yes)
                         {
-                            entity.SetZZZ(new(value), new AAAChangedEvent(_model.AaaEntity.Value, _model.BbbEntity.Value));
+                            entity.SetZzz(new(value), new AaaChangedEvent(_model.AaaEntity.Value, _model.BbbEntity.Value));
                         }
                     }
                     else
                     {
-                        entity.SetZZZ(new(value), new AAAChangedEvent(_model.AaaEntity.Value, _model.BbbEntity.Value));
+                        entity.SetZzz(new(value), new AaaChangedEvent(_model.AaaEntity.Value, _model.BbbEntity.Value));
                     }
 
                     _model.ForceNotifyAaaEntity();
@@ -200,20 +200,20 @@ namespace UiParts.UserControls.AaaPage
                 mode: ReactivePropertyMode.DistinctUntilChanged)
                 .AddTo(_compositeDisposable);
 
-            AAAVal = _model.AaaEntity.ToReactivePropertySlimAsSynchronized(
+            AaaVal = _model.AaaEntity.ToReactivePropertySlimAsSynchronized(
                 x => x.Value,
-                x => x.AAA.Value,
+                x => x.Aaa.Value,
                 x =>
                 {
                     var entity = _model.AaaEntity.Value;
 
-                    if (entity.IsValidAAA(x))
+                    if (entity.IsValidAaa(x))
                     {
                         MessageBox.Show("ZZZ設定を超える値を設定できません。");
                     }
                     else
                     {
-                        entity.SetAAA(new(x), new AAAChangedEvent(_model.AaaEntity.Value, _model.BbbEntity.Value));
+                        entity.SetAaa(new(x), new AaaChangedEvent(_model.AaaEntity.Value, _model.BbbEntity.Value));
                     }
 
                     _model.ForceNotifyAaaEntity();

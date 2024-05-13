@@ -1,14 +1,14 @@
-﻿using AAAEntity.DomainSreviceInterface;
+﻿using AaaEntity.DomainSreviceInterface;
 
 namespace DomainService
 {
     /// <summary>
     /// YYY設定に関連する設定値を補正するクラス
     /// </summary>
-    /// <param name="_aaaEntity"><see cref="AAAEntity.Entity.AAAEntity"/>インスタンス</param>
-    /// <param name="_ccceEntity"><see cref="CCCEntity.Entity.CCCEntity"/>インスタンス</param>
+    /// <param name="_aaaEntity"><see cref="AaaEntity.Entity.AaaEntity"/>インスタンス</param>
+    /// <param name="_ccceEntity"><see cref="CccEntity.Entity.CccEntity"/>インスタンス</param>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.NamingRules", "SA1313:Parameter names should begin with lower-case letter", Justification = "<保留中>")]
-    public class YYYChangedEvent(AAAEntity.Entity.AAAEntity _aaaEntity, CCCEntity.Entity.CCCEntity _ccceEntity) : IYYYChangedEvent
+    public class YyyChangedEvent(AaaEntity.Entity.AaaEntity _aaaEntity, CccEntity.Entity.CccEntity _ccceEntity) : IYyyChangedEvent
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -35,7 +35,7 @@ namespace DomainService
         /// <inheritdoc/>
         public void Execute()
         {
-            _ccceEntity.ChangeCount(_aaaEntity.YYY.Value);
+            _ccceEntity.ChangeCount(_aaaEntity.Yyy.Value);
         }
 
         #endregion --------------------------------------------------------------------------------------------

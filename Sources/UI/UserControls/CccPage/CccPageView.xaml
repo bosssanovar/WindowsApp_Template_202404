@@ -104,7 +104,7 @@
 
         <!--設定グリッド-->
         <DataGrid x:Name="grid" Grid.Row="1" Grid.Column="1" Margin="0, 0, 20, 20" Visibility="Collapsed"
-                  ItemsSource="{Binding CCCs}" RowHeight="28" HeadersVisibility="None" ColumnWidth="28"
+                  ItemsSource="{Binding Cccs}" RowHeight="28" HeadersVisibility="None" ColumnWidth="28"
                   SelectionMode="Extended" SelectionUnit="Cell"
                   HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
                   RowBackground="Transparent" Background="Transparent">

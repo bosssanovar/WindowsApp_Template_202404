@@ -1,12 +1,12 @@
 ﻿using DomainModelCommon;
 
-namespace BBBEntity.ValueObject
+namespace BbbEntity.ValueObject
 {
     /// <summary>
     /// BBB2設定の値オブジェクトクラス
     /// </summary>
     /// <param name="Value">設定値</param>
-    public record BBB2VO(string Value) : ValueObjectBase<string>(Value), IInputLimit<string>
+    public record Bbb2VO(string Value) : ValueObjectBase<string>(Value), IInputLimit<string>
     {
         #region Constants -------------------------------------------------------------------------------------
 

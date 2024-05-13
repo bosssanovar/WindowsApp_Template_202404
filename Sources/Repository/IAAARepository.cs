@@ -3,18 +3,18 @@
     /// <summary>
     /// AAA Entityのリポジトリ　インターフェース
     /// </summary>
-    public interface IAAARepository
+    public interface IAaaRepository
     {
         /// <summary>
         /// Entityを取得します。
         /// </summary>
         /// <returns>AAA Entity</returns>
-        AAAEntity.Entity.AAAEntity Pull();
+        AaaEntity.Entity.AaaEntity Pull();
 
         /// <summary>
         /// Entityを確定します。
         /// </summary>
         /// <param name="aaaEntity">AAA Entity</param>
-        void Commit(AAAEntity.Entity.AAAEntity aaaEntity);
+        void Commit(AaaEntity.Entity.AaaEntity aaaEntity);
     }
 }

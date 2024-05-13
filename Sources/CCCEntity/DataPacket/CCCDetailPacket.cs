@@ -1,11 +1,11 @@
-﻿using CCCEntity.Entity;
+﻿using CccEntity.Entity;
 
-namespace CCCEntity.DataPacket
+namespace CccEntity.DataPacket
 {
     /// <summary>
-    /// <see cref="CCCDetailEntity"/>の設定データ群
+    /// <see cref="CccDetailEntity"/>の設定データ群
     /// </summary>
-    public class CCCDetailPacket
+    public class CccDetailPacket
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -20,7 +20,7 @@ namespace CCCEntity.DataPacket
         /// <summary>
         /// CCC設定
         /// </summary>
-        public List<bool> CCCs { get; set; } = [];
+        public List<bool> Cccs { get; set; } = [];
 
         #endregion --------------------------------------------------------------------------------------------
 

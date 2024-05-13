@@ -5,7 +5,7 @@ namespace InMemoryRepository
     /// <summary>
     /// CCC Entityのin Memory リポジトリ
     /// </summary>
-    public class CCCRepository : ICCCRepository
+    public class CccRepository : ICccRepository
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -13,7 +13,7 @@ namespace InMemoryRepository
 
         #region Fields ----------------------------------------------------------------------------------------
 
-        private CCCEntity.Entity.CCCEntity _cccEntity;
+        private CccEntity.Entity.CccEntity _cccEntity;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -30,9 +30,9 @@ namespace InMemoryRepository
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public CCCRepository()
+        public CccRepository()
         {
-            _cccEntity = new CCCEntity.Entity.CCCEntity();
+            _cccEntity = new CccEntity.Entity.CccEntity();
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -40,13 +40,13 @@ namespace InMemoryRepository
         #region Methods - public ------------------------------------------------------------------------------
 
         /// <inheritdoc/>
-        public void Commit(CCCEntity.Entity.CCCEntity entity)
+        public void Commit(CccEntity.Entity.CccEntity entity)
         {
             _cccEntity = entity.Clone();
         }
 
         /// <inheritdoc/>
-        public CCCEntity.Entity.CCCEntity Pull()
+        public CccEntity.Entity.CccEntity Pull()
         {
             return _cccEntity.Clone();
         }

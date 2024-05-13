@@ -1,8 +1,8 @@
-﻿using AAAEntity.DataPacket;
+﻿using AaaEntity.DataPacket;
 
-using BBBEntity.DataPacket;
+using BbbEntity.DataPacket;
 
-using CCCEntity.DataPacket;
+using CccEntity.DataPacket;
 
 namespace DomainService
 {
@@ -24,17 +24,17 @@ namespace DomainService
         /// <summary>
         /// AAA Entityの設定データ群
         /// </summary>
-        public AAAEntityPacket AAAEntityPacket { get; set; } = new();
+        public AaaEntityPacket AaaEntityPacket { get; set; } = new();
 
         /// <summary>
         /// BBB Entityの設定データ群
         /// </summary>
-        public BBBEntityPacket BBBEntityPacket { get; set; } = new();
+        public BbbEntityPacket BbbEntityPacket { get; set; } = new();
 
         /// <summary>
         /// CCC Entityの設定データ群
         /// </summary>
-        public CCCEntityPacket CCCEntityPacket { get; set; } = new();
+        public CccEntityPacket CccEntityPacket { get; set; } = new();
 
         #endregion --------------------------------------------------------------------------------------------
 

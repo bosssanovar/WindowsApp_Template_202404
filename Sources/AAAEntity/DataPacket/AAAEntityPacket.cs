@@ -1,11 +1,11 @@
-﻿using AAAEntity.ValueObject;
+﻿using AaaEntity.ValueObject;
 
-namespace AAAEntity.DataPacket
+namespace AaaEntity.DataPacket
 {
     /// <summary>
     /// AAA Entityのデータ群
     /// </summary>
-    public class AAAEntityPacket
+    public class AaaEntityPacket
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -20,27 +20,27 @@ namespace AAAEntity.DataPacket
         /// <summary>
         /// AAA設定
         /// </summary>
-        public int AAA { get; set; }
+        public int Aaa { get; set; }
 
         /// <summary>
         /// WWW設置
         /// </summary>
-        public bool WWW { get; set; }// TODO : パスケル形式
+        public bool Www { get; set; }
 
         /// <summary>
         /// XXX設定
         /// </summary>
-        public XXXType XXX { get; set; }
+        public XxxType Xxx { get; set; }
 
         /// <summary>
         /// YYY設定
         /// </summary>
-        public int YYY { get; set; }
+        public int Yyy { get; set; }
 
         /// <summary>
         /// ZZZ設定
         /// </summary>
-        public int ZZZ { get; set; }
+        public int Zzz { get; set; }
 
         #endregion --------------------------------------------------------------------------------------------
 

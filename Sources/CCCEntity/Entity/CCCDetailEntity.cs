@@ -1,21 +1,21 @@
-﻿using CCCEntity.DataPacket;
-using CCCEntity.ValueObject;
+﻿using CccEntity.DataPacket;
+using CccEntity.ValueObject;
 
 using DomainModelCommon;
 
-namespace CCCEntity.Entity
+namespace CccEntity.Entity
 {
     /// <summary>
     /// CCCのDetail Entity
     /// </summary>
-    public class CCCDetailEntity : EntityBase<CCCDetailEntity>
+    public class CccDetailEntity : EntityBase<CccDetailEntity>
     {
         #region Constants -------------------------------------------------------------------------------------
 
         /// <summary>
         /// CCC設定の初期値
         /// </summary>
-        public const bool CCCInitValue = false;
+        public const bool CccInitValue = false;
 
         /// <summary>
         /// Detailの要素数初期値
@@ -33,7 +33,7 @@ namespace CCCEntity.Entity
         /// <summary>
         /// CCC Detail
         /// </summary>
-        public List<CCCVO> CCCs { get; private set; } = [];
+        public List<CccVO> Cccs { get; private set; } = [];
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -46,7 +46,7 @@ namespace CCCEntity.Entity
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public CCCDetailEntity()
+        public CccDetailEntity()
         {
             ChangeCount(DetailCountInitValue);
         }
@@ -61,26 +61,26 @@ namespace CCCEntity.Entity
         /// <param name="count">要素数</param>
         public void ChangeCount(int count)
         {
-            var list = new List<CCCVO>();
+            var list = new List<CccVO>();
             for (int i = 0; i < count; i++)
             {
-                list.Add(new(CCCInitValue));
+                list.Add(new(CccInitValue));
             }
 
-            CCCs = new(list);
+            Cccs = new(list);
         }
 
         /// <summary>
         /// 設定データを吐き出します。
         /// </summary>
         /// <returns>設定データ</returns>
-        public CCCDetailPacket ExportDataPacket()
+        public CccDetailPacket ExportDataPacket()
         {
-            CCCDetailPacket ret = new();
+            CccDetailPacket ret = new();
 
-            foreach (var item in CCCs)
+            foreach (var item in Cccs)
             {
-                ret.CCCs.Add(item.Value);
+                ret.Cccs.Add(item.Value);
             }
 
             return ret;
@@ -90,18 +90,18 @@ namespace CCCEntity.Entity
         /// 設定データを取り込みます。
         /// </summary>
         /// <param name="packet">設定データ</param>
-        public void ImportDataPacket(CCCDetailPacket packet)
+        public void ImportDataPacket(CccDetailPacket packet)
         {
-            if (CCCs.Count != packet.CCCs.Count)
+            if (Cccs.Count != packet.Cccs.Count)
             {
                 throw new ArgumentOutOfRangeException(nameof(packet), "要素数不一致");
             }
 
-            CCCs.Clear();
+            Cccs.Clear();
 
-            foreach (var value in packet.CCCs)
+            foreach (var value in packet.Cccs)
             {
-                CCCs.Add(new(value));
+                Cccs.Add(new(value));
             }
         }
 
@@ -122,17 +122,17 @@ namespace CCCEntity.Entity
         #region Methods - override ----------------------------------------------------------------------------
 
         /// <inheritdoc/>
-        public override CCCDetailEntity Clone()
+        public override CccDetailEntity Clone()
         {
             var ret = base.Clone();
 
-            var list = new List<CCCVO>();
-            for (int i = 0; i < CCCs.Count; i++)
+            var list = new List<CccVO>();
+            for (int i = 0; i < Cccs.Count; i++)
             {
-                list.Add(new(CCCs[i].Value));
+                list.Add(new(Cccs[i].Value));
             }
 
-            ret.CCCs = new(list);
+            ret.Cccs = new(list);
 
             return ret;
         }

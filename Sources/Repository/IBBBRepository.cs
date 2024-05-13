@@ -3,18 +3,18 @@
     /// <summary>
     /// BBBEntityのリポジトリ　インターフェース
     /// </summary>
-    public interface IBBBRepository
+    public interface IBbbRepository
     {
         /// <summary>
         /// BBB Entityを取得します。
         /// </summary>
         /// <returns>BBB Entity</returns>
-        BBBEntity.Entity.BBBEntity Pull();
+        BbbEntity.Entity.BbbEntity Pull();
 
         /// <summary>
         /// BBB Entityを確定します。
         /// </summary>
         /// <param name="bbbEntity">BBBEntity</param>
-        void Commit(BBBEntity.Entity.BBBEntity bbbEntity);
+        void Commit(BbbEntity.Entity.BbbEntity bbbEntity);
     }
 }

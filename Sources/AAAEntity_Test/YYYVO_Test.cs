@@ -1,33 +1,33 @@
-﻿using AAAEntity.ValueObject;
+﻿using AaaEntity.ValueObject;
 
-namespace AAAEntity_Test
+namespace AaaEntity_Test
 {
-    public class YYYVO_Test
+    public class YyyVO_Test
     {
         [Theory]
-        [InlineData(int.MaxValue, YYYVO.MaxValue)]
-        [InlineData(YYYVO.MaxValue + YYYVO.Step + 1, YYYVO.MaxValue)]
-        [InlineData(YYYVO.MaxValue + YYYVO.Step, YYYVO.MaxValue)]
-        [InlineData(YYYVO.MaxValue + YYYVO.Step - 1, YYYVO.MaxValue)]
-        [InlineData(YYYVO.MaxValue + 1, YYYVO.MaxValue)]
-        [InlineData(YYYVO.MaxValue, YYYVO.MaxValue)]
-        [InlineData(YYYVO.MaxValue - 1, YYYVO.MaxValue - YYYVO.Step)]
-        [InlineData(YYYVO.MaxValue - YYYVO.Step + 1, YYYVO.MaxValue - YYYVO.Step)]
-        [InlineData(YYYVO.MaxValue - YYYVO.Step, YYYVO.MaxValue - YYYVO.Step)]
-        [InlineData(YYYVO.MaxValue - YYYVO.Step - 1, YYYVO.MaxValue - (YYYVO.Step * 2))]
-        [InlineData(YYYVO.MinValue + YYYVO.Step + 1, YYYVO.MinValue + YYYVO.Step)]
-        [InlineData(YYYVO.MinValue + YYYVO.Step, YYYVO.MinValue + YYYVO.Step)]
-        [InlineData(YYYVO.MinValue + YYYVO.Step - 1, YYYVO.MinValue)]
-        [InlineData(YYYVO.MinValue + 1, YYYVO.MinValue)]
-        [InlineData(YYYVO.MinValue, YYYVO.MinValue)]
-        [InlineData(YYYVO.MinValue - 1, YYYVO.MinValue)]
-        [InlineData(YYYVO.MinValue - YYYVO.Step + 1, YYYVO.MinValue)]
-        [InlineData(YYYVO.MinValue - YYYVO.Step, YYYVO.MinValue)]
-        [InlineData(YYYVO.MinValue - YYYVO.Step - 1, YYYVO.MinValue)]
-        [InlineData(int.MinValue, YYYVO.MinValue)]
+        [InlineData(int.MaxValue, YyyVO.MaxValue)]
+        [InlineData(YyyVO.MaxValue + YyyVO.Step + 1, YyyVO.MaxValue)]
+        [InlineData(YyyVO.MaxValue + YyyVO.Step, YyyVO.MaxValue)]
+        [InlineData(YyyVO.MaxValue + YyyVO.Step - 1, YyyVO.MaxValue)]
+        [InlineData(YyyVO.MaxValue + 1, YyyVO.MaxValue)]
+        [InlineData(YyyVO.MaxValue, YyyVO.MaxValue)]
+        [InlineData(YyyVO.MaxValue - 1, YyyVO.MaxValue - YyyVO.Step)]
+        [InlineData(YyyVO.MaxValue - YyyVO.Step + 1, YyyVO.MaxValue - YyyVO.Step)]
+        [InlineData(YyyVO.MaxValue - YyyVO.Step, YyyVO.MaxValue - YyyVO.Step)]
+        [InlineData(YyyVO.MaxValue - YyyVO.Step - 1, YyyVO.MaxValue - (YyyVO.Step * 2))]
+        [InlineData(YyyVO.MinValue + YyyVO.Step + 1, YyyVO.MinValue + YyyVO.Step)]
+        [InlineData(YyyVO.MinValue + YyyVO.Step, YyyVO.MinValue + YyyVO.Step)]
+        [InlineData(YyyVO.MinValue + YyyVO.Step - 1, YyyVO.MinValue)]
+        [InlineData(YyyVO.MinValue + 1, YyyVO.MinValue)]
+        [InlineData(YyyVO.MinValue, YyyVO.MinValue)]
+        [InlineData(YyyVO.MinValue - 1, YyyVO.MinValue)]
+        [InlineData(YyyVO.MinValue - YyyVO.Step + 1, YyyVO.MinValue)]
+        [InlineData(YyyVO.MinValue - YyyVO.Step, YyyVO.MinValue)]
+        [InlineData(YyyVO.MinValue - YyyVO.Step - 1, YyyVO.MinValue)]
+        [InlineData(int.MinValue, YyyVO.MinValue)]
         public void 補正(int input, int expect)
         {
-            Assert.Equal(expect, YYYVO.CurrectValue(input));
+            Assert.Equal(expect, YyyVO.CurrectValue(input));
         }
     }
 }

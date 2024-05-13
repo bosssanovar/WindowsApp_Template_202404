@@ -5,7 +5,7 @@ namespace InMemoryRepository
     /// <summary>
     /// BBB Entityのin Memory リポジトリ
     /// </summary>
-    public class BBBRepository : IBBBRepository
+    public class BbbRepository : IBbbRepository
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -13,7 +13,7 @@ namespace InMemoryRepository
 
         #region Fields ----------------------------------------------------------------------------------------
 
-        private BBBEntity.Entity.BBBEntity _bbbEntity;
+        private BbbEntity.Entity.BbbEntity _bbbEntity;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -30,9 +30,9 @@ namespace InMemoryRepository
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public BBBRepository()
+        public BbbRepository()
         {
-            _bbbEntity = new BBBEntity.Entity.BBBEntity();
+            _bbbEntity = new BbbEntity.Entity.BbbEntity();
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -40,13 +40,13 @@ namespace InMemoryRepository
         #region Methods - public ------------------------------------------------------------------------------
 
         /// <inheritdoc/>
-        public void Commit(BBBEntity.Entity.BBBEntity etity)
+        public void Commit(BbbEntity.Entity.BbbEntity etity)
         {
             _bbbEntity = etity.Clone();
         }
 
         /// <inheritdoc/>
-        public BBBEntity.Entity.BBBEntity Pull()
+        public BbbEntity.Entity.BbbEntity Pull()
         {
             return _bbbEntity.Clone();
         }

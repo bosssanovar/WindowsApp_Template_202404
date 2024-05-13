@@ -1,9 +1,9 @@
-﻿namespace BBBEntity.DomainSreviceInterface
+﻿namespace BbbEntity.DomainSreviceInterface
 {
     /// <summary>
     /// BBB設定の文字列長を確認するインターフェース
     /// </summary>
-    public interface IBBBLehgthChecker
+    public interface IBbbLehgthChecker
     {
         /// <summary>
         /// BBB設定の文字列長が有効かを判定します。

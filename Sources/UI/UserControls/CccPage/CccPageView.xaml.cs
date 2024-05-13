@@ -133,7 +133,7 @@ namespace UiParts.UserControls.CccPage
             var converter = new BooleanToVisibilityConverter();
             for (int columnIndex = 0; columnIndex < count; ++columnIndex)
             {
-                var binding = new Binding($"CCCs[{columnIndex}].Value")
+                var binding = new Binding($"Cccs[{columnIndex}].Value")
                 {
                     Converter = converter,
                 };
@@ -197,7 +197,7 @@ namespace UiParts.UserControls.CccPage
                 var columnIndex = DataGridHelper.GetSelectedColumnIndex(grid);
                 var rowIndex = DataGridHelper.GetSelectedRowIndex(grid);
 
-                CCCs[rowIndex].Invert(columnIndex);
+                Cccs[rowIndex].Invert(columnIndex);
 
                 UpdatePreview();
             }
@@ -257,7 +257,7 @@ namespace UiParts.UserControls.CccPage
         private void AllOn(object sender, RoutedEventArgs e)
         {
             var rowIndex = DataGridHelper.GetSelectedRowIndex(grid);
-            CCCs[rowIndex].SetAll(true);
+            Cccs[rowIndex].SetAll(true);
 
             UpdatePreview();
         }
@@ -267,7 +267,7 @@ namespace UiParts.UserControls.CccPage
             var indexes = DataGridHelper.GetSelectedCellsIndex(grid);
             foreach (var index in indexes)
             {
-                CCCs[index.RowIndex].SetOn(index.ColumnIndex);
+                Cccs[index.RowIndex].SetOn(index.ColumnIndex);
             }
 
             UpdatePreview();
@@ -281,14 +281,14 @@ namespace UiParts.UserControls.CccPage
         {
             squares.Objects.Clear();
 
-            var rowMax = CCCs.Count;
-            var colmunMax = CCCs[0].CCCs.Count;
+            var rowMax = Cccs.Count;
+            var colmunMax = Cccs[0].Cccs.Count;
 
             for (int rowIndex = 0; rowIndex < rowMax; rowIndex++)
             {
                 for (int columnIndex = 0; columnIndex < colmunMax; columnIndex++)
                 {
-                    if (CCCs[rowIndex].CCCs[columnIndex].Value)
+                    if (Cccs[rowIndex].Cccs[columnIndex].Value)
                     {
                         Square square = CreateSquare(rowIndex, columnIndex);
 

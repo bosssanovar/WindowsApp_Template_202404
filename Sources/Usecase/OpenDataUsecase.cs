@@ -9,14 +9,14 @@ namespace Usecase
     /// <summary>
     /// 設定をファイルから読み込むユースケース
     /// </summary>
-    /// <param name="_aaaRepository"><see cref="IAAARepository"/>インスタンス</param>
-    /// <param name="_bbbRepository"><see cref="IBBBRepository"/>インスタンス</param>
-    /// <param name="_cccRepository"><see cref="ICCCRepository"/>インスタンス</param>
+    /// <param name="_aaaRepository"><see cref="IAaaRepository"/>インスタンス</param>
+    /// <param name="_bbbRepository"><see cref="IBbbRepository"/>インスタンス</param>
+    /// <param name="_cccRepository"><see cref="ICccRepository"/>インスタンス</param>
     /// <param name="_dataFileAccessor"><see cref="DataFileAccessor"/>インスタンス</param>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.NamingRules", "SA1313:Parameter names should begin with lower-case letter", Justification = "<保留中>")]
-    public class OpenDataUsecase(IAAARepository _aaaRepository,
-                                 IBBBRepository _bbbRepository,
-                                 ICCCRepository _cccRepository,
+    public class OpenDataUsecase(IAaaRepository _aaaRepository,
+                                 IBbbRepository _bbbRepository,
+                                 ICccRepository _cccRepository,
                                  DataFileAccessor _dataFileAccessor)
     {
         #region Constants -------------------------------------------------------------------------------------
@@ -86,11 +86,11 @@ namespace Usecase
             var cccEntity = _cccRepository.Pull();
 
             aaaEntity.ImportPacketData(
-                packet.AAAEntityPacket,
-                new AAAChangedEvent(aaaEntity, bbbEntity),
-                new YYYChangedEvent(aaaEntity, cccEntity));
-            bbbEntity.ImportPacketData(packet.BBBEntityPacket, new BBBLehgthChecker(aaaEntity));
-            cccEntity.ImportDataPacket(packet.CCCEntityPacket);
+                packet.AaaEntityPacket,
+                new AaaChangedEvent(aaaEntity, bbbEntity),
+                new YyyChangedEvent(aaaEntity, cccEntity));
+            bbbEntity.ImportPacketData(packet.BbbEntityPacket, new BbbLehgthChecker(aaaEntity));
+            cccEntity.ImportDataPacket(packet.CccEntityPacket);
 
             // データのImport中の例外でそのまま処理を抜けて副作用がないように、
             // Commitは最後にまとめて行う

@@ -29,12 +29,12 @@ namespace UiParts.UserControls.CccPage
         /// <summary>
         /// AAA Entity
         /// </summary>
-        public ReactivePropertySlim<AAAEntity.Entity.AAAEntity> AaaEntity { get; }
+        public ReactivePropertySlim<AaaEntity.Entity.AaaEntity> AaaEntity { get; }
 
         /// <summary>
         /// CCC Entity
         /// </summary>
-        public ReactivePropertySlim<CCCEntity.Entity.CCCEntity> CccEntity { get; }
+        public ReactivePropertySlim<CccEntity.Entity.CccEntity> CccEntity { get; }
 
         /// <summary>
         /// コレクション型のModel
@@ -61,9 +61,9 @@ namespace UiParts.UserControls.CccPage
             _displaySettingsUsecase = displaySettingsUsecase;
             _commitSettingsUsecase = commitSettingsUsecase;
 
-            AaaEntity = new(_displaySettingsUsecase.GetAAAEntity());
+            AaaEntity = new(_displaySettingsUsecase.GetAaaEntity());
             AaaEntity.AddTo(_compositeDisposable);
-            CccEntity = new(_displaySettingsUsecase.GetCCCEntity());
+            CccEntity = new(_displaySettingsUsecase.GetCccEntity());
             CccEntity.AddTo(_compositeDisposable);
 
             InitDetails();
@@ -117,8 +117,8 @@ namespace UiParts.UserControls.CccPage
         /// </summary>
         public override void UpdateEntities()
         {
-            AaaEntity.Value = _displaySettingsUsecase.GetAAAEntity();
-            CccEntity.Value = _displaySettingsUsecase.GetCCCEntity();
+            AaaEntity.Value = _displaySettingsUsecase.GetAaaEntity();
+            CccEntity.Value = _displaySettingsUsecase.GetCccEntity();
 
             InitDetails();
         }
@@ -128,7 +128,7 @@ namespace UiParts.UserControls.CccPage
         /// </summary>
         public override void CommitEntities()
         {
-            _commitSettingsUsecase.CommitCCCEntity(CccEntity.Value);
+            _commitSettingsUsecase.CommitCccEntity(CccEntity.Value);
         }
 
         #endregion --------------------------------------------------------------------------------------------

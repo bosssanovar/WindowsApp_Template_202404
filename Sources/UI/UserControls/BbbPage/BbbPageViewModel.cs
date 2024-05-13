@@ -1,4 +1,4 @@
-﻿using BBBEntity.ValueObject;
+﻿using BbbEntity.ValueObject;
 
 using DomainService;
 
@@ -31,17 +31,17 @@ namespace UiParts.UserControls.BbbPage
         /// <summary>
         /// AAA設定値
         /// </summary>
-        public ReadOnlyReactivePropertySlim<int>? AAAVal { get; private set; }
+        public ReadOnlyReactivePropertySlim<int>? AaaVal { get; private set; }
 
         /// <summary>
         /// BBB設定値
         /// </summary>
-        public ReactivePropertySlim<string> BBBVal { get; private set; } = new(string.Empty);
+        public ReactivePropertySlim<string> BbbVal { get; private set; } = new(string.Empty);
 
         /// <summary>
         /// BBB2設定値
         /// </summary>
-        public ReactivePropertySlim<string> BBB2Val { get; private set; } = new(string.Empty);
+        public ReactivePropertySlim<string> Bbb2Val { get; private set; } = new(string.Empty);
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -71,18 +71,18 @@ namespace UiParts.UserControls.BbbPage
         {
             _model = model;
 
-            AAAVal = _model.AaaEntity.Select(x => x.AAA.Value)
+            AaaVal = _model.AaaEntity.Select(x => x.Aaa.Value)
                 .ToReadOnlyReactivePropertySlim()
                 .AddTo(_compositeDisposable);
 
-            BBBVal = _model.BbbEntity.ToReactivePropertySlimAsSynchronized(
+            BbbVal = _model.BbbEntity.ToReactivePropertySlimAsSynchronized(
                 x => x.Value,
-                x => x.BBB.Value,
+                x => x.Bbb.Value,
                 x =>
                 {
                     var text = x;
 
-                    var lengthChecker = new BBBLehgthChecker(_model.AaaEntity.Value);
+                    var lengthChecker = new BbbLehgthChecker(_model.AaaEntity.Value);
                     if (!lengthChecker.IsValid(text))
                     {
                         MessageBox.Show(
@@ -93,7 +93,7 @@ namespace UiParts.UserControls.BbbPage
                     }
 
                     var entity = _model.BbbEntity.Value;
-                    entity.SetBBB(new(text), lengthChecker);
+                    entity.SetBbb(new(text), lengthChecker);
 
                     _model.ForceNotifyBbbEntity();
 
@@ -102,22 +102,22 @@ namespace UiParts.UserControls.BbbPage
                 mode: ReactivePropertyMode.DistinctUntilChanged)
                 .AddTo(_compositeDisposable);
 
-            BBB2Val = _model.BbbEntity.ToReactivePropertySlimAsSynchronized(
+            Bbb2Val = _model.BbbEntity.ToReactivePropertySlimAsSynchronized(
                 x => x.Value,
-                x => x.BBB2.Value,
+                x => x.Bbb2.Value,
                 x =>
                 {
                     var text = x;
                     var message = new StringBuilder();
 
-                    if (!BBB2VO.IsValid(text))
+                    if (!Bbb2VO.IsValid(text))
                     {
-                        text = BBB2VO.CurrectValue(text);
+                        text = Bbb2VO.CurrectValue(text);
 
                         message.AppendLine("半角英数字以外は削除されます。");
                     }
 
-                    var lengthChecker = new BBBLehgthChecker(_model.AaaEntity.Value);
+                    var lengthChecker = new BbbLehgthChecker(_model.AaaEntity.Value);
                     if (!lengthChecker.IsValid(text))
                     {
                         text = lengthChecker.Substring(text);
@@ -131,7 +131,7 @@ namespace UiParts.UserControls.BbbPage
                     }
 
                     var entity = _model.BbbEntity.Value;
-                    entity.SetBBB2(new(text), lengthChecker);
+                    entity.SetBbb2(new(text), lengthChecker);
 
                     _model.ForceNotifyBbbEntity();
 

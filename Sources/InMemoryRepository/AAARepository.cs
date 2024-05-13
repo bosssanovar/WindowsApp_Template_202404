@@ -5,7 +5,7 @@ namespace InMemoryRepository
     /// <summary>
     /// AAAEntityのin Memory リポジトリ
     /// </summary>
-    public class AAARepository : IAAARepository
+    public class AaaRepository : IAaaRepository
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -13,7 +13,7 @@ namespace InMemoryRepository
 
         #region Fields ----------------------------------------------------------------------------------------
 
-        private AAAEntity.Entity.AAAEntity _aaaEntity;
+        private AaaEntity.Entity.AaaEntity _aaaEntity;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -30,9 +30,9 @@ namespace InMemoryRepository
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public AAARepository()
+        public AaaRepository()
         {
-            _aaaEntity = new AAAEntity.Entity.AAAEntity();
+            _aaaEntity = new AaaEntity.Entity.AaaEntity();
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -40,13 +40,13 @@ namespace InMemoryRepository
         #region Methods - public ------------------------------------------------------------------------------
 
         /// <inheritdoc/>
-        public void Commit(AAAEntity.Entity.AAAEntity aaaEntity)
+        public void Commit(AaaEntity.Entity.AaaEntity aaaEntity)
         {
             _aaaEntity = aaaEntity.Clone();
         }
 
         /// <inheritdoc/>
-        public AAAEntity.Entity.AAAEntity Pull()
+        public AaaEntity.Entity.AaaEntity Pull()
         {
             return _aaaEntity.Clone();
         }

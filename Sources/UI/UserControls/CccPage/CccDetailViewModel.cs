@@ -1,4 +1,4 @@
-﻿using CCCEntity.ValueObject;
+﻿using CccEntity.ValueObject;
 
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
@@ -31,7 +31,7 @@ namespace UiParts.UserControls.CccPage
         /// <summary>
         /// Ccc設定
         /// </summary>
-        public List<ReactivePropertySlim<bool>> CCCs { get; } = [];
+        public List<ReactivePropertySlim<bool>> Cccs { get; } = [];
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -56,20 +56,20 @@ namespace UiParts.UserControls.CccPage
         {
             _model = model;
 
-            var count = _model.Detail.Value.CCCs.Count;
+            var count = _model.Detail.Value.Cccs.Count;
             for (int i = 0; i < count; i++)
             {
                 int index = i;
-                var ccc = new ReactivePropertySlim<bool>(_model.Detail.Value.CCCs[index].Value);
+                var ccc = new ReactivePropertySlim<bool>(_model.Detail.Value.Cccs[index].Value);
                 ccc.Subscribe(
                     x =>
                     {
-                        var correct = new CCCVO(x);
-                        _model.Detail.Value.CCCs[index] = correct;
+                        var correct = new CccVO(x);
+                        _model.Detail.Value.Cccs[index] = correct;
                     })
                     .AddTo(_disposable);
 
-                CCCs.Add(ccc);
+                Cccs.Add(ccc);
             }
         }
 
@@ -91,7 +91,7 @@ namespace UiParts.UserControls.CccPage
         /// <param name="index">要素インデックス</param>
         internal void Invert(int index)
         {
-            CCCs[index].Value = !CCCs[index].Value;
+            Cccs[index].Value = !Cccs[index].Value;
         }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace UiParts.UserControls.CccPage
         /// <param name="v">設定値</param>
         internal void SetAll(bool v)
         {
-            CCCs.ForEach(x => x.Value = v);
+            Cccs.ForEach(x => x.Value = v);
         }
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace UiParts.UserControls.CccPage
         /// <param name="index">インデックス</param>
         internal void SetOn(int index)
         {
-            CCCs[index].Value = true;
+            Cccs[index].Value = true;
         }
 
         #endregion --------------------------------------------------------------------------------------------

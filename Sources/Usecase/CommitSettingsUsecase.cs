@@ -5,14 +5,14 @@ namespace Usecase
     /// <summary>
     /// 設定値を確定するユースケース
     /// </summary>
-    /// <param name="_aaaRepository"><see cref="IAAARepository"/>インスタンス</param>
-    /// <param name="_bbbRepository"><see cref="IBBBRepository"/>インスタンス</param>
-    /// <param name="_cccRepository"><see cref="ICCCRepository"/>インスタンス</param>
+    /// <param name="_aaaRepository"><see cref="IAaaRepository"/>インスタンス</param>
+    /// <param name="_bbbRepository"><see cref="IBbbRepository"/>インスタンス</param>
+    /// <param name="_cccRepository"><see cref="ICccRepository"/>インスタンス</param>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.NamingRules", "SA1313:Parameter names should begin with lower-case letter", Justification = "<保留中>")]
     public class CommitSettingsUsecase(
-        IAAARepository _aaaRepository,
-        IBBBRepository _bbbRepository,
-        ICCCRepository _cccRepository)
+        IAaaRepository _aaaRepository,
+        IBbbRepository _bbbRepository,
+        ICccRepository _cccRepository)
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -40,7 +40,7 @@ namespace Usecase
         /// AAA Entityを確定します。
         /// </summary>
         /// <param name="entity">AAA Entity</param>
-        public void CommitAAAEntity(AAAEntity.Entity.AAAEntity entity)
+        public void CommitAaaEntity(AaaEntity.Entity.AaaEntity entity)
         {
             _aaaRepository.Commit(entity);
         }
@@ -49,7 +49,7 @@ namespace Usecase
         /// BBB Entityを確定しますl
         /// </summary>
         /// <param name="entity">BBB Entity</param>
-        public void CommitBBBEntity(BBBEntity.Entity.BBBEntity entity)
+        public void CommitBbbEntity(BbbEntity.Entity.BbbEntity entity)
         {
             _bbbRepository.Commit(entity);
         }
@@ -58,7 +58,7 @@ namespace Usecase
         /// CCC Entityを確定しますl
         /// </summary>
         /// <param name="entity">CCC Entity</param>
-        public void CommitCCCEntity(CCCEntity.Entity.CCCEntity entity)
+        public void CommitCccEntity(CccEntity.Entity.CccEntity entity)
         {
             _cccRepository.Commit(entity);
         }

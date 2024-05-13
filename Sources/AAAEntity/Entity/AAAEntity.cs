@@ -1,15 +1,15 @@
-﻿using AAAEntity.DataPacket;
-using AAAEntity.DomainSreviceInterface;
-using AAAEntity.ValueObject;
+﻿using AaaEntity.DataPacket;
+using AaaEntity.DomainSreviceInterface;
+using AaaEntity.ValueObject;
 
 using DomainModelCommon;
 
-namespace AAAEntity.Entity
+namespace AaaEntity.Entity
 {
     /// <summary>
     /// AAA Entityクラス
     /// </summary>
-    public class AAAEntity : EntityBase<AAAEntity>
+    public class AaaEntity : EntityBase<AaaEntity>
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -21,7 +21,7 @@ namespace AAAEntity.Entity
         /// <summary>
         /// XXX設定の初期値
         /// </summary>
-        public const XXXType XxxInitValue = XXXType.Xxx2;
+        public const XxxType XxxInitValue = XxxType.Xxx2;
 
         /// <summary>
         /// YYY設定の初期値
@@ -49,28 +49,28 @@ namespace AAAEntity.Entity
         /// <summary>
         /// WWW設定
         /// </summary>
-        public WWWVO WWW { get; set; }
+        public WwwVO Www { get; set; }
         // TODO : パスカル形式
 
         /// <summary>
         /// XXX設定
         /// </summary>
-        public XXXVO XXX { get; set; }
+        public XxxVO Xxx { get; set; }
 
         /// <summary>
         /// YYY設定
         /// </summary>
-        public YYYVO YYY { get; private set; }
+        public YyyVO Yyy { get; private set; }
 
         /// <summary>
         /// ZZZ設定
         /// </summary>
-        public ZZZVO ZZZ { get; private set; }
+        public ZzzVO Zzz { get; private set; }
 
         /// <summary>
         /// AAA設定
         /// </summary>
-        public AAAVO AAA { get; private set; }
+        public AaaVO Aaa { get; private set; }
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -83,13 +83,13 @@ namespace AAAEntity.Entity
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public AAAEntity()
+        public AaaEntity()
         {
-            WWW = new(WwwInitValue);
-            XXX = new(XxxInitValue);
-            YYY = new(YyyyInitValue);
-            ZZZ = new(ZzzInitValue);
-            AAA = new(AaaInitValue);
+            Www = new(WwwInitValue);
+            Xxx = new(XxxInitValue);
+            Yyy = new(YyyyInitValue);
+            Zzz = new(ZzzInitValue);
+            Aaa = new(AaaInitValue);
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -101,13 +101,13 @@ namespace AAAEntity.Entity
         /// </summary>
         /// <param name="zzz">ZZZ設定値</param>
         /// <param name="changedEvent">AAA変更イベント</param>
-        public void SetZZZ(ZZZVO zzz, IAAAChangedEvent changedEvent)
+        public void SetZzz(ZzzVO zzz, IAaaChangedEvent changedEvent)
         {
-            ZZZ = zzz;
+            Zzz = zzz;
 
-            if (IsHaveToCorrectAAA(zzz.Value))
+            if (IsHaveToCorrectAaa(zzz.Value))
             {
-                SetAAA(new(zzz.Value), changedEvent);
+                SetAaa(new(zzz.Value), changedEvent);
             }
         }
 
@@ -116,9 +116,9 @@ namespace AAAEntity.Entity
         /// </summary>
         /// <param name="zzz">ZZZ設定値</param>
         /// <returns>補正すべき場合はtrue</returns>
-        public bool IsHaveToCorrectAAA(int zzz)
+        public bool IsHaveToCorrectAaa(int zzz)
         {
-            return zzz < AAA.Value;
+            return zzz < Aaa.Value;
         }
 
         /// <summary>
@@ -127,15 +127,15 @@ namespace AAAEntity.Entity
         /// <param name="aaa">AAA設定値</param>
         /// <param name="changedEvent">AAA変更イベント</param>
         /// <exception cref="ArgumentOutOfRangeException">AAAが不正値</exception>
-        public void SetAAA(AAAVO aaa, IAAAChangedEvent changedEvent)
+        public void SetAaa(AaaVO aaa, IAaaChangedEvent changedEvent)
         {
-            if (IsValidAAA(aaa.Value))
+            if (IsValidAaa(aaa.Value))
             {
                 throw new ArgumentOutOfRangeException(nameof(aaa), "範囲外");
             }
             else
             {
-                AAA = aaa;
+                Aaa = aaa;
             }
 
             changedEvent.Execute();
@@ -146,9 +146,9 @@ namespace AAAEntity.Entity
         /// </summary>
         /// <param name="aaa">AAA設定値</param>
         /// <returns>有効な場合true</returns>
-        public bool IsValidAAA(int aaa)
+        public bool IsValidAaa(int aaa)
         {
-            return ZZZ.Value < aaa;
+            return Zzz.Value < aaa;
         }
 
         /// <summary>
@@ -156,9 +156,9 @@ namespace AAAEntity.Entity
         /// </summary>
         /// <param name="yyy">YYY設定値</param>
         /// <param name="changedEvent">YYY変更イベント</param>
-        public void SetYYY(YYYVO yyy, IYYYChangedEvent changedEvent)
+        public void SetYyy(YyyVO yyy, IYyyChangedEvent changedEvent)
         {
-            YYY = yyy;
+            Yyy = yyy;
 
             changedEvent.Execute();
         }
@@ -168,26 +168,26 @@ namespace AAAEntity.Entity
         /// </summary>
         public void Initialize()
         {
-            WWW = new(WwwInitValue);
-            XXX = new(XxxInitValue);
-            YYY = new(YyyyInitValue);
-            ZZZ = new(ZzzInitValue);
-            AAA = new(AaaInitValue);
+            Www = new(WwwInitValue);
+            Xxx = new(XxxInitValue);
+            Yyy = new(YyyyInitValue);
+            Zzz = new(ZzzInitValue);
+            Aaa = new(AaaInitValue);
         }
 
         /// <summary>
         /// 設定データ群を吐き出します。
         /// </summary>
         /// <returns>設定データ群</returns>
-        public AAAEntityPacket ExportPacketData()
+        public AaaEntityPacket ExportPacketData()
         {
             return new()
             {
-                AAA = AAA.Value,
-                WWW = WWW.Value,
-                XXX = XXX.Value,
-                YYY = YYY.Value,
-                ZZZ = ZZZ.Value,
+                Aaa = Aaa.Value,
+                Www = Www.Value,
+                Xxx = Xxx.Value,
+                Yyy = Yyy.Value,
+                Zzz = Zzz.Value,
             };
         }
 
@@ -198,15 +198,15 @@ namespace AAAEntity.Entity
         /// <param name="aaaChangedEvent">AAA変更時イベント</param>
         /// <param name="yyyChangedEvent">YYY変更時イベント</param>
         public void ImportPacketData(
-            AAAEntityPacket packet,
-            IAAAChangedEvent aaaChangedEvent,
-            IYYYChangedEvent yyyChangedEvent)
+            AaaEntityPacket packet,
+            IAaaChangedEvent aaaChangedEvent,
+            IYyyChangedEvent yyyChangedEvent)
         {
-            WWW = new(packet.WWW);
-            XXX = new(packet.XXX);
-            SetYYY(new(packet.YYY), yyyChangedEvent);
-            SetZZZ(new(packet.ZZZ), aaaChangedEvent);
-            SetAAA(new(packet.AAA), aaaChangedEvent);
+            Www = new(packet.Www);
+            Xxx = new(packet.Xxx);
+            SetYyy(new(packet.Yyy), yyyChangedEvent);
+            SetZzz(new(packet.Zzz), aaaChangedEvent);
+            SetAaa(new(packet.Aaa), aaaChangedEvent);
         }
 
         #endregion --------------------------------------------------------------------------------------------

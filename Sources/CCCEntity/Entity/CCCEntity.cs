@@ -1,13 +1,13 @@
-﻿using CCCEntity.DataPacket;
+﻿using CccEntity.DataPacket;
 
 using DomainModelCommon;
 
-namespace CCCEntity.Entity
+namespace CccEntity.Entity
 {
     /// <summary>
     /// CCCのEntity
     /// </summary>
-    public class CCCEntity : EntityBase<CCCEntity>
+    public class CccEntity : EntityBase<CccEntity>
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -27,7 +27,7 @@ namespace CCCEntity.Entity
         /// <summary>
         /// CCCのマトリクス
         /// </summary>
-        public List<CCCDetailEntity> Details { get; private set; } = [];
+        public List<CccDetailEntity> Details { get; private set; } = [];
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -40,7 +40,7 @@ namespace CCCEntity.Entity
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public CCCEntity()
+        public CccEntity()
         {
             Initialize();
         }
@@ -55,10 +55,10 @@ namespace CCCEntity.Entity
         /// <param name="count">要素数</param>
         public void ChangeCount(int count)
         {
-            var list = new List<CCCDetailEntity>();
+            var list = new List<CccDetailEntity>();
             for (int i = 0; i < count; i++)
             {
-                var detail = new CCCDetailEntity();
+                var detail = new CccDetailEntity();
                 detail.ChangeCount(count);
                 list.Add(detail);
             }
@@ -71,10 +71,10 @@ namespace CCCEntity.Entity
         /// </summary>
         public void Initialize()
         {
-            var list = new List<CCCDetailEntity>();
+            var list = new List<CccDetailEntity>();
             for (int i = 0; i < CccsCountInitValue; i++)
             {
-                var detail = new CCCDetailEntity();
+                var detail = new CccDetailEntity();
                 list.Add(detail);
             }
 
@@ -85,9 +85,9 @@ namespace CCCEntity.Entity
         /// 設定データを吐き出します。
         /// </summary>
         /// <returns>設定データ</returns>
-        public CCCEntityPacket ExportDataPacket()
+        public CccEntityPacket ExportDataPacket()
         {
-            CCCEntityPacket ret = new();
+            CccEntityPacket ret = new();
 
             foreach (var item in Details)
             {
@@ -101,7 +101,7 @@ namespace CCCEntity.Entity
         /// 設定データを取り込みます。
         /// </summary>
         /// <param name="packet">設定データ</param>
-        public void ImportDataPacket(CCCEntityPacket packet)
+        public void ImportDataPacket(CccEntityPacket packet)
         {
             if (Details.Count != packet.Details.Count)
             {
@@ -131,11 +131,11 @@ namespace CCCEntity.Entity
         #region Methods - override ----------------------------------------------------------------------------
 
         /// <inheritdoc/>
-        public override CCCEntity Clone()
+        public override CccEntity Clone()
         {
             var ret = base.Clone();
 
-            var list = new List<CCCDetailEntity>();
+            var list = new List<CccDetailEntity>();
             for (int i = 0; i < Details.Count; i++)
             {
                 list.Add(Details[i].Clone());

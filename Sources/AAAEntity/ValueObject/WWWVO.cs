@@ -1,12 +1,12 @@
 ﻿using DomainModelCommon;
 
-namespace AAAEntity.ValueObject
+namespace AaaEntity.ValueObject
 {
     /// <summary>
     /// WWW設定の値オブジェクトクラス
     /// </summary>
     /// <param name="Value">設定値</param>
-    public record WWWVO(bool Value) : ValueObjectBase<bool>(Value), IInputLimit<bool>
+    public record WwwVO(bool Value) : ValueObjectBase<bool>(Value), IInputLimit<bool>
     {
         #region Constants -------------------------------------------------------------------------------------
 

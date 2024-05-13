@@ -1,4 +1,4 @@
-﻿using CCCEntity.Entity;
+﻿using CccEntity.Entity;
 
 using Reactive.Bindings;
 
@@ -18,7 +18,7 @@ namespace UiParts.UserControls.CccPage
         /// <summary>
         /// CCC Detail
         /// </summary>
-        public ReactivePropertySlim<CCCDetailEntity> Detail { get; }
+        public ReactivePropertySlim<CccDetailEntity> Detail { get; }
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -37,7 +37,7 @@ namespace UiParts.UserControls.CccPage
         /// </summary>
         /// <param name="entity">CCC Detail</param>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0290:プライマリ コンストラクターの使用", Justification = "<保留中>")]
-        public CccDetailModel(CCCDetailEntity entity)
+        public CccDetailModel(CccDetailEntity entity)
         {
             Detail = new(entity);
         }
