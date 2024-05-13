@@ -5,6 +5,7 @@ using DomainService;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 
+using System.Reactive.Linq;
 using System.Windows;
 
 namespace UiParts.UserControls.AaaPage
@@ -27,6 +28,11 @@ namespace UiParts.UserControls.AaaPage
         #region Properties ------------------------------------------------------------------------------------
 
         /// <summary>
+        /// WWW設定
+        /// </summary>
+        public ReactivePropertySlim<bool> WWWVal { get; private set; } = new(false); // TODO : パスカル形式
+
+        /// <summary>
         /// XXX設定
         /// </summary>
         public ReactivePropertySlim<XXXType> XXXVal { get; private set; } = new(XXXType.Xxx1);
@@ -35,6 +41,11 @@ namespace UiParts.UserControls.AaaPage
         /// XXX設定の選択肢
         /// </summary>
         public List<ComboBoxItem<XXXType>> XXXComboItems { get; private set; } = [];
+
+        /// <summary>
+        /// XXX設定の有効無効
+        /// </summary>
+        public ReadOnlyReactivePropertySlim<bool> XxxEnabled { get; private set; }
 
         /// <summary>
         /// YYY設定
@@ -79,6 +90,23 @@ namespace UiParts.UserControls.AaaPage
         {
             _model = model;
 
+            WWWVal = _model.AaaEntity.ToReactivePropertySlimAsSynchronized(
+                x => x.Value,
+                x => x.WWW.Value,
+                x =>
+                {
+                    var value = x;
+
+                    var entity = _model.AaaEntity.Value;
+                    entity.WWW = new(value);
+
+                    _model.ForceNotifyAaaEntity();
+
+                    return entity;
+                },
+                mode: ReactivePropertyMode.DistinctUntilChanged)
+                .AddTo(_compositeDisposable);
+
             XXXVal = _model.AaaEntity.ToReactivePropertySlimAsSynchronized(
                 x => x.Value,
                 x => x.XXX.Value,
@@ -96,12 +124,17 @@ namespace UiParts.UserControls.AaaPage
                 mode: ReactivePropertyMode.DistinctUntilChanged)
                 .AddTo(_compositeDisposable);
 
-            XXXComboItems = new List<ComboBoxItem<XXXType>>()
-            {
+            XXXComboItems =
+            [
                 new(XXXType.Xxx1, XXXType.Xxx1.GetDisplayText()),
                 new(XXXType.Xxx2, XXXType.Xxx2.GetDisplayText()),
                 new(XXXType.Xxxxxx3, XXXType.Xxxxxx3.GetDisplayText()),
-            };
+            ];
+
+            XxxEnabled = _model.AaaEntity
+                .Select(x => x.WWW.Value)
+                .ToReadOnlyReactivePropertySlim()
+                .AddTo(_compositeDisposable);
 
             YYYVal = _model.AaaEntity.ToReactivePropertySlimAsSynchronized(
                 x => x.Value,

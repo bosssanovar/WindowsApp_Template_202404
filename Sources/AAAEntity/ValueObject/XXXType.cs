@@ -40,17 +40,13 @@ namespace AAAEntity.ValueObject
         /// <returns>表示文字列</returns>
         public static string GetDisplayText(this XXXType type)
         {
-            switch (type)
+            return type switch
             {
-                case XXXType.Xxx1:
-                    return "XXX 1";
-                case XXXType.Xxx2:
-                    return "XXX 2";
-                case XXXType.Xxxxxx3:
-                    return "XXXXXXX 3";
-                default:
-                    throw new NotImplementedException("実装が不足しています。");
-            }
+                XXXType.Xxx1 => "XXX 1",
+                XXXType.Xxx2 => "XXX 2",
+                XXXType.Xxxxxx3 => "XXXXXXX 3",
+                _ => throw new NotImplementedException("実装が不足しています。"),
+            };
         }
     }
 }

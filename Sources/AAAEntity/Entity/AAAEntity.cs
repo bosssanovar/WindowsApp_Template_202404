@@ -14,6 +14,11 @@ namespace AAAEntity.Entity
         #region Constants -------------------------------------------------------------------------------------
 
         /// <summary>
+        /// WWW設定の初期値
+        /// </summary>
+        public const bool WwwInitValue = false;
+
+        /// <summary>
         /// XXX設定の初期値
         /// </summary>
         public const XXXType XxxInitValue = XXXType.Xxx2;
@@ -40,6 +45,12 @@ namespace AAAEntity.Entity
         #endregion --------------------------------------------------------------------------------------------
 
         #region Properties ------------------------------------------------------------------------------------
+
+        /// <summary>
+        /// WWW設定
+        /// </summary>
+        public WWWVO WWW { get; set; }
+        // TODO : パスカル形式
 
         /// <summary>
         /// XXX設定
@@ -74,6 +85,7 @@ namespace AAAEntity.Entity
         /// </summary>
         public AAAEntity()
         {
+            WWW = new(WwwInitValue);
             XXX = new(XxxInitValue);
             YYY = new(YyyyInitValue);
             ZZZ = new(ZzzInitValue);
@@ -156,6 +168,7 @@ namespace AAAEntity.Entity
         /// </summary>
         public void Initialize()
         {
+            WWW = new(WwwInitValue);
             XXX = new(XxxInitValue);
             YYY = new(YyyyInitValue);
             ZZZ = new(ZzzInitValue);
@@ -171,6 +184,7 @@ namespace AAAEntity.Entity
             return new()
             {
                 AAA = AAA.Value,
+                WWW = WWW.Value,
                 XXX = XXX.Value,
                 YYY = YYY.Value,
                 ZZZ = ZZZ.Value,
@@ -188,6 +202,7 @@ namespace AAAEntity.Entity
             IAAAChangedEvent aaaChangedEvent,
             IYYYChangedEvent yyyChangedEvent)
         {
+            WWW = new(packet.WWW);
             XXX = new(packet.XXX);
             SetYYY(new(packet.YYY), yyyChangedEvent);
             SetZZZ(new(packet.ZZZ), aaaChangedEvent);

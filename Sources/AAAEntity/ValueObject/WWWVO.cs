@@ -1,11 +1,12 @@
-﻿using AAAEntity.ValueObject;
+﻿using DomainModelCommon;
 
-namespace AAAEntity.DataPacket
+namespace AAAEntity.ValueObject
 {
     /// <summary>
-    /// AAA Entityのデータ群
+    /// WWW設定の値オブジェクトクラス
     /// </summary>
-    public class AAAEntityPacket
+    /// <param name="Value">設定値</param>
+    public record WWWVO(bool Value) : ValueObjectBase<bool>(Value), IInputLimit<bool>
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -16,31 +17,6 @@ namespace AAAEntity.DataPacket
         #endregion --------------------------------------------------------------------------------------------
 
         #region Properties ------------------------------------------------------------------------------------
-
-        /// <summary>
-        /// AAA設定
-        /// </summary>
-        public int AAA { get; set; }
-
-        /// <summary>
-        /// WWW設置
-        /// </summary>
-        public bool WWW { get; set; }// TODO : パスケル形式
-
-        /// <summary>
-        /// XXX設定
-        /// </summary>
-        public XXXType XXX { get; set; }
-
-        /// <summary>
-        /// YYY設定
-        /// </summary>
-        public int YYY { get; set; }
-
-        /// <summary>
-        /// ZZZ設定
-        /// </summary>
-        public int ZZZ { get; set; }
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -53,6 +29,18 @@ namespace AAAEntity.DataPacket
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - public ------------------------------------------------------------------------------
+
+        /// <inheritdoc/>
+        public static bool CurrectValue(bool value)
+        {
+            return value;
+        }
+
+        /// <inheritdoc/>
+        public static bool IsValid(bool value)
+        {
+            return true;
+        }
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -69,6 +57,15 @@ namespace AAAEntity.DataPacket
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - override ----------------------------------------------------------------------------
+
+        /// <inheritdoc/>
+        protected override void Validate()
+        {
+            if (!IsValid(Value))
+            {
+                throw new ArgumentException("Invalid Value", nameof(Value));
+            }
+        }
 
         #endregion --------------------------------------------------------------------------------------------
 
