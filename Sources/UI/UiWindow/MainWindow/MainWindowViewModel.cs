@@ -2,7 +2,6 @@
 using Reactive.Bindings.Extensions;
 
 using System.Windows;
-using System.Windows.Media.Effects;
 
 using UiParts.UiWindow.AboutWindow;
 using UiParts.UiWindow.StartWindow;
