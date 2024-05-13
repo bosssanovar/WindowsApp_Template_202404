@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using Reactive.Bindings;
+
+using System.Windows;
+using System.Windows.Media.Animation;
 using System.Windows.Threading;
 
 namespace UiParts.UiWindow.Message
@@ -34,14 +37,9 @@ namespace UiParts.UiWindow.Message
         public MessageBoxResult Result { get; private set; } = MessageBoxResult.None;
 
         /// <summary>
-        /// ウィンドウ幅
+        /// 閉じるコマンド
         /// </summary>
-        public double WindowWidth { get; private set; }
-
-        /// <summary>
-        /// ウィンドウ高さ
-        /// </summary>
-        public double WindowHeight { get; private set; }
+        public ReactiveCommand CloseCommand { get; } = new();
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -61,7 +59,10 @@ namespace UiParts.UiWindow.Message
             Caption = caption;
             Message = message;
 
-            CalculateWindowSize();
+            CloseCommand.Subscribe(() =>
+            {
+                BeginDismissAnimation(() => Close());
+            });
 
             InitializeComponent();
         }
@@ -79,9 +80,14 @@ namespace UiParts.UiWindow.Message
         /// <returns>結果</returns>
         public static MessageBoxResult Show(Window owner, string message, string caption)
         {
+            IBlur? blur = owner as IBlur;
+            blur?.BlurOn();
+
             var messageWindowView = new MessageWindow(message, caption);
             messageWindowView.Owner = owner;
             messageWindowView.ShowDialog();
+
+            blur?.BlurOff();
 
             return messageWindowView.Result;
         }
@@ -98,15 +104,40 @@ namespace UiParts.UiWindow.Message
 
         #region Methods - private -----------------------------------------------------------------------------
 
-        private void CalculateWindowSize()
+        private void BeginShowAnimation()
         {
-            WindowWidth = 400.0;
-            WindowHeight = 300.0;
+            var sb = FindResource("Show") as Storyboard;
+            if (sb is not null)
+            {
+                sb.Begin();
+            }
+        }
+
+        private void BeginDismissAnimation(Action onCompleted)
+        {
+            var sb = FindResource("Dismiss") as Storyboard;
+            if (sb is not null)
+            {
+                sb.Completed += (sender, e) =>
+                {
+                    onCompleted?.Invoke();
+                };
+
+                sb.Begin();
+            }
         }
 
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - override ----------------------------------------------------------------------------
+
+        /// <inheritdoc/>
+        protected override void OnContentRendered(EventArgs e)
+        {
+            base.OnContentRendered(e);
+
+            BeginShowAnimation();
+        }
 
         #endregion --------------------------------------------------------------------------------------------
 

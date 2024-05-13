@@ -37,6 +37,24 @@
 
         </DockPanel>
 
+        <Border x:Name="blurBorder" Background="#00000000" Visibility="Collapsed">
+            <Border.Resources>
+                <Storyboard x:Key="OpenAnimation">
+                    <ColorAnimationUsingKeyFrames Storyboard.TargetName="blurBorder" Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                        <EasingColorKeyFrame KeyTime="00:00:00" Value="#00000000"/>
+                        <EasingColorKeyFrame KeyTime="00:00:00.2" Value="#99000000"/>
+                    </ColorAnimationUsingKeyFrames>
+                </Storyboard>
+
+                <Storyboard x:Key="CloseAnimation">
+                    <ColorAnimationUsingKeyFrames Storyboard.TargetName="blurBorder" Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                        <EasingColorKeyFrame KeyTime="00:00:00" Value="#99000000"/>
+                        <EasingColorKeyFrame KeyTime="00:00:00.2" Value="#00000000"/>
+                    </ColorAnimationUsingKeyFrames>
+                </Storyboard>
+            </Border.Resources>
+        </Border>
+
         <hamburgerMenu:HamburgerMenu x:Name="hamburgerMenu"
                            ShowPageAaaCommand="{Binding PageAaaCommand}"
                            ShowPageBbbCommand="{Binding PageBbbCommand}"
