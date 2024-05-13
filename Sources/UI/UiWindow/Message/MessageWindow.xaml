@@ -43,7 +43,7 @@
     </Window.Resources>
 
     <Grid x:Name="grid" TextElement.Foreground="White" Margin="0" RenderTransformOrigin="0.5,0.5"
-          Background="#202020">
+          Background="#202020" Opacity="0" d:Opacity="1">
 
         <Grid.RenderTransform>
             <TransformGroup>
@@ -53,7 +53,7 @@
                 <TranslateTransform/>
             </TransformGroup>
         </Grid.RenderTransform>
-        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -77,11 +77,54 @@
                        Text="{Binding Message}" d:Text="Message WWWW WWWWWWWWWWWWWW WWWWW WWWWWWWWWWWWWW WWWWWWWWWWWWWWWWWWWWWWWW"/>
         </Grid>
 
-        <StackPanel Grid.Row="2">
-            <Button Content="閉じる" Margin="10" Padding="15,3"
-                HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                Command="{Binding CloseCommand}"
-                IsDefault="True" IsCancel="True"/>
+        <StackPanel Grid.Row="2" Orientation="Vertical" Margin="5">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
+                        IsEnabled="{Binding IsButtonOk.Value}"
+                        Visibility="{Binding IsButtonOk.Value, Converter={StaticResource BoolToVisibility}}">
+                <Button Content="OK" Margin="5" Padding="15,3"
+                        HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                        Command="{Binding OkCommand}"
+                        IsDefault="True" IsCancel="True"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
+                        IsEnabled="{Binding IsButtonOkCancel.Value}"
+                        Visibility="{Binding IsButtonOkCancel.Value, Converter={StaticResource BoolToVisibility}}">
+                <Button Content="OK" Margin="5" Padding="15,3"
+                        HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                        Command="{Binding OkCommand}"
+                        IsDefault="True"/>
+                <Button Content="キャンセル" Margin="5" Padding="15,3"
+                        HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                        Command="{Binding CancelCommand}"
+                        IsCancel="True"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
+                        IsEnabled="{Binding IsButtonYesNoCancel.Value}"
+                        Visibility="{Binding IsButtonYesNoCancel.Value, Converter={StaticResource BoolToVisibility}}">
+                <Button Content="Yes" Margin="5" Padding="15,3"
+                        HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                        Command="{Binding YesCommand}"
+                        IsDefault="True"/>
+                <Button Content="No" Margin="5" Padding="15,3"
+                        HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                        Command="{Binding NoCommand}"/>
+                <Button Content="キャンセル" Margin="5" Padding="15,3"
+                        HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                        Command="{Binding CancelCommand}"
+                        IsCancel="True"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
+                        IsEnabled="{Binding IsButtonYesNo.Value}"
+                        Visibility="{Binding IsButtonYesNo.Value, Converter={StaticResource BoolToVisibility}}">
+                <Button Content="Yes" Margin="5" Padding="15,3"
+                        HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                        Command="{Binding YesCommand}"
+                        IsDefault="True"/>
+                <Button Content="No" Margin="5" Padding="15,3"
+                        HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                        Command="{Binding NoCommand}"
+                        IsCancel="True"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>

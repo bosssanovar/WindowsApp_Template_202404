@@ -1,6 +1,8 @@
 ﻿using System.Windows;
 using System.Windows.Media.Animation;
 
+using WpfLib;
+
 namespace UiParts.UiWindow.MainWindow
 {
     /// <summary>
@@ -21,7 +23,7 @@ namespace UiParts.UiWindow.MainWindow
         }
 
         /// <inheritdoc/>
-        public void BlurOff()
+        public async Task BlurOffAsync()
         {
             var sb = blurBorder.FindResource("CloseAnimation") as Storyboard;
             if (sb is not null)
@@ -32,7 +34,7 @@ namespace UiParts.UiWindow.MainWindow
                     blurBorder.Visibility = Visibility.Collapsed;
                 };
 
-                sb.Begin();
+                await sb.BeginAsync();
             }
             else
             {
@@ -41,7 +43,7 @@ namespace UiParts.UiWindow.MainWindow
         }
 
         /// <inheritdoc/>
-        public void BlurOn()
+        public async Task BlurOnAsync()
         {
             blurBorder.Visibility = Visibility.Visible;
             IsBlur.Value = true;
@@ -49,7 +51,7 @@ namespace UiParts.UiWindow.MainWindow
             var sb = blurBorder.FindResource("OpenAnimation") as Storyboard;
             if (sb is not null)
             {
-                sb.Begin();
+                await sb.BeginAsync();
             }
         }
     }

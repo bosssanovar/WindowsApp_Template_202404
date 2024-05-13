@@ -120,21 +120,21 @@ namespace UiParts.UiWindow.MainWindow
                 Close();
             });
 
-            InitializeCommand.Subscribe(() =>
+            InitializeCommand.Subscribe(async () =>
             {
-                if (MessageBox.Show(
+                if (await MessageWindow.ShowAsync(
+                            this,
                             "初期化を実行しますか？",
                             "確認",
                             MessageBoxButton.YesNo,
-                            MessageBoxImage.Question,
-                            MessageBoxResult.No) == MessageBoxResult.Yes)
+                            MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
                     _model.Initialize();
 
                     Page.Value?.Update();
                     ScrollablePage.Value?.Update();
 
-                    MessageWindow.Show(this, "初期化が完了しました。", "情報");
+                    await MessageWindow.ShowAsync(this, "初期化が完了しました。", "情報");
                 }
             })
                 .AddTo(_compositeDisposable);

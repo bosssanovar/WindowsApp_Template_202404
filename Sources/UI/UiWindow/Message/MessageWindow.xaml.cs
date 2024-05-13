@@ -1,5 +1,6 @@
 ﻿using Reactive.Bindings;
 
+using System.Reactive.Linq;
 using System.Windows;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
@@ -16,6 +17,10 @@ namespace UiParts.UiWindow.Message
         #endregion --------------------------------------------------------------------------------------------
 
         #region Fields ----------------------------------------------------------------------------------------
+
+        private readonly ReactivePropertySlim<MessageBoxButton> _buttonType = new();
+
+        private MessageBoxImage _imageType;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -37,9 +42,44 @@ namespace UiParts.UiWindow.Message
         public MessageBoxResult Result { get; private set; } = MessageBoxResult.None;
 
         /// <summary>
-        /// 閉じるコマンド
+        /// OKコマンド
         /// </summary>
-        public ReactiveCommand CloseCommand { get; } = new();
+        public ReactiveCommand OkCommand { get; } = new();
+
+        /// <summary>
+        /// Cancelコマンド
+        /// </summary>
+        public ReactiveCommand CancelCommand { get; } = new();
+
+        /// <summary>
+        /// Yesコマンド
+        /// </summary>
+        public ReactiveCommand YesCommand { get; } = new();
+
+        /// <summary>
+        /// Noコマンド
+        /// </summary>
+        public ReactiveCommand NoCommand { get; } = new();
+
+        /// <summary>
+        /// OK
+        /// </summary>
+        public ReadOnlyReactivePropertySlim<bool> IsButtonOk { get; }
+
+        /// <summary>
+        /// OK/Cancel
+        /// </summary>
+        public ReadOnlyReactivePropertySlim<bool> IsButtonOkCancel { get; }
+
+        /// <summary>
+        /// Yes/No/Cancel
+        /// </summary>
+        public ReadOnlyReactivePropertySlim<bool> IsButtonYesNoCancel { get; }
+
+        /// <summary>
+        /// Yes/No
+        /// </summary>
+        public ReadOnlyReactivePropertySlim<bool> IsButtonYesNo { get; }
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -59,12 +99,57 @@ namespace UiParts.UiWindow.Message
             Caption = caption;
             Message = message;
 
-            CloseCommand.Subscribe(() =>
+            OkCommand.Subscribe(() =>
             {
+                Result = MessageBoxResult.OK;
                 BeginDismissAnimation(() => Close());
             });
 
+            CancelCommand.Subscribe(() =>
+            {
+                Result = MessageBoxResult.Cancel;
+                BeginDismissAnimation(() => Close());
+            });
+
+            YesCommand.Subscribe(() =>
+            {
+                Result = MessageBoxResult.Yes;
+                BeginDismissAnimation(() => Close());
+            });
+
+            NoCommand.Subscribe(() =>
+            {
+                Result = MessageBoxResult.No;
+                BeginDismissAnimation(() => Close());
+            });
+
+            IsButtonOk = _buttonType.Select(x => x == MessageBoxButton.OK)
+                .ToReadOnlyReactivePropertySlim();
+
+            IsButtonOkCancel = _buttonType.Select(x => x == MessageBoxButton.OKCancel)
+                .ToReadOnlyReactivePropertySlim();
+
+            IsButtonYesNoCancel = _buttonType.Select(x => x == MessageBoxButton.YesNoCancel)
+                .ToReadOnlyReactivePropertySlim();
+
+            IsButtonYesNo = _buttonType.Select(x => x == MessageBoxButton.YesNo)
+                .ToReadOnlyReactivePropertySlim();
+
             InitializeComponent();
+        }
+
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="message">メッセージ文言</param>
+        /// <param name="caption">キャプション文言</param>
+        /// <param name="buttonType">ボタン種別</param>
+        /// <param name="imageType">画像種別</param>
+        public MessageWindow(string message, string caption, MessageBoxButton buttonType, MessageBoxImage imageType)
+            : this(message, caption)
+        {
+            _buttonType.Value = buttonType;
+            _imageType = imageType;
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -78,16 +163,56 @@ namespace UiParts.UiWindow.Message
         /// <param name="message">メッセージ文言</param>
         /// <param name="caption">キャプション文言</param>
         /// <returns>結果</returns>
-        public static MessageBoxResult Show(Window owner, string message, string caption)
+        public static async Task<MessageBoxResult> ShowAsync(Window owner, string message, string caption)
         {
             IBlur? blur = owner as IBlur;
-            blur?.BlurOn();
+            if (blur is not null)
+            {
+                await blur.BlurOnAsync();
+            }
 
             var messageWindowView = new MessageWindow(message, caption);
             messageWindowView.Owner = owner;
             messageWindowView.ShowDialog();
 
-            blur?.BlurOff();
+            if (blur is not null)
+            {
+                await blur.BlurOffAsync();
+            }
+
+            return messageWindowView.Result;
+        }
+
+        /// <summary>
+        /// 表示します。
+        /// </summary>
+        /// <param name="owner">親ウィンドウ</param>
+        /// <param name="message">メッセージ文言</param>
+        /// <param name="caption">キャプション文言</param>
+        /// <param name="button">ボタン種別</param>
+        /// <param name="image">画像種別</param>
+        /// <returns>結果</returns>
+        public static async Task<MessageBoxResult> ShowAsync(
+            Window owner,
+            string message,
+            string caption,
+            MessageBoxButton button,
+            MessageBoxImage image)
+        {
+            IBlur? blur = owner as IBlur;
+            if (blur is not null)
+            {
+                await blur.BlurOnAsync();
+            }
+
+            var messageWindowView = new MessageWindow(message, caption, button, image);
+            messageWindowView.Owner = owner;
+            messageWindowView.ShowDialog();
+
+            if (blur is not null)
+            {
+                await blur.BlurOffAsync();
+            }
 
             return messageWindowView.Result;
         }
