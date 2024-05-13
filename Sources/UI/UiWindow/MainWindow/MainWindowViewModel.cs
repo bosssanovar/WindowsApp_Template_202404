@@ -4,6 +4,7 @@ using Reactive.Bindings.Extensions;
 using System.Windows;
 
 using UiParts.UiWindow.AboutWindow;
+using UiParts.UiWindow.Message;
 using UiParts.UiWindow.StartWindow;
 using UiParts.UserControls;
 using UiParts.UserControls.AaaAndBbbPage;
@@ -132,6 +133,8 @@ namespace UiParts.UiWindow.MainWindow
 
                     Page.Value?.Update();
                     ScrollablePage.Value?.Update();
+
+                    MessageWindow.Show(this, "初期化が完了しました。", "情報");
                 }
             })
                 .AddTo(_compositeDisposable);

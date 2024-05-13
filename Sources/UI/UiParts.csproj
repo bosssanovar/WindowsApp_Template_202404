@@ -43,7 +43,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="UiWindow\AboutWindow\AboutWindowView.xaml.cs">
+    <Compile Update="UiWindow\Message\MessageWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="UserControls\BbbPage\BbbPageView.xaml.cs">

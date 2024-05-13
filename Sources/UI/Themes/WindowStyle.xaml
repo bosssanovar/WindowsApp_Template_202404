@@ -298,4 +298,66 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style TargetType="{x:Type uiWindow:MessageWindowBase}">
+        <Setter Property="WindowChrome.WindowChrome">
+            <Setter.Value>
+                <WindowChrome CaptionHeight="30"
+                              ResizeBorderThickness="{x:Static SystemParameters.WindowResizeBorderThickness}"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="FontFamily" Value="Meiryo UI"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="ResizeMode" Value="NoResize"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Window}">
+                    <!-- 外枠の線色 -->
+                    <Border x:Name="border" BorderBrush="#202020" BorderThickness="1">
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <!--タイトルバー-->
+                                <RowDefinition Height="29"/>
+                                <!--クライアントエリア-->
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <!--タイトルバー-->
+                            <Grid x:Name="titleBar" Background="DarkBlue">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="3"/>
+                                    <ColumnDefinition Width="30"/>
+                                    <ColumnDefinition Width="3"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="3"/>
+                                    <ColumnDefinition Width="46"/>
+                                    <ColumnDefinition Width="8"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!--アプリアイコン-->
+                                <!--<Image Grid.Column="1"
+                                       Source="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Icon}"/>-->
+                                <Ellipse Grid.Column="1" Fill="SkyBlue" Margin="3"/>
+
+                                <!--タイトル文字列-->
+                                <TextBlock Grid.Column="3" Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Title}"  
+                                           Foreground="White" VerticalAlignment="Center" FontSize="15" TextTrimming="CharacterEllipsis"/>
+
+                                <!--キャプションボタン-->
+                                <Button Grid.Column="5" Content="r" WindowChrome.IsHitTestVisibleInChrome="True"
+                                        Command="{Binding WindowCloseCommand}" Style="{StaticResource SystemCloseButton}"/>
+                            </Grid>
+
+                            <!--クライアントエリア-->
+                            <Grid Grid.Row="1" Background="#202020">
+                                <ContentPresenter Content="{TemplateBinding Content}"/>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>
