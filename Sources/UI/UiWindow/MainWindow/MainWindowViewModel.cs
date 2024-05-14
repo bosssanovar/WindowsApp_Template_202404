@@ -143,12 +143,13 @@ namespace UiParts.UiWindow.MainWindow
                 Page.Value?.Commit();
                 ScrollablePage.Value?.Commit();
 
-                var blur = this as IBlur;
-                blur?.BlurOn();
+                bool result = true;
 
-                var result = _model.SaveDataFile();
-
-                blur?.BlurOff();
+                PopupOnBlur(
+                    () =>
+                    {
+                        result = _model.SaveDataFile();
+                    });
 
                 if (result)
                 {
@@ -159,12 +160,13 @@ namespace UiParts.UiWindow.MainWindow
 
             OpenCommand.Subscribe(() =>
             {
-                var blur = this as IBlur;
-                blur?.BlurOn();
+                Usecase.OpenDataUsecase.OpenResult result = Usecase.OpenDataUsecase.OpenResult.Completed;
 
-                var result = _model.OpenDataFile();
-
-                blur?.BlurOff();
+                PopupOnBlur(
+                    () =>
+                    {
+                        result = _model.OpenDataFile();
+                    });
 
                 switch (result)
                 {
@@ -189,14 +191,14 @@ namespace UiParts.UiWindow.MainWindow
 
             AboutCommand.Subscribe(() =>
             {
-                var blur = this as IBlur;
-                blur?.BlurOn();
-
                 var about = GlobalServiceProvider.GetRequiredService<AboutWindowView>();
                 about.Owner = this;
-                about.ShowDialog();
 
-                blur?.BlurOff();
+                PopupOnBlur(
+                    () =>
+                    {
+                        about.ShowDialog();
+                    });
             })
                 .AddTo(_compositeDisposable);
 

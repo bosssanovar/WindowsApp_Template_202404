@@ -1,6 +1,8 @@
 ﻿using System.Windows;
 using System.Windows.Media.Animation;
 
+using UiParts.UiWindow.AboutWindow;
+
 using WpfLib;
 
 namespace UiParts.UiWindow.MainWindow
@@ -63,6 +65,18 @@ namespace UiParts.UiWindow.MainWindow
             {
                 IsBlur.Value = true;
             }
+        }
+
+        private void PopupOnBlur(Action popupAction)
+        {
+            var blur = this as IBlur;
+            blur?.BlurOn();
+
+            WpfDoEvents.Execute();
+
+            popupAction();
+
+            blur?.BlurOff();
         }
     }
 }
