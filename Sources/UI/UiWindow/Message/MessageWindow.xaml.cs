@@ -1,12 +1,9 @@
 ﻿using Reactive.Bindings;
 
-using System;
 using System.Reactive.Linq;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Threading;
 
 namespace UiParts.UiWindow.Message
 {

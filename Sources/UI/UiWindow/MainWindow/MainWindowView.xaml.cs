@@ -1,8 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Media.Animation;
 
-using UiParts.UiWindow.AboutWindow;
-
 using WpfLib;
 
 namespace UiParts.UiWindow.MainWindow
