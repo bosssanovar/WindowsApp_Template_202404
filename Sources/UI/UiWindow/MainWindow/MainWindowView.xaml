@@ -37,6 +37,12 @@
 
         </DockPanel>
 
+        <hamburgerMenu:HamburgerMenu x:Name="hamburgerMenu"
+                           ShowPageAaaCommand="{Binding PageAaaCommand}"
+                           ShowPageBbbCommand="{Binding PageBbbCommand}"
+                           ShowPageAaaAndBbbCommand="{Binding PageAaaAndBbbCommand}"
+                           ShowPageCccCommand="{Binding PageCccCommand}"/>
+
         <Border x:Name="blurBorder" Background="#00000000" Visibility="Collapsed">
             <Border.Resources>
                 <Storyboard x:Key="OpenAnimation">
@@ -54,11 +60,5 @@
                 </Storyboard>
             </Border.Resources>
         </Border>
-
-        <hamburgerMenu:HamburgerMenu x:Name="hamburgerMenu"
-                           ShowPageAaaCommand="{Binding PageAaaCommand}"
-                           ShowPageBbbCommand="{Binding PageBbbCommand}"
-                           ShowPageAaaAndBbbCommand="{Binding PageAaaAndBbbCommand}"
-                           ShowPageCccCommand="{Binding PageCccCommand}"/>
     </Grid>
 </uiwindow:MainWindowBase>
