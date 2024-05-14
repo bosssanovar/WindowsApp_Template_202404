@@ -2,6 +2,7 @@
 
 using System.Reactive.Linq;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
 
@@ -20,7 +21,7 @@ namespace UiParts.UiWindow.Message
 
         private readonly ReactivePropertySlim<MessageBoxButton> _buttonType = new();
 
-        private MessageBoxImage _imageType;
+        private readonly ReactivePropertySlim<MessageBoxImage> _imageType = new();
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -81,6 +82,11 @@ namespace UiParts.UiWindow.Message
         /// </summary>
         public ReadOnlyReactivePropertySlim<bool> IsButtonYesNo { get; }
 
+        /// <summary>
+        /// 画像
+        /// </summary>
+        public ReadOnlyReactivePropertySlim<SolidColorBrush?> Image { get; }
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Events ----------------------------------------------------------------------------------------
@@ -135,6 +141,27 @@ namespace UiParts.UiWindow.Message
             IsButtonYesNo = _buttonType.Select(x => x == MessageBoxButton.YesNo)
                 .ToReadOnlyReactivePropertySlim();
 
+            Image = _imageType.Select(
+                x =>
+                {
+                    switch (x)
+                    {
+                        case MessageBoxImage.None:
+                            return Brushes.White;
+                        case MessageBoxImage.Error:
+                            return Brushes.Yellow;
+                        case MessageBoxImage.Question:
+                            return Brushes.Green;
+                        case MessageBoxImage.Exclamation:
+                            return Brushes.Red;
+                        case MessageBoxImage.Asterisk:
+                            return Brushes.Blue;
+                        default:
+                            throw new NotImplementedException();
+                    }
+                })
+                .ToReadOnlyReactivePropertySlim();
+
             InitializeComponent();
         }
 
@@ -149,7 +176,7 @@ namespace UiParts.UiWindow.Message
             : this(message, caption)
         {
             _buttonType.Value = buttonType;
-            _imageType = imageType;
+            _imageType.Value = imageType;
         }
 
         #endregion --------------------------------------------------------------------------------------------

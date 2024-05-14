@@ -70,7 +70,7 @@
             </Grid.ColumnDefinitions>
 
             <Rectangle HorizontalAlignment="Center" VerticalAlignment="Center"
-                       Fill="Blue" Width="40" Height="40" Margin="20"/>
+                       Fill="{Binding Image.Value}" d:Fill="Blue" Width="40" Height="40" Margin="20"/>
 
             <TextBlock Grid.Column="1" Margin="20" HorizontalAlignment="Left" TextWrapping="Wrap"
                        MaxWidth="600"
