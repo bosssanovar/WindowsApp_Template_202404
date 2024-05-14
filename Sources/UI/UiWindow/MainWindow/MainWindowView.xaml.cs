@@ -30,8 +30,8 @@ namespace UiParts.UiWindow.MainWindow
             {
                 sb.Completed += (sender, e) =>
                 {
-                    IsBlur.Value = false;
                     blurBorder.Visibility = Visibility.Collapsed;
+                    IsBlur.Value = false;
                 };
 
                 sb.Begin();
@@ -47,12 +47,21 @@ namespace UiParts.UiWindow.MainWindow
         public void BlurOn()
         {
             blurBorder.Visibility = Visibility.Visible;
-            IsBlur.Value = true;
 
             var sb = blurBorder.FindResource("OpenAnimation") as Storyboard;
             if (sb is not null)
             {
+                sb.Completed += (sender, e) =>
+                {
+                    blurBorder.Visibility = Visibility.Visible;
+                    IsBlur.Value = true;
+                };
+
                 sb.Begin();
+            }
+            else
+            {
+                IsBlur.Value = true;
             }
         }
     }
