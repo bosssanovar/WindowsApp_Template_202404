@@ -123,7 +123,6 @@ namespace UiParts.UiWindow.MainWindow
             InitializeCommand.Subscribe(() =>
             {
                 if (MessageWindow.Show(
-                            this,
                             "初期化を実行しますか？",
                             "確認",
                             MessageBoxButton.YesNo,
@@ -134,7 +133,7 @@ namespace UiParts.UiWindow.MainWindow
                     Page.Value?.Update();
                     ScrollablePage.Value?.Update();
 
-                    MessageWindow.Show(this, "初期化が完了しました。", "情報");
+                    MessageWindow.Show("初期化が完了しました。", "情報");
                 }
             })
                 .AddTo(_compositeDisposable);

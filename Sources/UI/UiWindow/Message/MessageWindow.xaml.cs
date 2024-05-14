@@ -186,12 +186,16 @@ namespace UiParts.UiWindow.Message
         /// <summary>
         /// 表示します。
         /// </summary>
-        /// <param name="owner">親ウィンドウ</param>
         /// <param name="message">メッセージ文言</param>
         /// <param name="caption">キャプション文言</param>
         /// <returns>結果</returns>
-        public static MessageBoxResult Show(Window owner, string message, string caption)
+        public static MessageBoxResult Show(string message, string caption)
         {
+            var owner =
+                Application.Current.Windows
+                    .OfType<Window>()
+                    .SingleOrDefault(x => x.IsActive);
+
             var blur = owner as IBlur;
             blur?.BlurOn();
 
@@ -207,19 +211,22 @@ namespace UiParts.UiWindow.Message
         /// <summary>
         /// 表示します。
         /// </summary>
-        /// <param name="owner">親ウィンドウ</param>
         /// <param name="message">メッセージ文言</param>
         /// <param name="caption">キャプション文言</param>
         /// <param name="button">ボタン種別</param>
         /// <param name="image">画像種別</param>
         /// <returns>結果</returns>
         public static MessageBoxResult Show(
-            Window owner,
             string message,
             string caption,
             MessageBoxButton button,
             MessageBoxImage image)
         {
+            var owner =
+                Application.Current.Windows
+                    .OfType<Window>()
+                    .SingleOrDefault(x => x.IsActive);
+
             var blur = owner as IBlur;
             blur?.BlurOn();
 
