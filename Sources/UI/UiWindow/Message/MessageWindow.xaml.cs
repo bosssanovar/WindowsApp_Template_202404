@@ -186,8 +186,10 @@ namespace UiParts.UiWindow.Message
         {
             var owner = GetActiveWindow();
 
-            var messageWindowView = new MessageWindow(message, caption);
-            messageWindowView.Owner = owner;
+            var messageWindowView = new MessageWindow(message, caption)
+            {
+                Owner = owner,
+            };
 
             ShowOnBlur(
                 owner,
@@ -217,8 +219,10 @@ namespace UiParts.UiWindow.Message
 
             var owner = GetActiveWindow();
 
-            var messageWindowView = new MessageWindow(message, caption, button, image);
-            messageWindowView.Owner = owner;
+            var messageWindowView = new MessageWindow(message, caption, button, image)
+            {
+                Owner = owner,
+            };
 
             ShowOnBlur(
                 owner,
@@ -270,10 +274,7 @@ namespace UiParts.UiWindow.Message
         private void BeginShowAnimation()
         {
             var sb = FindResource("Show") as Storyboard;
-            if (sb is not null)
-            {
-                sb.Begin();
-            }
+            sb?.Begin();
         }
 
         private void BeginDismissAnimation(Action onCompleted)

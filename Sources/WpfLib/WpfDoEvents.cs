@@ -12,7 +12,7 @@ namespace WpfLib
         /// </summary>
         public static void Execute()
         {
-            DispatcherFrame frame = new DispatcherFrame();
+            DispatcherFrame frame = new();
             var callback = new DispatcherOperationCallback(obj =>
             {
                 ((DispatcherFrame)obj).Continue = false;

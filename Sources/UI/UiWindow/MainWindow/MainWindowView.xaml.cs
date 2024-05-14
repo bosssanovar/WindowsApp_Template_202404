@@ -67,14 +67,13 @@ namespace UiParts.UiWindow.MainWindow
 
         private void PopupOnBlur(Action popupAction)
         {
-            var blur = this as IBlur;
-            blur?.BlurOn();
+            this.BlurOn();
 
             WpfDoEvents.Execute();
 
             popupAction();
 
-            blur?.BlurOff();
+            this.BlurOff();
         }
     }
 }
