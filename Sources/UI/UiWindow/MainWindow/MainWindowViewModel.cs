@@ -143,7 +143,12 @@ namespace UiParts.UiWindow.MainWindow
                 Page.Value?.Commit();
                 ScrollablePage.Value?.Commit();
 
+                var blur = this as IBlur;
+                blur?.BlurOn();
+
                 var result = _model.SaveDataFile();
+
+                blur?.BlurOff();
 
                 if (result)
                 {
@@ -154,7 +159,12 @@ namespace UiParts.UiWindow.MainWindow
 
             OpenCommand.Subscribe(() =>
             {
+                var blur = this as IBlur;
+                blur?.BlurOn();
+
                 var result = _model.OpenDataFile();
+
+                blur?.BlurOff();
 
                 switch (result)
                 {
@@ -179,9 +189,14 @@ namespace UiParts.UiWindow.MainWindow
 
             AboutCommand.Subscribe(() =>
             {
+                var blur = this as IBlur;
+                blur?.BlurOn();
+
                 var about = GlobalServiceProvider.GetRequiredService<AboutWindowView>();
                 about.Owner = this;
                 about.ShowDialog();
+
+                blur?.BlurOff();
             })
                 .AddTo(_compositeDisposable);
 
