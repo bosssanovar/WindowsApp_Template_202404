@@ -50,7 +50,6 @@ namespace AaaEntity.Entity
         /// WWW設定
         /// </summary>
         public WwwVO Www { get; set; }
-        // TODO : パスカル形式
 
         /// <summary>
         /// XXX設定

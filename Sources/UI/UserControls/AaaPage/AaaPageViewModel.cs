@@ -30,7 +30,7 @@ namespace UiParts.UserControls.AaaPage
         /// <summary>
         /// WWW設定
         /// </summary>
-        public ReactivePropertySlim<bool> WwwVal { get; private set; } = new(false); // TODO : パスカル形式
+        public ReactivePropertySlim<bool> WwwVal { get; private set; } = new(false);
 
         /// <summary>
         /// XXX設定
