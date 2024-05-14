@@ -147,7 +147,7 @@ namespace UiParts.UiWindow.MainWindow
 
                 if (result)
                 {
-                    MessageBox.Show("データを保存しました。", "情報");
+                    MessageWindow.Show("データを保存しました。", "情報");
                 }
             })
                 .AddTo(_compositeDisposable);
@@ -161,13 +161,13 @@ namespace UiParts.UiWindow.MainWindow
                     case Usecase.OpenDataUsecase.OpenResult.Completed:
                         Page.Value?.Update();
                         ScrollablePage.Value?.Update();
-                        MessageBox.Show("データを開きました。", "情報");
+                        MessageWindow.Show("データを開きました。", "情報");
                         break;
                     case Usecase.OpenDataUsecase.OpenResult.Canceled:
-                        MessageBox.Show("キャンセルしました。", "情報");
+                        MessageWindow.Show("キャンセルしました。", "情報");
                         break;
                     case Usecase.OpenDataUsecase.OpenResult.Error_InvalidData:
-                        MessageBox.Show(
+                        MessageWindow.Show(
                             "データが不正のため、処理を中断しました。",
                             "情報",
                             MessageBoxButton.OK,

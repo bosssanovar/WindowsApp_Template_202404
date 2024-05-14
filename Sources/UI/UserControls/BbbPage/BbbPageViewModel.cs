@@ -9,6 +9,8 @@ using System.Reactive.Linq;
 using System.Text;
 using System.Windows;
 
+using UiParts.UiWindow.Message;
+
 namespace UiParts.UserControls.BbbPage
 {
     /// <summary>
@@ -85,7 +87,7 @@ namespace UiParts.UserControls.BbbPage
                     var lengthChecker = new BbbLehgthChecker(_model.AaaEntity.Value);
                     if (!lengthChecker.IsValid(text))
                     {
-                        MessageBox.Show(
+                        MessageWindow.Show(
                             "AAA設定指定の文字数に丸め込みます。",
                             "確認");
 
@@ -127,7 +129,7 @@ namespace UiParts.UserControls.BbbPage
 
                     if (message.Length > 0)
                     {
-                        MessageBox.Show(message.ToString(), "確認");
+                        MessageWindow.Show(message.ToString(), "確認");
                     }
 
                     var entity = _model.BbbEntity.Value;

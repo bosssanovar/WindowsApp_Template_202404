@@ -10,6 +10,8 @@ using Reactive.Bindings.Extensions;
 using System.Text;
 using System.Windows;
 
+using UiParts.UiWindow.Message;
+
 namespace UiParts.UserControls.AaaAndBbbPage
 {
     /// <summary>
@@ -90,7 +92,7 @@ namespace UiParts.UserControls.AaaAndBbbPage
                     int value = x;
                     if (!YyyVO.IsValid(value))
                     {
-                        MessageBox.Show("設定可能な数値ではありません。\n補正します。", "警告", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        MessageWindow.Show("設定可能な数値ではありません。\n補正します。", "警告", MessageBoxButton.OK, MessageBoxImage.Warning);
 
                         value = YyyVO.CurrectValue(value);
                     }
@@ -114,7 +116,7 @@ namespace UiParts.UserControls.AaaAndBbbPage
                     if (!ZzzVO.IsValid(value))
                     {
                         var currected = ZzzVO.CurrectValue(value);
-                        MessageBox.Show($"設定範囲外のため、補正します。\n{value} → {currected}", "警告", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        MessageWindow.Show($"設定範囲外のため、補正します。\n{value} → {currected}", "警告", MessageBoxButton.OK, MessageBoxImage.Warning);
 
                         value = currected;
                     }
@@ -123,12 +125,11 @@ namespace UiParts.UserControls.AaaAndBbbPage
 
                     if (entity.IsHaveToCorrectAaa(value))
                     {
-                        if (MessageBox.Show(
+                        if (MessageWindow.Show(
                             "ZZZ設定の変更によりAAA設定の設定値が補正され、それに関わる項目も補正される可能性があります。\n\nZZZ設定を変更しますか？",
                             "確認",
                             MessageBoxButton.YesNo,
-                            MessageBoxImage.Question,
-                            MessageBoxResult.No) == MessageBoxResult.Yes)
+                            MessageBoxImage.Question) == MessageBoxResult.Yes)
                         {
                             entity.SetZzz(new(value), new AaaChangedEvent(_model.AaaEntity.Value, _model.BbbEntity.Value));
                         }
@@ -155,7 +156,7 @@ namespace UiParts.UserControls.AaaAndBbbPage
 
                     if (entity.IsValidAaa(x))
                     {
-                        MessageBox.Show("ZZZ設定を超える値を設定できません。");
+                        MessageWindow.Show("ZZZ設定を超える値を設定できません。", string.Empty);
                     }
                     else
                     {
@@ -180,7 +181,7 @@ namespace UiParts.UserControls.AaaAndBbbPage
                     var lengthChecker = new BbbLehgthChecker(_model.AaaEntity.Value);
                     if (!lengthChecker.IsValid(text))
                     {
-                        MessageBox.Show(
+                        MessageWindow.Show(
                             "AAA設定指定の文字数に丸め込みます。",
                             "確認");
 
@@ -222,7 +223,7 @@ namespace UiParts.UserControls.AaaAndBbbPage
 
                     if (message.Length > 0)
                     {
-                        MessageBox.Show(message.ToString(), "確認");
+                        MessageWindow.Show(message.ToString(), "確認");
                     }
 
                     var entity = _model.BbbEntity.Value;
