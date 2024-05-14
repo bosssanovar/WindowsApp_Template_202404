@@ -1,7 +1,9 @@
 ﻿using Reactive.Bindings;
 
+using System;
 using System.Reactive.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
@@ -144,21 +146,15 @@ namespace UiParts.UiWindow.Message
             Image = _imageType.Select(
                 x =>
                 {
-                    switch (x)
+                    return x switch
                     {
-                        case MessageBoxImage.None:
-                            return Brushes.White;
-                        case MessageBoxImage.Error:
-                            return Brushes.Yellow;
-                        case MessageBoxImage.Question:
-                            return Brushes.Green;
-                        case MessageBoxImage.Exclamation:
-                            return Brushes.Red;
-                        case MessageBoxImage.Asterisk:
-                            return Brushes.Blue;
-                        default:
-                            throw new NotImplementedException();
-                    }
+                        MessageBoxImage.None => Brushes.White,
+                        MessageBoxImage.Error => Brushes.Yellow,
+                        MessageBoxImage.Question => Brushes.Green,
+                        MessageBoxImage.Exclamation => Brushes.Red,
+                        MessageBoxImage.Asterisk => Brushes.Blue,
+                        _ => throw new NotImplementedException(),
+                    };
                 })
                 .ToReadOnlyReactivePropertySlim();
 
@@ -191,19 +187,17 @@ namespace UiParts.UiWindow.Message
         /// <returns>結果</returns>
         public static MessageBoxResult Show(string message, string caption)
         {
-            var owner =
-                Application.Current.Windows
-                    .OfType<Window>()
-                    .SingleOrDefault(x => x.IsActive);
-
-            var blur = owner as IBlur;
-            blur?.BlurOn();
+            var owner = GetActiveWindow();
 
             var messageWindowView = new MessageWindow(message, caption);
             messageWindowView.Owner = owner;
-            messageWindowView.ShowDialog();
 
-            blur?.BlurOff();
+            ShowOnBlur(
+                owner,
+                () =>
+                {
+                    messageWindowView.ShowDialog();
+                });
 
             return messageWindowView.Result;
         }
@@ -222,19 +216,19 @@ namespace UiParts.UiWindow.Message
             MessageBoxButton button,
             MessageBoxImage image)
         {
-            var owner =
-                Application.Current.Windows
-                    .OfType<Window>()
-                    .SingleOrDefault(x => x.IsActive);
+            PlaySoundIfNeed(image);
 
-            var blur = owner as IBlur;
-            blur?.BlurOn();
+            var owner = GetActiveWindow();
 
             var messageWindowView = new MessageWindow(message, caption, button, image);
             messageWindowView.Owner = owner;
-            messageWindowView.ShowDialog();
 
-            blur?.BlurOff();
+            ShowOnBlur(
+                owner,
+                () =>
+                {
+                    messageWindowView.ShowDialog();
+                });
 
             return messageWindowView.Result;
         }
@@ -250,6 +244,31 @@ namespace UiParts.UiWindow.Message
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - private -----------------------------------------------------------------------------
+
+        private static void ShowOnBlur(Window? owner, Action action)
+        {
+            var blur = owner as IBlur;
+            blur?.BlurOn();
+
+            action();
+
+            blur?.BlurOff();
+        }
+
+        private static Window? GetActiveWindow()
+        {
+            return Application.Current.Windows
+                    .OfType<Window>()
+                    .SingleOrDefault(x => x.IsActive);
+        }
+
+        private static void PlaySoundIfNeed(MessageBoxImage image)
+        {
+            if (image is MessageBoxImage.Error or MessageBoxImage.Warning or MessageBoxImage.Exclamation)
+            {
+                System.Media.SystemSounds.Beep.Play();
+            }
+        }
 
         private void BeginShowAnimation()
         {
