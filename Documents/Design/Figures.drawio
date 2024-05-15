@@ -1,0 +1,72 @@
+<mxfile host="65bd71144e">
+    <diagram id="ekzfMq8FDdJsoh0hXVtB" name="アーキテクチャ全体図">
+        <mxGraphModel dx="1432" dy="827" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="10" value="" style="rounded=0;whiteSpace=wrap;html=1;fontSize=14;" vertex="1" parent="1">
+                    <mxGeometry x="480" y="90" width="600" height="440" as="geometry"/>
+                </mxCell>
+                <mxCell id="2" value="C#" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#D1D1D1;fontSize=14;" vertex="1" parent="1">
+                    <mxGeometry x="660" y="384" width="350" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="WPF" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#D1D1D1;fontSize=14;" vertex="1" parent="1">
+                    <mxGeometry x="530" y="240" width="120" height="204" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="データ永続化" style="rounded=0;whiteSpace=wrap;html=1;fontSize=14;" vertex="1" parent="1">
+                    <mxGeometry x="660" y="310" width="110" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="通信" style="rounded=0;whiteSpace=wrap;html=1;fontSize=14;" vertex="1" parent="1">
+                    <mxGeometry x="780" y="310" width="110" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="etc." style="rounded=0;whiteSpace=wrap;html=1;fontSize=14;" vertex="1" parent="1">
+                    <mxGeometry x="900" y="310" width="110" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="コントローラ" style="rounded=0;whiteSpace=wrap;html=1;fontSize=14;" vertex="1" parent="1">
+                    <mxGeometry x="660" y="240" width="350" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="GUI" style="rounded=0;whiteSpace=wrap;html=1;fontSize=14;" vertex="1" parent="1">
+                    <mxGeometry x="530" y="170" width="480" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="GUIアーキテクチャ：MVVM" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=none;strokeWidth=3;strokeColor=#007FFF;verticalAlign=top;align=left;fontColor=#3333FF;fontSize=14;" vertex="1" parent="1">
+                    <mxGeometry x="490" y="140" width="530" height="94" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="システムアーキテクチャ：オニオンアーキテクチャ" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=none;strokeWidth=3;strokeColor=#33FF33;verticalAlign=top;align=right;fontColor=#009900;fontSize=14;" vertex="1" parent="1">
+                    <mxGeometry x="657" y="110" width="403" height="265" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value=".NET" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#D1D1D1;fontSize=14;" vertex="1" parent="1">
+                    <mxGeometry x="530" y="450" width="480" height="60" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="R86Gn5Yo9cQoMH25trvK" name="オニオンアーキテクチャ">
+        <mxGraphModel dx="1432" dy="827" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="N-UqKcId2rnhtK5vGyZU-1" value="" style="rounded=0;whiteSpace=wrap;html=1;fontSize=14;" vertex="1" parent="1">
+                    <mxGeometry x="390" y="278" width="450" height="300" as="geometry"/>
+                </mxCell>
+                <mxCell id="sSKXt0Mp8WAD8Ce5-9CS-4" value="&lt;font color=&quot;#000000&quot; style=&quot;font-size: 14px;&quot;&gt;&lt;br style=&quot;font-size: 14px;&quot;&gt;&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;strokeColor=#000000;strokeWidth=1;fontColor=#009900;fillColor=#FFFFFF;verticalAlign=top;fontSize=14;" vertex="1" parent="1">
+                    <mxGeometry x="420" y="300" width="390" height="260" as="geometry"/>
+                </mxCell>
+                <mxCell id="sSKXt0Mp8WAD8Ce5-9CS-3" value="&lt;font color=&quot;#000000&quot; style=&quot;font-size: 14px;&quot;&gt;Application Service&lt;br style=&quot;font-size: 14px;&quot;&gt;&lt;br style=&quot;font-size: 14px;&quot;&gt;&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;strokeColor=#000000;strokeWidth=1;fontColor=#009900;fillColor=#FFFFFF;verticalAlign=top;fontSize=14;" vertex="1" parent="1">
+                    <mxGeometry x="450" y="340" width="330" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="sSKXt0Mp8WAD8Ce5-9CS-2" value="&lt;font color=&quot;#000000&quot; style=&quot;font-size: 14px;&quot;&gt;Domain Service&lt;br style=&quot;font-size: 14px;&quot;&gt;&lt;br style=&quot;font-size: 14px;&quot;&gt;&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;strokeColor=#000000;strokeWidth=1;fontColor=#009900;fillColor=#FFFFFF;verticalAlign=top;fontSize=14;" vertex="1" parent="1">
+                    <mxGeometry x="480" y="370" width="270" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="sSKXt0Mp8WAD8Ce5-9CS-1" value="&lt;font color=&quot;#000000&quot; style=&quot;font-size: 14px;&quot;&gt;Domain Model&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;strokeColor=#000000;strokeWidth=1;fontColor=#009900;fillColor=#FFFFFF;fontSize=14;" vertex="1" parent="1">
+                    <mxGeometry x="520" y="400" width="190" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="sSKXt0Mp8WAD8Ce5-9CS-5" value="User Interface" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeWidth=1;fontColor=#000000;fontSize=14;rotation=-30;" vertex="1" parent="1">
+                    <mxGeometry x="450" y="330" width="110" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="sSKXt0Mp8WAD8Ce5-9CS-6" value="Infrastructure" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeWidth=1;fontColor=#000000;fontSize=14;rotation=30;" vertex="1" parent="1">
+                    <mxGeometry x="667" y="327" width="110" height="30" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
