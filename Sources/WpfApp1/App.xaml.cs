@@ -26,6 +26,11 @@ namespace WpfApp1
     /// </summary>
     public partial class App : Application
     {
+        /// <summary>
+        /// 起動時イベント
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             CreateDependencyInjectionProvider();
@@ -69,6 +74,36 @@ namespace WpfApp1
             services.AddTransient<CccPageView>();
 
             GlobalServiceProvider.SetProvider(services.BuildServiceProvider());
+        }
+
+        /// <summary>
+        /// 通常終了時イベント
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Application_Exit(object sender, ExitEventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// 予期しない例外がスローされたときなどの、異常な条件下でのシャットダウン時イベント
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// ログオフ、シャット ダウン、再起動、休止のWindows セッションの終了時イベント
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Application_SessionEnding(object sender, SessionEndingCancelEventArgs e)
+        {
+
         }
     }
 
