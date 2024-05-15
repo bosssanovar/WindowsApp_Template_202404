@@ -33,14 +33,14 @@ namespace WpfApp1
         /// <param name="e"></param>
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            CreateDependencyInjectionProvider();
+            CreateDiServiceProvider();
 
             var mainWindow = GlobalServiceProvider.GetRequiredService<StartWindowView>();
 
             mainWindow.Show();
         }
 
-        private static void CreateDependencyInjectionProvider()
+        private static void CreateDiServiceProvider()
         {
             var services = new ServiceCollection();
             services.AddSingleton<IAaaRepository, AaaRepository>();
