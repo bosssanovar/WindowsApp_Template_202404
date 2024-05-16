@@ -60,23 +60,17 @@ namespace Usecase
 
         private void InitAaaEntity()
         {
-            var aaaEntity = _aaaRepository.Pull();
-            aaaEntity.Initialize();
-            _aaaRepository.Commit(aaaEntity);
+            _aaaRepository.Commit(new());
         }
 
         private void InitBbbEntity()
         {
-            var bbbEntity = _bbbRepository.Pull();
-            bbbEntity.Initialize();
-            _bbbRepository.Commit(bbbEntity);
+            _bbbRepository.Commit(new());
         }
 
         private void InitCccEntity()
         {
-            var cccEntity = _cccRepository.Pull();
-            cccEntity.Initialize();
-            _cccRepository.Commit(cccEntity);
+            _cccRepository.Commit(new());
         }
 
         #endregion --------------------------------------------------------------------------------------------

@@ -95,15 +95,6 @@ namespace BbbEntity.Entity
         }
 
         /// <summary>
-        /// 初期化します。
-        /// </summary>
-        public void Initialize()
-        {
-            Bbb = new(BbbInitValue);
-            Bbb2 = new(Bbb2InitValue);
-        }
-
-        /// <summary>
         /// 設定データ群を吐き出します。
         /// </summary>
         /// <returns>設定データ群</returns>

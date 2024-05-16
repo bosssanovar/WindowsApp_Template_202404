@@ -163,18 +163,6 @@ namespace AaaEntity.Entity
         }
 
         /// <summary>
-        /// 初期化します。
-        /// </summary>
-        public void Initialize()
-        {
-            Www = new(WwwInitValue);
-            Xxx = new(XxxInitValue);
-            Yyy = new(YyyyInitValue);
-            Zzz = new(ZzzInitValue);
-            Aaa = new(AaaInitValue);
-        }
-
-        /// <summary>
         /// 設定データ群を吐き出します。
         /// </summary>
         /// <returns>設定データ群</returns>

@@ -42,7 +42,14 @@ namespace CccEntity.Entity
         /// </summary>
         public CccEntity()
         {
-            Initialize();
+            var list = new List<CccDetailEntity>();
+            for (int i = 0; i < CccsCountInitValue; i++)
+            {
+                var detail = new CccDetailEntity();
+                list.Add(detail);
+            }
+
+            Details = new(list);
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -60,21 +67,6 @@ namespace CccEntity.Entity
             {
                 var detail = new CccDetailEntity();
                 detail.ChangeCount(count);
-                list.Add(detail);
-            }
-
-            Details = new(list);
-        }
-
-        /// <summary>
-        /// 初期化します。
-        /// </summary>
-        public void Initialize()
-        {
-            var list = new List<CccDetailEntity>();
-            for (int i = 0; i < CccsCountInitValue; i++)
-            {
-                var detail = new CccDetailEntity();
                 list.Add(detail);
             }
 
