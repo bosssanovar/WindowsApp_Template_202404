@@ -1592,4 +1592,77 @@
             </root>
         </mxGraphModel>
     </diagram>
+    <diagram id="8WpTURlUkwSQJYRdAocv" name="設定値初期化シーケンス">
+        <mxGraphModel dx="1432" dy="827" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="XMot9jL0lXFb5pcc1vpv-1" value="" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;strokeWidth=1;fontSize=14;fontColor=#000000;fillColor=default;" vertex="1" parent="1">
+                    <mxGeometry x="10" y="75" width="580" height="385" as="geometry"/>
+                </mxCell>
+                <mxCell id="XMot9jL0lXFb5pcc1vpv-2" value="Usecase" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;strokeColor=#000000;strokeWidth=1;fontSize=14;fontColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="50" y="90" width="100" height="350" as="geometry"/>
+                </mxCell>
+                <mxCell id="XMot9jL0lXFb5pcc1vpv-3" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;strokeColor=#000000;strokeWidth=1;fontSize=14;fontColor=#000000;fillColor=default;" vertex="1" parent="XMot9jL0lXFb5pcc1vpv-2">
+                    <mxGeometry x="45" y="70" width="10" height="270" as="geometry"/>
+                </mxCell>
+                <mxCell id="XMot9jL0lXFb5pcc1vpv-4" value="初期化" style="html=1;verticalAlign=bottom;startArrow=oval;endArrow=block;startSize=8;strokeWidth=1;fontSize=14;fontColor=#000000;" edge="1" parent="XMot9jL0lXFb5pcc1vpv-2" target="XMot9jL0lXFb5pcc1vpv-3">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="-15" y="70" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="XMot9jL0lXFb5pcc1vpv-5" value="Repository" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;strokeColor=#000000;strokeWidth=1;fontSize=14;fontColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="250" y="90" width="100" height="340" as="geometry"/>
+                </mxCell>
+                <mxCell id="XMot9jL0lXFb5pcc1vpv-6" value="AAA Entity" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;strokeColor=#000000;strokeWidth=1;fontSize=14;fontColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="360" y="170" width="100" height="270" as="geometry"/>
+                </mxCell>
+                <mxCell id="XMot9jL0lXFb5pcc1vpv-8" value="BBB Entity" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;strokeColor=#000000;strokeWidth=1;fontSize=14;fontColor=#000000;fillColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="470" y="320" width="100" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="XMot9jL0lXFb5pcc1vpv-34" value="ref" style="shape=umlFrame;tabPosition=left;html=1;boundedLbl=1;labelInHeader=1;width=50;height=30;strokeWidth=1;fontSize=14;swimlaneFillColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="268" y="227" width="182" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="XMot9jL0lXFb5pcc1vpv-35" value="Entity変更確定" style="text;align=center;strokeColor=none;strokeWidth=1;fontSize=14;fontColor=#000000;fillColor=default;" vertex="1" parent="XMot9jL0lXFb5pcc1vpv-34">
+                    <mxGeometry width="100" height="20" relative="1" as="geometry">
+                        <mxPoint x="63" y="6" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="XMot9jL0lXFb5pcc1vpv-36" value="AAA Entity変更確定" style="html=1;verticalAlign=bottom;endArrow=block;strokeWidth=1;fontSize=14;fontColor=#000000;startSize=6;endSize=10;entryX=-0.005;entryY=0.475;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="XMot9jL0lXFb5pcc1vpv-3" target="XMot9jL0lXFb5pcc1vpv-34">
+                    <mxGeometry width="80" relative="1" as="geometry">
+                        <mxPoint x="115" y="537.6799999999998" as="sourcePoint"/>
+                        <mxPoint x="277.154" y="537.6799999999998" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="XMot9jL0lXFb5pcc1vpv-37" value="ref" style="shape=umlFrame;tabPosition=left;html=1;boundedLbl=1;labelInHeader=1;width=50;height=30;strokeWidth=1;fontSize=14;swimlaneFillColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="268" y="379" width="282" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="XMot9jL0lXFb5pcc1vpv-38" value="Entity変更確定" style="text;align=center;strokeColor=none;strokeWidth=1;fontSize=14;fontColor=#000000;fillColor=default;" vertex="1" parent="XMot9jL0lXFb5pcc1vpv-37">
+                    <mxGeometry width="100" height="20" relative="1" as="geometry">
+                        <mxPoint x="63" y="6" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="XMot9jL0lXFb5pcc1vpv-39" value="BBB Entity変更確定" style="html=1;verticalAlign=bottom;endArrow=block;strokeWidth=1;fontSize=14;fontColor=#000000;startSize=6;endSize=10;entryX=-0.007;entryY=0.467;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="XMot9jL0lXFb5pcc1vpv-3" target="XMot9jL0lXFb5pcc1vpv-37">
+                    <mxGeometry width="80" relative="1" as="geometry">
+                        <mxPoint x="115" y="669" as="sourcePoint"/>
+                        <mxPoint x="277.0899999999999" y="669" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="XMot9jL0lXFb5pcc1vpv-45" value="&amp;lt;&amp;lt;create&amp;gt;&amp;gt;" style="endArrow=open;endSize=12;dashed=1;html=1;strokeWidth=1;fontSize=14;fontColor=#000000;entryX=-0.01;entryY=0.05;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="XMot9jL0lXFb5pcc1vpv-3" target="XMot9jL0lXFb5pcc1vpv-6">
+                    <mxGeometry x="-0.0945" y="11" width="160" relative="1" as="geometry">
+                        <mxPoint x="500" y="360" as="sourcePoint"/>
+                        <mxPoint x="660" y="360" as="targetPoint"/>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="XMot9jL0lXFb5pcc1vpv-46" value="&amp;lt;&amp;lt;create&amp;gt;&amp;gt;" style="endArrow=open;endSize=12;dashed=1;html=1;strokeWidth=1;fontSize=14;fontColor=#000000;entryX=-0.05;entryY=0.055;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="XMot9jL0lXFb5pcc1vpv-3" target="XMot9jL0lXFb5pcc1vpv-8">
+                    <mxGeometry x="-0.0945" y="11" width="160" relative="1" as="geometry">
+                        <mxPoint x="120" y="330" as="sourcePoint"/>
+                        <mxPoint x="374" y="330" as="targetPoint"/>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
 </mxfile>
