@@ -55,10 +55,6 @@ Value Objectと並びドメインモデル (ドメインオブジェクト) の�
 - Value Object  
 Entityと並びドメインモデル (ドメインオブジェクト) の中心的な要素で、ドメイン内のさまざまな値の概念をモデル化するのに用いられる。
 
-- EntityとValue Object
-
-＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊入れ子の図＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
-
 - Behavior  
 Viewのコードビハインドにイベントハンドラを書くことなく何かアクションをさせるための部品。
 
@@ -268,7 +264,7 @@ MVVMの考え方に沿ったレイヤー設計として、以下のレイヤー�
 - View
 - View Model
 
-＊＊＊＊＊＊＊＊＊＊＊＊＊＊MVVM概念図＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+![mvvm](mvvm.svg)
 
 各層の機能概要を以下に示す。
 
@@ -323,20 +319,20 @@ class ViewModel{
 }
 ```
 
-### 7.2. 設計の留意点（Model & View+ViewModel）
+### 7.2. カスタムMVVM（Model & View+ViewModel）
 
-本設計では、概念的にMVVMに則って、物理的なファイル構成として「Model & View & ViewModel」の形をとっているが、クラス設計上は「Model & View+ViewModel」としている。
+本設計では、概念的にはMVVMに則って物理的なファイル構成として「Model & View & ViewModel」の形をとっているが、クラス設計上は「Model & View+ViewModel」としている。
 
 原則的なMVVMである「Model & View & ViewModel」を実現するためには、ViewModelからViewを制御するために「Message」「Trigger」「Action」の設計・実装スキルが要求される。
 これは、ViewとViewModelの依存度を下げることが出来るバインドの仕組みで駆動するイベントで、ViewとViewModelの依存度を低く保つことに貢献する。  
 ViewとViewModelの依存度を下げることで、デザイナ（View）とプログラマ（ViewModel）の分業が円滑になる、ViewとViewModelのユニットテストが実施しやすくなる、Viewの差し替えが容易になる、等のメリットがある。  
 
-＊＊＊＊＊＊＊＊＊＊＊＊原則的なＭＶＶＭの図＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+![原則的なMVVM](原則的なMVVM.svg)
 
-しかし、現状の現場ではそれらはほぼ行われておらず、必要性のなりメリットを享受するために原則的なMVVMを採用する学習・設計・実装コストは単なる無駄となるため、無駄を排除した「Model & View+ViewModel」を採用する。  
+しかし、現状の現場ではそれらはほぼ行われておらず、必要性のないメリットを享受するために原則的なMVVMを採用する学習・設計・実装コストは単なる無駄となるため、無駄を排除した「Model & View+ViewModel」を採用する。  
 「Model & View+ViewModel」はViewとViewModel機能が1つのクラスとなるため、ViewModelからViewの制御を直接的に操作できる。
 
-＊＊＊＊＊＊＊＊＊View+ViewModelのＭＶＶＭの図＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+![View+ViewModel](View+ViewModel.svg)
 
 ### 7.3. User interface層　コンポーネント設計
 
@@ -366,73 +362,60 @@ GUIアーキテクチャのViewに関わる機能のみ。
 
 #### 7.4.1. Main Window
 
-##### Main Window　画面概要
+Main Windowの画面概要とクラス構成を以下に示す。
 
-＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊画面概要図＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+##### 7.4.1.1. Main Window　画面概要
 
-##### Main Window クラス構成
+Main Windowの主要な画面構成は以下の通り。  
+
+ContentControlに表示するUserControlを切り替えることにより、画面切り替えを実現している。
+
+![MainWindow画面概要](MainWindow画面概要.png)
+
+##### 7.4.1.2. Main Window クラス構成
 
 Main Windowのクラス構成は以下の通り。
 
 ![MainWindowクラス](MainWindowクラス.svg)
 
-XXXXX：  
-タイトルバーをカスタマイズするためにWindowChromeを利用したカスタムウィンドウ。
+MainWindowBaseクラス：  
+タイトルバーをカスタマイズするためにWindowChromeを利用したカスタムウィンドウベースクラスWindow Baseを基底クラスとして、タイトルバーへの機能追加等を行ったメイン画面用のウィンドウベースクラス。
 
-XXXXX：  
-変更通知を実現するためのReactivePropertyライブラリ。
+MainWindowViewクラス：  
+メインウィンドウのView+ViewModelクラス。  
+View内に配置したContentControlに各機能画面のPageを表示する。
 
-#### 7.4.2. 汎用Dialog
+MainWindowModelクラス：  
+メインウィンドウのModelクラス。  
+メインウィンドウのViewに配置された「初期化」「保存」「開く」ボタンの押下をトリガーにModelのそれぞれに対応したメソッドが叩かれるが、実処理はModelが参照している各Usecaseに委譲する。
 
-##### 汎用Dialog　画面概要
+AaaPageViewクラス、AaaPageModelクラス：  
+機能画面のView＋ViewModel、Modelクラス。  
+Main Windowと同様に、各機能画面UserControl自体もMVVM構造となっており、各機能画面単位でも一般的なMVVMアプリ開発知識をもとに開発を進めることが出来るため、学習コストを下げられている。  
+Main Windowと同様に、必要なドメインロジックはUsecaseに委譲されているため、AAA Page画面に必要な個別ロジックのみが高凝集に実装される。
 
-＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊画面概要図＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+#### 7.4.2. 汎用的なDialog
 
-##### 汎用Dialog クラス構成
+汎用的なDialogの画面概要とクラス構成を以下に示す。
 
-＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊クラス図＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+##### 7.4.2.1. 汎用的なDialog　画面概要
 
-タイトルバーをカスタマイズするためにWindowChromeを利用したカスタムウィンドウ。
+汎用的なDialogの主要な画面構成は以下の通り。  
 
-XXXXX：  
-あｌｋｓｊｆ；あｋｓｊｄｆ；あｋｓｄｊｆ；あｋｄｊｓｆ。
+WindowBaseクラスを基底クラスとして、そのクライアントエリアである下記のSomeWindowView領域に任意のコンテンツを表示する。  
+WindowBaseクラス側でタイトルバーのカスタマイズを実現しているため、任意コンテンツ側ではそれを意識する必要がない。
 
-XXXXX：  
-Main Windowと同様。
+![汎用Window画面概要](汎用Window画面概要.png)
 
-XXXXX：  
-Main Windowと同様。
+##### 7.4.2.2. 汎用的なDialog クラス構成
 
-### 7.5. GUIアーキテクチャ　シーケンス
+汎用的なDialogのクラス構成は以下の通り。
 
-GUIアーキテクチャの主要な処理シーケンス概要を以下に示す。
+![汎用的なDialogクラス](汎用的なDialogクラス.svg)
 
-#### 7.5.1. GUIインスタンス取得時
+WindowBaseクラス：  
+タイトルバーをカスタマイズするためにWindowChromeを利用したカスタムウィンドウベースクラス。
 
-GUI表示のためにインスタンスを取得する際、DIコンテナでMVVMやその他全ての参照インスタンスの構築が行われた状態のインスタンスを取得する。
-
-＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊シーケンス図＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
-
-#### 7.5.2. 画面切り替え時
-
-
-
-＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊シーケンス図＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
-
-#### 7.5.3. 設定値表示時
-
-
-
-＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊シーケンス図＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
-
-#### 7.5.4. 設定値変更時
-
-
-
-＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊シーケンス図＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
-
-#### 7.5.5. 設定値更新時
-
-
-
-＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊シーケンス図＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+SomeEntity, SomeUsecase：  
+Main WindowのPageと同様に、アプリケーションが保持する設定データの表示・変更が必要であれば、そのEntityを参照する。また、ドメインロジックを操作する必要がある場合にはそれに対応したUsecaseを参照する。  
+どちらも、不要であれば参照する必要はない。(例えば、About画面のようにアプリケーション名とVersion情報程度の内容であれば、EntityとUsecaseどちらも参照不要。)
