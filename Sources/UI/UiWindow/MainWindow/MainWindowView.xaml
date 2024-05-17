@@ -11,7 +11,6 @@
     mc:Ignorable="d"
     DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
     Title="MainWindow" Height="800" Width="1200" MinHeight="200" MinWidth="470"
-    WindowStartupLocation="CenterScreen"
     TextElement.Foreground="White">
     <Grid>
         <DockPanel behavior:BlurBehavior.Enable="{Binding IsBlur.Value}">

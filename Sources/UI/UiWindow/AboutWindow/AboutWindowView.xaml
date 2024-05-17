@@ -7,8 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
-    Title="AboutWindow" Height="250" Width="300"
-    WindowStartupLocation="CenterScreen">
+    Title="AboutWindow" Height="250" Width="300">
     <Grid TextElement.Foreground="White">
         <TextBlock Text="About" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 

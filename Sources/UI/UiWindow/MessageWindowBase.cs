@@ -42,6 +42,8 @@ namespace UiParts.UiWindow
         /// </summary>
         public MessageWindowBase()
         {
+            WindowStartupLocation = WindowStartupLocation.CenterOwner;
+
             WindowCloseCommand.Subscribe(
                 () =>
                 {

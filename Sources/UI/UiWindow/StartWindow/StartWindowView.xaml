@@ -8,8 +8,7 @@
     xmlns:local="clr-namespace:UiParts.UiWindow.StartWindow"
     mc:Ignorable="d"
     DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
-    Title="StartWindowView" Height="450" Width="800"
-    WindowStartupLocation="CenterScreen">
+    Title="StartWindowView" Height="450" Width="800">
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
             <Button Padding="15,3" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center"

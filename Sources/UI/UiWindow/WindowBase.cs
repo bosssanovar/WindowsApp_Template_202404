@@ -79,6 +79,8 @@ namespace UiParts.UiWindow
         /// <param name="model">モデル</param>
         public WindowBase(WindowModelBase model)
         {
+            WindowStartupLocation = WindowStartupLocation.CenterOwner;
+
             _model = model;
 
             this.Closing += WindowBase_Closing;

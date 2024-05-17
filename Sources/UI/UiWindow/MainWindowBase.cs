@@ -76,6 +76,7 @@ namespace UiParts.UiWindow
 #pragma warning restore IDE0290 // プライマリ コンストラクターの使用
             : base(model)
         {
+            WindowStartupLocation = WindowStartupLocation.Manual;
         }
 
         #endregion --------------------------------------------------------------------------------------------
