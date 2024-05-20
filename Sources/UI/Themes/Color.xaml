@@ -1,10 +1,28 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
+    <!--カラーパレット-->
+    <Color x:Key="PrimaryBackgroundColor">#202020</Color>
+    <SolidColorBrush x:Key="PrimaryBackgroundBlush" Color="{StaticResource PrimaryBackgroundColor}"/>
+
+    <Color x:Key="SecondaryBackgroundColor">#303030</Color>
+    <SolidColorBrush x:Key="SecondaryBackgroundBlush" Color="{StaticResource PrimaryBackgroundColor}"/>
+
+
+    <!--部品カラー-->
     <Color x:Key="BlurOnColor">#E0000000</Color>
     <SolidColorBrush x:Key="BlurOnBrush" Color="{StaticResource BlurOnColor}"/>
 
     <Color x:Key="BlurOffColor">#00000000</Color>
     <SolidColorBrush x:Key="BlurOffBrush" Color="{StaticResource BlurOffColor}"/>
+
+    <DynamicResource x:Key="SideMenuBackgroundColor" ResourceKey="SecondaryBackgroundColor"/>
+    <SolidColorBrush x:Key="SideMenuBackgroundBrush" Color="{StaticResource SideMenuBackgroundColor}"/>
+
+    <DynamicResource x:Key="MessageWindowBackgroundColor" ResourceKey="PrimaryBackgroundColor"/>
+    <SolidColorBrush x:Key="MessageWindowBackgroundBrush" Color="{StaticResource MessageWindowBackgroundColor}"/>
+
+    <DynamicResource x:Key="HumburgerMenuBackgroundColor" ResourceKey="PrimaryBackgroundColor"/>
+    <SolidColorBrush x:Key="HumburgerMenuBackgroundBrush" Color="{StaticResource HumburgerMenuBackgroundColor}"/>
     
 </ResourceDictionary>

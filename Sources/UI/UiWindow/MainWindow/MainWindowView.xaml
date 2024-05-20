@@ -14,7 +14,7 @@
     TextElement.Foreground="White">
     <Grid>
         <DockPanel behavior:BlurBehavior.Enable="{Binding IsBlur.Value}">
-            <Grid DockPanel.Dock="Left" Background="#303030">
+            <Grid DockPanel.Dock="Left" Background="{StaticResource SideMenuBackgroundBrush}">
                 <Expander Template="{StaticResource RevealExpanderTemp}" ExpandDirection="Right" IsExpanded="True">
                     <StackPanel Orientation="Vertical" VerticalAlignment="Top" Width="200">
                         <RadioButton Content="AAA" IsChecked="True" Command="{Binding PageAaaCommand}"/>

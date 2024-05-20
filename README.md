@@ -26,3 +26,7 @@ CodeSnippets
 ## 設計資料
 
 [設計資料こちら](Documents/Design/DesignDocument.md)
+
+## チェックリスト
+
+- 「"#」で色ハードコード箇所を検索
