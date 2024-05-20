@@ -100,15 +100,15 @@ namespace UiParts.UiWindow.MainWindow
             {
                 if (hamburgerMenu.Visibility is Visibility.Collapsed)
                 {
-                    hamburgerMenu.Open();
+                    hamburgerMenu.Open(() =>
+                    {
+                        IsBlur.Value = false;
+                    });
                     IsBlur.Value = true;
                 }
                 else
                 {
-                    hamburgerMenu.Close(() =>
-                    {
-                        IsBlur.Value = false;
-                    });
+                    hamburgerMenu.Close();
                 }
             });
 

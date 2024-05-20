@@ -18,6 +18,8 @@ namespace UiParts.UserControls.HamburgerMenu
 
         #region Fields ----------------------------------------------------------------------------------------
 
+        private Action? _onClosed;
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Properties ------------------------------------------------------------------------------------
@@ -185,8 +187,11 @@ namespace UiParts.UserControls.HamburgerMenu
         /// <summary>
         /// ハンバーガーメニューを開きます。
         /// </summary>
-        public void Open()
+        /// <param name="onClosed">閉じた際の処理</param>
+        public void Open(Action? onClosed = null)
         {
+            _onClosed = onClosed;
+
             Visibility = Visibility.Visible;
 
             var sb = FindResource("OpenAnimation") as Storyboard;
@@ -215,6 +220,8 @@ namespace UiParts.UserControls.HamburgerMenu
                     Visibility = Visibility.Collapsed;
 
                     onCompleted?.Invoke();
+
+                    _onClosed?.Invoke();
                 };
 
                 sb.Begin();
