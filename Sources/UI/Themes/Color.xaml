@@ -2,9 +2,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Color x:Key="BlurOnColor">#E0000000</Color>
-    <SolidColorBrush x:Key="BlurOnBrush" Color="{DynamicResource BlurOnColor}"/>
+    <SolidColorBrush x:Key="BlurOnBrush" Color="{StaticResource BlurOnColor}"/>
 
     <Color x:Key="BlurOffColor">#00000000</Color>
-    <SolidColorBrush x:Key="BlurOffBrush" Color="{DynamicResource BlurOffColor}"/>
+    <SolidColorBrush x:Key="BlurOffBrush" Color="{StaticResource BlurOffColor}"/>
     
 </ResourceDictionary>
