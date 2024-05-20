@@ -81,9 +81,9 @@ namespace Usecase
 
         private void ImportData(DataPacket packet)
         {
-            var aaaEntity = _aaaRepository.Pull();
-            var bbbEntity = _bbbRepository.Pull();
-            var cccEntity = _cccRepository.Pull();
+            var aaaEntity = new AaaEntity.Entity.AaaEntity();
+            var bbbEntity = new BbbEntity.Entity.BbbEntity();
+            var cccEntity = new CccEntity.Entity.CccEntity();
 
             aaaEntity.ImportPacketData(
                 packet.AaaEntityPacket,
