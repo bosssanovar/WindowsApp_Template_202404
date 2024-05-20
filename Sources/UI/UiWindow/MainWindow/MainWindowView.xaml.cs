@@ -28,11 +28,7 @@ namespace UiParts.UiWindow.MainWindow
             var sb = blurBorder.FindResource("CloseAnimation") as Storyboard;
             if (sb is not null)
             {
-                sb.Completed += (sender, e) =>
-                {
-                    blurBorder.Visibility = Visibility.Collapsed;
-                    IsBlur.Value = false;
-                };
+                sb.Completed += Sb_Completed;
 
                 sb.Begin();
             }
@@ -40,6 +36,14 @@ namespace UiParts.UiWindow.MainWindow
             {
                 IsBlur.Value = false;
                 blurBorder.Visibility = Visibility.Collapsed;
+            }
+
+            void Sb_Completed(object? sender, EventArgs e)
+            {
+                blurBorder.Visibility = Visibility.Collapsed;
+                IsBlur.Value = false;
+
+                sb.Completed -= Sb_Completed;
             }
         }
 
@@ -51,17 +55,21 @@ namespace UiParts.UiWindow.MainWindow
             var sb = blurBorder.FindResource("OpenAnimation") as Storyboard;
             if (sb is not null)
             {
-                sb.Completed += (sender, e) =>
-                {
-                    blurBorder.Visibility = Visibility.Visible;
-                    IsBlur.Value = true;
-                };
+                sb.Completed += Sb_Completed;
 
                 sb.Begin();
             }
             else
             {
                 IsBlur.Value = true;
+            }
+
+            void Sb_Completed(object? sender, EventArgs e)
+            {
+                blurBorder.Visibility = Visibility.Visible;
+                IsBlur.Value = true;
+
+                sb.Completed -= Sb_Completed;
             }
         }
 
