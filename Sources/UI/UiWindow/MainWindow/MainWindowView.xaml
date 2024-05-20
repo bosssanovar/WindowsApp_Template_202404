@@ -42,19 +42,19 @@
                            ShowPageAaaAndBbbCommand="{Binding PageAaaAndBbbCommand}"
                            ShowPageCccCommand="{Binding PageCccCommand}"/>
 
-        <Border x:Name="blurBorder" Background="#00000000" Visibility="Collapsed">
+        <Border x:Name="blurBorder" Background="{StaticResource BlurOffBrush}" Visibility="Collapsed">
             <Border.Resources>
                 <Storyboard x:Key="OpenAnimation">
                     <ColorAnimationUsingKeyFrames Storyboard.TargetName="blurBorder" Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
-                        <EasingColorKeyFrame KeyTime="00:00:00" Value="#00000000"/>
-                        <EasingColorKeyFrame KeyTime="00:00:00.1" Value="#D0000000"/>
+                        <EasingColorKeyFrame KeyTime="00:00:00" Value="{StaticResource BlurOffColor}"/>
+                        <EasingColorKeyFrame KeyTime="00:00:00.1" Value="{StaticResource BlurOnColor}"/>
                     </ColorAnimationUsingKeyFrames>
                 </Storyboard>
 
                 <Storyboard x:Key="CloseAnimation">
                     <ColorAnimationUsingKeyFrames Storyboard.TargetName="blurBorder" Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
-                        <EasingColorKeyFrame KeyTime="00:00:00.0" Value="#D0000000"/>
-                        <EasingColorKeyFrame KeyTime="00:00:00.1" Value="#00000000"/>
+                        <EasingColorKeyFrame KeyTime="00:00:00.0" Value="{StaticResource BlurOnColor}"/>
+                        <EasingColorKeyFrame KeyTime="00:00:00.1" Value="{StaticResource BlurOffColor}"/>
                     </ColorAnimationUsingKeyFrames>
                 </Storyboard>
             </Border.Resources>

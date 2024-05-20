@@ -11,6 +11,7 @@
         <ResourceDictionary Source="/UiParts;component/Themes/ExpanderStyle.xaml"/>
         <ResourceDictionary Source="/UiParts;component/Themes/GroupBoxStyle.xaml"/>
         <ResourceDictionary Source="/UiParts;component/Themes/CheckBoxStyle.xaml"/>
+        <ResourceDictionary Source="/UiParts;component/Themes/Color.xaml"/>
 
         <ResourceDictionary>
             <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>

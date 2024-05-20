@@ -16,8 +16,8 @@
 
         <Storyboard x:Key="OpenAnimation">
             <ColorAnimationUsingKeyFrames Storyboard.TargetName="grid" Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
-                <EasingColorKeyFrame KeyTime="00:00:00" Value="#00000000"/>
-                <EasingColorKeyFrame KeyTime="00:00:00.2" Value="#D0000000"/>
+                <EasingColorKeyFrame KeyTime="00:00:00" Value="{StaticResource BlurOffColor}"/>
+                <EasingColorKeyFrame KeyTime="00:00:00.2" Value="{StaticResource BlurOnColor}"/>
             </ColorAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="stackPanel" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
                 <EasingDoubleKeyFrame KeyTime="00:00:00" Value="{StaticResource InitPositionX}">
@@ -47,14 +47,14 @@
                 </EasingDoubleKeyFrame>
             </DoubleAnimationUsingKeyFrames>
             <ColorAnimationUsingKeyFrames Storyboard.TargetName="grid" Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
-                <EasingColorKeyFrame KeyTime="00:00:00" Value="#D0000000"/>
-                <EasingColorKeyFrame KeyTime="00:00:00.3" Value="#D0000000"/>
-                <EasingColorKeyFrame KeyTime="00:00:00.5" Value="#00000000"/>
+                <EasingColorKeyFrame KeyTime="00:00:00" Value="{StaticResource BlurOnColor}"/>
+                <EasingColorKeyFrame KeyTime="00:00:00.3" Value="{StaticResource BlurOnColor}"/>
+                <EasingColorKeyFrame KeyTime="00:00:00.5" Value="{StaticResource BlurOffColor}"/>
             </ColorAnimationUsingKeyFrames>
         </Storyboard>
     </UserControl.Resources>
 
-    <Grid x:Name="grid" Background="#00000000" MouseDown="Grid_MouseDown" PreviewKeyDown="Grid_PreviewKeyDown">
+    <Grid x:Name="grid" Background="{StaticResource BlurOffBrush}" MouseDown="Grid_MouseDown" PreviewKeyDown="Grid_PreviewKeyDown">
         <StackPanel x:Name="stackPanel" HorizontalAlignment="Left" Width="{StaticResource ControlWidth}"
                     Background="#202020" RenderTransformOrigin="0.5,0.5"
                      KeyboardNavigation.TabNavigation="Cycle">
