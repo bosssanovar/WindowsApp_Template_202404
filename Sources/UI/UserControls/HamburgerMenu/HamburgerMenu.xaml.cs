@@ -197,12 +197,16 @@ namespace UiParts.UserControls.HamburgerMenu
             var sb = FindResource("OpenAnimation") as Storyboard;
             if (sb is not null)
             {
-                sb.Completed += (sender, e) =>
-                {
-                    aaaButton.Focus();
-                };
+                sb.Completed += Sb_Completed;
 
                 sb.Begin();
+            }
+
+            void Sb_Completed(object? sender, EventArgs e)
+            {
+                aaaButton.Focus();
+
+                sb.Completed -= Sb_Completed;
             }
         }
 
@@ -215,20 +219,24 @@ namespace UiParts.UserControls.HamburgerMenu
             var sb = FindResource("CloseAnimation") as Storyboard;
             if (sb is not null)
             {
-                sb.Completed += (sender, e) =>
-                {
-                    Visibility = Visibility.Collapsed;
-
-                    onCompleted?.Invoke();
-
-                    _onClosed?.Invoke();
-                };
+                sb.Completed += Sb_Completed;
 
                 sb.Begin();
             }
             else
             {
                 Visibility = Visibility.Collapsed;
+            }
+
+            void Sb_Completed(object? sender, EventArgs e)
+            {
+                Visibility = Visibility.Collapsed;
+
+                onCompleted?.Invoke();
+
+                _onClosed?.Invoke();
+
+                sb.Completed -= Sb_Completed;
             }
         }
 
