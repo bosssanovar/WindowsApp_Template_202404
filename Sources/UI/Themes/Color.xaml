@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <!--カラーパレット-->
+    <!--カラーパレット定義-->
     <Color x:Key="PrimaryBackgroundColor">#202020</Color>
     <SolidColorBrush x:Key="PrimaryBackgroundBlush" Color="{StaticResource PrimaryBackgroundColor}"/>
 
@@ -9,7 +9,7 @@
     <SolidColorBrush x:Key="SecondaryBackgroundBlush" Color="{StaticResource PrimaryBackgroundColor}"/>
 
 
-    <!--部品カラー-->
+    <!--部品カラー定義-->
     <Color x:Key="BlurOnColor">#E0000000</Color>
     <SolidColorBrush x:Key="BlurOnBrush" Color="{StaticResource BlurOnColor}"/>
 
