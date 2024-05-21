@@ -6,7 +6,7 @@
     <SolidColorBrush x:Key="PrimaryBackgroundBlush" Color="{StaticResource PrimaryBackgroundColor}"/>
 
     <Color x:Key="SecondaryBackgroundColor">#303030</Color>
-    <SolidColorBrush x:Key="SecondaryBackgroundBlush" Color="{StaticResource PrimaryBackgroundColor}"/>
+    <SolidColorBrush x:Key="SecondaryBackgroundBlush" Color="{StaticResource SecondaryBackgroundColor}"/>
 
 
     <!--部品カラー定義-->
@@ -15,14 +15,5 @@
 
     <Color x:Key="BlurOffColor">#00000000</Color>
     <SolidColorBrush x:Key="BlurOffBrush" Color="{StaticResource BlurOffColor}"/>
-
-    <DynamicResource x:Key="SideMenuBackgroundColor" ResourceKey="SecondaryBackgroundColor"/>
-    <SolidColorBrush x:Key="SideMenuBackgroundBrush" Color="{StaticResource SideMenuBackgroundColor}"/>
-
-    <DynamicResource x:Key="MessageWindowBackgroundColor" ResourceKey="PrimaryBackgroundColor"/>
-    <SolidColorBrush x:Key="MessageWindowBackgroundBrush" Color="{StaticResource MessageWindowBackgroundColor}"/>
-
-    <DynamicResource x:Key="HumburgerMenuBackgroundColor" ResourceKey="PrimaryBackgroundColor"/>
-    <SolidColorBrush x:Key="HumburgerMenuBackgroundBrush" Color="{StaticResource HumburgerMenuBackgroundColor}"/>
     
 </ResourceDictionary>

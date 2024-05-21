@@ -43,7 +43,7 @@
     </Window.Resources>
 
     <Grid x:Name="grid" TextElement.Foreground="White" Margin="0" RenderTransformOrigin="0.5,0.5"
-          Background="{StaticResource MessageWindowBackgroundBrush}" Opacity="0" d:Opacity="1">
+          Background="{StaticResource PrimaryBackgroundBlush}" Opacity="0" d:Opacity="1">
 
         <Grid.RenderTransform>
             <TransformGroup>
