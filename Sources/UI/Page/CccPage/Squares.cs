@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace UiParts.UserControls.CccPage
+namespace UiParts.Page.CccPage
 {
     /// <summary>
     /// プレビュー用単位図形

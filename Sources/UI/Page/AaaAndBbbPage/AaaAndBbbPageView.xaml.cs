@@ -1,18 +1,18 @@
-﻿namespace UiParts.UserControls.AaaPage
+﻿namespace UiParts.Page.AaaAndBbbPage
 {
     /// <summary>
     /// AaaAndBbbPageView.xaml の相互作用ロジック
     /// </summary>
-    public partial class AaaPageView : PageViewBase
+    public partial class AaaAndBbbPageView : PageViewBase
     {
         /// <summary>
         /// コンストラクタ
         /// </summary>
         /// <param name="model">モデル</param>
-        public AaaPageView(AaaPageModel model)
+        public AaaAndBbbPageView(AaaAndBbbPageModel model)
             : base(model)
         {
-            AaaPageViewModel(model);
+            AaaAndBbbPageViewModel(model);
 
             InitializeComponent();
         }

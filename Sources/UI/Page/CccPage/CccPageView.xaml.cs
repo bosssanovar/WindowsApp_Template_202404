@@ -8,7 +8,7 @@ using System.Windows.Shapes;
 
 using WpfLib;
 
-namespace UiParts.UserControls.CccPage
+namespace UiParts.Page.CccPage
 {
     /// <summary>
     /// CccPageView.xaml の相互作用ロジック

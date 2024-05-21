@@ -10,7 +10,7 @@ using System.Windows;
 
 using UiParts.UiWindow.Message;
 
-namespace UiParts.UserControls.AaaPage
+namespace UiParts.Page.AaaPage
 {
     /// <summary>
     /// AAAページの疑似ViewModel

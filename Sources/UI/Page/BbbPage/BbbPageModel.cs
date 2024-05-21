@@ -1,13 +1,14 @@
-﻿using System.ComponentModel;
-using System.Reactive.Disposables;
-using System.Windows.Controls;
+﻿using Reactive.Bindings;
+using Reactive.Bindings.Extensions;
 
-namespace UiParts.UserControls
+using Usecase;
+
+namespace UiParts.Page.BbbPage
 {
     /// <summary>
-    /// Pageのベースクラス
+    /// BBBページのモデル
     /// </summary>
-    public abstract class PageViewBase : UserControl, INotifyPropertyChanged
+    public class BbbPageModel : PageModelBase
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -15,31 +16,27 @@ namespace UiParts.UserControls
 
         #region Fields ----------------------------------------------------------------------------------------
 
-        private readonly PageModelBase _modelBase;
+        private readonly DisplaySettingsUsecase _displaySettingsUsecase;
 
-        /// <summary>
-        /// 破棄予約リスト
-        /// </summary>
-#pragma warning disable CA1051 // 参照可能なインスタンス フィールドを宣言しません
-#pragma warning disable SA1401 // Fields should be private
-        protected readonly CompositeDisposable _compositeDisposable = [];
-#pragma warning restore SA1401 // Fields should be private
-#pragma warning restore CA1051 // 参照可能なインスタンス フィールドを宣言しません
+        private readonly CommitSettingsUsecase _commitSettingsUsecase;
 
         #endregion --------------------------------------------------------------------------------------------
 
         #region Properties ------------------------------------------------------------------------------------
 
+        /// <summary>
+        /// AAA Entity
+        /// </summary>
+        public ReactivePropertySlim<AaaEntity.Entity.AaaEntity> AaaEntity { get; }
+
+        /// <summary>
+        /// BBB Entity
+        /// </summary>
+        public ReactivePropertySlim<BbbEntity.Entity.BbbEntity> BbbEntity { get; }
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Events ----------------------------------------------------------------------------------------
-
-        /// <summary>
-        /// 変更通知イベント（ReactiveProperty採用時のメモリリーク対策）
-        /// </summary>
-#pragma warning disable CS0067 // イベント 'MainWindowView.PropertyChanged' は使用されていません
-        public event PropertyChangedEventHandler? PropertyChanged;
-#pragma warning restore CS0067 // イベント 'MainWindowView.PropertyChanged' は使用されていません
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -48,12 +45,20 @@ namespace UiParts.UserControls
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="modelBase">モデル</param>
-        public PageViewBase(PageModelBase modelBase)
+        /// <param name="displaySettingsUsecase"><see cref="DisplaySettingsUsecase"/>インスタンス</param>
+        /// <param name="commitSettingsUsecase"><see cref="CommitSettingsUsecase"/>インスタンス</param>
+        public BbbPageModel(
+            DisplaySettingsUsecase displaySettingsUsecase,
+            CommitSettingsUsecase commitSettingsUsecase)
         {
-            _modelBase = modelBase;
+            _displaySettingsUsecase = displaySettingsUsecase;
+            _commitSettingsUsecase = commitSettingsUsecase;
 
-            this.Unloaded += PageViewBase_Unloaded;
+            AaaEntity = new(_displaySettingsUsecase.GetAaaEntity());
+            AaaEntity.AddTo(_compositeDisposable);
+
+            BbbEntity = new(_displaySettingsUsecase.GetBbbEntity());
+            BbbEntity.AddTo(_compositeDisposable);
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -61,19 +66,11 @@ namespace UiParts.UserControls
         #region Methods - public ------------------------------------------------------------------------------
 
         /// <summary>
-        /// 表示更新します。
+        /// BBB Entityの更新通知を発行します。
         /// </summary>
-        public virtual void Update()
+        public void ForceNotifyBbbEntity()
         {
-            _modelBase.UpdateEntities();
-        }
-
-        /// <summary>
-        /// 設定値を確定します。
-        /// </summary>
-        public void Commit()
-        {
-            _modelBase.CommitEntities();
+            BbbEntity.ForceNotify();
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -88,15 +85,26 @@ namespace UiParts.UserControls
 
         #region Methods - private -----------------------------------------------------------------------------
 
-        private void PageViewBase_Unloaded(object sender, System.Windows.RoutedEventArgs e)
-        {
-            _modelBase.Dispose();
-            _compositeDisposable.Dispose();
-        }
-
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - override ----------------------------------------------------------------------------
+
+        /// <summary>
+        /// 全てのEntityを更新します。
+        /// </summary>
+        public override void UpdateEntities()
+        {
+            AaaEntity.Value = _displaySettingsUsecase.GetAaaEntity();
+            BbbEntity.Value = _displaySettingsUsecase.GetBbbEntity();
+        }
+
+        /// <summary>
+        /// BBBEntityの設定値を確定します。
+        /// </summary>
+        public override void CommitEntities()
+        {
+            _commitSettingsUsecase.CommitBbbEntity(BbbEntity.Value);
+        }
 
         #endregion --------------------------------------------------------------------------------------------
 

@@ -1,13 +1,11 @@
-﻿using CccEntity.Entity;
+﻿using System.Reactive.Disposables;
 
-using Reactive.Bindings;
-
-namespace UiParts.UserControls.CccPage
+namespace UiParts.Page
 {
     /// <summary>
-    /// CCC Detail Modelクラス
+    /// ページのModelのベースクラス
     /// </summary>
-    public class CccDetailModel
+    public abstract class PageModelBase : IDisposable
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -16,9 +14,13 @@ namespace UiParts.UserControls.CccPage
         #region Fields ----------------------------------------------------------------------------------------
 
         /// <summary>
-        /// CCC Detail
+        /// 破棄予約リスト
         /// </summary>
-        public ReactivePropertySlim<CccDetailEntity> Detail { get; }
+#pragma warning disable CA1051 // 参照可能なインスタンス フィールドを宣言しません
+#pragma warning disable SA1401 // Fields should be private
+        protected readonly CompositeDisposable _compositeDisposable = [];
+#pragma warning restore SA1401 // Fields should be private
+#pragma warning restore CA1051 // 参照可能なインスタンス フィールドを宣言しません
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -32,26 +34,26 @@ namespace UiParts.UserControls.CccPage
 
         #region Constructor -----------------------------------------------------------------------------------
 
-        /// <summary>
-        /// コンストラクタ
-        /// </summary>
-        /// <param name="entity">CCC Detail</param>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0290:プライマリ コンストラクターの使用", Justification = "<保留中>")]
-        public CccDetailModel(CccDetailEntity entity)
-        {
-            Detail = new(entity);
-        }
-
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - public ------------------------------------------------------------------------------
 
         /// <summary>
-        /// Entityの変更通知を発行します。
+        /// 全てのEntityを更新します。
         /// </summary>
-        internal void ForceNotify()
+        public abstract void UpdateEntities();
+
+        /// <summary>
+        /// 全てのEntityの設定を確定します。
+        /// </summary>
+        public abstract void CommitEntities();
+
+        /// <summary>
+        /// 破棄します。
+        /// </summary>
+        public void Dispose()
         {
-            Detail.ForceNotify();
+            _compositeDisposable.Dispose();
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -72,7 +74,7 @@ namespace UiParts.UserControls.CccPage
 
         #endregion --------------------------------------------------------------------------------------------
 
-        #region Inner Class/Enum ------------------------------------------------------------------------------
+        #region Inner Class/Enum/etc. -------------------------------------------------------------------------
 
         #endregion --------------------------------------------------------------------------------------------
     }

@@ -46,13 +46,13 @@
     <Compile Update="UiWindow\Message\MessageWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="UserControls\BbbPage\BbbPageView.xaml.cs">
+    <Compile Update="Page\BbbPage\BbbPageView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="UserControls\AaaPage\AaaPageView.xaml.cs">
+    <Compile Update="Page\AaaPage\AaaPageView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="UserControls\CccPage\CccPageView.xaml.cs">
+    <Compile Update="Page\CccPage\CccPageView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

@@ -3,14 +3,14 @@ using Reactive.Bindings.Extensions;
 
 using System.Windows;
 
+using UiParts.Page;
+using UiParts.Page.AaaAndBbbPage;
+using UiParts.Page.AaaPage;
+using UiParts.Page.BbbPage;
+using UiParts.Page.CccPage;
 using UiParts.UiWindow.AboutWindow;
 using UiParts.UiWindow.Message;
 using UiParts.UiWindow.StartWindow;
-using UiParts.UserControls;
-using UiParts.UserControls.AaaAndBbbPage;
-using UiParts.UserControls.AaaPage;
-using UiParts.UserControls.BbbPage;
-using UiParts.UserControls.CccPage;
 
 namespace UiParts.UiWindow.MainWindow
 {

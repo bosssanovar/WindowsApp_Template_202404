@@ -3,7 +3,7 @@ using Reactive.Bindings.Extensions;
 
 using Usecase;
 
-namespace UiParts.UserControls.AaaPage
+namespace UiParts.Page.AaaPage
 {
     /// <summary>
     /// AAAページのモデル

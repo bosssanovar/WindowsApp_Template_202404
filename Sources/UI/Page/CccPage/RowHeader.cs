@@ -1,4 +1,4 @@
-﻿namespace UiParts.UserControls.CccPage
+﻿namespace UiParts.Page.CccPage
 {
     /// <summary>
     /// 行ヘッダのデータクラス

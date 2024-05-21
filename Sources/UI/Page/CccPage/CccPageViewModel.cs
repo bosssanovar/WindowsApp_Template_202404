@@ -1,14 +1,18 @@
 ﻿using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 
-using Usecase;
+using System.Reactive.Concurrency;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;
+using System.Windows.Controls;
+using System.Windows.Data;
 
-namespace UiParts.UserControls.AaaAndBbbPage
+namespace UiParts.Page.CccPage
 {
     /// <summary>
-    /// AAA and BBBページのモデル
+    /// CCCページの疑似ViewModel
     /// </summary>
-    public class AaaAndBbbPageModel : PageModelBase
+    public partial class CccPageView
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -16,28 +20,33 @@ namespace UiParts.UserControls.AaaAndBbbPage
 
         #region Fields ----------------------------------------------------------------------------------------
 
-        private readonly DisplaySettingsUsecase _displaySettingsUsecase;
+        private CccPageModel? _model;
 
-        private readonly CommitSettingsUsecase _commitSettingsUsecase;
+        private readonly CompositeDisposable _disposable = [];
 
         #endregion --------------------------------------------------------------------------------------------
 
         #region Properties ------------------------------------------------------------------------------------
 
         /// <summary>
-        /// AAA Entity
+        /// マトリクス行列数
         /// </summary>
-        public ReactivePropertySlim<AaaEntity.Entity.AaaEntity> AaaEntity { get; }
+        public ReadOnlyReactivePropertySlim<int> Count { get; private set; }
 
         /// <summary>
-        /// BBB Entity
+        /// 行ヘッダー
         /// </summary>
-        public ReactivePropertySlim<BbbEntity.Entity.BbbEntity> BbbEntity { get; }
+        public List<RowHeader> RowHeaders { get; } = [];
 
         /// <summary>
-        /// CCC Entity
+        /// 列ヘッダー
         /// </summary>
-        public ReactivePropertySlim<CccEntity.Entity.CccEntity> CccEntity { get; }
+        public List<ColumnHeader> ColumnHeaders { get; } = [];
+
+        /// <summary>
+        /// CCC設定
+        /// </summary>
+        public ReadOnlyReactiveCollection<CccDetailViewModel> Cccs { get; private set; }
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -47,47 +56,9 @@ namespace UiParts.UserControls.AaaAndBbbPage
 
         #region Constructor -----------------------------------------------------------------------------------
 
-        /// <summary>
-        /// コンストラクタ
-        /// </summary>
-        /// <param name="displaySettingsUsecase">DisplaySettingsUsecaseインスタンス</param>
-        /// <param name="commitSettingsUsecase">CommitSettingsUsecaseインスタンス</param>
-        public AaaAndBbbPageModel(
-            DisplaySettingsUsecase displaySettingsUsecase,
-            CommitSettingsUsecase commitSettingsUsecase)
-        {
-            _displaySettingsUsecase = displaySettingsUsecase;
-            _commitSettingsUsecase = commitSettingsUsecase;
-
-            AaaEntity = new(_displaySettingsUsecase.GetAaaEntity());
-            AaaEntity.AddTo(_compositeDisposable);
-
-            BbbEntity = new(_displaySettingsUsecase.GetBbbEntity());
-            BbbEntity.AddTo(_compositeDisposable);
-
-            CccEntity = new(_displaySettingsUsecase.GetCccEntity());
-            CccEntity.AddTo(_compositeDisposable);
-        }
-
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - public ------------------------------------------------------------------------------
-
-        /// <summary>
-        /// AAAEntityの変更通知を発行します。
-        /// </summary>
-        public void ForceNotifyAaaEntity()
-        {
-            AaaEntity.ForceNotify();
-        }
-
-        /// <summary>
-        /// BBBEntityの変更通知を発行します。
-        /// </summary>
-        public void ForceNotifyBbbEntity()
-        {
-            BbbEntity.ForceNotify();
-        }
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -101,28 +72,53 @@ namespace UiParts.UserControls.AaaAndBbbPage
 
         #region Methods - private -----------------------------------------------------------------------------
 
+        private void CccPageViewModel(CccPageModel model)
+        {
+            _model = model;
+
+            Count = _model.AaaEntity.Select(x => x.Yyy.Value).ToReadOnlyReactivePropertySlim();
+
+            for (int i = 0; i < Count.Value; i++)
+            {
+                RowHeaders.Add(new($"{i + 1}", $"スイッチ{i + 1}", "放送階選択", "EL1"));
+            }
+
+            ColumnHeaders.Add(new("スピーカー名称", 120.0));
+            ColumnHeaders.Add(new("SP", 50.0));
+
+            Cccs =
+                _model.Details.ToReadOnlyReactiveCollection(
+                    x => new CccDetailViewModel(x),
+                    Scheduler.Immediate)
+                .AddTo(_disposable);
+        }
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - override ----------------------------------------------------------------------------
 
-        /// <summary>
-        /// 全てのEntityを更新します。
-        /// </summary>
-        public override void UpdateEntities()
+        /// <inheritdoc/>
+        public override void Update()
         {
-            AaaEntity.Value = _displaySettingsUsecase.GetAaaEntity();
-            BbbEntity.Value = _displaySettingsUsecase.GetBbbEntity();
-            CccEntity.Value = _displaySettingsUsecase.GetCccEntity();
-        }
+            // バインドを一時切断
+            Binding b = new("Cccs")
+            {
+                Source = null,
+            };
+            grid.SetBinding(DataGrid.ItemsSourceProperty, b);
 
-        /// <summary>
-        /// 全てのEntityの設定値を確定します。
-        /// </summary>
-        public override void CommitEntities()
-        {
-            _commitSettingsUsecase.CommitAaaEntity(AaaEntity.Value);
-            _commitSettingsUsecase.CommitBbbEntity(BbbEntity.Value);
-            _commitSettingsUsecase.CommitCccEntity(CccEntity.Value);
+            base.Update();
+
+            // バインドを再構築
+            b = new("Cccs")
+            {
+                Source = this,
+            };
+            grid.SetBinding(DataGrid.ItemsSourceProperty, b);
+
+            InitColumns(Count.Value);
+            UpdatePreview();
+            ResizeGridDummy();
         }
 
         #endregion --------------------------------------------------------------------------------------------

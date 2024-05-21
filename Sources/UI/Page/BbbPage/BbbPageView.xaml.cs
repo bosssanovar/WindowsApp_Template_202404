@@ -1,4 +1,4 @@
-﻿namespace UiParts.UserControls.BbbPage
+﻿namespace UiParts.Page.BbbPage
 {
     /// <summary>
     /// AaaAndBbbPageView.xaml の相互作用ロジック

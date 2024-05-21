@@ -3,12 +3,12 @@ using Reactive.Bindings.Extensions;
 
 using Usecase;
 
-namespace UiParts.UserControls.BbbPage
+namespace UiParts.Page.AaaAndBbbPage
 {
     /// <summary>
-    /// BBBページのモデル
+    /// AAA and BBBページのモデル
     /// </summary>
-    public class BbbPageModel : PageModelBase
+    public class AaaAndBbbPageModel : PageModelBase
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -34,6 +34,11 @@ namespace UiParts.UserControls.BbbPage
         /// </summary>
         public ReactivePropertySlim<BbbEntity.Entity.BbbEntity> BbbEntity { get; }
 
+        /// <summary>
+        /// CCC Entity
+        /// </summary>
+        public ReactivePropertySlim<CccEntity.Entity.CccEntity> CccEntity { get; }
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Events ----------------------------------------------------------------------------------------
@@ -45,9 +50,9 @@ namespace UiParts.UserControls.BbbPage
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="displaySettingsUsecase"><see cref="DisplaySettingsUsecase"/>インスタンス</param>
-        /// <param name="commitSettingsUsecase"><see cref="CommitSettingsUsecase"/>インスタンス</param>
-        public BbbPageModel(
+        /// <param name="displaySettingsUsecase">DisplaySettingsUsecaseインスタンス</param>
+        /// <param name="commitSettingsUsecase">CommitSettingsUsecaseインスタンス</param>
+        public AaaAndBbbPageModel(
             DisplaySettingsUsecase displaySettingsUsecase,
             CommitSettingsUsecase commitSettingsUsecase)
         {
@@ -59,6 +64,9 @@ namespace UiParts.UserControls.BbbPage
 
             BbbEntity = new(_displaySettingsUsecase.GetBbbEntity());
             BbbEntity.AddTo(_compositeDisposable);
+
+            CccEntity = new(_displaySettingsUsecase.GetCccEntity());
+            CccEntity.AddTo(_compositeDisposable);
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -66,7 +74,15 @@ namespace UiParts.UserControls.BbbPage
         #region Methods - public ------------------------------------------------------------------------------
 
         /// <summary>
-        /// BBB Entityの更新通知を発行します。
+        /// AAAEntityの変更通知を発行します。
+        /// </summary>
+        public void ForceNotifyAaaEntity()
+        {
+            AaaEntity.ForceNotify();
+        }
+
+        /// <summary>
+        /// BBBEntityの変更通知を発行します。
         /// </summary>
         public void ForceNotifyBbbEntity()
         {
@@ -96,14 +112,17 @@ namespace UiParts.UserControls.BbbPage
         {
             AaaEntity.Value = _displaySettingsUsecase.GetAaaEntity();
             BbbEntity.Value = _displaySettingsUsecase.GetBbbEntity();
+            CccEntity.Value = _displaySettingsUsecase.GetCccEntity();
         }
 
         /// <summary>
-        /// BBBEntityの設定値を確定します。
+        /// 全てのEntityの設定値を確定します。
         /// </summary>
         public override void CommitEntities()
         {
+            _commitSettingsUsecase.CommitAaaEntity(AaaEntity.Value);
             _commitSettingsUsecase.CommitBbbEntity(BbbEntity.Value);
+            _commitSettingsUsecase.CommitCccEntity(CccEntity.Value);
         }
 
         #endregion --------------------------------------------------------------------------------------------

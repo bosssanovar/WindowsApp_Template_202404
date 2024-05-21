@@ -1,18 +1,13 @@
-﻿using CccEntity.ValueObject;
-
-using Reactive.Bindings;
-using Reactive.Bindings.Extensions;
-
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Reactive.Disposables;
-using System.Reactive.Linq;
+using System.Windows.Controls;
 
-namespace UiParts.UserControls.CccPage
+namespace UiParts.Page
 {
     /// <summary>
-    /// CCC Detail ViewModelクラス
+    /// Pageのベースクラス
     /// </summary>
-    public class CccDetailViewModel : INotifyPropertyChanged, IDisposable
+    public abstract class PageViewBase : UserControl, INotifyPropertyChanged
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -20,18 +15,20 @@ namespace UiParts.UserControls.CccPage
 
         #region Fields ----------------------------------------------------------------------------------------
 
-        private readonly CccDetailModel _model;
+        private readonly PageModelBase _modelBase;
 
-        private readonly CompositeDisposable _disposable = [];
+        /// <summary>
+        /// 破棄予約リスト
+        /// </summary>
+#pragma warning disable CA1051 // 参照可能なインスタンス フィールドを宣言しません
+#pragma warning disable SA1401 // Fields should be private
+        protected readonly CompositeDisposable _compositeDisposable = [];
+#pragma warning restore SA1401 // Fields should be private
+#pragma warning restore CA1051 // 参照可能なインスタンス フィールドを宣言しません
 
         #endregion --------------------------------------------------------------------------------------------
 
         #region Properties ------------------------------------------------------------------------------------
-
-        /// <summary>
-        /// Ccc設定
-        /// </summary>
-        public List<ReactivePropertySlim<bool>> Cccs { get; } = [];
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -40,9 +37,9 @@ namespace UiParts.UserControls.CccPage
         /// <summary>
         /// 変更通知イベント（ReactiveProperty採用時のメモリリーク対策）
         /// </summary>
-#pragma warning disable CS0067 // イベント 'DetailViewModel.PropertyChanged' は使用されていません
+#pragma warning disable CS0067 // イベント 'MainWindowView.PropertyChanged' は使用されていません
         public event PropertyChangedEventHandler? PropertyChanged;
-#pragma warning restore CS0067 // イベント 'DetailViewModel.PropertyChanged' は使用されていません
+#pragma warning restore CS0067 // イベント 'MainWindowView.PropertyChanged' は使用されていません
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -51,26 +48,12 @@ namespace UiParts.UserControls.CccPage
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="model">コレクション型のModel</param>
-        public CccDetailViewModel(CccDetailModel model)
+        /// <param name="modelBase">モデル</param>
+        public PageViewBase(PageModelBase modelBase)
         {
-            _model = model;
+            _modelBase = modelBase;
 
-            var count = _model.Detail.Value.Cccs.Count;
-            for (int i = 0; i < count; i++)
-            {
-                int index = i;
-                var ccc = new ReactivePropertySlim<bool>(_model.Detail.Value.Cccs[index].Value);
-                ccc.Subscribe(
-                    x =>
-                    {
-                        var correct = new CccVO(x);
-                        _model.Detail.Value.Cccs[index] = correct;
-                    })
-                    .AddTo(_disposable);
-
-                Cccs.Add(ccc);
-            }
+            Unloaded += PageViewBase_Unloaded;
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -78,38 +61,19 @@ namespace UiParts.UserControls.CccPage
         #region Methods - public ------------------------------------------------------------------------------
 
         /// <summary>
-        /// オブジェクトの後始末
+        /// 表示更新します。
         /// </summary>
-        public void Dispose()
+        public virtual void Update()
         {
-            _disposable.Dispose();
+            _modelBase.UpdateEntities();
         }
 
         /// <summary>
-        /// 設定値を反転します。
+        /// 設定値を確定します。
         /// </summary>
-        /// <param name="index">要素インデックス</param>
-        internal void Invert(int index)
+        public void Commit()
         {
-            Cccs[index].Value = !Cccs[index].Value;
-        }
-
-        /// <summary>
-        /// 一括設定します。
-        /// </summary>
-        /// <param name="v">設定値</param>
-        internal void SetAll(bool v)
-        {
-            Cccs.ForEach(x => x.Value = v);
-        }
-
-        /// <summary>
-        /// 設定をＯＮします。
-        /// </summary>
-        /// <param name="index">インデックス</param>
-        internal void SetOn(int index)
-        {
-            Cccs[index].Value = true;
+            _modelBase.CommitEntities();
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -124,13 +88,19 @@ namespace UiParts.UserControls.CccPage
 
         #region Methods - private -----------------------------------------------------------------------------
 
+        private void PageViewBase_Unloaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            _modelBase.Dispose();
+            _compositeDisposable.Dispose();
+        }
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - override ----------------------------------------------------------------------------
 
         #endregion --------------------------------------------------------------------------------------------
 
-        #region Inner Class/Enum ------------------------------------------------------------------------------
+        #region Inner Class/Enum/etc. -------------------------------------------------------------------------
 
         #endregion --------------------------------------------------------------------------------------------
     }
