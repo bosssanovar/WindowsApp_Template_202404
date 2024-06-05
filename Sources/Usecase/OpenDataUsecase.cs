@@ -44,13 +44,14 @@ namespace Usecase
         /// <summary>
         /// 読み込みます。
         /// </summary>
+        /// <param name="filePath">ファイルパス</param>
         /// <returns>読み込み結果</returns>
-        public OpenResult Execute()
+        public OpenResult Execute(string filePath)
         {
             try
             {
                 var packet = new DataPacket();
-                var result = _dataFileAccessor.Load(ref packet);
+                var result = _dataFileAccessor.Load(filePath, ref packet);
 
                 if (!result)
                 {

@@ -41,24 +41,26 @@ namespace Feature.DataFile
         /// <summary>
         /// ファイルに保存します。
         /// </summary>
+        /// <param name="filePath">ファイルパス</param>
         /// <param name="packet">設定データ群</param>
         /// <returns>正常終了したらtrue</returns>
-        public bool Save(DataPacket packet)
+        public bool Save(string filePath, DataPacket packet)
         {
             var jsonString = JsonSerializer.Serialize(packet, _options);
 
-            return _fileAccessor.Save(jsonString);
+            return _fileAccessor.Save(filePath, jsonString);
         }
 
         /// <summary>
         /// ファイルから読み込みます。
         /// </summary>
+        /// <param name="filePath">ファイルパス</param>
         /// <param name="packet">設定データ群</param>
         /// <returns>正常終了したらtrue</returns>
-        public bool Load(ref DataPacket packet)
+        public bool Load(string filePath, ref DataPacket packet)
         {
             string content = string.Empty;
-            var result = _fileAccessor.Load(ref content);
+            var result = _fileAccessor.Load(filePath, ref content);
 
             if (!result)
             {

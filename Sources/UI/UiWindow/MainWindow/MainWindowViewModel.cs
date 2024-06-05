@@ -1,4 +1,6 @@
-﻿using Reactive.Bindings;
+﻿using Microsoft.Win32;
+
+using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 
 using System.Windows;
@@ -148,7 +150,17 @@ namespace UiParts.UiWindow.MainWindow
                 PopupOnBlur(
                     () =>
                     {
-                        result = _model.SaveDataFile();
+                        SaveFileDialog sfd = new()
+                        {
+                            Filter = "Data file (*.dat)|*.dat",
+                        };
+                        if (sfd.ShowDialog() == false)
+                        {
+                            result = false;
+                            return;
+                        }
+
+                        result = _model.SaveDataFile(sfd.FileName);
                     });
 
                 if (result)
@@ -165,7 +177,17 @@ namespace UiParts.UiWindow.MainWindow
                 PopupOnBlur(
                     () =>
                     {
-                        result = _model.OpenDataFile();
+                        OpenFileDialog openFileDialog = new()
+                        {
+                            Filter = "Data file (*.dat)|*.dat",
+                        };
+                        if (openFileDialog.ShowDialog() == false)
+                        {
+                            result = Usecase.OpenDataUsecase.OpenResult.Canceled;
+                            return;
+                        }
+
+                        result = _model.OpenDataFile(openFileDialog.FileName);
                     });
 
                 switch (result)

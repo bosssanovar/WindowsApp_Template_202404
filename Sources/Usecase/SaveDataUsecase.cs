@@ -44,12 +44,13 @@ namespace Usecase
         /// <summary>
         /// 保存します。
         /// </summary>
+        /// <param name="filePath">ファイルパス</param>
         /// <returns>保存が正常終了したらtrue</returns>
-        public bool Execute()
+        public bool Execute(string filePath)
         {
             DataPacket packet = GetDataPacket();
 
-            return _dataFileAccessor.Save(packet);
+            return _dataFileAccessor.Save(filePath, packet);
         }
 
         #endregion --------------------------------------------------------------------------------------------

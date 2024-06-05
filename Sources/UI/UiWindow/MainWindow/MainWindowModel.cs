@@ -63,19 +63,21 @@ namespace UiParts.UiWindow.MainWindow
         /// <summary>
         /// 設定をファイルに保存します。
         /// </summary>
+        /// <param name="filePath">ファイルパス</param>
         /// <returns>成功したらtrue</returns>
-        public bool SaveDataFile()
+        public bool SaveDataFile(string filePath)
         {
-            return _saveDataUsecase.Execute();
+            return _saveDataUsecase.Execute(filePath);
         }
 
         /// <summary>
         /// 設定をファイルから読み込みます。
         /// </summary>
+        /// <param name="filePath">ファイルパス</param>
         /// <returns>読み込み処理結果</returns>
-        public OpenDataUsecase.OpenResult OpenDataFile()
+        public OpenDataUsecase.OpenResult OpenDataFile(string filePath)
         {
-            return _openDataUsecase.Execute();
+            return _openDataUsecase.Execute(filePath);
         }
 
         #endregion --------------------------------------------------------------------------------------------

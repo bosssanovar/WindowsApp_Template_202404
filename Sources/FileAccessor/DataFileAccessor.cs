@@ -1,7 +1,5 @@
 using Feature.DataFile;
 
-using Microsoft.Win32;
-
 using System.IO;
 
 namespace FileAccessor
@@ -34,35 +32,17 @@ namespace FileAccessor
         #region Methods - public ------------------------------------------------------------------------------
 
         /// <inheritdoc/>
-        public bool Load(ref string content)
+        public bool Load(string filePath, ref string content)
         {
-            OpenFileDialog openFileDialog = new()
-            {
-                Filter = "Data file (*.dat)|*.dat",
-            };
-            if (openFileDialog.ShowDialog() == false)
-            {
-                return false;
-            }
-
-            content = File.ReadAllText(openFileDialog.FileName);
+            content = File.ReadAllText(filePath);
 
             return true;
         }
 
         /// <inheritdoc/>
-        public bool Save(string content)
+        public bool Save(string filePath, string content)
         {
-            SaveFileDialog sfd = new()
-            {
-                Filter = "Data file (*.dat)|*.dat",
-            };
-            if (sfd.ShowDialog() == false)
-            {
-                return false;
-            }
-
-            File.WriteAllText(sfd.FileName, content);
+            File.WriteAllText(filePath, content);
 
             return true;
         }
